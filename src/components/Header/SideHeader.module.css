@@ -1,0 +1,12 @@
+.title {
+  font-size: 2em;
+  text-align: center;
+
+  /*타이틀(로고) 디자인 적용*/
+}
+.header {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

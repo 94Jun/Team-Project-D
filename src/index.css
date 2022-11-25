@@ -1,0 +1,27 @@
+:root {
+  /*폰트 사이즈 정의*/
+  --font-xlarge: 24px;
+  --font-large: 18px;
+  --font-medium: 16px;
+  --font-small: 14px;
+  --font-xsmall: 12px;
+
+  /*색상 정의*/
+  --color-backdrop: rgba(0, 0, 0, 0.5);
+  --color-black: #000;
+  --color-white: #fff;
+  --color-dark-gray: #555;
+  --color-gray: #ccc;
+  --color-light-gray: #eee;
+  --color-main-1: #dce4f0;
+  --color-main-2: #97b0d1;
+  --color-main-3: #4a7eb2;
+  --color-main-4: #0067a3;
+  --color-main-5: #17446a;
+  --color-main-6: #17344f;
+
+  /*스크린 사이즈 정의*/
+  --screen-medium: 1300px;
+  --screen-small: 768px;
+}
+

@@ -1,0 +1,5 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--color-light-gray);
+  flex-grow: 1;
+}
