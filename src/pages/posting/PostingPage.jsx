@@ -1,5 +1,5 @@
 const PostingPage = () => {
-  return <div>포스팅</div>;
+  return <h1>포스팅</h1>;
 };
 
 export default PostingPage;
