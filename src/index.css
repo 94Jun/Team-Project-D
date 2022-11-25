@@ -15,10 +15,10 @@
   --color-dark-gray: #222;
   --color-gray: #ccc;
   --color-light-gray: #eee;
-  --color-main-1: #c95858;
-  --color-main-2: #35a5a6;
-  --color-main-3: #a7dbdc;
-  --color-main-4: #d0e8e7;
-  --color-main-5: #195280;
-  --color-main-6: #6d6d6d;
+  --color-main-red: #c95858;
+  --color-main-green3: #35a5a6;
+  --color-main-green2: #a7dbdc;
+  --color-main-green1: #d0e8e7;
+  --color-main-blue: #195280;
+  --color-main-gray: #6d6d6d;
 }
