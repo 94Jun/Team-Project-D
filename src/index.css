@@ -12,13 +12,13 @@
   --color-backdrop: rgba(0, 0, 0, 0.5);
   --color-black: #000;
   --color-white: #fff;
-  --color-dark-gray: #555;
+  --color-dark-gray: #222;
   --color-gray: #ccc;
   --color-light-gray: #eee;
-  --color-main-1: #dce4f0;
-  --color-main-2: #97b0d1;
-  --color-main-3: #4a7eb2;
-  --color-main-4: #0067a3;
-  --color-main-5: #17446a;
-  --color-main-6: #17344f;
+  --color-main-1: #c95858;
+  --color-main-2: #35a5a6;
+  --color-main-3: #a7dbdc;
+  --color-main-4: #d0e8e7;
+  --color-main-5: #195280;
+  --color-main-6: #6d6d6d;
 }
