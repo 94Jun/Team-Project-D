@@ -90,3 +90,16 @@
          </ul>
       </li>
    </ol>
+<br>
+<b>화면 너비 정의(반응형)</b>
+  <ul>
+    <li>
+      pc 기준(large) : 1300px 이상
+    </li>
+    <li>
+      태블릿 기준(medium) : 768px ~ 1300px
+    </li>
+    <li>
+      모바일 기준(small) : 768px
+    </li>
+  </ul>

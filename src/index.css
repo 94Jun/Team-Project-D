@@ -1,10 +1,12 @@
 :root {
   /*폰트 사이즈 정의*/
-  --font-xlarge: 24px;
+  --font-xxlarge: 28px;
+  --font-xlarge: 22px;
   --font-large: 18px;
   --font-medium: 16px;
   --font-small: 14px;
   --font-xsmall: 12px;
+  --font-xxsmall: 10px;
 
   /*색상 정의*/
   --color-backdrop: rgba(0, 0, 0, 0.5);
@@ -19,9 +21,4 @@
   --color-main-4: #0067a3;
   --color-main-5: #17446a;
   --color-main-6: #17344f;
-
-  /*스크린 사이즈 정의*/
-  --screen-medium: 1300px;
-  --screen-small: 768px;
 }
-
