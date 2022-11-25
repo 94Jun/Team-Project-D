@@ -25,6 +25,7 @@ const App = () => {
           <Route path="/posting" element={<PostingPage />}></Route>
           <Route path="/user" element={<UserPage />}></Route>
           <Route path="/search" element={<SearchPage />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
         </Routes>
         {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
       </Flex>
