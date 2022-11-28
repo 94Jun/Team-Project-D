@@ -50,7 +50,7 @@ const LoginPage = () => {
     };
   
     const btnbasicstyle = {
-      backgroundColor :"#4a7eb2"
+      backgroundColor :"#195280"
         };
 
     const btnbasicstyle2 = {
@@ -102,8 +102,9 @@ const LoginPage = () => {
   <Button style={{fontSize:'11px'}}> 아이디찾기</Button>  / 
   <Button style={{fontSize:'11px'}} >비밀번호 찾기</Button>  <br></br>
   </div>  <br></br>
-
-  <Button variant="contained" style={btnbasicstyle}>로그인</Button><br></br>
+<div style={{color:"black"}}>
+  <Button variant="contained" style={btnbasicstyle} color="inherit">로그인</Button><br></br>
+  </div>
 or<br></br>
 <Button variant="outlined" style={btnbasicstyle2}>google 계정으로 계속하기</Button><br></br>
 

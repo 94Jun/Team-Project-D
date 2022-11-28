@@ -26,9 +26,9 @@ const Register = () => {
         const phoneRegex = /^[0-9\b -]{0,13}$/; 
         // 값이 없거나 혹은 입력한 값이 있을때 맞다 - 문자만 필터 
         if ((!e.target.value || (phoneRegex.test(e.target.value)))) { 
-            setphoneError(false);   }
+            setphoneError(false);    }
         else  { setphoneError(true); 
-        }setphone(e.target.value); 
+        }setphone(e.target.value);
         // 문자 길이로 확인하여 그전에도 알림뜨기 
         if (e.target.value.length !== 13) { 
             setphoneError(true);
@@ -116,7 +116,7 @@ const Register = () => {
 
 
 <div style={registerbasicstyle}> 가입하기 </div>
-<p style={{fontSize:'12px'}}> 서비스 이용을 위해 필요한 필수 정보를 입력해주세요  </p> <br></br><br></br>
+<p style={{fontSize:"28"}}> 서비스 이용을 위해 필요한 필수 정보를 입력해주세요  </p> <br></br><br></br>
 
         
         <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
