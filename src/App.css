@@ -19,12 +19,13 @@ a {
   font-family: "title_logo";
   src: url(../public/fonts/PICOBLA_.TTF);
 }
+/*영어 폰트*/
 @font-face {
   font-family: "openSans";
   src: url(../public/fonts/OpenSans-Regular.ttf);
   unicode-range: U+0041-005A, U+0061-007A;
 }
-
+/*한글 폰트*/
 @font-face {
   font-family: "gothic";
   src: url(../public/fonts/NanumGothic-Regular.ttf);
