@@ -100,6 +100,6 @@
       태블릿 기준(medium) : 768px ~ 1300px
     </li>
     <li>
-      모바일 기준(small) : 768px
+      모바일 기준(small) : 768px 이하
     </li>
   </ul>
