@@ -9,6 +9,7 @@ import LoginPage from "./pages/login/LoginPage";
 import PostingPage from "./pages/posting/PostingPage";
 import UserPage from "./pages/user/UserPage";
 import SearchPage from "./pages/search/SearchPage";
+import Register from "./pages/login/Register";
 
 const App = () => {
   return (
@@ -25,6 +26,8 @@ const App = () => {
           <Route path="/posting" element={<PostingPage />}></Route>
           <Route path="/user" element={<UserPage />}></Route>
           <Route path="/search" element={<SearchPage />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/register" element={<Register />}></Route>
         </Routes>
         {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
       </Flex>
