@@ -7,10 +7,20 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Button } from '@mui/material';
+import { useState } from 'react';
 
 
 
 const LoginPage = () => {
+
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const onChangeEmail = (e) => {
+    const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    if (!e.target.value || emailRegex.test(e.target.value)) setEmailError(false);
+    else setEmailError(true);
+    setEmail(e.target.value);
+};
 
   const [values, setValues] = React.useState({
     password: '',
@@ -52,18 +62,19 @@ const LoginPage = () => {
 
 
     <div className="login">
-     <h1 style={Loginbasicstyle}>로그인</h1>
+     <div style={Loginbasicstyle}>로그인</div>
     <p style={{fontSize:'12px'}}> 서비스 시작을 위해 로그인을 해주세요 </p>
 <form> 
 
 
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+<FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
           <InputLabel htmlFor="standard-email">email</InputLabel>
           <Input
             id="standard-email"
             type="email"
-            value={values.email} />
-        </FormControl>
+            placeholder="Email Address" value={email} onChange={onChangeEmail}/>
+             {emailError && <div className="invalid-input"> 이메일 주소를 확인해주세요. </div>}
+        </FormControl> <br></br>
 
   <br></br>
           <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">

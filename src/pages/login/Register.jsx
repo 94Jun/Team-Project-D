@@ -23,10 +23,16 @@ const Register = () => {
     const [emailError, setEmailError] = useState(false);
 
     const onChangephone = (e) => {
-        const phoneRegex = /^[0-9\b -]{0,13}$/;
-        if ((!e.target.value || (phoneRegex.test(e.target.value)))) setphoneError(false);
-        else setphoneError(true);
-        setphone(e.target.value);
+        const phoneRegex = /^[0-9\b -]{0,13}$/; 
+        // 값이 없거나 혹은 입력한 값이 있을때 맞다 - 문자만 필터 
+        if ((!e.target.value || (phoneRegex.test(e.target.value)))) { 
+            setphoneError(false);   }
+        else  { setphoneError(true); 
+        }setphone(e.target.value); 
+        // 문자 길이로 확인하여 그전에도 알림뜨기 
+        if (e.target.value.length !== 13) { 
+            setphoneError(true);
+        }
     };
 
     useEffect(() => {
@@ -94,14 +100,23 @@ const Register = () => {
         event.preventDefault();
       };
 
+
+      // 스타일 
+
+      const registerbasicstyle = {
+        fontSize : '28px',
+        fontweight: "bold",
+        marginTop: '1em',
+      };
+    
       
 
 
-    return ( <div>
+    return ( <div style={{textAlign:'center'}}>
 
 
-<h1> 가입하기 </h1>
-<p> 서비스 이용을 위해 필요한 필수 정보를 입력해주세요  </p> <br></br><br></br>
+<div style={registerbasicstyle}> 가입하기 </div>
+<p style={{fontSize:'12px'}}> 서비스 이용을 위해 필요한 필수 정보를 입력해주세요  </p> <br></br><br></br>
 
         
         <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
@@ -110,7 +125,7 @@ const Register = () => {
             id="standard-email"
             type="email"
             placeholder="Email Address" value={email} onChange={onChangeEmail}/>
-             {emailError && <div className="invalid-input"> 알맞은 이메일을 입력하세요</div>}
+             {emailError && <div className="invalid-input" style={{fontSize:'11px', color:"#D73E3E"}} >  이메일 주소를 확인해주세요. </div>}
         </FormControl> <br></br>
 
         <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
@@ -132,7 +147,7 @@ const Register = () => {
                 </InputAdornment>
               }
             />
-          {passwordError && <div class="invalid-input">
+          {passwordError && <div class="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>
           비밀번호는 8자리 이상, 영문+숫자로 입력해주세요 </div>}
         </FormControl> <br></br>
 
@@ -155,7 +170,7 @@ const Register = () => {
                 </InputAdornment>
               }
             />
-           {confirmPasswordError && <div class="invalid-input">비밀번호와 다릅니다.</div>}
+           {confirmPasswordError && <div class="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>비밀번호와 다릅니다.</div>}
         </FormControl> <br></br>
 
 
@@ -165,7 +180,7 @@ const Register = () => {
             id="standard-name"
             type="name"
             placeholder="UserName" value={userName} onChange={onChangeUserName}/>
-            {userNameError && <div class="invalid-input">닉네임/이름을 입력해주세요</div>}
+            {userNameError && <div class="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>닉네임/이름을 입력해주세요</div>}
         </FormControl> <br></br>
 
         <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
@@ -174,7 +189,7 @@ const Register = () => {
             id="standard-phone"
             type="text"
             placeholder="phone" value={phone} onChange={onChangephone}/>
-        {phoneError && <div class="invalid-input">정확한 폰 번호를 입력해주세요</div>}
+        {phoneError && <div class="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>정확한 폰 번호를 입력해주세요</div>}
         </FormControl> <br></br>
         
 
