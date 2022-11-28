@@ -101,21 +101,11 @@ const Register = () => {
       };
 
 
-      // 스타일 
-
-      const registerbasicstyle = {
-        fontSize : '28px',
-        fontweight: "bold",
-        marginTop: '1em',
-      };
-    
-      
-
 
     return ( <div style={{textAlign:'center'}}>
 
 
-<div style={registerbasicstyle}> 가입하기 </div>
+<div> 가입하기 </div>
 <p style={{fontSize:"28"}}> 서비스 이용을 위해 필요한 필수 정보를 입력해주세요  </p> <br></br><br></br>
 
         
