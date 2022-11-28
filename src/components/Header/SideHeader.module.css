@@ -1,7 +1,7 @@
 .title {
   font-size: 2em;
   text-align: center;
-
+  font-family: "title_logo";
   /*타이틀(로고) 디자인 적용*/
 }
 .header {
