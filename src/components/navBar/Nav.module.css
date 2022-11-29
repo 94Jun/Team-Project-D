@@ -19,6 +19,10 @@
   display: flex;
   align-items: center;
 }
+.item > div {
+  display: flex;
+  align-items: center;
+}
 .item a:hover {
   border-radius: 1em;
   background-color: var(--color-light-gray);
