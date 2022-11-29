@@ -7,18 +7,20 @@
     font-size: var(  --font-xsmall);
 }
 
-
-.textbtn {
+.textbtnW{
+    color: #195280;
     text-align: right;
-    font-size: 3px;
+    font-size: var(  --font-xsmall);
+
 }
 
 
+
 .simplebtn {
-    text-align: left;
     font-size: var(   --font-medium);
     background-color: var( --color-main-blue);
     color: white;
+    width: 15em;
 }
 
 .simplebtn:hover {
@@ -35,6 +37,8 @@
     text-align: left;
     font-size: var(   --font-medium);
     color: var( --color-main-blue);
+    border: 1px solid var( --color-main-blue);
+    width: 15em;
 }
 
 .simplebtn2:hover {

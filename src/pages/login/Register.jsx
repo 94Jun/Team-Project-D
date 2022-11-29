@@ -8,6 +8,8 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
+import styles from "./Register.module.css";
+
 const Register = () => {
 
     const [phone, setphone] = useState("");
@@ -26,9 +28,9 @@ const Register = () => {
         const phoneRegex = /^[0-9\b -]{0,13}$/; 
         // 값이 없거나 혹은 입력한 값이 있을때 맞다 - 문자만 필터 
         if ((!e.target.value || (phoneRegex.test(e.target.value)))) { 
-            setphoneError(false);    }
+            setphoneError(false); setphone(e.target.value);   }
         else  { setphoneError(true); 
-        }setphone(e.target.value);
+        }
         // 문자 길이로 확인하여 그전에도 알림뜨기 
         if (e.target.value.length !== 13) { 
             setphoneError(true);
@@ -102,11 +104,11 @@ const Register = () => {
 
 
 
-    return ( <div style={{textAlign:'center'}}>
+    return ( <div className={styles.register_full}>
 
 
-<div> 가입하기 </div>
-<p style={{fontSize:"28"}}> 서비스 이용을 위해 필요한 필수 정보를 입력해주세요  </p> <br></br><br></br>
+<h1> 가입하기 </h1>
+<div className={styles.textsm}> 서비스 이용을 위해 필요한 필수 정보를 입력해주세요  </div> <br></br><br></br>
 
         
         <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
@@ -186,7 +188,7 @@ const Register = () => {
 
         <br></br>
 
-<Button variant="contained">회원가입</Button><br></br>
+        <Button className={styles.simplebtn} > 회원가입 </Button><br></br>
 
 
 
