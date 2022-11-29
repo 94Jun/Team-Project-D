@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useRef } from "react";
+import profileimg from "./img/nprofile.png";
 
 const Profile = (props) => {
   const [imageUrl, setImageUrl] = useState(null);
@@ -24,15 +25,11 @@ const Profile = (props) => {
   return (
     <div>
       <div className="profile">
-        <img src={imageUrl ? imageUrl : "/img/nprofile.png"}
+        <img src={profileimg}
         onClick={() => {onClickFileBtn();}}></img>
       </div>
-      <input
-        type="file"
-        ref={imgRef}
-        onChange={onChangeImage}
-        style={{ display: "none" }}
-      ></input>
+      <input type="file" ref={imgRef} onChange={onChangeImage}
+      style={{ display: "none" }}></input>
     </div>
   );
 };

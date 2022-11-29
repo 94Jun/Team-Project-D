@@ -7,9 +7,9 @@ import Flex from "./components/UI/Flex";
 import TopHeader from "./components/Header/TopHeader";
 import LoginPage from "./pages/login/LoginPage";
 import PostingPage from "./pages/posting/PostingPage";
-import UserPage from "./pages/user/UserPage";
 import SearchPage from "./pages/search/SearchPage";
 import Register from "./pages/login/Register";
+import UserPage from "./pages/user/UserPage";
 
 const App = () => {
   return (
