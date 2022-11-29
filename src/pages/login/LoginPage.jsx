@@ -88,9 +88,9 @@ const LoginPage = () => {
           />
         </FormControl>
   <br></br>
-  <div>
-  <Button className={styles.textbtn} > 아이디찾기</Button> /
-  <Button className={styles.textbtn} > 비밀번호 찾기</Button>  <br></br>
+  <div className={styles.textbtnW}>
+  <span> 아이디찾기 </span> /
+  <span> 비밀번호 찾기 </span>  <br></br>
   </div>  <br></br>
 
   <Button className={styles.simplebtn} >로그인</Button><br></br>
