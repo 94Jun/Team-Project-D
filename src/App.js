@@ -10,17 +10,29 @@ import PostingPage from "./pages/posting/PostingPage";
 import UserPage from "./pages/user/UserPage";
 import SearchPage from "./pages/search/SearchPage";
 import Register from "./pages/login/Register";
+import { useState } from 'react';
+import ExtendSearch from "./components/search/ExtendSearch";
 
 const App = () => {
+  const [search, setSearch] = useState(false);
+  function showSearch(){
+    setSearch(true);
+  }
+
+const hideSearch = () => {
+    setSearch(false);
+}
+
   return (
     <div className="App">
       <TopHeader />
       {/* 모바일 환경에서 보여지는 헤더 */}
 
       <Flex>
-        <NavBar />
+        <NavBar showSearch={showSearch}/>
+        
         {/* 테블릿 및 pc에서 보여지는 헤더 및 네브 바 */}
-
+        {search && <ExtendSearch hideSearch={hideSearch}/>}
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/posting" element={<PostingPage />}></Route>

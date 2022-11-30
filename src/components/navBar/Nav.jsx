@@ -6,8 +6,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { useState } from 'react';
 
-const Nav = () => {
+const Nav = (props) => {
+    function click() {
+      props.showSearch();
+    }  
   //네브바에 들어가는 리스트 모음
   return (
     <nav className={styles.container}>
@@ -30,7 +34,7 @@ const Nav = () => {
         </li>
         {/* 클릭 시 홈 페이지로 이동 */}
 
-        <li className={`${styles.item} ${styles.search}`}>
+        <li className={`${styles.item} ${styles.search}`} onClick={click}>
           <Link to="/search">
             <SearchIcon fontSize="string" />
             <span>검색</span>

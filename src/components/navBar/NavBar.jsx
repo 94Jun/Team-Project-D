@@ -2,13 +2,14 @@ import styles from "./NavBar.module.css";
 import SideHeader from "../Header/SideHeader";
 import Nav from "./Nav";
 
-const NavBar = () => {
+const NavBar = (props) => {
   // 헤더 및 네브 바
+  
   return (
     <>
       <div className={styles.side_container}>
         <SideHeader header={styles.header} icon={styles.header_icon} />
-        <Nav />
+        <Nav showSearch={props.showSearch}/>
       </div>
       {/* 태블릿 및 pc환경에서 렌더되는 헤더 및 네브 바(좌측) */}
 
