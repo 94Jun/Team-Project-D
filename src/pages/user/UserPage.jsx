@@ -1,6 +1,7 @@
 import MyPage from "./MyPage";
 import styles from "./UserPage.css";
 import Profile from "./Profile";
+import { Link } from "react-router-dom";
 
 const UserPage = () => {
   return (
@@ -10,20 +11,20 @@ const UserPage = () => {
         <div>
           <div className="name">
             <p>닉네임</p>
-            <button>프로필 편집</button>
+            <Link to='/ProfileEdit'><button>프로필 편집</button></Link>
           </div>
-          <div className="title1">
+          <div className="user_title">
             <ul>
             <ul className="comment">게시물</ul>
             <ul className="comment">팔로워</ul>
             <ul className="comment">팔로우</ul>
             </ul>
           </div>
-          <ul className="comment1">Hellow World!</ul>
+          <ul className="comment">Hellow World!</ul>
           </div>
       </div>
       <hr/>
-      <div className="title2">
+      <div className="picture">
         <ul>게시물 </ul>
         <ul>저장됨 </ul>
         <ul>태그됨 </ul>

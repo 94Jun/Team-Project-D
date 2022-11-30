@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState,useRef } from 'react';
 
 function Profile() {
   const [imageSrc, setImageSrc] = useState('');
 
-  const encodeFileToBase64 = (fileBlob) => {
+  const profileimg = (props) => {
     const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
+    reader.readAsDataURL(props);
     return new Promise((resolve) => {
       reader.onload = () => {
         setImageSrc(reader.result);
@@ -17,11 +17,11 @@ function Profile() {
   return (
     <div>
     <main className="container">
-      <div className="preview">
-        {imageSrc && <img src={imageSrc} alt="preview-img" />}
+      <div className="preview" >
+        {imageSrc && <img src={imageSrc} alt="preview-img" width="100%" height="100%"/>}
       </div>
-      <input type="file" onChange={(e) => {
-        encodeFileToBase64(e.target.files[0]);
+      <input type="file" accept='image/*' onChange={(e) => {
+        profileimg(e.target.files[0]);
       }} />
     </main>
     </div>
