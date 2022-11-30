@@ -1,30 +1,40 @@
 import MyPage from "./MyPage";
-import normal from "./img/nprofile.png";
+import styles from "./UserPage.css";
+import Profile from "./Profile";
 
 const UserPage = () => {
   return (
-    <div className="user">
+    <div className={styles.user}>
       <div className="title">
-        <img className="img1" src={normal} style={{width:80}}/>
-        <div className="title1">
-        <h3>닉네임</h3>
-        <ul>게시물 팔로워 팔로우</ul>
-        <ul>name</ul>
-        </div>
+        <Profile/>
+        <div>
+          <div className="name">
+            <p>닉네임</p>
+            <button>프로필 편집</button>
+          </div>
+          <div className="title1">
+            <ul>
+            <ul className="comment">게시물</ul>
+            <ul className="comment">팔로워</ul>
+            <ul className="comment">팔로우</ul>
+            </ul>
+          </div>
+          <ul className="comment1">Hellow World!</ul>
+          </div>
       </div>
       <hr/>
       <div className="title2">
-      <ul className="title3">게시물 </ul>
-      <ul className="title3">저장됨 </ul>
-      <ul className="title3">태그됨 </ul>
+        <ul>게시물 </ul>
+        <ul>저장됨 </ul>
+        <ul>태그됨 </ul>
       </div>
-    <div>
-      <MyPage/>
-      <MyPage/>
-      <MyPage/>
+      <div className="pages">
+        <MyPage/>
+        <MyPage/>
+        <MyPage/>
+      </div>
     </div>
-    </div>
-    );
+  );
 }
 
 export default UserPage;

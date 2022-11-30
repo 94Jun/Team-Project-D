@@ -1,21 +1,47 @@
 import PostItem from "../../components/PostItem/PostItem";
-import profileimg from "./img/nprofile.png";
 
-const MyPage = () =>{
-const postingList = [
-  {
-    user: {
-      userProfile: {profileimg},
+const MyPage = () => {
+  const postingList = [
+    {
+      postingId: Math.random().toString(),
+      user: {
+        userId: 0,
+        userProfile: "images/sample_profile.jpg",
+        userName: "cat",
+      },
+      timestamp: new Date().toLocaleDateString(),
+      contents: {
+        images: "images/sample_profile.jpg",
+        hashtags: "Busan",
+      },
+      comments: 3,
+      likes: 17,
+      isMarked: true,
     },
-    contents: {
-      text: ""},
-  }];
+    {
+      postingId: Math.random().toString(),
+      user: {
+        userId: 0,
+        userProfile: "images/sample_profile.jpg",
+        userName: "cat",
+      },
+      timestamp: new Date().toLocaleDateString(),
+      contents: {
+        images: "images/sample_profile.jpg",
+        hashtags: "Busan",
+      },
+      comments: 3,
+      likes: 17,
+      isMarked: true,
+    }
+  ];
   return (
     <div>
       {postingList.map((posting) => {
-        return <PostItem  posting={posting} />;
+        return <PostItem key={posting.postingId} posting={posting} />;
       })}
     </div>
   );
 };
+
 export default MyPage;

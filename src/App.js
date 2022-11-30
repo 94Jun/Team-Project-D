@@ -1,15 +1,13 @@
 import "./App.css";
-import Example from "./components/example/Example";
 import HomePage from "./pages/home/HomePage";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/navBar/NavBar";
 import Flex from "./components/UI/Flex";
 import TopHeader from "./components/Header/TopHeader";
 import LoginPage from "./pages/login/LoginPage";
-import PostingPage from "./pages/posting/PostingPage";
+import UserPage from "./pages/user/UserPage";
 import SearchPage from "./pages/search/SearchPage";
 import Register from "./pages/login/Register";
-import UserPage from "./pages/user/UserPage";
 
 const App = () => {
   return (
@@ -23,7 +21,6 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
-          <Route path="/posting" element={<PostingPage />}></Route>
           <Route path="/user" element={<UserPage />}></Route>
           <Route path="/search" element={<SearchPage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>

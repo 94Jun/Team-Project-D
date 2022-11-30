@@ -3,11 +3,16 @@ import styles from "./Nav.module.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
-import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-
+import PostingModal from "../modal/PostingModal";
+//css 틀어져서 리듀서쓰기전에 잠시 test용
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import { useState } from "react";
 const Nav = () => {
+  //css 틀어져서 리듀서쓰기전에 잠시 test / props전달
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
   //네브바에 들어가는 리스트 모음
   return (
     <nav className={styles.container}>
@@ -39,10 +44,12 @@ const Nav = () => {
         {/* 클릭 시 검색 결과 페이지로 이동 => 클릭 시 검색 모달 오픈으로 변경 필요 */}
 
         <li className={styles.item}>
-          <Link to="/posting">
-            <AddBoxOutlinedIcon fontSize="string" />
-            <span>글 작성</span>
-          </Link>
+          <div>
+            <PostingModal open={open} setOpen={setOpen} />
+            {/*props전달*/}
+            <AddBoxOutlinedIcon fontSize="string" onClick={handleOpen} />
+            <span onClick={handleOpen}>글 작성</span>
+          </div>
         </li>
         {/* 클릭 시 게시글 작성 페이지로 이동 */}
 

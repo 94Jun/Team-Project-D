@@ -1,37 +1,31 @@
-import React from "react";
-import { useState, useRef } from "react";
-import profileimg from "./img/nprofile.png";
+import { useState } from 'react';
 
-const Profile = (props) => {
-  const [imageUrl, setImageUrl] = useState(null);
-  const imgRef = useRef();
+function Profile() {
+  const [imageSrc, setImageSrc] = useState('');
 
-  const onChangeImage = () => {
+  const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
-    const file = imgRef.current.files[0];
-    console.log(file);
-
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImageUrl(reader.result);
-      console.log("이미지주소", reader.result);
-    };
-  };
-
-  const onClickFileBtn = (e) => {
-    imgRef.current.click();
+    reader.readAsDataURL(fileBlob);
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        resolve();
+      };
+    });
   };
 
   return (
     <div>
-      <div className="profile">
-        <img src={profileimg}
-        onClick={() => {onClickFileBtn();}}></img>
+    <main className="container">
+      <div className="preview">
+        {imageSrc && <img src={imageSrc} alt="preview-img" />}
       </div>
-      <input type="file" ref={imgRef} onChange={onChangeImage}
-      style={{ display: "none" }}></input>
+      <input type="file" onChange={(e) => {
+        encodeFileToBase64(e.target.files[0]);
+      }} />
+    </main>
     </div>
   );
-};
+}
 
 export default Profile;

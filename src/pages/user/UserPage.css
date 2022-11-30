@@ -1,3 +1,40 @@
 .title {
-    text-align: center;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.preview {
+    border-radius: 100%;
+    margin: 30px;
+    border:2px outset gainsboro;
+    height: 140px;
+    width: 140px;
+    overflow: hidden;
+}
+.name {
+    display: flex;
+    font-size: x-large;
+}
+.comment {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.title1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.title2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: 100px;
+}
+
+.pages {
+    display: flex;
 }
