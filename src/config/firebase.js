@@ -4,13 +4,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCH_OFFXQRPY8DvF3L5e_sbybyIX-qQh3M",
-  authDomain: "travel-d4.firebaseapp.com",
-  projectId: "travel-d4",
-  storageBucket: "travel-d4.appspot.com",
-  messagingSenderId: "628288354452",
-  appId: "1:628288354452:web:a92db06f45bb8ceb659c81",
-  measurementId: "G-K9CCMLB27Q",
+  apiKey: "AIzaSyBqwg7zU3klDz0vapB_20hXLOgxkSKVPLQ",
+  authDomain: "travel-dt05.firebaseapp.com",
+  projectId: "travel-dt05",
+  storageBucket: "travel-dt05.appspot.com",
+  messagingSenderId: "847613781380",
+  appId: "1:847613781380:web:cb65c3d3cbdb8146b1a9d1",
+  measurementId: "G-3B08087V4D",
 };
 
 const app = initializeApp(firebaseConfig);
