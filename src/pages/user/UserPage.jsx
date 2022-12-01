@@ -1,37 +1,35 @@
 import MyPage from "./MyPage";
-import styles from "./UserPage.css";
+import styles from "./UserPage.module.css";
 import ProfileImg from "./ProfileImg";
 import { Link } from "react-router-dom";
+import AppsIcon from '@mui/icons-material/Apps';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const UserPage = () => {
   return (
     <div className={styles.user}>
-      <div className="title">
+      <div className={styles.title}>
         <ProfileImg/>
         <div>
-          <div className="name">
+          <div className={styles.name}>
             <p>닉네임</p>
-            <Link to='/ProfileEdit'><button className="button">프로필 편집</button></Link>
+            <Link to='/ProfileEdit'><button className={styles.button}>프로필 편집</button></Link>
           </div>
-          <div className="user_title">
+          <div className={styles.user_title}>
             <ul>
-            <ul className="comment">게시물</ul>
-            <ul className="comment">팔로워</ul>
-            <ul className="comment">팔로우</ul>
+            <li className={styles.comment}>게시물</li>
+            <li className={styles.comment}>팔로워</li>
+            <li className={styles.comment}>팔로우</li>
             </ul>
           </div>
-          <ul className="comment">Hellow World!</ul>
+          <ul className={styles.comment}>Hellow World!</ul>
           </div>
       </div>
-      <div className="picture">
-        <ul>게시물 </ul>
-        <ul>저장됨 </ul>
-        <ul>태그됨 </ul>
+      <div className={styles.picture}>
+        <ul><AppsIcon fontSize="small"/>게시물 </ul>
+        <ul><FavoriteBorderIcon fontSize="small"/>저장됨 </ul>
       </div>
       <div className="pages">
-        <MyPage/>
-        <MyPage/>
-        <MyPage/>
       </div>
     </div>
   );

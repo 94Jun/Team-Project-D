@@ -1,6 +1,8 @@
+import styles from "./ProfileEdit.module.css";
+
 const ProfileEdit = () => {
     return (
-        <div>
+        <div className={styles.menu}>
             <div>
                     비밀번호 변경
                 <div>
