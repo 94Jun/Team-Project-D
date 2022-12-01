@@ -13,7 +13,7 @@ const initialState = {
       follower: [],
       myPosting: ["p1"],
       likedPosting: ["p2"],
-      markedPosting: ["p2"],
+      markedPosting: ["p1"],
       myComments: ["c1"],
       notice: [],
       timestamp: new Date().toLocaleDateString(),
@@ -42,8 +42,24 @@ export const user = createSlice({
     },
     //좋아요 / 좋아요 취소 기능
     //좋아요 아이콘 클릭 시 해당 유저의 정보에 좋아요 리스트 추가 또는 삭제
+    USER_MARK_POSTING: (state, action) => {
+      const { pid } = action.payload;
+      const existingUser = state.userList.find((user) => {
+        return user.uid === state.currentUser;
+      });
+      if (existingUser.markedPosting.includes(pid)) {
+        const temp = existingUser.markedPosting.filter((posting) => {
+          return posting !== pid;
+        });
+        existingUser.markedPosting = temp;
+      } else {
+        existingUser.markedPosting.push(pid);
+      }
+    },
+    //마크 / 마크 취소 기능
+    //마크 아이콘 클릭 시 해당 유저의 정보에 마크 리스트 추가 또는 삭제
   },
 });
 
-export const { USER_LIKE_POSTING } = user.actions;
+export const { USER_LIKE_POSTING, USER_MARK_POSTING } = user.actions;
 export default user.reducer;
