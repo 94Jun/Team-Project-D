@@ -22,8 +22,12 @@ const initialState = {
 export const comment = createSlice({
   name: "comment",
   initialState,
-  reducers: {},
+  reducers: {
+    ADD_COMMENT: (state, action) => {
+      state.commentList.push(action.payload);
+    },
+  },
 });
 
-export const {} = comment.actions;
+export const { ADD_COMMENT } = comment.actions;
 export default comment.reducer;

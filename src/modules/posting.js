@@ -49,8 +49,15 @@ export const posting = createSlice({
     },
     //좋아요 / 좋아요 취소 기능
     //좋아요 아이콘 클릭 시 해당 포스팅에 '좋아요' 한 유저 추가/삭제
+    POSTING_ADD_COMMENT: (state, action) => {
+      const { pid, cid } = action.payload;
+      const existingPosting = state.postingList.find((posting) => {
+        return posting.pid === pid;
+      });
+      existingPosting.comments.push(cid);
+    },
   },
 });
 
-export const { POSTING_LIKE_POSTING } = posting.actions;
+export const { POSTING_LIKE_POSTING, POSTING_ADD_COMMENT } = posting.actions;
 export default posting.reducer;

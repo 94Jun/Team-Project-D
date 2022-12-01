@@ -58,8 +58,16 @@ export const user = createSlice({
     },
     //마크 / 마크 취소 기능
     //마크 아이콘 클릭 시 해당 유저의 정보에 마크 리스트 추가 또는 삭제
+    USER_ADD_COMMENT: (state, action) => {
+      const { cid } = action.payload;
+      const existingUser = state.userList.find((user) => {
+        return user.uid === state.currentUser;
+      });
+      existingUser.myComments.push(cid);
+    },
   },
 });
 
-export const { USER_LIKE_POSTING, USER_MARK_POSTING } = user.actions;
+export const { USER_LIKE_POSTING, USER_MARK_POSTING, USER_ADD_COMMENT } =
+  user.actions;
 export default user.reducer;
