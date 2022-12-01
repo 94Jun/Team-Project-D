@@ -1,7 +1,8 @@
 import { useState,useRef } from 'react';
 
 function Profile() {
-  const [imageSrc, setImageSrc] = useState('');
+  const [imageSrc, setImageSrc] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+  const fileInput = useRef(null)
 
   const profileimg = (props) => {
     const reader = new FileReader();
@@ -18,11 +19,12 @@ function Profile() {
     <div>
     <main className="container">
       <div className="preview" >
-        {imageSrc && <img src={imageSrc} alt="preview-img" width="100%" height="100%"/>}
+        {imageSrc && <img src={imageSrc} alt="preview-img" width="100%" height="100%"
+        onClick={()=>{fileInput.current.click()}}/>}
       </div>
       <input type="file" accept='image/*' onChange={(e) => {
         profileimg(e.target.files[0]);
-      }} />
+      }} style={{display:'none'}} ref={fileInput}/>
     </main>
     </div>
   );

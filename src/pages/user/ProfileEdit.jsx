@@ -1,7 +1,12 @@
 const ProfileEdit = () => {
     return (
         <div>
-            편집페이지
+            <div>
+                    비밀번호 변경
+                <div>
+                    프로필 편집
+                </div>
+            </div>
         </div>
       );
 }
