@@ -17,6 +17,7 @@ const initialState = {
       myComments: ["c1"],
       notice: [],
       timestamp: new Date().toLocaleDateString(),
+      recentSearchs: [],
     },
   ],
   currentUser: "u1",
@@ -65,9 +66,33 @@ export const user = createSlice({
       });
       existingUser.myComments.push(cid);
     },
+    ADD_RECENT_SEARCH: (state, action) => {
+      const { searchContent } = action.payload;
+      const existingUser = state.userList.find((user) => {
+        return user.uid === state.currentUser;
+      });
+      existingUser.recentSearchs.push(searchContent);
+    },
+    REMOVE_RECENT_SEARCH: (state, action) => {
+      const { removedContent } = action.payload;
+      const existingUser = state.userList.find((user) => {
+        return user.uid === state.currentUser;
+      });
+      const updatedRecentSearchs = existingUser.recentSearchs.filter(
+        (content) => {
+          return content !== removedContent;
+        }
+      );
+      existingUser.recentSearchs = updatedRecentSearchs;
+    },
   },
 });
 
-export const { USER_LIKE_POSTING, USER_MARK_POSTING, USER_ADD_COMMENT } =
-  user.actions;
+export const {
+  USER_LIKE_POSTING,
+  USER_MARK_POSTING,
+  USER_ADD_COMMENT,
+  ADD_RECENT_SEARCH,
+  REMOVE_RECENT_SEARCH,
+} = user.actions;
 export default user.reducer;

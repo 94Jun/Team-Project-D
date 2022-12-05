@@ -14,6 +14,7 @@ const userList = [
     myComments: ["cid"],
     notice: ["알림"],
     timestamp: new Date().toLocaleDateString(),
+    recentSearch: [],
   },
 ];
 // uid(String): firebase token을 이용하여 uid 생성
@@ -30,6 +31,7 @@ const userList = [
 // myComments(Array/String): 유저가 작성한 코멘트의 cid
 // notice(Array/String): 팔로우, 언팔로우, 본인 게시물에 댓글작성 등의 알림 리스트
 // timestamp(String): 회원가입일
+// recentSearch(Array/String) : 최근 검색어
 
 const postingList = [
   {
@@ -73,7 +75,7 @@ const commentList = [
 const modalList = [
   {
     isWriteModalShown: false,
-    // 리서치 모달 
+    // 리서치 모달
   },
 ];
 // isWriteModalShown(boolean): 게시글 작성 모달 on/off 여부,
