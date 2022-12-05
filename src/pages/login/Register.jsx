@@ -7,8 +7,14 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Form, useNavigate } from "react-router-dom";
+
+import { db,auth } from "../../config/firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import styles from "./Register.module.css";
+
 
 const Register = () => {
 
@@ -18,16 +24,18 @@ const Register = () => {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
 
-    const [phoneError, setphoneError] = useState(false);
-    const [passwordError, setPasswordError] = useState(false);
-    const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-    const [userNameError, setUserNameError] = useState(false);
-    const [emailError, setEmailError] = useState(false);
+    const [phoneError, setphoneError] = useState(true);
+    const [passwordError, setPasswordError] = useState(true);
+    const [confirmPasswordError, setConfirmPasswordError] = useState(true);
+    const [userNameError, setUserNameError] = useState(true);
+    const [emailError, setEmailError] = useState(true);
+
+
 
     const onChangephone = (e) => {
         const phoneRegex = /^[0-9\b -]{0,13}$/; 
         // 값이 없거나 혹은 입력한 값이 있을때 맞다 - 문자만 필터 
-        if ((!e.target.value || (phoneRegex.test(e.target.value)))) { 
+        if ((!e.target.value || (phoneRegex.test(e.target.value) ))) { 
             setphoneError(false); setphone(e.target.value);   }
         else  { setphoneError(true); 
         }
@@ -66,7 +74,7 @@ const Register = () => {
     };
     const onChangeEmail = (e) => {
         const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-        if (!e.target.value || emailRegex.test(e.target.value)) setEmailError(false);
+        if (!e.target.value || emailRegex.test(e.target.value) ||e.target.value == null ) setEmailError(false);
         else setEmailError(true);
         setEmail(e.target.value);
     };
@@ -102,16 +110,62 @@ const Register = () => {
         event.preventDefault();
       };
 
+      const uid = Math.random().toString(36).substring(2, 12);
+
+      const navigate = useNavigate()
+      // 서버업데이트 
+      const addUserData2 = async (e) => {
+        e.preventDefault(); 
+        
+        const auth = getAuth();
+        const userInfo =createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            // ...      
+            return user;
+          }) 
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+          } 
+         );
+         console.log(userInfo)
+          
+          
+        await setDoc(doc(db, "user", uid), {
+          uid: userInfo.uid,
+          email: email,
+          password: password,
+          name: userName,
+          phone: phone,
+          profile: "none",
+          following: "[uid]",
+          follower: "[uid]",
+          myPosting: "[uid]",
+          likedPosting: "[uid]",
+          markedPosting: "[uid]",
+          myComments: "[uid]",
+          notice: "[uid]",
+          timestamp: new Date().toLocaleDateString()
+        });
+        navigate('/login');
+    
+
+      };
+
+      
 
 
     return ( <div className={styles.register_full}>
 
-
+<div  className={styles.register_contents}>
 <h1> 가입하기 </h1>
 <div className={styles.textsm}> 서비스 이용을 위해 필요한 필수 정보를 입력해주세요  </div> <br></br><br></br>
 
-        
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+      <form  onSubmit = {addUserData2} >
+        <FormControl sx={{ m: 1, width: '30ch' }} variant="standard">
           <InputLabel htmlFor="standard-email">email</InputLabel>
           <Input
             id="standard-email"
@@ -120,7 +174,7 @@ const Register = () => {
              {emailError && <div className="invalid-input" style={{fontSize:'11px', color:"#D73E3E"}} >  이메일 주소를 확인해주세요. </div>}
         </FormControl> <br></br>
 
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+        <FormControl sx={{ m: 1, width: '30ch' }} variant="standard">
           <InputLabel htmlFor="standard-password">Password</InputLabel>
           <Input
             type={values.showPassword ? 'text' : 'password'}
@@ -143,7 +197,7 @@ const Register = () => {
           비밀번호는 8자리 이상, 영문+숫자로 입력해주세요 </div>}
         </FormControl> <br></br>
 
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+        <FormControl sx={{ m: 1, width: '30ch' }} variant="standard">
           <InputLabel htmlFor="standard-password">Password Confirm</InputLabel>
           <Input
             id="standard-Password"
@@ -166,7 +220,7 @@ const Register = () => {
         </FormControl> <br></br>
 
 
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+        <FormControl sx={{ m: 1, width: '30ch' }} variant="standard">
           <InputLabel htmlFor="standard-name">이름/닉네임</InputLabel>
           <Input
             id="standard-name"
@@ -175,7 +229,7 @@ const Register = () => {
             {userNameError && <div class="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>닉네임/이름을 입력해주세요</div>}
         </FormControl> <br></br>
 
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+        <FormControl sx={{ m: 1, width: '30ch' }} variant="standard">
           <InputLabel htmlFor="standard-phone">phone</InputLabel>
           <Input
             id="standard-phone"
@@ -188,10 +242,14 @@ const Register = () => {
 
         <br></br>
 
-        <Button className={styles.simplebtn} > 회원가입 </Button><br></br>
+        {  !emailError && !phoneError &&
+     !passwordError &&  !confirmPasswordError && !userNameError  ? 
+<button className={styles.simplebtn} type="submit">회원가입 </button>
+: <div className={styles.textsm}> 모든 정보를 입력해주세요  </div> }
 
+ </form>
 
-
+        </div>
     </div> );
 }
  
