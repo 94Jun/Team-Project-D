@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./PostItemComments.module.css";
 import { useDispatch } from "react-redux";
 import { ADD_COMMENT } from "../../../modules/comment";
@@ -32,7 +32,6 @@ const CommentForm = (props) => {
     //인풋창 초기화
   };
   //댓글 추가 기능
-
   const changeCommentHandler = (e) => {
     setCommentInput(e.target.value);
   };
