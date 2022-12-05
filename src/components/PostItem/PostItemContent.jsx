@@ -2,11 +2,14 @@ import styles from "./PostItem.module.css";
 const PostItemContent = (props) => {
   return (
     <div className={styles.post_contents}>
-      {props.posting?.contents?.images && (
-        <div className={styles.post_contents_images}>
-          <img src={props.posting.contents.images} />
-        </div>
-      )}
+      {props.posting?.contents?.images &&
+        props.posting.contents.images.map((img) => {
+          return (
+            <div className={styles.post_contents_images}>
+              <img src={img} />
+            </div>
+          );
+        })}
       <div className={styles.post_contents_text}>
         {props.posting.contents.text}
       </div>
