@@ -1,6 +1,22 @@
 .login_full {
     text-align: center;
     color: var(--color-main-blue);
+    display: grid;
+    grid-template-columns: 1fr 1fr
+}
+
+.login_img {
+max-width: 800px;
+overflow: hidden;
+background-size: 100px;
+height: 100vh;
+}
+
+.login_text {
+    width: 50%;
+    vertical-align: middle;
+    margin-top: 10em;
+    margin-left: 3em;
 }
 
 .textsm {
