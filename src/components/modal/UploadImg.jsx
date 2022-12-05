@@ -1,7 +1,8 @@
-import { DELETE_IMG } from "../../modules/upload";
+import { DELETE_IMG, INITIAL_STATE_IMG } from "../../modules/upload";
 import styles from "./PostingModal.module.css";
 import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
 import { useSelector, useDispatch } from "react-redux";
+
 const UploadImg = ({ imgs, setImgs }) => {
   const dispatch = useDispatch();
 
@@ -21,6 +22,7 @@ const UploadImg = ({ imgs, setImgs }) => {
     setImgs(imgList.find((imags) => imags.length === index));
   };
   // 이미지 출력 mpa
+
   const getPreviewImg = imgList.map((src) => {
     return (
       <li key={src}>
@@ -40,7 +42,10 @@ const UploadImg = ({ imgs, setImgs }) => {
     );
   });
   //이미지 최대 4장 업로드 가능
-  const map = imgList.length <= 4 ? getPreviewImg : `${alert("최대 4장")}`;
+  const map =
+    imgList.length <= 4
+      ? getPreviewImg
+      : `${alert("최대 4장")}}${dispatch(INITIAL_STATE_IMG())}`;
   return map;
 };
 export default UploadImg;
