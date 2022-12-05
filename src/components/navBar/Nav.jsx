@@ -9,11 +9,22 @@ import PostingModal from "../modal/PostingModal";
 //css 틀어져서 리듀서쓰기전에 잠시 test용
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { TOGGLE_SEARCH_MODAL } from "../../modules/modal";
 const Nav = () => {
+  const dispatch = useDispatch();
+  const isSearchModalShown = useSelector(
+    (state) => state.modal.isSearchModalShown
+  );
+
   //css 틀어져서 리듀서쓰기전에 잠시 test / props전달
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   //네브바에 들어가는 리스트 모음
+  const toggleSearchModalHandler = () => {
+    dispatch(TOGGLE_SEARCH_MODAL());
+  };
+
   return (
     <nav className={styles.container}>
       <ul className={styles.nav}>
@@ -35,11 +46,14 @@ const Nav = () => {
         </li>
         {/* 클릭 시 홈 페이지로 이동 */}
 
-        <li className={`${styles.item} ${styles.search}`}>
-          <Link to="/search">
+        <li
+          className={`${styles.item} ${styles.search}`}
+          onClick={toggleSearchModalHandler}
+        >
+          <div>
             <SearchIcon fontSize="string" />
             <span>검색</span>
-          </Link>
+          </div>
         </li>
         {/* 클릭 시 검색 결과 페이지로 이동 => 클릭 시 검색 모달 오픈으로 변경 필요 */}
 

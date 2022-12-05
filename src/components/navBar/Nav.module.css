@@ -14,16 +14,16 @@
 .item {
   font-size: 28px;
   height: 9vh;
+  cursor: pointer;
 }
-.item a {
-  display: flex;
-  align-items: center;
-}
+.item a,
 .item > div {
   display: flex;
   align-items: center;
 }
-.item a:hover {
+
+.item a:hover,
+.item > div:hover {
   border-radius: 1em;
   background-color: var(--color-light-gray);
 }
@@ -39,20 +39,23 @@
     padding: 0;
     padding-left: 25px;
   }
-  .item a:hover {
+
+  .item a,
+  .item > div {
+    width: 20px;
+  }
+  .item a:hover,
+  .item > div:hover {
     background-color: var(--color-white);
   }
 }
 @media (max-width: 768px) {
-  .search {
-    display: none;
-  }
   .container {
-    display: block;
+    display: flex;
   }
   .nav {
+    width: 100%;
     flex-direction: row;
-    justify-content: space-around;
     padding: 0;
     padding-top: 10px;
   }
@@ -61,5 +64,11 @@
   }
   .item {
     height: inherit;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+  .search {
+    display: none;
   }
 }
