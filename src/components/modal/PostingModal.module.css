@@ -20,7 +20,6 @@
   display: inline-block;
   cursor: pointer;
 }
-
 .filebox input[type="file"] {
   /* 파일 필드 숨기기 */
   width: 1px;
@@ -31,6 +30,7 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
 .title {
   padding: 5px 0;
   text-align: center;
@@ -99,6 +99,6 @@ svg {
 .tag::before {
   content: "#";
 }
-.delfont {
+.delete_font {
   transform: rotate(45deg);
 }

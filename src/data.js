@@ -73,6 +73,7 @@ const commentList = [
 const modalList = [
   {
     isWriteModalShown: false,
+    // 리서치 모달 
   },
 ];
 // isWriteModalShown(boolean): 게시글 작성 모달 on/off 여부,
