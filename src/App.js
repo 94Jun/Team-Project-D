@@ -13,6 +13,7 @@ import Register from "./pages/login/Register";
 const App = () => {
   return (
     <div className="App">
+      
       <TopHeader />
       {/* 모바일 환경에서 보여지는 헤더 */}
 
