@@ -6,6 +6,7 @@ import CommentReducer from "./modules/comment";
 import ModalReducer from "./modules/modal";
 import HashReducer from "./modules/hash";
 import UpLoadReducer from "./modules/upload";
+
 export default configureStore({
   reducer: {
     example: ExampleReducer,
