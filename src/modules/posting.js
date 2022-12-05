@@ -27,6 +27,7 @@ const initialState = {
       like: ["u1"],
     },
   ],
+  
 };
 
 export const posting = createSlice({
@@ -56,8 +57,13 @@ export const posting = createSlice({
       });
       existingPosting.comments.push(cid);
     },
+    ADD_POSTING: (state, action) => {
+      state.postingList.push(action.payload);
+      //initialState 안에 postingList안에 push매소드 사용해서 외부에서 데이터를 받아와(action.payload) 넣어준다
+    },
   },
 });
 
-export const { POSTING_LIKE_POSTING, POSTING_ADD_COMMENT } = posting.actions;
+export const { POSTING_LIKE_POSTING, POSTING_ADD_COMMENT, ADD_POSTING } =
+  posting.actions;
 export default posting.reducer;
