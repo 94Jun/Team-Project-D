@@ -7,7 +7,16 @@ const SearchPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const searchContent = location.state;
-  console.log(searchContent);
+
+  // const [data, setDate] = useState();
+  // const location = useLocation();
+  // console.log(location);
+  // console.log(window.history)
+  // useEffect(()=>{
+  //     window.history.replaceState({usr: ""},"","http://localhost:3001/test/data")
+  //     setDate(location.state)
+  // })
+
   useEffect(() => {
     dispatch(ADD_RECENT_SEARCH({ searchContent }));
   }, [searchContent]);
