@@ -5,8 +5,15 @@ const CommentItem = (props) => {
   });
 
   return (
-    <div>
-      {writer.name} : {props.comment.text}
+    <div className={styles.comment_item}>
+      <div className={styles.comment_profile_wrap}>
+        <img src={writer.profile} />
+      </div>
+      <div>
+        <span className={styles.comment_writer_name}>{writer.name}</span>
+        <span className={styles.comment_date}>{props.comment.date}</span>
+        <p className={styles.comment_text}>{props.comment.text}</p>
+      </div>
     </div>
   );
 };

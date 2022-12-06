@@ -5,7 +5,7 @@ const PostItemContent = (props) => {
       {props.posting?.contents?.images &&
         props.posting.contents.images.map((img) => {
           return (
-            <div className={styles.post_contents_images}>
+            <div className={styles.post_contents_images} key={img}>
               <img src={img} />
             </div>
           );
@@ -18,7 +18,7 @@ const PostItemContent = (props) => {
           props.posting.contents.hashtags.map((tag, idx) => {
             return (
               <span className={styles.post_contents_hashtags} key={idx}>
-                {tag}{" "}
+                {tag}
               </span>
             );
           })}

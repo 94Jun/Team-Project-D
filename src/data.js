@@ -14,7 +14,7 @@ const userList = [
     myComments: ["cid"],
     notice: ["알림"],
     timestamp: new Date().toLocaleDateString(),
-    recentSearch: [],
+    recentSearchs: [],
   },
 ];
 // uid(String): firebase token을 이용하여 uid 생성
@@ -38,7 +38,8 @@ const postingList = [
     pid: "pid",
     writer: "uid",
     comments: ["cid"],
-    timestamp: new Date().toLocaleDateString(),
+    date: new Date().toLocaleDateString(),
+    timestamp: new Date().valueOf(),
     contents: {
       images: ["업로드한 이미지 src"],
       text: "작성자가 입력한 텍스트",
