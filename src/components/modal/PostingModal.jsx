@@ -15,10 +15,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { storage } from "../../config/firebase";
 import { ref, uploadString } from "firebase/storage";
-/* 버그...
-  이미지 추가 업로드시 같은 이미지 들어감 (다른 파일이랑 같이 업로드시)
-  (set, map 전환 add 매소드 사용해서 배열안에 같은 데이터 못들어가게)
-  */
+
 //해쉬태그 작성후 스패이스 안누르고 바로 업로드 하면 해쉬태그 안들어감
 /* 기능 남은거
   드래그앤 드롭

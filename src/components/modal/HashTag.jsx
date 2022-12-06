@@ -26,7 +26,10 @@ const HashTag = () => {
   //해쉬태그 조건 함수
   const onKeyPress = (e) => {
     //Enter key를 치면 함수 실행
-    if (e.target.value.length !== 0 && e.code === "Space") {
+    if (
+      (e.target.value.length !== 0 && e.code === "Space") ||
+      e.key === "Enter"
+    ) {
       addTag();
     }
   };

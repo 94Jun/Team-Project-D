@@ -27,7 +27,6 @@ const initialState = {
       like: ["u1"],
     },
   ],
-  
 };
 
 export const posting = createSlice({

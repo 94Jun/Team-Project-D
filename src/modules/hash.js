@@ -18,8 +18,8 @@ export const hashtag = createSlice({
         return tagItem !== action.payload;
       });
     },
-    INITIAL_STATE_HASH: (state) => {
-      state.HashList = [];
+    INITIAL_STATE_HASH: () => {
+      return initialState;
     },
   },
 });
