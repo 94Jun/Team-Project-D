@@ -11,7 +11,6 @@ import SearchPage from "./pages/search/SearchPage";
 import Register from "./pages/login/Register";
 import { useSelector } from "react-redux";
 import SearchModal from "./components/modal/SearchModal";
-
 const App = () => {
   const isSearchModalShown = useSelector(
     (state) => state.modal.isSearchModalShown

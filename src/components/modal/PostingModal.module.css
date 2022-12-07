@@ -1,8 +1,9 @@
 .posting {
   background-color: var(--color-white);
-  border: 1px solid var(--color-black);
+  border: 1px solid var(--color-white);
   border-radius: 8px;
   width: 40%;
+  min-width: 350px;
   align-items: center;
   position: relative;
   margin: 100px auto;
@@ -11,10 +12,12 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid var(--color-gray);
+  align-items: center;
 }
 .filebox,
 .delete {
   margin-top: 5px;
+  cursor: pointer;
 }
 .label {
   display: inline-block;
@@ -30,12 +33,12 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-
+.icon {
+  margin: 5px;
+}
 .title {
-  padding: 5px 0;
   text-align: center;
   font-weight: bold;
-  line-height: 1.4;
 }
 .image {
   max-height: 400px;
@@ -44,30 +47,36 @@ textarea {
   width: 100%;
   border: none;
   resize: none;
+  outline: none;
+  padding: 0 5px;
 }
-
+.posting_btn_box {
+  width: 106px;
+  align-items: center;
+  text-align: right;
+}
 .posting_btn {
+  min-width: 55px;
+  height: 32px;
   outline: none;
   border: 0;
   background-color: rgb(0, 149, 246);
-  padding: 10px;
-  border-radius: 5px;
+  border-radius: 20px;
   color: white;
-  margin: 10px 0;
   cursor: pointer;
-  margin-left: 5px;
 }
 
 .bottom {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 5px 0;
+  align-items: center;
 }
 ul {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  margin: 5px 0;
 }
 li {
   margin: 0 5px;
@@ -92,6 +101,7 @@ svg {
   height: 50px;
   outline: none;
   border: 1px solid#eee;
+  padding: 0 5px;
 }
 .tag {
   color: var(--color-main-blue);
@@ -101,4 +111,15 @@ svg {
 }
 .delete_font {
   transform: rotate(45deg);
+  cursor: pointer;
+}
+.emoticon_btn {
+  height: 32px;
+  outline: none;
+  font-size: var(--font-xlarge);
+  border: 0;
+  background-color: var(--color-white);
+  color: var(--color-white);
+  margin: 0 8px;
+  cursor: pointer;
 }
