@@ -8,14 +8,14 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { button } from "@mui/material";
 import { useState } from "react";
-import GoogleIcon from "@mui/icons-material/Google";
 import { Link } from "react-router-dom";
 import snsimg from "../login/snsimg.jpg";
-
+import { db, auth } from "../../config/firebase";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -50,31 +50,30 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
-  const navigater = useNavigate();
-  // 구글로 로그인하기 버튼을 눌렀을때 파이어스토어를 들고와서 사용
-  const googleLogin = () => {
-    console.log("로그인?");
-    const provider = new GoogleAuthProvider();
-    provider.addScope("profile");
-    provider.addScope("email");
 
-    const auth = getAuth();
+  // 구글로 로그인하기 버튼을 눌렀을때 파이어스토어를 들고와서 사용
+
+  const googleLogin = () => {
+    const provider = new GoogleAuthProvider();
+
     signInWithPopup(auth, provider)
       .then((result) => {
         // 로그인된 결과를 구글인증을 통해서 확인 > 토큰 발급
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
+            // The signed-in user info.
+        const user = result.user;
       })
       .catch((error) => {
-        //
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        //
-        const email = error.customData.email;
-        //
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorMessage);
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const email = error.customData.email;
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
       });
+
+    
+
   };
 
   return (
