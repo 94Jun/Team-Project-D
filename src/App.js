@@ -8,17 +8,25 @@ import LoginPage from "./pages/login/LoginPage";
 import UserPage from "./pages/user/UserPage";
 import SearchPage from "./pages/search/SearchPage";
 import Register from "./pages/login/Register";
+
 import ProfileEdit from "./pages/user/ProfileEdit";
 
+import { useSelector } from "react-redux";
+import SearchModal from "./components/modal/SearchModal";
+
+
 const App = () => {
+  const isSearchModalShown = useSelector(
+    (state) => state.modal.isSearchModalShown
+  );
   return (
     <div className="App">
-      
       <TopHeader />
       {/* 모바일 환경에서 보여지는 헤더 */}
       <Flex>
         <NavBar />
         {/* 테블릿 및 pc에서 보여지는 헤더 및 네브 바 */}
+        {isSearchModalShown && <SearchModal />}
 
         <Routes>
           <Route path="/" element={<HomePage />}></Route>

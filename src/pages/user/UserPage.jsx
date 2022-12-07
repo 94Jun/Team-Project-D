@@ -3,6 +3,7 @@ import ProfileImg from "./ProfileImg";
 import { Link } from "react-router-dom";
 import AppsIcon from '@mui/icons-material/Apps';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import MyPagePost from "./MyPagePost";
 
 
 const UserPage = () => {
@@ -28,14 +29,18 @@ const UserPage = () => {
               <a href="/User">팔로우</a></li>
             </ul>
           </div>
-          <ul className={styles.comment}>Hellow World!</ul>
+          <p className={styles.comment}>소개글 Hellow World!</p>
           </div>
       </div>
-      <div className={styles.picture}>
-        <ul><AppsIcon fontSize="small"/>게시물 </ul>
-        <ul><FavoriteBorderIcon fontSize="small"/>저장됨 </ul>
+      <div className={styles.postmenu}>
+        <ul>
+        <li><AppsIcon fontSize="small"/>게시물 </li>
+        <li><FavoriteBorderIcon fontSize="small"/>저장됨 </li>
+        </ul>
       </div>
       <div className="pages">
+        <MyPagePost/>
+        <MyPagePost/>
       </div>
     </div>
   );

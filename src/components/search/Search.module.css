@@ -1,0 +1,27 @@
+.search_log {
+  margin: 20px;
+}
+.recent_search {
+  font-size: var(--font-medium);
+  margin-bottom: 20px;
+}
+.search_content {
+  color: var(--color-main-blue);
+  margin: 20px 0;
+}
+.search_content_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.remove_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.remove_btn span {
+  font-size: var(--font-xlarge);
+}
+.search_content::before {
+  content: "#";
+}

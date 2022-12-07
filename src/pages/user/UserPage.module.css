@@ -6,7 +6,7 @@
     margin: 20px;
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid #ccc;
 }
 .main_title {
     margin-top: 35px;
@@ -15,15 +15,11 @@
     display: flex;
 }
 
-.container {
-    margin: 30px;
-    margin-left: -250px;
-}
 
 .preview {
     border-radius: 100%;
     margin: 30px;
-    border:2px solid lightgray;
+    border:2px solid #a7dbdc;
     height: 130px;
     width: 130px;
     overflow: hidden;
@@ -36,29 +32,25 @@
 .comment {
     margin-top: 10px;
     margin-bottom: 20px;
-    margin-right: 40px;
+    margin-right: 51px;
+    white-space:nowrap;
 }
+
 .user_title {
     width: 300px;
 }
 
-.picture {
+.postmenu {
+    font-size: small;
+    margin-bottom: 30px;
+}
+.postmenu li {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: small;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    margin-left: 100px;
 }
-
-.pages {
-    display: flex;
-}
-
 .button {
-    background-color: white;
-    border: 1px solid lightgray;
+    background-color: #fff;
+    border: 1px solid #ccc;
     font-weight: bold;
     border-radius: 4px;
     width: 130%;
@@ -70,9 +62,42 @@
     height: 30px;
     width: 94px;
 }
+
+/*포스트 css*/
+.post_main {
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 280px;
+    height: 200px;
+    margin-left: 300px;
+    margin-top: 30px;
+}
+.post_comment {
+    color: #ccc;
+}
+.post_button {
+    background-color:#35a5a6;
+    border: none;
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.post_memo {
+    margin-top: 30px;
+}
+
+
+
 @media (max-width: 1300px) {
     .container {
         margin: 30px;
+    }
+    .post_main {
+        margin-left: 150px;
     }
 }
 
@@ -96,6 +121,10 @@
         display: none;
     }
     .comment {
-        margin-top: 50px;
+        display: none;
+    }
+    .post_main {
+        margin: 15px;
+        margin-left: 90px;
     }
 }
