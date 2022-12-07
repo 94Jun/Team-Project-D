@@ -1,8 +1,33 @@
 .user{
     flex-grow: 1;
 }
+.edit {
+    display: flex;
+}
 
 .menu {
     font-size: large;
+    border: 1px solid lightgray;
+    height: 700px;
+    margin-top: 30px;
+}
+
+.edit_profile {
+    font-size: large;
+    border: 1px solid lightgray;
+    height: 700px;
+    margin-top: 30px;
+    width: 700px;
     text-align: center;
+}
+.eidt_input {
+    margin-left: 20px;
+}
+.edit_memo {
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.edit_input {
+    margin-right: 50px;
 }

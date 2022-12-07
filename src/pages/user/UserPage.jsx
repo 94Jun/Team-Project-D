@@ -1,15 +1,15 @@
-import MyPage from "./MyPage";
 import styles from "./UserPage.module.css";
 import ProfileImg from "./ProfileImg";
 import { Link } from "react-router-dom";
 import AppsIcon from '@mui/icons-material/Apps';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
+
 const UserPage = () => {
   return (
     <div className={styles.user}>
       <div className={styles.title}>
-        <ProfileImg/>
+        <ProfileImg className={styles.ProfileImg}/>
         <div className={styles.main_title}>
           <div className={styles.name_title}>
             <div className={styles.name}>
@@ -22,8 +22,10 @@ const UserPage = () => {
           <div>
             <ul className={styles.user_title}>
             <li className={styles.comment}>게시물</li>
-            <li className={styles.comment}>팔로워</li>
-            <li className={styles.comment}>팔로우</li>
+            <li className={styles.comment}>
+              <a href="/User">팔로워</a></li>
+            <li className={styles.comment}>
+              <a href="/User">팔로우</a></li>
             </ul>
           </div>
           <ul className={styles.comment}>Hellow World!</ul>
