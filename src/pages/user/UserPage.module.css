@@ -6,7 +6,7 @@
     margin: 20px;
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--color-gray);
 }
 .main_title {
     margin-top: 35px;
@@ -14,12 +14,10 @@
 .name_title {
     display: flex;
 }
-
-
 .preview {
     border-radius: 100%;
     margin: 30px;
-    border:2px solid #a7dbdc;
+    border:2px solid  var(--color-gray);
     height: 130px;
     width: 130px;
     overflow: hidden;
@@ -49,8 +47,8 @@
     align-items: center;
 }
 .button {
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray);
     font-weight: bold;
     border-radius: 4px;
     width: 130%;
@@ -66,7 +64,7 @@
 /*포스트 css*/
 .post_main {
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-gray);
     border-radius: 5px;
     width: 280px;
     height: 200px;
@@ -74,15 +72,15 @@
     margin-top: 30px;
 }
 .post_comment {
-    color: #ccc;
+    color: var(--color-gray);
 }
 .post_button {
-    background-color:#35a5a6;
+    background-color: var(--color-main-green3);
     border: none;
     width: 120px;
     height: 30px;
     border-radius: 5px;
-    color: #fff;
+    color: var(--color-white);
     margin-top: 30px;
     cursor: pointer;
 }
