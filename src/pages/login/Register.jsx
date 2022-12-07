@@ -111,30 +111,17 @@ const Register = () => {
       };
 
 
-      const navigate = useNavigate()
+
+      let navigate = useNavigate(); 
+
+      
+
       // 서버업데이트 
       const addUserData2 = async (e) => {
         e.preventDefault(); 
-
-        const auth = getAuth();
-        const userInfo = createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            // ...      
-            return user;
-          }) 
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-          } 
-         );
-         console.log(userInfo)
-
-
+      
         await setDoc(doc(db, "user", email), {
-          uid:"hana",
+          uid: "uid",
           email: email,
           password: password,
           name: userName,
@@ -148,9 +135,23 @@ const Register = () => {
           myComments: "[uid]",
           notice: "[uid]",
           timestamp: new Date().toLocaleDateString()
-        });
-        navigate('/login');
-    
+        })
+         navigate('/login')
+
+         const auth = getAuth();
+      createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+    console.log(user.uid);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+
 
 
 
