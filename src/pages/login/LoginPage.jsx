@@ -143,7 +143,7 @@ const LoginPage = () => {
           <span style={{ fontSize: "12px", margin: "7px" }}> or </span> <br />
           <button className={styles.simplebtn2} onClick={googleLogin}>
             {" "}
-            <GoogleIcon /> 계정으로 계속하기
+            구글 계정으로 계속하기
           </button>{" "}
           <br />
           <div className={styles.textm}>
