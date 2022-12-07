@@ -6,7 +6,8 @@
   min-width: 350px;
   align-items: center;
   position: relative;
-  margin: 100px auto;
+  margin: 50px auto;
+  outline: none;
 }
 .nav {
   display: flex;
@@ -41,7 +42,7 @@
   font-weight: bold;
 }
 .image {
-  max-height: 400px;
+  max-height: 300px;
 }
 textarea {
   width: 100%;

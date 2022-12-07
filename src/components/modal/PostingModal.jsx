@@ -87,10 +87,10 @@ const PostingModal = (props) => {
     };
 
     /*test */
+    //개시물 내용 확인
     if (text !== undefined) {
-      //개시물 내용 확인
+      //공개 비공개 확인
       if (show === true) {
-        //공개 비공개 확인
         try {
           for (let i = 0; i < imgList.length; i++) {
             const randomNum = Math.random().toString(); //파일이름은 겹치지 않게 random으로
