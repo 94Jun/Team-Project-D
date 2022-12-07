@@ -19,13 +19,7 @@ const App = () => {
 
   return (
     <div className="App">
-
-
-      <Route path="login" element={<LoginPage />}></Route>
-      <Route path="register" element={<Register />}></Route>
-
-
-
+          <LoginPage />
       <TopHeader />
       {/* 모바일 환경에서 보여지는 헤더 */}
 
@@ -35,10 +29,12 @@ const App = () => {
         {isSearchModalShown && <SearchModal />}
 
         <Routes>
+      
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/user" element={<UserPage />}></Route>
           <Route path="/search" element={<SearchPage />}></Route>
 
+          <Route path="/register" element={<Register />}></Route>
         </Routes>
         {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
       </Flex>

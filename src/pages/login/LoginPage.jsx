@@ -14,11 +14,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { Link } from "react-router-dom";
 import snsimg from "../login/snsimg.jpg";
 
-
-// 구글로그인 
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
-
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
