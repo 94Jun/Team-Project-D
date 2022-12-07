@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { TOGGLE_SEARCH_MODAL } from "../../modules/modal";
 import SearchLog from "../search/SearchLog";
+import { ADD_RECENT_SEARCH } from "../../modules/user";
+import { SET_CURRENT_SEARCH } from "../../modules/search";
 const SearchModal = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -14,8 +16,12 @@ const SearchModal = () => {
   };
   const searchHandler = (e) => {
     e.preventDefault();
-    dispatch(TOGGLE_SEARCH_MODAL());
-    navigate("/search", { replace: false, state: userInput });
+    if (userInput.trim().length > 0) {
+      dispatch(TOGGLE_SEARCH_MODAL());
+      dispatch(SET_CURRENT_SEARCH(userInput));
+      dispatch(ADD_RECENT_SEARCH(userInput));
+      navigate("/search");
+    }
   };
   return (
     <div className={styles.search_modal}>

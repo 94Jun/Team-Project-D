@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import PostItem from "../PostItem/PostItem";
-const SearchResult = ({ searchContent }) => {
+const SearchResult = () => {
   const postingList = useSelector((state) => {
     return state.posting.postingList;
   });
+  const currentSearch = useSelector((state) => state.search.currentSearch);
   const filteredPostingList = postingList.filter((posting) => {
-    return posting.contents.hashtags.includes(searchContent);
+    return posting.contents.hashtags.includes(currentSearch);
   });
   return (
     <div>

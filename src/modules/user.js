@@ -67,11 +67,10 @@ export const user = createSlice({
       existingUser.myComments.push(cid);
     },
     ADD_RECENT_SEARCH: (state, action) => {
-      const { searchContent } = action.payload;
       const existingUser = state.userList.find((user) => {
         return user.uid === state.currentUser;
       });
-      existingUser.recentSearchs.push(searchContent);
+      existingUser.recentSearchs.push(action.payload);
     },
     REMOVE_RECENT_SEARCH: (state, action) => {
       const { removedContent } = action.payload;

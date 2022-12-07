@@ -10,10 +10,17 @@ const SearchLog = () => {
   const user = userList.find((user) => {
     return user.uid === currentUser;
   });
-  const [recentSearchs, setRecentSearchs] = useState([]);
+  const [recentSearchs, setRecentSearchs] = useState(user.recentSearchs);
+  const filteredRecentSearchs =
+    recentSearchs.length > 0
+      ? recentSearchs.filter((content, idx) => {
+          return recentSearchs.indexOf(content) === idx;
+        })
+      : null;
   useEffect(() => {
     setRecentSearchs(user.recentSearchs);
   }, [user.recentSearchs]);
+
   const removeRecentSearchHandler = (e) => {
     console.log(e.target);
     const removedContent =
@@ -24,22 +31,23 @@ const SearchLog = () => {
   return (
     <div className={styles.search_log}>
       <h3 className={styles.recent_search}>최근 검색어</h3>
-      {recentSearchs.map((content) => {
-        return (
-          <div
-            key={currentUser + content}
-            className={styles.search_content_wrap}
-          >
-            <p className={styles.search_content}>{content}</p>
-            <button
-              className={styles.remove_btn}
-              onClick={removeRecentSearchHandler}
+      {filteredRecentSearchs &&
+        filteredRecentSearchs.reverse().map((content) => {
+          return (
+            <div
+              key={currentUser + content}
+              className={styles.search_content_wrap}
             >
-              <span>x</span>
-            </button>
-          </div>
-        );
-      })}
+              <p className={styles.search_content}>{content}</p>
+              <button
+                className={styles.remove_btn}
+                onClick={removeRecentSearchHandler}
+              >
+                <span>x</span>
+              </button>
+            </div>
+          );
+        })}
     </div>
   );
 };
