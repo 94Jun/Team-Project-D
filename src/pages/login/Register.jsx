@@ -13,10 +13,13 @@ import { db,auth } from "../../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
+
+
 import styles from "./Register.module.css";
 
 
 const Register = () => {
+
 
     const [phone, setphone] = useState("");
     const [password, setPassword] = useState("");

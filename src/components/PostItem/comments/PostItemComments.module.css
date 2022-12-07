@@ -46,3 +46,26 @@
   cursor: pointer;
   min-width: 30px;
 }
+.comment_item {
+  margin: 20px 0;
+  display: flex;
+  gap: 20px;
+}
+.comment_profile_wrap {
+  max-width: 30px;
+  max-height: 30px;
+}
+.comment_profile_wrap img {
+  width: 100%;
+}
+.comment_writer_name {
+  font-weight: 700;
+}
+.comment_date {
+  font-size: var(--font-xsmall);
+  color: var(--color-main-gray);
+  margin-left: 20px;
+}
+.comment_text {
+  margin-top: 5px;
+}
