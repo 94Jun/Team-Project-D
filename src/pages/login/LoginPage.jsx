@@ -12,12 +12,18 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import snsimg from "../login/snsimg.jpg";
 import { db, auth } from "../../config/firebase";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup ,createUserWithEmailAndPassword} from "firebase/auth";
+import {useNavigate} from 'react-router-dom'
+import { doc, setDoc } from "firebase/firestore";
+import { nowDate, nowValue } from "../../common";
+import { useDispatch } from "react-redux";
+import { LOGIN } from "../../modules/login";
+
 
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const onChangeEmail = (e) => {
@@ -50,32 +56,31 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
+  const navigater = useNavigate();
 
-  // 구글로 로그인하기 버튼을 눌렀을때 파이어스토어를 들고와서 사용
+  const createUser = async (user) => {
+    await setDoc(doc(db, "userList", user.uid), {
+      uid: user.uid,
+      email: user.email,
+      name: user.displayName,
+      phone: user. phoneNumber,
+      profile: user. photoURL,
+      following: [],
+      follower: [],
+      myPosting: [],
+      likedPosting: [],
+      markedPosting: [],
+      myComments: [],
+      notice: [],
+      recentSearchs: [],
+      timestamp: nowValue,
+      signUpDate: nowDate,
+    });
 
-  const googleLogin = () => {
-    const provider = new GoogleAuthProvider();
 
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // 로그인된 결과를 구글인증을 통해서 확인 > 토큰 발급
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-            // The signed-in user info.
-        const user = result.user;
-      })
-      .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const email = error.customData.email;
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-      });
-
-    
-
-  };
-
+ 
+  
+  
   return (
     <div className={styles.login_full}>
       <div className={styles.login_img}>
