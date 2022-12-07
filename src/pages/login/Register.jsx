@@ -110,15 +110,14 @@ const Register = () => {
         event.preventDefault();
       };
 
-      const uid = Math.random().toString(36).substring(2, 12);
 
       const navigate = useNavigate()
       // 서버업데이트 
       const addUserData2 = async (e) => {
         e.preventDefault(); 
-        
+
         const auth = getAuth();
-        const userInfo =createUserWithEmailAndPassword(auth, email, password)
+        const userInfo = createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
@@ -132,10 +131,10 @@ const Register = () => {
           } 
          );
          console.log(userInfo)
-          
-          
-        await setDoc(doc(db, "user", uid), {
-          uid: userInfo.uid,
+
+
+        await setDoc(doc(db, "user", email), {
+          uid:"hana",
           email: email,
           password: password,
           name: userName,
@@ -152,6 +151,9 @@ const Register = () => {
         });
         navigate('/login');
     
+
+
+
 
       };
 
@@ -193,7 +195,7 @@ const Register = () => {
                 </InputAdornment>
               }
             />
-          {passwordError && <div class="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>
+          {passwordError && <div className="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>
           비밀번호는 8자리 이상, 영문+숫자로 입력해주세요 </div>}
         </FormControl> <br></br>
 
@@ -216,7 +218,7 @@ const Register = () => {
                 </InputAdornment>
               }
             />
-           {confirmPasswordError && <div class="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>비밀번호와 다릅니다.</div>}
+           {confirmPasswordError && <div className="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>비밀번호와 다릅니다.</div>}
         </FormControl> <br></br>
 
 
@@ -226,7 +228,7 @@ const Register = () => {
             id="standard-name"
             type="name"
             placeholder="UserName" value={userName} onChange={onChangeUserName}/>
-            {userNameError && <div class="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>닉네임/이름을 입력해주세요</div>}
+            {userNameError && <div className="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>닉네임/이름을 입력해주세요</div>}
         </FormControl> <br></br>
 
         <FormControl sx={{ m: 1, width: '30ch' }} variant="standard">
@@ -235,7 +237,7 @@ const Register = () => {
             id="standard-phone"
             type="text"
             placeholder="phone" value={phone} onChange={onChangephone}/>
-        {phoneError && <div class="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>정확한 폰 번호를 입력해주세요</div>}
+        {phoneError && <div className="invalid-input"  style={{fontSize:'11px', color:"#D73E3E"}}>정확한 폰 번호를 입력해주세요</div>}
         </FormControl> <br></br>
         
 
