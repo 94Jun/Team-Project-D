@@ -16,10 +16,8 @@ import { storage } from "../../config/firebase";
 import { ref, uploadString } from "firebase/storage";
 import Dropdown from "./Dropdown";
 import Emoticon from "./Emoticon";
-/* 기능 남은거
-  드래그앤 드롭
-  공개 비공개
-*/
+import { nowDate, nowValue, randomId } from "../../common";
+
 const PostingModal = (props) => {
   //posting-Text 저장 state
   const [text, setText] = useState("");
@@ -58,9 +56,9 @@ const PostingModal = (props) => {
     //데이터 베이스 추가
     const addedPublicPosting = {
       //전달할 데이터 정의
-      pid: Math.random().toString(),
-      date: new Date().toLocaleDateString(),
-      timestamp: new Date().valueOf(),
+      pid: randomId,
+      writeDate: nowDate,
+      timestamp: nowValue,
       like: [],
       writer: currentUser,
       comments: [],
@@ -69,73 +67,31 @@ const PostingModal = (props) => {
         hashtags: HashTagList,
         text: text,
       },
-    };
-    const addedPrivatePosting = {
-      //비공개 전달할 데이터 ???
-      pid: Math.random().toString(),
-      date: new Date().toLocaleDateString(),
-      timestamp: new Date().valueOf(),
-      //like: [],
-      writer: currentUser,
-      //comments: [],
-      contents: {
-        images: [],
-        hashtags: HashTagList,
-        text: text,
-        test: "테스트용 ",
-      },
+      isPublic: show,
     };
 
-    /*test */
     //개시물 내용 확인
     if (text !== undefined) {
-      //공개 비공개 확인
-      if (show === true) {
-        try {
-          for (let i = 0; i < imgList.length; i++) {
-            const randomNum = Math.random().toString(); //파일이름은 겹치지 않게 random으로
-            const imageRef = ref(storage, `images/${randomNum}`);
-            uploadString(imageRef, imgList[i], "data_url");
-            addedPublicPosting.contents.images.push(randomNum);
-          } //uploadString:data_url,base64데이터 업로드용
-          //imageRef=ref(storage,폴더이름/파일이름)
-          await setDoc(
-            doc(db, "postingList", addedPublicPosting.pid),
-            addedPublicPosting
-          );
-          setText("");
-          setImgs("");
-          dispatch(INITIAL_STATE_HASH());
-          dispatch(INITIAL_STATE_IMG());
-          handleClose(); //피드 추가 후 모달창 Close
-          dispatch(ADD_POSTING(addedPublicPosting));
-        } catch (e) {
-          alert("업로드에 실패 했습니다");
-        }
-      } else {
-        //비공개
-        try {
-          for (let i = 0; i < imgList.length; i++) {
-            const randomNum = Math.random().toString(); //파일이름은 겹치지 않게 random으로
-            const imageRef = ref(storage, `images/${randomNum}`);
-            uploadString(imageRef, imgList[i], "data_url");
-            addedPrivatePosting.contents.images.push(randomNum);
-          } //uploadString:data_url,base64데이터 업로드용
-          //imageRef=ref(storage,폴더이름/파일이름)
-          await setDoc(
-            doc(db, "postingList", addedPrivatePosting.pid),
-            addedPrivatePosting
-          );
-          setText("");
-          setImgs("");
-          dispatch(INITIAL_STATE_HASH());
-          dispatch(INITIAL_STATE_IMG());
-          handleClose(); //피드 추가 후 모달창 Close
-          dispatch(TEST_POSTING(addedPrivatePosting));
-          //Test용 dispatch ||dispatch(ADD_POSTING(addedPublicPosting)) 정의 되지 않은 속성으로 애러뜸
-        } catch (e) {
-          alert("업로드에 실패 했습니다");
-        }
+      try {
+        for (let i = 0; i < imgList.length; i++) {
+          const randomNum = Math.random().toString(); //파일이름은 겹치지 않게 random으로
+          const imageRef = ref(storage, `images/${randomNum}`);
+          uploadString(imageRef, imgList[i], "data_url");
+          addedPublicPosting.contents.images.push(randomNum);
+        } //uploadString:data_url,base64데이터 업로드용
+        //imageRef=ref(storage,폴더이름/파일이름)
+        await setDoc(
+          doc(db, "postingList", addedPublicPosting.pid),
+          addedPublicPosting
+        );
+        setText("");
+        setImgs("");
+        dispatch(INITIAL_STATE_HASH());
+        dispatch(INITIAL_STATE_IMG());
+        handleClose(); //피드 추가 후 모달창 Close
+        dispatch(ADD_POSTING(addedPublicPosting));
+      } catch (e) {
+        alert("업로드에 실패 했습니다");
       }
     } else {
       alert("개시물을 작성해주세요");
