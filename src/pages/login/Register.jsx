@@ -7,15 +7,17 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Form, useNavigate } from "react-router-dom";
-
+import { nowDate, nowValue } from "../../common";
 import { db, auth } from "../../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { LOGIN } from "../../modules/login";
 
 import styles from "./Register.module.css";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const [phone, setphone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -115,43 +117,39 @@ const Register = () => {
     event.preventDefault();
   };
 
-  let navigate = useNavigate();
-
-  // 서버업데이트
-  const addUserData2 = async (e) => {
-    e.preventDefault();
-
-    await setDoc(doc(db, "user", email), {
-      uid: "uid",
-      email: email,
-      password: password,
+  const createUser = async (user) => {
+    await setDoc(doc(db, "userList", user.uid), {
+      uid: user.uid,
+      email: user.email,
       name: userName,
       phone: phone,
       profile: "none",
-      following: "[uid]",
-      follower: "[uid]",
-      myPosting: "[uid]",
-      likedPosting: "[uid]",
-      markedPosting: "[uid]",
-      myComments: "[uid]",
-      notice: "[uid]",
-      timestamp: new Date().toLocaleDateString(),
+      following: [],
+      follower: [],
+      myPosting: [],
+      likedPosting: [],
+      markedPosting: [],
+      myComments: [],
+      notice: [],
+      recentSearchs: [],
+      timestamp: nowValue,
+      signUpDate: nowDate,
     });
-    navigate("/login");
-
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-        console.log(user.uid);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+  };
+  // 서버업데이트
+  const addUserData2 = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      createUser(userCredential.user);
+      dispatch(LOGIN(userCredential.user.uid));
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 
   return (

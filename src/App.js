@@ -14,7 +14,6 @@ import ProfileEdit from "./pages/user/ProfileEdit";
 import { useSelector } from "react-redux";
 import SearchModal from "./components/modal/SearchModal";
 
-
 const App = () => {
   const isSearchModalShown = useSelector(
     (state) => state.modal.isSearchModalShown
