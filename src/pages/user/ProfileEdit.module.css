@@ -7,22 +7,25 @@
 
 .menu {
     font-size: large;
-    border: 1px solid lightgray;
+    border: 1px solid var(--color-gray);
+    border-right: none;
     height: 600px;
     margin-top: 30px;
     min-width: 150px;
 }
 .edit_menu {
     cursor: pointer;
-    margin: 20px;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
 }
-.edit_menu :hover {
-    background-color: gray;
+.edit_menu:hover {
+    background-color: var(--color-main-green1);
 }
-
 .edit_profile {
     font-size: medium;
-    border: 1px solid lightgray;
+    border: 1px solid var(--color-gray);
     height: 600px;
     margin-top: 30px;
     width: 700px;
@@ -40,7 +43,7 @@
 .edit_input {
     width: 350px;
     height: 26px;
-    border: 1px solid lightgray;
+    border: 1px solid var(--color-gray);
     margin-left: 30px;
 }
 .edit_ex {
@@ -59,7 +62,7 @@
 .edit_textarea {
     width: 350px;
     height: 82px;
-    border: 1px solid lightgray;
+    border: 1px solid var(--color-gray);
     margin-left: 30px;
 }
 .edit_button {
@@ -84,6 +87,7 @@
     }
     .edit_profile {
         margin: 5px;
+        width: 100%;
     }
     .edit_memo {
         flex-direction: column;
@@ -109,5 +113,9 @@
         margin-top: 5px;
         margin-left: 0px;
         display: block;
+    }
+    .edit_button {
+        margin-top: 50px;
+        margin-left: 210px;
     }
 }
