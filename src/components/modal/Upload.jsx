@@ -1,5 +1,5 @@
 import styles from "./PostingModal.module.css";
-import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import AddAPhotoOutlined from "@mui/icons-material/AddAPhotoOutlined";
 import { ADD_IMG } from "../../modules/upload";
 import { useDispatch } from "react-redux";
 
@@ -23,7 +23,7 @@ const Upload = () => {
   return (
     <div className={styles.filebox}>
       <label htmlFor="file" className={styles.label}>
-        <AddAPhotoIcon />
+        <AddAPhotoOutlined className={styles.icon} />
       </label>
       <input type="file" id="file" multiple onChange={handleChangeFile} />
     </div>

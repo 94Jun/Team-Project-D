@@ -31,3 +31,7 @@ a {
   src: url(../public/fonts/NanumGothic-Regular.ttf);
   unicode-range: U+AC00 –D7A3;
 }
+.emoji-picker-react {
+  width: 100% !important;
+  box-shadow: none !important;
+}
