@@ -10,7 +10,7 @@ const SearchLog = () => {
   const user = userList.find((user) => {
     return user.uid === currentUser;
   });
-  const [recentSearchs, setRecentSearchs] = useState([]);
+  const [recentSearchs, setRecentSearchs] = useState(user.recentSearchs);
   const filteredRecentSearchs =
     recentSearchs.length > 0
       ? recentSearchs.filter((content, idx) => {
@@ -20,6 +20,7 @@ const SearchLog = () => {
   useEffect(() => {
     setRecentSearchs(user.recentSearchs);
   }, [user.recentSearchs]);
+
   const removeRecentSearchHandler = (e) => {
     console.log(e.target);
     const removedContent =

@@ -16,6 +16,7 @@ const App = () => {
   const isSearchModalShown = useSelector(
     (state) => state.modal.isSearchModalShown
   );
+
   return (
     <div className="App">
       <TopHeader />
