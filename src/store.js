@@ -6,6 +6,7 @@ import CommentReducer from "./modules/comment";
 import ModalReducer from "./modules/modal";
 import HashReducer from "./modules/hash";
 import UpLoadReducer from "./modules/upload";
+import SearchReducer from "./modules/search";
 
 export default configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
     modal: ModalReducer,
     hash: HashReducer,
     upload: UpLoadReducer,
+    search: SearchReducer,
   },
 });
