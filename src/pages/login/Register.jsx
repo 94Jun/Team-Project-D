@@ -110,18 +110,15 @@ const Register = () => {
         event.preventDefault();
       };
 
-
-
-      let navigate = useNavigate(); 
-
+      let navigate = useNavigate();
       
-
+      
+      const [useruid, setUseruid] = useState(); 
       // 서버업데이트 
       const addUserData2 = async (e) => {
-        e.preventDefault(); 
-      
-        await setDoc(doc(db, "user", email), {
-          uid: "uid",
+        e.preventDefault();  // 새로고침 방지 
+  
+        await setDoc(doc(db, "user",email), {
           email: email,
           password: password,
           name: userName,
@@ -138,25 +135,28 @@ const Register = () => {
         })
          navigate('/login')
 
-         const auth = getAuth();
+     const auth = getAuth();
       createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+       .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
     // ...
     console.log(user.uid);
+    setUseruid(user.uid);
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     // ..
-  });
+  })
+ };
 
 
 
+  
+  
 
 
-      };
 
       
 

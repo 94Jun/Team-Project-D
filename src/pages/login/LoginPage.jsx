@@ -8,14 +8,17 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { button } from '@mui/material';
 import { useState } from 'react';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Link } from 'react-router-dom';
 import snsimg from '../login/snsimg.jpg'
 
+// 구글로그인 
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {useNavigate} from 'react-router-dom'
+
+// 기존 로그인 
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 
 const LoginPage = () => {
