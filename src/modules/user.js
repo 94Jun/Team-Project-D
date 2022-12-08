@@ -96,5 +96,6 @@ export const {
   USER_ADD_COMMENT,
   ADD_RECENT_SEARCH,
   REMOVE_RECENT_SEARCH,
+  GET_CURRENT_USER_INFO,
 } = user.actions;
 export default user.reducer;

@@ -8,16 +8,25 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { button } from "@mui/material";
 import { useState } from "react";
-import GoogleIcon from "@mui/icons-material/Google";
 import { Link } from "react-router-dom";
 import snsimg from "../login/snsimg.jpg";
+import { db } from "../../config/firebase";
+import { getAuth, GoogleAuthProvider, signInWithPopup ,signInWithEmailAndPassword , sendPasswordResetEmail,   } from "firebase/auth";
+import {useNavigate} from 'react-router-dom'
+import { doc, setDoc ,getDoc} from "firebase/firestore";
+import { nowDate, nowValue } from "../../common";
+import { useDispatch } from "react-redux";
+import { LOGIN } from "../../modules/login";
 
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+
+const LoginPage = (props) => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const onChangeEmail = (e) => {
@@ -50,33 +59,100 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
-  const navigater = useNavigate();
-  // 구글로 로그인하기 버튼을 눌렀을때 파이어스토어를 들고와서 사용
-  const googleLogin = () => {
-    console.log("로그인?");
-    const provider = new GoogleAuthProvider();
-    provider.addScope("profile");
-    provider.addScope("email");
 
-    const auth = getAuth();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // 로그인된 결과를 구글인증을 통해서 확인 > 토큰 발급
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-      })
-      .catch((error) => {
-        //
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        //
-        const email = error.customData.email;
-        //
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorMessage);
-      });
-  };
+  const createUser = async (user) => {
+    await setDoc(doc(db, "userList", user.uid), {
+      uid: user.uid,
+      email: user.email,
+      name: user.displayName,
+      phone: user.phoneNumber,
+      profile: user.photoURL,
+      following: [],
+      follower: [],
+      myPosting: [],
+      likedPosting: [],
+      markedPosting: [],
+      myComments: [],
+      notice: [],
+      recentSearchs: [],
+      timestamp: nowValue,
+      signUpDate: nowDate,
+    }); }
 
+    const [userInfo,setUserInfo] = useState();
+
+    const googleLogin = () => {
+      const provider = new GoogleAuthProvider();
+      provider.addScope("profile");
+      provider.addScope("email"); 
+      console.log(provider);
+
+
+      const auth = getAuth();
+
+      signInWithPopup(auth, provider)
+        .then((result) => {
+
+
+          // 로그인된 결과를 구글인증을 통해서 확인 > 토큰 발급
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // 로그인된 결과 중에서 user를 통해서 관련 정보를 가져올수 있다
+          const user = result.user;
+          const checkDoc = async () => {
+            const docRef = doc(db, "userList", user.uid);
+            const docSnap = await getDoc(docRef);
+            if (!docSnap.exists()){
+              createUser(user)
+            }  checkDoc();
+          }
+          navigate("/");
+          dispatch(LOGIN(user.uid));
+          console.log("구글로그인성공!")
+        })
+        .catch((error) => {
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          console.log("구글로그인실패!")
+
+        });
+    };
+
+    // 비밀번호 찾기 
+    const findemail = () => {
+      const auth = getAuth();
+sendPasswordResetEmail(auth, email)
+  .then(() => { 
+    console.log("이메일성공");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+    }
+
+
+    const dblogin = (e) => {
+      e.preventDefault();
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, email, values.password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          console.log("로그인성공!")
+          navigate("/");
+          dispatch(LOGIN(user.uid));
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log("로그인실패!")
+          alert("아이디와 비밀번호를 확인해주세요")
+
+        });
+    };
+  
+  
   return (
     <div className={styles.login_full}>
       <div className={styles.login_img}>
@@ -139,11 +215,11 @@ const LoginPage = () => {
             <br />{" "}
           </div>
           <br />
-          <button className={styles.simplebtn}>로그인</button> <br />
+          <button className={styles.simplebtn} onClick={dblogin}>로그인</button> <br />
           <span style={{ fontSize: "12px", margin: "7px" }}> or </span> <br />
           <button className={styles.simplebtn2} onClick={googleLogin}>
             {" "}
-            <GoogleIcon /> 계정으로 계속하기
+            구글 계정으로 계속하기
           </button>{" "}
           <br />
           <div className={styles.textm}>

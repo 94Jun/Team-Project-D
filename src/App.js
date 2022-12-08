@@ -14,31 +14,35 @@ import SearchModal from "./components/modal/SearchModal";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./modules/login";
+import { db } from "./config/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { GET_CURRENT_USER_INFO } from "./modules/user";
 
 const App = () => {
   const dispatch = useDispatch();
   const isSearchModalShown = useSelector(
     (state) => state.modal.isSearchModalShown
   );
-  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
-  const currentUser = useSelector((state) => state.login.currentUser);
+
   const getCurrentUserInfo = async () => {
     const docRef = doc(db, "userList", currentUser);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
+      dispatch(GET_CURRENT_USER_INFO);
     }
   };
   //나중에 redux thunk를 사용해 리팩토링 필요
-  useEffect(() => {
-    if (currentUser) {
-      dispatch(LOGIN(currentUser));
-    }
-  }, [currentUser, dispatch]);
 
+  const isLogincheck = useSelector((state) => state.login.isLoggedIn);
+  const currentUser = useSelector((state) => state.login.currentUser);
+
+  useEffect(() => {
+    if (currentUser !== "비회원") dispatch(LOGIN(currentUser));
+  }, [currentUser, dispatch]);
+  console.log(isLogincheck);
   return (
     <div className="App">
-      {!isLoggedIn ? (
+      {!isLogincheck ? (
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
@@ -53,6 +57,14 @@ const App = () => {
             {isSearchModalShown && <SearchModal />}
 
             <Routes>
+              <Route
+                path="/login"
+                element={<LoginPage />}
+                render={() => (!isLogincheck ? <HomePage /> : <LoginPage />)}
+              >
+                {" "}
+              </Route>
+              <Route path="/register" element={<Register />}></Route>
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/user" element={<UserPage />}></Route>
               <Route path="/search" element={<SearchPage />}></Route>
