@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
@@ -10,11 +9,12 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { nowDate, nowValue } from "../../common";
 import { db, auth } from "../../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "../../modules/login";
 
 import styles from "./Register.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -117,6 +117,8 @@ const Register = () => {
     event.preventDefault();
   };
 
+  const navigate = useNavigate();
+
   const createUser = async (user) => {
     await setDoc(doc(db, "userList", user.uid), {
       uid: user.uid,
@@ -145,10 +147,34 @@ const Register = () => {
         email,
         password
       );
+      console.log("가입성공!")
+      navigate("/");
       createUser(userCredential.user);
       dispatch(LOGIN(userCredential.user.uid));
+      const dblogin = (e) => {
+        e.preventDefault();
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, values.password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log("로그인성공!")
+            navigate("/");
+            dispatch(LOGIN(user.uid));
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("로그인실패!")
+            alert("아이디와 비밀번호를 확인해주세요")
+
+          });
+      };
+
     } catch (e) {
       console.log(e.message);
+      console.log("가입실패!")
+      navigate("/register");
     }
   };
 

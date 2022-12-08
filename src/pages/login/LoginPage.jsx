@@ -11,8 +11,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import snsimg from "../login/snsimg.jpg";
-import { db, auth } from "../../config/firebase";
-import { getAuth, GoogleAuthProvider, signInWithPopup ,createUserWithEmailAndPassword} from "firebase/auth";
+import { db } from "../../config/firebase";
+import { getAuth, GoogleAuthProvider, signInWithPopup ,signInWithEmailAndPassword} from "firebase/auth";
 import {useNavigate} from 'react-router-dom'
 import { doc, setDoc } from "firebase/firestore";
 import { nowDate, nowValue } from "../../common";
@@ -21,8 +21,11 @@ import { LOGIN } from "../../modules/login";
 
 
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -56,7 +59,6 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
-  const navigater = useNavigate();
 
   const createUser = async (user) => {
     await setDoc(doc(db, "userList", user.uid), {
@@ -75,10 +77,58 @@ const LoginPage = () => {
       recentSearchs: [],
       timestamp: nowValue,
       signUpDate: nowDate,
-    });
+    }); }
 
+    const [userInfo,setUserInfo] = useState();
 
- 
+    const googleLogin = () => {
+      const provider = new GoogleAuthProvider();
+      provider.addScope("profile");
+      provider.addScope("email"); 
+
+      console.log(provider);
+  
+      const auth = getAuth();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // 로그인된 결과를 구글인증을 통해서 확인 > 토큰 발급
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // 로그인된 결과 중에서 user를 통해서 관련 정보를 가져올수 있다
+          const user = result.user;
+          createUser(user)
+          console.log("구글로그인성공!")
+          navigate("/");
+          dispatch(LOGIN(user.uid));
+        })
+        .catch((error) => {
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          console.log("구글로그인실패!")
+          LOGIN(false);
+        });
+    };
+
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const dblogin = (e) => {
+      e.preventDefault();
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, email, values.password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          console.log("로그인성공!")
+          navigate("/");
+          LOGIN(true);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log("로그인실패!")
+          alert("아이디와 비밀번호를 확인해주세요")
+          LOGIN(false);
+        });
+    };
   
   
   return (
@@ -143,7 +193,7 @@ const LoginPage = () => {
             <br />{" "}
           </div>
           <br />
-          <button className={styles.simplebtn}>로그인</button> <br />
+          <button className={styles.simplebtn} onClick={dblogin}>로그인</button> <br />
           <span style={{ fontSize: "12px", margin: "7px" }}> or </span> <br />
           <button className={styles.simplebtn2} onClick={googleLogin}>
             {" "}
