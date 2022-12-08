@@ -19,9 +19,14 @@ const App = () => {
     (state) => state.modal.isSearchModalShown
   );
 
+  const isLogincheck = useSelector(
+    (state) => state.login.isLoggedIn
+  );
+
   return (
     <div className="App">
-          <LoginPage />
+         { !isLogincheck && <LoginPage/> } 
+         { !isLogincheck && <Register /> }
       <TopHeader />
       {/* 모바일 환경에서 보여지는 헤더 */}
       <Flex>
@@ -30,12 +35,9 @@ const App = () => {
         {isSearchModalShown && <SearchModal />}
 
         <Routes>
-      
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/user" element={<UserPage />}></Route>
           <Route path="/search" element={<SearchPage />}></Route>
-
-          <Route path="/register" element={<Register />}></Route>
         </Routes>
         {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
         <Routes>
