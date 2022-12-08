@@ -17,6 +17,7 @@ import SearchModal from "./components/modal/SearchModal";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./modules/login";
+
 const App = () => {
   const dispatch = useDispatch();
   const isSearchModalShown = useSelector(

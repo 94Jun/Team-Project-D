@@ -27,6 +27,7 @@ const initialState = {
       like: ["u1"],
     },
   ],
+  testList: [{}], //test용 비공개용 배열
 };
 
 export const posting = createSlice({
@@ -60,9 +61,17 @@ export const posting = createSlice({
       state.postingList.push(action.payload);
       //initialState 안에 postingList안에 push매소드 사용해서 외부에서 데이터를 받아와(action.payload) 넣어준다
     },
+    TEST_POSTING: (state, action) => {
+      state.testList.push(action.payload);
+      //비공개용 test reducer
+    },
   },
 });
 
-export const { POSTING_LIKE_POSTING, POSTING_ADD_COMMENT, ADD_POSTING } =
-  posting.actions;
+export const {
+  POSTING_LIKE_POSTING,
+  POSTING_ADD_COMMENT,
+  ADD_POSTING,
+  TEST_POSTING,
+} = posting.actions;
 export default posting.reducer;
