@@ -104,7 +104,7 @@ const LoginPage = (props) => {
         .catch((error) => {
           const credential = GoogleAuthProvider.credentialFromError(error);
           console.log("구글로그인실패!")
-          LOGIN(false);
+
         });
     };
 
@@ -119,14 +119,14 @@ const LoginPage = (props) => {
           const user = userCredential.user;
           console.log("로그인성공!")
           navigate("/");
-          LOGIN(true);
+          dispatch(LOGIN(user.uid));
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log("로그인실패!")
           alert("아이디와 비밀번호를 확인해주세요")
-          LOGIN(false);
+
         });
     };
   
