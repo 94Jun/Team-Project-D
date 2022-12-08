@@ -20,7 +20,7 @@ const initialState = {
       recentSearchs: [],
     },
   ],
-  currentUser: "u1",
+  currentUserInfo: {},
 };
 
 export const user = createSlice({
@@ -83,6 +83,9 @@ export const user = createSlice({
         }
       );
       existingUser.recentSearchs = updatedRecentSearchs;
+    },
+    GET_CURRENT_USER_INFO: (state, action) => {
+      state.currentUserInfo = action.payload;
     },
   },
 });

@@ -6,6 +6,7 @@ import { USER_ADD_COMMENT } from "../../../modules/user";
 import { POSTING_ADD_COMMENT } from "../../../modules/posting";
 import { db } from "../../../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import { randomId } from "../../../common";
 
 const CommentForm = (props) => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const CommentForm = (props) => {
     e.preventDefault();
     if (commentInput.trim().length > 0) {
       const addedComment = {
-        cid: Math.random().toString(),
+        cid: randomId,
         writer: props.currentUser,
         posting: props.pid,
         text: commentInput,
