@@ -11,6 +11,10 @@ import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TOGGLE_SEARCH_MODAL } from "../../modules/modal";
+import { getAuth, signOut } from "firebase/auth";
+import { LOGIN, LOGOUT } from "../../modules/login";
+
+
 const Nav = () => {
   const dispatch = useDispatch();
   const isSearchModalShown = useSelector(
@@ -23,6 +27,18 @@ const Nav = () => {
   //네브바에 들어가는 리스트 모음
   const toggleSearchModalHandler = () => {
     dispatch(TOGGLE_SEARCH_MODAL());
+  };
+  // 로그아웃 
+
+  const onLogOutClick = () => {
+
+    const auth = getAuth();
+signOut(auth).then(() => {
+  dispatch(LOGOUT());
+  console.log ("로그아웃성공");
+}).catch((error) => {
+console.log ("로그아웃실패");
+});
   };
 
   return (
@@ -80,8 +96,8 @@ const Nav = () => {
 
         <li className={styles.item}>
           <Link to="/">
-            <LogoutOutlinedIcon fontSize="string" />
-            <span>로그 아웃</span>
+            <LogoutOutlinedIcon fontSize="string" onClick={onLogOutClick}/>
+            <span onClick={onLogOutClick}>로그 아웃</span>
           </Link>
         </li>
         {/* 클릭 시 로그아웃 구현 필요 */}
