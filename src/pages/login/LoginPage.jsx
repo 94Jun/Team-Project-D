@@ -12,9 +12,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import snsimg from "../login/snsimg.jpg";
 import { db } from "../../config/firebase";
-import { getAuth, GoogleAuthProvider, signInWithPopup ,signInWithEmailAndPassword} from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup ,signInWithEmailAndPassword , sendPasswordResetEmail,   } from "firebase/auth";
 import {useNavigate} from 'react-router-dom'
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc ,getDoc} from "firebase/firestore";
 import { nowDate, nowValue } from "../../common";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "../../modules/login";
@@ -65,8 +65,8 @@ const LoginPage = (props) => {
       uid: user.uid,
       email: user.email,
       name: user.displayName,
-      phone: user. phoneNumber,
-      profile: user. photoURL,
+      phone: user.phoneNumber,
+      profile: user.photoURL,
       following: [],
       follower: [],
       myPosting: [],
@@ -85,21 +85,30 @@ const LoginPage = (props) => {
       const provider = new GoogleAuthProvider();
       provider.addScope("profile");
       provider.addScope("email"); 
-
       console.log(provider);
-  
+
+
       const auth = getAuth();
+
       signInWithPopup(auth, provider)
         .then((result) => {
+
+
           // 로그인된 결과를 구글인증을 통해서 확인 > 토큰 발급
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
           // 로그인된 결과 중에서 user를 통해서 관련 정보를 가져올수 있다
           const user = result.user;
-          createUser(user)
-          console.log("구글로그인성공!")
+          const checkDoc = async () => {
+            const docRef = doc(db, "userList", user.uid);
+            const docSnap = await getDoc(docRef);
+            if (!docSnap.exists()){
+              createUser(user)
+            }  checkDoc();
+          }
           navigate("/");
           dispatch(LOGIN(user.uid));
+          console.log("구글로그인성공!")
         })
         .catch((error) => {
           const credential = GoogleAuthProvider.credentialFromError(error);
@@ -108,7 +117,20 @@ const LoginPage = (props) => {
         });
     };
 
-    const [modalOpen, setModalOpen] = useState(false);
+    // 비밀번호 찾기 
+    const findemail = () => {
+      const auth = getAuth();
+sendPasswordResetEmail(auth, email)
+  .then(() => { 
+    console.log("이메일성공");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+    }
+
 
     const dblogin = (e) => {
       e.preventDefault();

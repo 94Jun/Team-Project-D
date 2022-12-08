@@ -1,6 +1,6 @@
 import "./App.css";
 import HomePage from "./pages/home/HomePage";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route , Navigate } from "react-router-dom";
 import NavBar from "./components/navBar/NavBar";
 import Flex from "./components/UI/Flex";
 import TopHeader from "./components/Header/TopHeader";
@@ -11,22 +11,36 @@ import Register from "./pages/login/Register";
 
 import ProfileEdit from "./pages/user/ProfileEdit";
 
+
 import { useSelector } from "react-redux";
 import SearchModal from "./components/modal/SearchModal";
-
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { LOGIN } from "./modules/login";
 const App = () => {
+  const dispatch = useDispatch();
   const isSearchModalShown = useSelector(
     (state) => state.modal.isSearchModalShown
   );
-
   const isLogincheck = useSelector(
     (state) => state.login.isLoggedIn
   );
+  const currentUser = useSelector(state=>state.login.currentUser)
 
+  
+  useEffect(()=>{
+    if(currentUser !== "비회원")
+    dispatch(LOGIN(currentUser))
+  }, [])
+  console.log(isLogincheck)
   return (
     <div className="App">
-         { !isLogincheck && <LoginPage/> } 
-         { !isLogincheck && <Register /> }
+      {!isLogincheck ?
+      <Routes>
+        <Route path="/" element={<LoginPage/>}/>
+        <Route path="/register" element={<Register/>}/>
+      </Routes>
+      :   <>
       <TopHeader />
       {/* 모바일 환경에서 보여지는 헤더 */}
       <Flex>
@@ -35,6 +49,8 @@ const App = () => {
         {isSearchModalShown && <SearchModal />}
 
         <Routes>
+         <Route path="/login" element={<LoginPage />} render={() => (!isLogincheck ? <HomePage /> : <LoginPage />)} > </Route>
+         <Route path="/register" element={<Register />}></Route>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/user" element={<UserPage />}></Route>
           <Route path="/search" element={<SearchPage />}></Route>
@@ -45,6 +61,7 @@ const App = () => {
         </Routes>
         {/* 마이페이지에서 프로필편집 페이지로 이동*/}
       </Flex>
+      </>}
     </div>
   );
 };
