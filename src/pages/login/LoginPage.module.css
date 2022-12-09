@@ -92,3 +92,26 @@ height: 100vh;
     color: white;
     
 }
+
+.textfont {
+background-color: white;
+width: 700px;
+height: 200px;
+color: white;
+}
+
+
+.findpwd {
+    text-align: center;
+    display: flex;
+    color: var(--color-main-blue);
+    position:relative;
+    justify-content : center;
+    width: 100%;
+}
+
+.findpwdin {
+    display: inline-block;
+    position:relative;
+    margin-top:5vh;
+}

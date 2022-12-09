@@ -151,6 +151,7 @@ const Register = () => {
       navigate("/");
       createUser(userCredential.user);
       dispatch(LOGIN(userCredential.user.uid));
+      console.log(userCredential)
       const dblogin = (e) => {
         e.preventDefault();
         const auth = getAuth();
