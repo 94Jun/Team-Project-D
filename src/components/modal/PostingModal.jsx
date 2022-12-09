@@ -33,7 +33,7 @@ const PostingModal = (props) => {
   const handleClose = () => props.setOpen(false);
   //reducer dispatch
   const dispatch = useDispatch();
-
+  //console.log("imgs", imgs.slice(5, 10) === "video");
   //해쉬태그 redux
   const HashTagList = useSelector((state) => state.hash.HashList);
   //user redcer 에서 useSelector로 임이로 정의된   currentUser: "u1"를 받아옴
@@ -41,6 +41,8 @@ const PostingModal = (props) => {
   // redux imgList
   const imgList = useSelector((state) => state.upload.ImgList);
 
+  const image = imgList.filter((data) => data.includes("image"));
+  const video = imgList.filter((data) => data.includes("video"));
   //피드 작성 textOnChange
   const textOnChange = (e) => {
     setText(e.target.value);
@@ -50,7 +52,11 @@ const PostingModal = (props) => {
   const clickIconModal = () => {
     setIcon(!icon);
   };
-
+  const contentsReplaceNewline = () => {
+    return text.replaceAll("<br>", "\r\n");
+  };
+  console.log("??<", contentsReplaceNewline());
+  console.log("??", text.replaceAll("<br>", "\r\n"));
   // posting data전송 함수
   const addPosting = async () => {
     //데이터 베이스 추가
@@ -65,7 +71,7 @@ const PostingModal = (props) => {
       contents: {
         images: [],
         hashtags: HashTagList,
-        text: text,
+        text: contentsReplaceNewline(),
       },
       isPublic: show,
     };
@@ -73,10 +79,10 @@ const PostingModal = (props) => {
     //개시물 내용 확인
     if (text !== undefined) {
       try {
-        for (let i = 0; i < imgList.length; i++) {
+        for (let i = 0; i < image.length; i++) {
           const randomNum = Math.random().toString(); //파일이름은 겹치지 않게 random으로
           const imageRef = ref(storage, `images/${randomNum}`);
-          uploadString(imageRef, imgList[i], "data_url");
+          uploadString(imageRef, image[i], "data_url");
           addedPublicPosting.contents.images.push(randomNum);
         } //uploadString:data_url,base64데이터 업로드용
         //imageRef=ref(storage,폴더이름/파일이름)
@@ -97,7 +103,7 @@ const PostingModal = (props) => {
       alert("개시물을 작성해주세요");
     }
   };
-
+  console.log("image", image);
   return (
     <div>
       <Modal
@@ -116,18 +122,38 @@ const PostingModal = (props) => {
               <ClearIcon onClick={handleClose} className={styles.icon} />
             </p>
           </div>
-          <img src={imgs} alt={imgs} width={"100%"} className={styles.image} />
+          {imgs !== undefined ? (
+            imgs.slice(5, 10) === "video" ? (
+              <video
+                src={imgs}
+                alt={imgs}
+                width={"100%"}
+                autoPlay
+                className={styles.image}
+              />
+            ) : (
+              <img
+                src={imgs}
+                alt={imgs}
+                width={"100%"}
+                className={styles.image}
+              />
+            )
+          ) : (
+            ""
+          )}
           <div>
             <textarea
               cols="30"
               rows="10"
               value={text}
               onChange={textOnChange}
+              className={styles.posting_text}
               placeholder="내용을 작성해주세요"
             ></textarea>
             <HashTag />
           </div>
-          <ul>
+          <ul className={styles.upload_img}>
             <UploadImg imgs={imgs} setImgs={setImgs} />
           </ul>
           <div className={styles.bottom}>

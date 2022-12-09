@@ -23,5 +23,6 @@ export const upload = createSlice({
   },
 });
 
-export const { ADD_IMG, DELETE_IMG, INITIAL_STATE_IMG } = upload.actions;
+export const { ADD_IMG, DELETE_IMG, INITIAL_STATE_IMG, ADD_Video } =
+  upload.actions;
 export default upload.reducer;

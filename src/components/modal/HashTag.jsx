@@ -43,7 +43,7 @@ const HashTag = () => {
   //해쉬태그 출력 map
   const hashTag = HashList.map((tagItem, index) => {
     return (
-      <div key={index} className={styles.hash_box}>
+      <div key={index} className={styles.hash}>
         <span className={styles.tag}>{tagItem}</span>
         <AddCircleSharpIcon
           onClick={deleteTagItem}

@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
 import { db } from "./config/firebase";
 
 export const now = new Date();
@@ -18,3 +18,8 @@ export const getCollection = async (collectionId) => {
   const result = querySnapshot.docs.map((doc) => doc.data());
   return result;
 };
+export const washingtonRef = doc(
+  db,
+  "userList",
+  "75siSGkLbOPBu4UncOMGrRUKzpA3"
+);
