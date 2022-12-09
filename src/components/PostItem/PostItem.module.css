@@ -1,5 +1,5 @@
 .post_container {
-  min-height: 200px;
+  min-height: 100px;
   background-color: var(--color-white);
   display: flex;
   box-shadow: 1px 1px 10px var(--color-gray);

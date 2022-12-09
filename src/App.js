@@ -11,35 +11,37 @@ import Register from "./pages/login/Register";
 import ProfileEdit from "./pages/user/ProfileEdit";
 import { useSelector } from "react-redux";
 import SearchModal from "./components/modal/SearchModal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./modules/login";
 import { db } from "./config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { GET_CURRENT_USER_INFO } from "./modules/user";
+import { getCollection, getSingleData } from "./common";
 
 const App = () => {
   const dispatch = useDispatch();
-  const isSearchModalShown = useSelector(
-    (state) => state.modal.isSearchModalShown
-  );
+  const isSearchModalShown = useSelector((state) => state.modal.isSearchModalShown);
+  const isLogincheck = useSelector((state) => state.login.isLoggedIn);
+  const currentUser = useSelector((state) => state.login.currentUser);
 
+  //현재 유저 정보 저장(state.user.currentUserInfo)
   const getCurrentUserInfo = async () => {
     const docRef = doc(db, "userList", currentUser);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      dispatch(GET_CURRENT_USER_INFO);
+      dispatch(GET_CURRENT_USER_INFO(docSnap.data()));
     }
   };
-  //나중에 redux thunk를 사용해 리팩토링 필요
 
-  const isLogincheck = useSelector((state) => state.login.isLoggedIn);
-  const currentUser = useSelector((state) => state.login.currentUser);
-
+  //렌더링 시 마다 로컬스토리지에 있는 currentUser를 통해 로그인 여부 판단
   useEffect(() => {
-    if (currentUser !== "비회원") dispatch(LOGIN(currentUser));
+    if (currentUser !== "비회원") {
+      dispatch(LOGIN(currentUser));
+      getCurrentUserInfo();
+    }
   }, [currentUser, dispatch]);
-  console.log(isLogincheck);
+
   return (
     <div className="App">
       {!isLogincheck ? (
@@ -49,31 +51,27 @@ const App = () => {
         </Routes>
       ) : (
         <>
-          <TopHeader />
           {/* 모바일 환경에서 보여지는 헤더 */}
+          <TopHeader />
+
           <Flex>
-            <NavBar />
             {/* 테블릿 및 pc에서 보여지는 헤더 및 네브 바 */}
+            <NavBar />
+
+            {/*검색 모달 on/off*/}
             {isSearchModalShown && <SearchModal />}
 
+            {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
             <Routes>
-              <Route
-                path="/login"
-                element={<LoginPage />}
-                render={() => (!isLogincheck ? <HomePage /> : <LoginPage />)}
-              >
-                {" "}
-              </Route>
-              <Route path="/register" element={<Register />}></Route>
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/user" element={<UserPage />}></Route>
               <Route path="/search" element={<SearchPage />}></Route>
             </Routes>
-            {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
+
+            {/* 마이페이지에서 프로필편집 페이지로 이동*/}
             <Routes>
               <Route path="/ProfileEdit" element={<ProfileEdit />}></Route>
             </Routes>
-            {/* 마이페이지에서 프로필편집 페이지로 이동*/}
           </Flex>
         </>
       )}

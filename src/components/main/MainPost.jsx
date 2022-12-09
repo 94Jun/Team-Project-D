@@ -1,6 +1,5 @@
 import PostItem from "../PostItem/PostItem";
 import styles from "./MainPost.module.css";
-import { useSelector } from "react-redux";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useEffect, useState } from "react";
@@ -15,10 +14,9 @@ const MainPost = () => {
   useEffect(() => {
     getPostingList();
   }, []);
-  console.log(postingList);
 
   return (
-    <div>
+    <div className={styles.main}>
       {postingList?.map((posting) => {
         return <PostItem key={posting.pid} posting={posting} />;
       })}
