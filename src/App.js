@@ -17,6 +17,8 @@ import SearchModal from "./components/modal/SearchModal";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./modules/login";
+import FindPassword from "./components/modal/FindPassword";
+
 const App = () => {
   const dispatch = useDispatch();
   const isSearchModalShown = useSelector(
@@ -47,13 +49,14 @@ const App = () => {
         <NavBar />
         {/* 테블릿 및 pc에서 보여지는 헤더 및 네브 바 */}
         {isSearchModalShown && <SearchModal />}
-
+   
         <Routes>
          <Route path="/login" element={<LoginPage />} render={() => (!isLogincheck ? <HomePage /> : <LoginPage />)} > </Route>
          <Route path="/register" element={<Register />}></Route>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/user" element={<UserPage />}></Route>
           <Route path="/search" element={<SearchPage />}></Route>
+          <Route path="/findPassword" element={<FindPassword />} />
         </Routes>
         {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
         <Routes>
