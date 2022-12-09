@@ -17,7 +17,10 @@ import SearchModal from "./components/modal/SearchModal";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./modules/login";
+<<<<<<< HEAD
 import FindPassword from "./components/modal/FindPassword";
+=======
+>>>>>>> 3d02008b37f8a819a819381ee5ab85e7f08e087f
 
 const App = () => {
   const dispatch = useDispatch();
