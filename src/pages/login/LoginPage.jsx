@@ -69,7 +69,7 @@ const LoginPage = (props) => {
       email: user.email,
       name: user.displayName,
       phone: user.phoneNumber,
-      profile: user.photoURL,
+      profile: "default_profile.jpg",
       following: [],
       follower: [],
       myPosting: [],
