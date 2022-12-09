@@ -3,8 +3,6 @@ import ProfileImg from "./ProfileImg";
 import { Link } from "react-router-dom";
 import AppsIcon from '@mui/icons-material/Apps';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import MyPagePost from "./MyPagePost";
-import { $CombinedState } from "@reduxjs/toolkit";
 
 
 const UserPage = () => {
