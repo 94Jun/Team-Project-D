@@ -116,11 +116,9 @@ const PostingModal = (props) => {
               <ClearIcon onClick={handleClose} className={styles.icon} />
             </p>
           </div>
-          <img src={imgs} alt="" width={"100%"} className={styles.image} />
+          <img src={imgs} alt={imgs} width={"100%"} className={styles.image} />
           <div>
             <textarea
-              name=""
-              id=""
               cols="30"
               rows="10"
               value={text}
