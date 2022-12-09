@@ -1,13 +1,12 @@
 import MainAside from "../../components/main/MainAside";
 import MainPost from "../../components/main/MainPost";
-import Flex from "../../components/UI/Flex";
 import styles from "./HomePage.module.css";
 const HomePage = () => {
   return (
-    <Flex>
+    <div className={styles.home_container}>
       <MainPost />
       <MainAside />
-    </Flex>
+    </div>
   );
 };
 

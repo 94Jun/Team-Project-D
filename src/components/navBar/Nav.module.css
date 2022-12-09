@@ -21,7 +21,16 @@
   display: flex;
   align-items: center;
 }
-
+.profile_wrap{
+  width : 25px;
+  height : 25px;
+}
+.profile_wrap img{
+  width : 100%
+}
+.userName{
+  font-weight: 700;
+}
 .item a:hover,
 .item > div:hover {
   border-radius: 1em;
