@@ -30,13 +30,13 @@ const UserPage = () => {
               <a>팔로우</a></li>
             </ul>
           </div>
-          <p className={styles.comment}>소개글 Hellow World!</p>
+          <p className={styles.comment}>소개글 작성</p>
           </div>
       </div>
       <div className={styles.postmenu}>
         <ul>
-        <li><AppsIcon fontSize="small"/>게시물 </li>
-        <li><FavoriteBorderIcon fontSize="small"/>저장됨 </li>
+        <li><AppsIcon fontSize="small"/>게시글</li>
+        <li><FavoriteBorderIcon fontSize="small"/>태그</li>
         </ul>
       </div>
     </div>

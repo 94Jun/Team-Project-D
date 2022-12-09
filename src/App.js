@@ -14,7 +14,6 @@ import SearchModal from "./components/modal/SearchModal";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./modules/login";
-import ProfileEditPW from "./pages/user/ProfileEditPW";
 
 import { db } from "./config/firebase";
 import { doc, getDoc } from "firebase/firestore";
