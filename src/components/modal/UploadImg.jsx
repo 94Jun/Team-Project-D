@@ -62,7 +62,7 @@ const UploadImg = ({ imgs, setImgs }) => {
         : ""}
       {video.length >= 0
         ? video.map((src) => (
-            <li key={src}>
+            <li key={src} className={styles.img_list}>
               <AddCircleSharpIcon
                 onClick={() => deleteImg(src)}
                 className={`${styles.delete_font} ${styles.delete_img}`}

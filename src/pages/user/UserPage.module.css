@@ -1,128 +1,128 @@
-.user{
-    flex-grow: 1;
+.user {
+  flex-grow: 1;
 }
 
 .title {
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    border-bottom: 1px solid var(--color-gray);
+  display: flex;
+  margin: 20px;
+  justify-content: center;
+  border-bottom: 1px solid var(--color-gray);
 }
 .main_title {
-    margin-top: 35px;
+  margin-top: 35px;
 }
 .name_title {
-    display: flex;
+  display: flex;
 }
 .preview {
-    border-radius: 100%;
-    margin: 30px;
-    border:2px solid  var(--color-gray);
-    height: 130px;
-    width: 130px;
-    overflow: hidden;
-    cursor: pointer;
+  border-radius: 100%;
+  margin: 30px;
+  border: 2px solid var(--color-gray);
+  height: 130px;
+  width: 130px;
+  overflow: hidden;
+  cursor: pointer;
 }
 .name {
-    display: flex;
-    font-size: x-large;
+  display: flex;
+  font-size: x-large;
 }
 .comment {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    margin-right: 51px;
-    white-space:nowrap;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-right: 51px;
+  white-space: nowrap;
 }
 
 .user_title {
-    width: 300px;
+  width: 300px;
 }
 
 .postmenu {
-    font-size: small;
-    margin-bottom: 30px;
+  font-size: small;
+  margin-bottom: 30px;
 }
 .postmenu li {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 15px;
+}
+.postmenu ul {
+  justify-content: center;
 }
 .button {
-    background-color: var(--color-white);
-    border: 1px solid var(--color-gray);
-    font-weight: bold;
-    border-radius: 4px;
-    width: 130%;
-    height: 100%;
-    cursor: pointer;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray);
+  font-weight: bold;
+  border-radius: 4px;
+  width: 130%;
+  height: 100%;
+  cursor: pointer;
 }
 .button1 {
-    padding-left: 20px;
-    height: 30px;
-    width: 94px;
+  padding-left: 20px;
+  height: 30px;
+  width: 94px;
 }
 
 /*포스트 css*/
 .post_main {
-    text-align: center;
-    border: 1px solid var(--color-gray);
-    border-radius: 5px;
-    width: 280px;
-    height: 200px;
-    margin-left: 300px;
-    margin-top: 30px;
+  text-align: center;
+  border: 1px solid var(--color-gray);
+  border-radius: 5px;
+  width: 280px;
+  height: 200px;
+  margin-left: 300px;
+  margin-top: 30px;
 }
 .post_comment {
-    color: var(--color-gray);
+  color: var(--color-gray);
 }
 .post_button {
-    background-color: var(--color-main-green3);
-    border: none;
-    width: 120px;
-    height: 30px;
-    border-radius: 5px;
-    color: var(--color-white);
-    margin-top: 30px;
-    cursor: pointer;
+  background-color: var(--color-main-green3);
+  border: none;
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  color: var(--color-white);
+  margin-top: 30px;
+  cursor: pointer;
 }
 .post_memo {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
-
-
 @media (max-width: 1300px) {
-    .container {
-        margin: 30px;
-    }
-    .post_main {
-        margin-left: 150px;
-    }
+  .post_main {
+    margin-left: 150px;
+  }
 }
 
 @media (max-width: 768px) {
-    .preview {
-        height: 100px;
-        width: 100px;
-    }
-    .container {
-        margin: 30px;
-    }
-    .title {
-        margin-left: -100px;
-    }
-    .button {
-        width: 250px;
-        margin-top: 40px;
-        margin-left: -87px;
-    }
-    .user_title {
-        display: none;
-    }
-    .comment {
-        display: none;
-    }
-    .post_main {
-        margin: 15px;
-        margin-left: 90px;
-    }
+  .preview {
+    height: 100px;
+    width: 100px;
+  }
+  .container {
+    margin: 30px;
+  }
+  .title {
+    margin-left: -100px;
+  }
+  .button {
+    width: 250px;
+    margin-top: 40px;
+    margin-left: -87px;
+  }
+  .user_title {
+    display: none;
+  }
+  .comment {
+    display: none;
+  }
+  .post_main {
+    margin: 15px;
+    margin-left: 90px;
+  }
 }

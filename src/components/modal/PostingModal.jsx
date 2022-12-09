@@ -40,7 +40,7 @@ const PostingModal = (props) => {
   //여기 수정해야 함
   const currentUser = useSelector((state) => state.login.currentUser);
 
-  // redux imgList
+  // redux imgList= Image: [hdsgh],
   const imgList = useSelector((state) => state.upload.ImgList);
 
   const image = imgList.filter((data) => data.includes("image"));
@@ -86,7 +86,7 @@ const PostingModal = (props) => {
           const imageRef = ref(storage, `images/${randomNum}`);
           uploadString(imageRef, image[i], "data_url");
           addedPublicPosting.contents.images.push(randomNum);
-          console.log(addedPublicPosting);
+          console.log("???", addedPublicPosting);
         } //uploadString:data_url,base64데이터 업로드용
         //imageRef=ref(storage,폴더이름/파일이름)
         await setDoc(
@@ -152,6 +152,7 @@ const PostingModal = (props) => {
               rows="10"
               value={text}
               onChange={textOnChange}
+              className={styles.posting_text}
               placeholder="내용을 작성해주세요"
             ></textarea>
             <HashTag />

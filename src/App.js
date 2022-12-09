@@ -1,6 +1,5 @@
 import "./App.css";
 import HomePage from "./pages/home/HomePage";
-
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/navBar/NavBar";
 import Flex from "./components/UI/Flex";
@@ -23,18 +22,29 @@ import FindPassword from "./components/modal/FindPassword";
 
 const App = () => {
   const dispatch = useDispatch();
-
   const isSearchModalShown = useSelector(
     (state) => state.modal.isSearchModalShown
   );
   const isLogincheck = useSelector((state) => state.login.isLoggedIn);
   const currentUser = useSelector((state) => state.login.currentUser);
 
-  useEffect(() => {
-    if (currentUser !== "비회원") dispatch(LOGIN(currentUser));
-  }, []);
-  console.log(isLogincheck);
+  //현재 유저 정보 저장(state.user.currentUserInfo)
+  const getCurrentUserInfo = async () => {
+    const docRef = doc(db, "userList", currentUser);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      dispatch(GET_CURRENT_USER_INFO(docSnap.data()));
+    }
+  };
 
+  //렌더링 시 마다 로컬스토리지에 있는 currentUser를 통해 로그인 여부 판단
+  useEffect(() => {
+    if (currentUser !== "비회원") {
+      dispatch(LOGIN(currentUser));
+      getCurrentUserInfo();
+    }
+  }, [currentUser, dispatch]);
+  console.log("");
   return (
     <div className="App">
       {!isLogincheck ? (
