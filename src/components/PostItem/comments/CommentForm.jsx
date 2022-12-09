@@ -1,65 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./PostItemComments.module.css";
-import { useDispatch } from "react-redux";
-import { ADD_COMMENT } from "../../../modules/comment";
-import { USER_ADD_COMMENT } from "../../../modules/user";
-import { POSTING_ADD_COMMENT } from "../../../modules/posting";
-import { db } from "../../../config/firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { addData, getId, getNowDate, getNowValue, updatePushData } from "../../../common";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../config/firebase";
 
 const CommentForm = (props) => {
-  const dispatch = useDispatch();
-  const [commentInput, setCommentInput] = useState("");
   //댓글 input 양방향 바인딩
+  const [commentInput, setCommentInput] = useState("");
+  const [profile, setProfile] = useState(null)
+  const changeCommentHandler = (e) => {
+    setCommentInput(e.target.value);
+  };
 
+  //현재 유저 프로필 불러오기
+  const getProfile = async () => {
+    const profileRef = ref(storage, `images/${props.currentUserInfo.profile}`);
+    const url = await getDownloadURL(profileRef)
+    setProfile(url)
+  };
+  useEffect(() => {
+    getProfile();
+  },[props.currentUserInfo.profile])
+
+  //댓글 추가 함수
   const addCommentHandler = async (e) => {
     e.preventDefault();
     if (commentInput.trim().length > 0) {
       const addedComment = {
-        cid: Math.random().toString(),
-        writer: props.currentUser,
+        cid: getId(),
+        writer: props.currentUserInfo.uid,
         posting: props.pid,
         text: commentInput,
-        date: new Date().toLocaleDateString(),
-        timestamp: new Date().valueOf(),
+        writeDate: getNowDate(),
+        timestamp: getNowValue(),
       };
       try {
-        await setDoc(doc(db, "commentList", addedComment.cid), addedComment);
-        dispatch(ADD_COMMENT(addedComment));
-        //ADD_COMMENT : commentList에 추가
+        //작성한 코멘트를 데이터베이스에 post
+        addData("commentList", addedComment.cid, addedComment);
 
-        dispatch(USER_ADD_COMMENT({ cid: addedComment.cid }));
-        //USER_ADD_COMMENT : 현재 로그인한 user의 myComments에 추가
+        //작성한 코멘트의 cid를 현재 유저의 데이터베이스에 update
+        updatePushData("userList", props.currentUserInfo.uid, "myComments", addedComment.cid, true);
 
-        dispatch(
-          POSTING_ADD_COMMENT({ cid: addedComment.cid, pid: props.pid })
-        );
-        //POSTING_ADD_COMMENT : 현재 포스팅의 comments에 추가
+        //작성한 코멘트의 cid를 현재 포스팅의 데이터베이스에 update
+        updatePushData("postingList", props.pid, "comments", addedComment.cid, true);
 
-        setCommentInput("");
+        //사용자에게 보여지는 댓글 추가
+        props.addCommentList(addedComment);
+
         //인풋창 초기화
-      } catch (e) {}
+        setCommentInput("");
+      } catch (e) {
+        console.log(e.message);
+      }
     }
     return;
-  };
-  //댓글 추가 기능
-  const changeCommentHandler = (e) => {
-    setCommentInput(e.target.value);
   };
 
   return (
     <div className={styles.form_container}>
       <div className={styles.profile_wrap}>
-        <img src={props.profile} />
+        <img src={profile} />
       </div>
       <form className={styles.comment_form} onSubmit={addCommentHandler}>
         <div>
-          <input
-            type="text"
-            placeholder="댓글을 입력하세요"
-            value={commentInput}
-            onChange={changeCommentHandler}
-          />
+          <input type="text" placeholder="댓글을 입력하세요" value={commentInput} onChange={changeCommentHandler} />
           <button>등록</button>
         </div>
       </form>

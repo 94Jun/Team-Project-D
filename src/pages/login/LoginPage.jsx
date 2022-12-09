@@ -15,15 +15,18 @@ import { db } from "../../config/firebase";
 import { getAuth, GoogleAuthProvider, signInWithPopup ,signInWithEmailAndPassword , sendPasswordResetEmail,   } from "firebase/auth";
 import {useNavigate} from 'react-router-dom'
 import { doc, setDoc ,getDoc} from "firebase/firestore";
-import { nowDate, nowValue } from "../../common";
+import { getNowDate, getNowValue } from "../../common";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "../../modules/login";
+import { Box, Modal, Typography } from "@mui/material";
+import FindPassword from "../../components/modal/FindPassword";
+
+
 
 
 
 const LoginPage = (props) => {
-  const dispatch = useDispatch();
-
+  const dispatch = useDispatch()
   const navigate = useNavigate();
 
 
@@ -66,7 +69,7 @@ const LoginPage = (props) => {
       email: user.email,
       name: user.displayName,
       phone: user.phoneNumber,
-      profile: user.photoURL,
+      profile: "default_profile.jpg",
       following: [],
       follower: [],
       myPosting: [],
@@ -75,8 +78,8 @@ const LoginPage = (props) => {
       myComments: [],
       notice: [],
       recentSearchs: [],
-      timestamp: nowValue,
-      signUpDate: nowDate,
+      timestamp: getNowValue(),
+      signUpDate: getNowDate(),
     }); }
 
     const [userInfo,setUserInfo] = useState();
@@ -85,7 +88,6 @@ const LoginPage = (props) => {
       const provider = new GoogleAuthProvider();
       provider.addScope("profile");
       provider.addScope("email"); 
-      console.log(provider);
 
 
       const auth = getAuth();
@@ -117,20 +119,6 @@ const LoginPage = (props) => {
         });
     };
 
-    // 비밀번호 찾기 
-    const findemail = () => {
-      const auth = getAuth();
-sendPasswordResetEmail(auth, email)
-  .then(() => { 
-    console.log("이메일성공");
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
-    }
-
 
     const dblogin = (e) => {
       e.preventDefault();
@@ -151,8 +139,13 @@ sendPasswordResetEmail(auth, email)
 
         });
     };
-  
-  
+
+      const [open, setOpen] = useState(false);
+      const handleOpen = () => setOpen(true);
+      const handleClose = () => setOpen(false); 
+
+
+
   return (
     <div className={styles.login_full}>
       <div className={styles.login_img}>
@@ -162,9 +155,8 @@ sendPasswordResetEmail(auth, email)
       <div className={styles.login_text}>
         <h1>로그인</h1>
         <div className={styles.textsm}>
-          {" "}
-          서비스 시작을 위해 로그인을 해주세요{" "}
-        </div>{" "}
+          서비스 시작을 위해 로그인을 해주세요
+        </div>
         <br />
         <form>
           <div className={styles.textform}>
@@ -182,11 +174,11 @@ sendPasswordResetEmail(auth, email)
                   className="invalid-input"
                   style={{ fontSize: "11px", color: "#D73E3E" }}
                 >
-                  {" "}
-                  이메일 주소를 확인해주세요.{" "}
+                  
+                  이메일 주소를 확인해주세요.
                 </div>
               )}
-            </FormControl>{" "}
+            </FormControl>
             <br />
             <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
               <InputLabel htmlFor="standard-password">Password</InputLabel>
@@ -207,24 +199,24 @@ sendPasswordResetEmail(auth, email)
                   </InputAdornment>
                 }
               />
-            </FormControl>{" "}
+            </FormControl>
             <br />
             <div className={styles.textbtnW}>
-              <span> 아이디찾기 </span> /<span> 비밀번호 찾기 </span> <br />
-            </div>{" "}
-            <br />{" "}
+             <FindPassword />
+            </div>
+            <br />
           </div>
           <br />
           <button className={styles.simplebtn} onClick={dblogin}>로그인</button> <br />
           <span style={{ fontSize: "12px", margin: "7px" }}> or </span> <br />
           <button className={styles.simplebtn2} onClick={googleLogin}>
-            {" "}
+            
             구글 계정으로 계속하기
-          </button>{" "}
+          </button>
           <br />
           <div className={styles.textm}>
-            {" "}
-            계정이 없으시다면{" "}
+            
+            계정이 없으시다면
             <span>
               <Link
                 to="/register"
@@ -234,7 +226,7 @@ sendPasswordResetEmail(auth, email)
                 <u>회원가입</u>
               </Link>
             </span>
-            을 해주세요{" "}
+            을 해주세요
           </div>
         </form>
       </div>
