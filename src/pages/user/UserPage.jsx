@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import AppsIcon from '@mui/icons-material/Apps';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import MyPagePost from "./MyPagePost";
+import { $CombinedState } from "@reduxjs/toolkit";
 
 
 const UserPage = () => {
   return (
     <div className={styles.user}>
       <div className={styles.title}>
-        <ProfileImg className={styles.ProfileImg}/>
+        <ProfileImg/>
         <div className={styles.main_title}>
           <div className={styles.name_title}>
             <div className={styles.name}>
@@ -24,9 +25,9 @@ const UserPage = () => {
             <ul className={styles.user_title}>
             <li className={styles.comment}>게시물</li>
             <li className={styles.comment}>
-              <a href="/User">팔로워</a></li>
+              <a>팔로워</a></li>
             <li className={styles.comment}>
-              <a href="/User">팔로우</a></li>
+              <a>팔로우</a></li>
             </ul>
           </div>
           <p className={styles.comment}>소개글 Hellow World!</p>
@@ -37,10 +38,6 @@ const UserPage = () => {
         <li><AppsIcon fontSize="small"/>게시물 </li>
         <li><FavoriteBorderIcon fontSize="small"/>저장됨 </li>
         </ul>
-      </div>
-      <div className="pages">
-        <MyPagePost/>
-        <MyPagePost/>
       </div>
     </div>
   );

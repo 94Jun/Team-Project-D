@@ -1,10 +1,11 @@
 .user{
     flex-grow: 1;
+    width: 500px;
 }
 
 .title {
-    margin: 20px;
     display: flex;
+    margin: 20px;
     justify-content: center;
     border-bottom: 1px solid var(--color-gray);
 }
@@ -45,6 +46,11 @@
 .postmenu li {
     display: flex;
     align-items: center;
+    cursor: pointer;
+    margin: 15px;
+}
+.postmenu ul {
+    justify-content: center;
 }
 .button {
     background-color: var(--color-white);
@@ -91,9 +97,6 @@
 
 
 @media (max-width: 1300px) {
-    .container {
-        margin: 30px;
-    }
     .post_main {
         margin-left: 150px;
     }

@@ -17,6 +17,7 @@ const ProfileEdit = () => {
             </div>
     <div className={styles.edit_form}>
         <form className={styles.edit_profile}>
+            <ProfileImg className={styles.edit_img}/>
             <div className={styles.edit_memo}>
             <label>이름</label>
             <input type="text" className={styles.edit_input}/>

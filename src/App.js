@@ -17,6 +17,7 @@ import SearchModal from "./components/modal/SearchModal";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./modules/login";
+import ProfileEditPW from "./pages/user/ProfileEditPW";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ const App = () => {
         {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
         <Routes>
           <Route path="/ProfileEdit" element={<ProfileEdit />}></Route>
+          <Route path="/ProfileEditPW" element={<ProfileEditPW />}></Route>
         </Routes>
         {/* 마이페이지에서 프로필편집 페이지로 이동*/}
       </Flex>
