@@ -29,6 +29,14 @@ export const getSingleData = async (collectionId, docId, setState) => {
   }
 };
 
+//파이어베이스 콜렉션 내 조건에 따른 데이터 불러오기
+export const getqueryData = async (collectionId, docId, operator, conditionData, setState) => {
+  const q = query(collection(db, collectionId), where(docId, operator, conditionData));
+  const querySnapshot = await getDocs(q);
+  const loadedData = querySnapshot.docs.map((doc) => doc.data());
+  setState(loadedData);
+};
+
 //파이어베이스 콜렉션 내 데이터 저장
 export const addData = async (collectionId, docId, data) => {
   await setDoc(doc(db, collectionId, docId), data);
@@ -48,10 +56,3 @@ export const updatePushData = async (collectionId, docId, element, pushData, isA
   }
 };
 
-//파이어베이스 콜렉션 내 조건에 따른 데이터 불러오기
-export const getqueryData = async (collectionId, docId, operator, conditionData, setState) => {
-  const q = query(collection(db, collectionId), where(docId, operator, conditionData));
-  const querySnapshot = await getDocs(q);
-  const loadedData = querySnapshot.docs.map((doc) => doc.data());
-  setState(loadedData);
-};

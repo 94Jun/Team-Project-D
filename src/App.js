@@ -14,15 +14,12 @@ import SearchModal from "./components/modal/SearchModal";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./modules/login";
-<<<<<<< HEAD
+
 import { db } from "./config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { GET_CURRENT_USER_INFO } from "./modules/user";
-import { getCollection, getSingleData } from "./common";
-=======
 import FindPassword from "./components/modal/FindPassword";
 
->>>>>>> 82d9789748728b365515e5760c3e6fa4b94de771
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,10 +43,9 @@ const App = () => {
       getCurrentUserInfo();
     }
   }, [currentUser, dispatch]);
-
+console.log("")
   return (
     <div className="App">
-<<<<<<< HEAD
       {!isLogincheck ? (
         <Routes>
           <Route path="/" element={<LoginPage />} />
@@ -81,36 +77,6 @@ const App = () => {
           </Flex>
         </>
       )}
-=======
-      {!isLogincheck ?
-      <Routes>
-        <Route path="/" element={<LoginPage/>}/>
-        <Route path="/register" element={<Register/>}/>
-      </Routes>
-      :   <>
-      <TopHeader />
-      {/* 모바일 환경에서 보여지는 헤더 */}
-      <Flex>
-        <NavBar />
-        {/* 테블릿 및 pc에서 보여지는 헤더 및 네브 바 */}
-        {isSearchModalShown && <SearchModal />}
-   
-        <Routes>
-         <Route path="/login" element={<LoginPage />} render={() => (!isLogincheck ? <HomePage /> : <LoginPage />)} > </Route>
-         <Route path="/register" element={<Register />}></Route>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="/user" element={<UserPage />}></Route>
-          <Route path="/search" element={<SearchPage />}></Route>
-          <Route path="/findPassword" element={<FindPassword />} />
-        </Routes>
-        {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
-        <Routes>
-          <Route path="/ProfileEdit" element={<ProfileEdit />}></Route>
-        </Routes>
-        {/* 마이페이지에서 프로필편집 페이지로 이동*/}
-      </Flex>
-      </>}
->>>>>>> 82d9789748728b365515e5760c3e6fa4b94de771
     </div>
   );
 };
