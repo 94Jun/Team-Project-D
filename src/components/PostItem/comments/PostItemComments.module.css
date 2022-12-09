@@ -54,6 +54,8 @@
 .comment_profile_wrap {
   max-width: 30px;
   max-height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .comment_profile_wrap img {
   width: 100%;
@@ -67,5 +69,5 @@
   margin-left: 20px;
 }
 .comment_text {
-  margin-top: 5px;
+  margin-top: 10px;
 }

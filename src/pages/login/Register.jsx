@@ -6,7 +6,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { nowDate, nowValue } from "../../common";
+import { getNowDate, getNowValue } from "../../common";
 import { db, auth } from "../../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
@@ -134,8 +134,8 @@ const Register = () => {
       myComments: [],
       notice: [],
       recentSearchs: [],
-      timestamp: nowValue,
-      signUpDate: nowDate,
+      timestamp: getNowValue(),
+      signUpDate: getNowDate(),
     });
   };
   // 서버업데이트
@@ -151,6 +151,7 @@ const Register = () => {
       navigate("/");
       createUser(userCredential.user);
       dispatch(LOGIN(userCredential.user.uid));
+      console.log(userCredential)
       const dblogin = (e) => {
         e.preventDefault();
         const auth = getAuth();

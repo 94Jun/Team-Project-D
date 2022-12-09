@@ -1,20 +1,18 @@
 import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
-
 const PostItemComments = (props) => {
   return (
     <div>
       <CommentForm
-        profile={props.profile}
-        currentUser={props.currentUser}
+        currentUserInfo={props.currentUserInfo}
         pid={props.pid}
+        addCommentList={props.addCommentList}
       />
-      {props.comments.map((comment) => {
+      {props.commentList.map((comment) => {
         return (
           <CommentItem
             key={comment.cid}
             comment={comment}
-            userList={props.userList}
           />
         );
       })}
