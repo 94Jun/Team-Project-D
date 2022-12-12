@@ -1,26 +1,8 @@
 import { useState,useRef } from 'react';
 import styles from "./UserPage.module.css";
-import { storage } from "../../config/firebase";
-import { ref, getDownloadURL } from "firebase/storage";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-
 
 function Profile() {
-  const [profile, setProfile] = useState(null);
-
-  const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
-
-  // 현재 유저 프로필 불러오기
-  const getProfile = async () => {
-    const profileRef = ref(storage, `images/${currentUserInfo.profile}`);
-    const url = await getDownloadURL(profileRef)
-  };
-  useEffect(() => {
-    getProfile();
-  },[currentUserInfo.profile])
-
-
+  const [imageSrc, setImageSrc] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
   const fileInput = useRef(null)
 
   const profileimg = (props) => {
@@ -28,7 +10,7 @@ function Profile() {
     reader.readAsDataURL(props);
     return new Promise((resolve) => {
       reader.onload = () => {
-
+        setImageSrc(reader.result);
         resolve();
       };
     });
@@ -38,12 +20,12 @@ function Profile() {
     <div>
     <main className={styles.container}>
       <div className={styles.preview} >
-        {profile && <img src={profile} alt="preview-img" width="100%" height="100%"
+        {imageSrc && <img src={imageSrc} alt="preview-img" width="100%" height="100%"
         onClick={()=>{fileInput.current.click()}}/>}
       </div>
       <input type="file" accept='image/*' onChange={(e) => {
         profileimg(e.target.files[0]);
-      }}  ref={fileInput}/>
+      }} style={{display:'none'}} ref={fileInput}/>
     </main>
     </div>
   );
