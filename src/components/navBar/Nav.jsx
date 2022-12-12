@@ -98,9 +98,8 @@ const Nav = () => {
         </li>
         <li className={styles.item}>
           <Link to="/makepaln">
-            <PostingModal open={open} setOpen={setOpen} />
             <LoyaltyIcon fontSize="string"/>
-            <span onClick={handleOpen}>여행 계획 수립</span>
+            <span>여행 계획 수립</span>
           </Link>
         </li>
 
