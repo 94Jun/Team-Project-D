@@ -1,80 +1,58 @@
-.user{
-    flex-grow: 1;
-}
-.edit {
-    display: flex;
-}
-
-.menu {
-    font-size: large;
-    border: 1px solid var(--color-gray);
-    border-right: none;
-    height: 600px;
-    margin-top: 30px;
-    min-width: 150px;
-}
-.edit_menu {
-    cursor: pointer;
-    width: 150px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-}
-.edit_menu:hover {
-    background-color: var(--color-light-gray);
+.user {
+  flex-grow: 1;
 }
 .edit_profile {
-    font-size: medium;
-    border: 1px solid var(--color-gray);
-    height: 600px;
-    margin-top: 30px;
-    width: 700px;
+  background-color: white;
+  font-size: medium;
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  width: 40%;
+  min-width: 350px;
+  height: 600px;
+  margin: 100px auto;
+  text-align: center;
 }
 .eidt_input {
-    margin-left: 20px;
-}
-.edit_memo {
-    font-weight: bold;
-    margin-top: 30px;
-    text-align: right;
-    width: 600px;
-}
-
-.edit_input {
-    width: 350px;
-    height: 26px;
-    border: 1px solid var(--color-gray);
-    margin-left: 30px;
-}
-.edit_ex {
-    text-align: left;
-    font-size: small;
-    color: var(--color-gray);
-    font-weight: 100;
-    width: 360px;
-    margin-left: 250px;
-    margin-top: 10px;
+  margin-left: 20px;
 }
 .edit_text {
-    display: flex;
-    margin-left: 190px;
+  display: flex;
+}
+.edit_memo {
+  width: 60%;
+  font-weight: bold;
+  margin: 30px auto;
+}
+.edit_input {
+  width: 85%;
+  height: 26px;
+  border: 1px solid var(--color-gray);
+  margin-left: 10px;
+}
+.edit_ex {
+  text-align: left;
+  font-size: small;
+  color: var(--color-gray);
+  font-weight: 100;
+  margin: 10px 30px;
 }
 .edit_textarea {
-    width: 350px;
-    height: 82px;
-    border: 1px solid var(--color-gray);
-    margin-left: 30px;
+  width: 85%;
+  height: 82px;
+  margin-left: 10px;
+  border: 1px solid var(--color-gray);
+  resize: none;
+  outline: none;
+  padding: 0 5px;
 }
 .edit_button {
-    width: 50px;
-    height: 30px;
-    background-color: var(--color-main-green3);
-    border:  none;
-    margin-left: 330px;
-    margin-top: 110px;
-    border-radius: 5px;
-    color: var(--color-white);
-    cursor: pointer;
+  width: 50px;
+  height: 30px;
+  background-color: var(--color-main-green3);
+  border: none;
+  border-radius: 5px;
+  color: var(--color-white);
+  cursor: pointer;
 }
 .eidt_img {
     width: 50px;
@@ -82,43 +60,42 @@
 }
 
 @media (max-width: 1300px) {
-
 }
 @media (max-width: 768px) {
-    .menu {
-        display: none;
-    }
-    .edit_profile {
-        margin: 5px;
-        width: 100%;
-    }
-    .edit_memo {
-        flex-direction: column;
-        text-align: left;
-        margin-left: 30px;
-    }
-    .edit_input {
-        display: block;
-        text-align: left;
-        margin-left: 0px;
-        margin-top: 8px;
-    }
-    .edit_ex {
-        text-align: left;
-        margin-left: 0px;
-    }
-    .edit_text{
-        display: block;
-        text-align: left;
-        margin-left: 0px;
-    }
-    .edit_textarea {
-        margin-top: 5px;
-        margin-left: 0px;
-        display: block;
-    }
-    .edit_button {
-        margin-top: 50px;
-        margin-left: 210px;
-    }
+  .menu {
+    display: none;
+  }
+  .edit_profile {
+    margin: 5px;
+    width: 100%;
+  }
+  .edit_memo {
+    flex-direction: column;
+    text-align: left;
+    margin-left: 30px;
+  }
+  .edit_input {
+    display: block;
+    text-align: left;
+    margin-left: 0px;
+    margin-top: 8px;
+  }
+  .edit_ex {
+    text-align: left;
+    margin-left: 0px;
+  }
+  .edit_text {
+    display: block;
+    text-align: left;
+    margin-left: 0px;
+  }
+  .edit_textarea {
+    margin-top: 5px;
+    margin-left: 0px;
+    display: block;
+  }
+  .edit_button {
+    margin-top: 50px;
+    margin-left: 210px;
+  }
 }

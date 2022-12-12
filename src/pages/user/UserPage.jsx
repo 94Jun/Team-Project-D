@@ -1,13 +1,14 @@
 import styles from "./UserPage.module.css";
 import ProfileImg from "./ProfileImg";
-import { Link } from "react-router-dom";
+
 import AppsIcon from '@mui/icons-material/Apps';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { storage } from "../../config/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import {useSelector } from "react-redux";
 
+import ProfileEdit from "./ProfileEdit";
 
 const UserPage = () => {
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
@@ -21,22 +22,28 @@ const UserPage = () => {
     getProfile();
   },[currentUserInfo.profile])
 
-
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
   return (
     <div className={styles.user}>
       <div className={styles.title}>
-        <ProfileImg/>
+        <ProfileImg />
         <div className={styles.main_title}>
           <div className={styles.name_title}>
             <div className={styles.name}>
-            <p>{currentUserInfo.name}</p>
+              <p>닉네임</p>
+
             </div>
             <div className={styles.button1}>
-            <Link to='/ProfileEdit'><button className={styles.button}>프로필 편집</button></Link>
+              <button className={styles.button} onClick={handleOpen}>
+                프로필 편집
+              </button>
             </div>
+            <ProfileEdit open={open} setOpen={setOpen} />
           </div>
           <div>
             <ul className={styles.user_title}>
+
             <li className={styles.comment}>게시물</li>
             <li className={styles.comment}>
               <a>팔로워</a></li>
@@ -55,6 +62,6 @@ const UserPage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default UserPage;
