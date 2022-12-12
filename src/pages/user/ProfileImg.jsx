@@ -1,11 +1,9 @@
-import { useState, useRef } from "react";
+import { useState,useRef } from 'react';
 import styles from "./UserPage.module.css";
 
-function Profile(props) {
-  const [imageSrc, setImageSrc] = useState(
-    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-  );
-  const fileInput = useRef(null);
+function Profile() {
+  const [imageSrc, setImageSrc] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+  const fileInput = useRef(null)
 
   const profileimg = (props) => {
     const reader = new FileReader();
@@ -17,30 +15,18 @@ function Profile(props) {
       };
     });
   };
+
   return (
     <div>
-      <main className={styles.container}>
-        <div className={styles.preview}>
-          <img
-            src={props.profile}
-            alt="preview-img"
-            width="100%"
-            height="100%"
-            onClick={() => {
-              fileInput.current.click();
-            }}
-          />
-        </div>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => {
-            profileimg(e.target.files[0]);
-          }}
-          style={{ display: "none" }}
-          ref={fileInput}
-        />
-      </main>
+    <main className={styles.container}>
+      <div className={styles.preview} >
+        {imageSrc && <img src={imageSrc} alt="preview-img" width="100%" height="100%"
+        onClick={()=>{fileInput.current.click()}}/>}
+      </div>
+      <input type="file" accept='image/*' onChange={(e) => {
+        profileimg(e.target.files[0]);
+      }} style={{display:'none'}} ref={fileInput}/>
+    </main>
     </div>
   );
 }
