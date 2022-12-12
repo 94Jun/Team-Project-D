@@ -1,4 +1,4 @@
-import { collection, getDocs, getDoc, doc, setDoc, updateDoc, arrayUnion, arrayRemove, query, where } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc, setDoc, updateDoc, arrayUnion, arrayRemove, query, where, orderBy, limit } from "firebase/firestore";
 import { db } from "./config/firebase";
 
 // 현재 시간 기준 Date 객체

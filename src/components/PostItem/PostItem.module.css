@@ -55,6 +55,9 @@
   border: none;
   cursor: pointer;
 }
+.post_contents_text{
+  white-space: pre-line;
+}
 .post_contents_hashtags {
   padding-top: 15px;
   color: var(--color-main-blue);

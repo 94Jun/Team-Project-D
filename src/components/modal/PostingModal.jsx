@@ -109,7 +109,7 @@ const PostingModal = (props) => {
             <p className={styles.delete}>
               <ClearIcon onClick={handleClose} className={styles.icon} />
             </p>
-          </div>
+          </div>``
           <img src={imgs} alt="" width={"100%"} className={styles.image} />
           <div>
             <textarea style={{whiteSpace:"pre-wrap"}} name="" id="" cols="30" rows="10" value={text} onChange={textOnChange} placeholder="내용을 작성해주세요"></textarea>
