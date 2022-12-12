@@ -15,7 +15,7 @@ import { db } from "../../config/firebase";
 import { getAuth, GoogleAuthProvider, signInWithPopup ,signInWithEmailAndPassword , sendPasswordResetEmail,   } from "firebase/auth";
 import {useNavigate} from 'react-router-dom'
 import { doc, setDoc ,getDoc} from "firebase/firestore";
-import { nowDate, nowValue } from "../../common";
+import { getNowDate, getNowValue } from "../../common";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "../../modules/login";
 import { Box, Modal, Typography } from "@mui/material";
@@ -78,8 +78,8 @@ const LoginPage = (props) => {
       myComments: [],
       notice: [],
       recentSearchs: [],
-      timestamp: nowValue(),
-      signUpDate:nowDate(),
+      timestamp: getNowValue(),
+      signUpDate:getNowDate(),
     }); }
 
     const [userInfo,setUserInfo] = useState();
