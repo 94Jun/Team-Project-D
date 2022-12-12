@@ -5,7 +5,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { useState } from "react";
-import { updatePushData } from "../../common";
+import { getId, updatePushData } from "../../common";
 import useToggle from "../../hooks/useToggle";
 
 const PostItemActivity = (props) => {
@@ -14,13 +14,18 @@ const PostItemActivity = (props) => {
   const [isMarked, toggleMarked] = useToggle(props.currentUserInfo?.markedPosting.indexOf(props.posting.pid) !== -1);
   const [isLiked, toggleLiked] = useToggle(props.currentUserInfo?.likedPosting.indexOf(props.posting.pid) !== -1);
   const [likeLength, setLikeLength] = useState(props.posting.like.length);
-  
+
   const toggleLikeHandler = async () => {
+    const likeNotice = { nid: getId(), text: `${props.currentUserInfo.name}님이 회원님의 글을 좋아합니다.` };
     try {
       //현재 로그인한 user의 likedPosting 변경 (데이터베이스에 업데이트)
       //현재 포스팅을 좋아하는 유저리스트 변경(데이터베이스에 업데이트)
+      //게시글 작성자에게 좋아요 알림
       updatePushData("userList", props.currentUserInfo.uid, "likedPosting", props.posting.pid, !isLiked);
       updatePushData("postingList", props.posting.pid, "like", props.currentUserInfo.uid, !isLiked);
+      if (props.currentUserInfo.uid !== props.posting.writer && !isLiked) {
+        updatePushData("userList", props.posting.writer, "notice", likeNotice, true);
+      }
 
       //보여지는 좋아요 갯수 변경
       if (isLiked) {

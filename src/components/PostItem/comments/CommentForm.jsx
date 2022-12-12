@@ -7,7 +7,7 @@ import { storage } from "../../../config/firebase";
 const CommentForm = (props) => {
   //댓글 input 양방향 바인딩
   const [commentInput, setCommentInput] = useState("");
-  const [profile, setProfile] = useState(null)
+  const [profile, setProfile] = useState(null);
   const changeCommentHandler = (e) => {
     setCommentInput(e.target.value);
   };
@@ -15,12 +15,12 @@ const CommentForm = (props) => {
   //현재 유저 프로필 불러오기
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${props.currentUserInfo.profile}`);
-    const url = await getDownloadURL(profileRef)
-    setProfile(url)
+    const url = await getDownloadURL(profileRef);
+    setProfile(url);
   };
   useEffect(() => {
     getProfile();
-  },[props.currentUserInfo.profile])
+  }, [props.currentUserInfo.profile]);
 
   //댓글 추가 함수
   const addCommentHandler = async (e) => {
@@ -34,6 +34,7 @@ const CommentForm = (props) => {
         writeDate: getNowDate(),
         timestamp: getNowValue(),
       };
+      const commentNotice = { nid: getId(), text: `${props.currentUserInfo.name}님이 회원님의 글에 댓글을 달았습니다.` };
       try {
         //작성한 코멘트를 데이터베이스에 post
         addData("commentList", addedComment.cid, addedComment);
@@ -43,6 +44,11 @@ const CommentForm = (props) => {
 
         //작성한 코멘트의 cid를 현재 포스팅의 데이터베이스에 update
         updatePushData("postingList", props.pid, "comments", addedComment.cid, true);
+
+        //알림
+        if (addedComment.writer !== props.writer) {
+          updatePushData("userList", props.writer, "notice", commentNotice, true);
+        }
 
         //사용자에게 보여지는 댓글 추가
         props.addCommentList(addedComment);

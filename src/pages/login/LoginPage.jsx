@@ -79,7 +79,8 @@ const LoginPage = (props) => {
       notice: [],
       recentSearchs: [],
       timestamp: getNowValue(),
-      signUpDate:getNowDate(),
+      signUpDate: getNowDate(),
+      introduction : ""
     }); }
 
     const [userInfo,setUserInfo] = useState();
