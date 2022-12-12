@@ -18,6 +18,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./modules/login";
 import FindPassword from "./components/modal/FindPassword";
+import MyPlan from "./pages/plan/MyPlan";
+import MakePlan from "./pages/plan/MakePlan";
 
 
 const App = () => {
@@ -57,6 +59,8 @@ const App = () => {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/user" element={<UserPage />}></Route>
           <Route path="/search" element={<SearchPage />}></Route>
+          <Route path="/pan" element={<MyPlan />}></Route>
+          <Route path="/makeplan" element={<MakePlan />}></Route>
           <Route path="/findPassword" element={<FindPassword />} />
         </Routes>
         {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
