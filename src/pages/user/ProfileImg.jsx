@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import styles from "./UserPage.module.css";
 
-function Profile() {
+function Profile(props) {
   const [imageSrc, setImageSrc] = useState(
     "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
   );
@@ -21,17 +21,15 @@ function Profile() {
     <div>
       <main className={styles.container}>
         <div className={styles.preview}>
-          {imageSrc && (
-            <img
-              src={imageSrc}
-              alt="preview-img"
-              width="100%"
-              height="100%"
-              onClick={() => {
-                fileInput.current.click();
-              }}
-            />
-          )}
+          <img
+            src={props.profile}
+            alt="preview-img"
+            width="100%"
+            height="100%"
+            onClick={() => {
+              fileInput.current.click();
+            }}
+          />
         </div>
         <input
           type="file"

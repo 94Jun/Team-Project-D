@@ -57,8 +57,6 @@ const PostingModal = (props) => {
   const contentsReplaceNewline = () => {
     return text.replaceAll("<br>", "\r\n");
   };
-  console.log("??<", contentsReplaceNewline());
-  console.log("??", text.replaceAll("<br>", "\r\n"));
   // posting data전송 함수
   const addPosting = async () => {
     //데이터 베이스 추가
@@ -105,7 +103,6 @@ const PostingModal = (props) => {
       alert("개시물을 작성해주세요");
     }
   };
-  console.log("image", image);
   return (
     <div>
       <Modal

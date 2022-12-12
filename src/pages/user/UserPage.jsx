@@ -3,8 +3,11 @@ import ProfileImg from "./ProfileImg";
 import { Link } from "react-router-dom";
 import AppsIcon from "@mui/icons-material/Apps";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-
+import { useState } from "react";
+import ProfileEdit from "./ProfileEdit";
 const UserPage = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
   return (
     <div className={styles.user}>
       <div className={styles.title}>
@@ -15,10 +18,11 @@ const UserPage = () => {
               <p>닉네임</p>
             </div>
             <div className={styles.button1}>
-              <Link to="/ProfileEdit">
-                <button className={styles.button}>프로필 편집</button>
-              </Link>
+              <button className={styles.button} onClick={handleOpen}>
+                프로필 편집
+              </button>
             </div>
+            <ProfileEdit open={open} setOpen={setOpen} />
           </div>
           <div>
             <ul className={styles.user_title}>
