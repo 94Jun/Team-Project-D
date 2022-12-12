@@ -44,12 +44,13 @@
 .image {
   max-height: 300px;
 }
-textarea {
+.posting_text {
   width: 100%;
   border: none;
   resize: none;
   outline: none;
   padding: 0 5px;
+  white-space: pre-wrap;
 }
 .posting_btn_box {
   width: 106px;
@@ -73,13 +74,13 @@ textarea {
   justify-content: space-between;
   align-items: center;
 }
-ul {
+.upload_img {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   margin: 5px 0;
 }
-li {
+.img_list {
   margin: 0 5px;
   position: relative;
 }
@@ -87,6 +88,7 @@ li {
   position: absolute;
   top: -5px;
   right: -3px;
+  z-index: 10;
 }
 svg {
   background-color: white;
@@ -94,6 +96,11 @@ svg {
 }
 /*해쉬태그*/
 .hash_box {
+  display: flex;
+  margin: 0 5px;
+  flex-wrap: wrap;
+}
+.hash {
   display: flex;
   margin: 0 5px;
 }

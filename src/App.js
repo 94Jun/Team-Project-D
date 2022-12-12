@@ -20,10 +20,11 @@ import { doc, getDoc } from "firebase/firestore";
 import { GET_CURRENT_USER_INFO } from "./modules/user";
 import FindPassword from "./components/modal/FindPassword";
 
-
 const App = () => {
   const dispatch = useDispatch();
-  const isSearchModalShown = useSelector((state) => state.modal.isSearchModalShown);
+  const isSearchModalShown = useSelector(
+    (state) => state.modal.isSearchModalShown
+  );
   const isLogincheck = useSelector((state) => state.login.isLoggedIn);
   const currentUser = useSelector((state) => state.login.currentUser);
 
@@ -43,7 +44,7 @@ const App = () => {
       getCurrentUserInfo();
     }
   }, [currentUser, dispatch]);
-console.log("")
+  console.log("");
   return (
     <div className="App">
       {!isLogincheck ? (

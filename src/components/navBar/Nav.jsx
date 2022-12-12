@@ -18,7 +18,6 @@ const Nav = () => {
   const dispatch = useDispatch();
   const [profile, setProfile] = useState(null);
 
-  //css 틀어져서 리듀서쓰기전에 잠시 test / props전달
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
 
@@ -32,12 +31,12 @@ const Nav = () => {
   // 현재 유저 프로필 불러오기
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${currentUserInfo.profile}`);
-    const url = await getDownloadURL(profileRef)
-    setProfile(url)
+    const url = await getDownloadURL(profileRef);
+    setProfile(url);
   };
   useEffect(() => {
     getProfile();
-  },[currentUserInfo.profile])
+  }, [currentUserInfo.profile]);
 
   // 로그아웃
   const onLogOutClick = () => {
@@ -63,7 +62,7 @@ const Nav = () => {
             <div className={styles.profile_wrap}>
               <img src={profile} />
             </div>
-              <span className={styles.userName}>{currentUserInfo.name}</span>
+            <span className={styles.userName}>{currentUserInfo.name}</span>
           </Link>
         </li>
 
@@ -76,7 +75,10 @@ const Nav = () => {
         </li>
 
         {/* 클릭 시 검색 모달 오픈 */}
-        <li className={`${styles.item} ${styles.search}`} onClick={toggleSearchModalHandler}>
+        <li
+          className={`${styles.item} ${styles.search}`}
+          onClick={toggleSearchModalHandler}
+        >
           <div>
             <SearchIcon fontSize="string" />
             <span>검색</span>
