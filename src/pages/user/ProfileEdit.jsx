@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Modal from "@mui/material/Modal";
 import { getSingleData } from "../../common";
+
+
 const ProfileEdit = (props) => {
   const [name, setName] = useState("");
   const [introduce, setIntroduce] = useState("");

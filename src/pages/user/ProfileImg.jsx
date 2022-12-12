@@ -1,9 +1,23 @@
-import { useState,useRef } from 'react';
+import { useState,useRef,useEffect } from 'react';
 import styles from "./UserPage.module.css";
+import { storage } from "../../config/firebase";
+import { ref, getDownloadURL } from "firebase/storage";
+import {useSelector } from "react-redux";
+
 
 function Profile() {
-  const [imageSrc, setImageSrc] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+  const [imageSrc, setImageSrc] = useState("");
   const fileInput = useRef(null)
+  const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
+  const getProfile = async () => {
+    const profileRef = ref(storage, `images/${currentUserInfo.profile}`);
+    const url = await getDownloadURL(profileRef)
+    setImageSrc(url)
+  };
+  useEffect(() => {
+    getProfile();
+  },[currentUserInfo.profile])
+
 
   const profileimg = (props) => {
     const reader = new FileReader();
