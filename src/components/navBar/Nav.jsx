@@ -6,6 +6,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import PostingModal from "../modal/PostingModal";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TOGGLE_SEARCH_MODAL } from "../../modules/modal";
@@ -35,6 +36,7 @@ const Nav = () => {
     setProfile(url);
   };
   useEffect(() => {
+    if(currentUserInfo.profile)
     getProfile();
   }, [currentUserInfo.profile]);
 
@@ -93,6 +95,13 @@ const Nav = () => {
             <AddBoxOutlinedIcon fontSize="string" onClick={handleOpen} />
             <span onClick={handleOpen}>글 작성</span>
           </div>
+        </li>
+        <li className={styles.item}>
+          <Link to="/makepaln">
+            <PostingModal open={open} setOpen={setOpen} />
+            <LoyaltyIcon fontSize="string"/>
+            <span onClick={handleOpen}>여행 계획 수립</span>
+          </Link>
         </li>
 
         {/* 클릭 시 환경 설정 페이지로 이동

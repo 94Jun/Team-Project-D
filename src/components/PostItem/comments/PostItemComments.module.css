@@ -70,4 +70,5 @@
 }
 .comment_text {
   margin-top: 10px;
+  white-space: pre-line;
 }

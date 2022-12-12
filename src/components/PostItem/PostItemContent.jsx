@@ -24,7 +24,6 @@ const PostItemContent = (props) => {
     }
   }, []);
 
-  console.log(imgRefList);
   return (
     <div className={styles.post_contents}>
       <div className={styles.post_contents_images}>

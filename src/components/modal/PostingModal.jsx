@@ -120,6 +120,7 @@ const PostingModal = (props) => {
             <p className={styles.delete}>
               <ClearIcon onClick={handleClose} className={styles.icon} />
             </p>
+
           </div>
           {imgs !== undefined ? (
             imgs.slice(5, 10) === "video" ? (
@@ -141,6 +142,7 @@ const PostingModal = (props) => {
           ) : (
             ""
           )}
+
           <div>
             <textarea
               name=""
