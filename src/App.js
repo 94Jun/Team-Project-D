@@ -24,7 +24,6 @@ import Plans from "./pages/plan/Plans";
 import { db } from "./config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { GET_CURRENT_USER_INFO } from "./modules/user";
-import FindPassword from "./components/modal/FindPassword";
 
 const App = () => {
   const dispatch = useDispatch();
