@@ -5,6 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useEffect,useState } from "react";
 import {useSelector } from "react-redux";
 import ProfileEdit from "./ProfileEdit";
+import MyPagePost from "./MyPagePost";
 
 const UserPage = () => {
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
@@ -45,6 +46,9 @@ const UserPage = () => {
         <li><AppsIcon fontSize="small"/>게시글</li>
         <li><FavoriteBorderIcon fontSize="small"/>태그</li>
         </ul>
+        <div>
+        </div>
+
       </div>
     </div>
   );
