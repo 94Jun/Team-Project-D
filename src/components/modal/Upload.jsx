@@ -1,6 +1,6 @@
 import styles from "./PostingModal.module.css";
 import AddAPhotoOutlined from "@mui/icons-material/AddAPhotoOutlined";
-import { ADD_IMG } from "../../modules/upload";
+import { ADD_IMG, ADD_Video } from "../../modules/upload";
 import { useDispatch } from "react-redux";
 
 const Upload = () => {
@@ -25,7 +25,13 @@ const Upload = () => {
       <label htmlFor="file" className={styles.label}>
         <AddAPhotoOutlined className={styles.icon} />
       </label>
-      <input type="file" id="file" multiple onChange={handleChangeFile} />
+      <input
+        type="file"
+        id="file"
+        accept="image/jpg, image/jpeg, image/png, image/gif, video/mp4"
+        multiple
+        onChange={handleChangeFile}
+      />
     </div>
   );
 };

@@ -5,51 +5,64 @@ import PostItemInfo from "./PostItemInfo";
 import PostItemContent from "./PostItemContent";
 import PostItemActivity from "./PostItemActivity";
 import PostItemComments from "./comments/PostItemComments";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getqueryData, getSingleData } from "../../common";
+import useToggle from "../../hooks/useToggle";
 
 const PostItem = (props) => {
-  const userList = useSelector((state) => state.user.userList);
-  const commentList = useSelector((state) => state.comment.commentList);
-  const curruentUser = useSelector((state) => state.user.currentUser);
+  const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
+  const [writerInfo, setWriterInfo] = useState("");
+  const [commentList, setCommentList] = useState("");
+  const [commentsLength, setCommentLength] = useState(
+    props.posting?.comments.length
+  );
 
-  const writer = userList.find((user) => user.uid === props.posting.writer);
-  //해당 포스팅의 작성자정보 : writer
+  // 댓글창 on/off
+  const [isCommentsShown, toggleCommentsHandler] = useToggle(false);
 
-  const user = userList.find((user) => {
-    return user.uid === curruentUser;
-  });
-  //현재 로그인한 유저정보 : user
-
-  const comments = commentList.filter((comment) => {
-    return comment.posting === props.posting.pid;
-  });
-  // 현재 포스팅의 코멘트 리스트 : comments
-
-  const [isCommentsShown, setIsCommentsShown] = useState(false);
-  const toggleCommentsHandler = () => {
-    setIsCommentsShown((prev) => !prev);
+  // 화면에 보여지는 댓글 및 댓글 수 추가
+  const addCommentList = (addedcomment) => {
+    setCommentList((prev) => {
+      return [...prev, addedcomment];
+    });
+    setCommentLength((prev) => prev + 1);
   };
-  // 댓글창 on/off 기능
+
+  useEffect(() => {
+    //해당 포스팅의 작성자 정보 불러오기
+    getSingleData("userList", props.posting.writer, setWriterInfo);
+
+    //해당 포스팅에 해당하는 코멘트 리스트 불러오기
+    getqueryData(
+      "commentList",
+      "posting",
+      "==",
+      props.posting.pid,
+      setCommentList
+    );
+  }, []);
 
   return (
     <div className={`${styles.post_container} ${props.className}`}>
-      <PostItemProfile profile={writer.profile} />
+      <PostItemProfile profile={writerInfo.profile} />
       <div className={styles.post}>
-        <PostItemInfo name={writer.name} timestamp={props.posting.timestamp} />
-        <PostItemContent posting={props.posting} />
+        <PostItemInfo
+          name={writerInfo.name}
+          writeDate={props.posting.writeDate}
+        />
+        <PostItemContent contents={props.posting.contents} />
         <PostItemActivity
           posting={props.posting}
-          user={user}
-          comments={comments}
+          currentUserInfo={currentUserInfo}
+          commentsLength={commentsLength}
           onToggleComments={toggleCommentsHandler}
         />
         {isCommentsShown && (
           <PostItemComments
-            comments={comments}
-            userList={userList}
-            profile={user.profile}
-            currentUser={curruentUser}
+            commentList={commentList}
+            currentUserInfo={currentUserInfo}
             pid={props.posting.pid}
+            addCommentList={addCommentList}
           />
         )}
       </div>
