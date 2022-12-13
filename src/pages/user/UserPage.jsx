@@ -9,13 +9,19 @@ import { GET_CURRENT_USER_PROFILE } from "../../modules/user";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../config/firebase";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 const UserPage = () => {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState();
   const handleOpen = () => setOpen(true);
   const dispatch = useDispatch();
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const profile = useSelector((state) => state.user.profile);
-
+  const params = useParams();
+  console.log(params.uid);
+  console.log("params", params);
+  //그사람에 유아이디를 들고온다 params.uid 아이디 저장됨
+  // 그사람에 데이터 들고 와야함
   // 유저 프로필 불러오기
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${currentUserInfo.profile}`);
@@ -36,11 +42,13 @@ const UserPage = () => {
             <div className={styles.name}>
               <p>{currentUserInfo.name}</p>
             </div>
-            <div className={styles.button1}>
-              <button className={styles.button} onClick={handleOpen}>
-                프로필 편집
-              </button>
-            </div>
+            {params.uid === currentUserInfo.uid && (
+              <div className={styles.button1}>
+                <button className={styles.button} onClick={handleOpen}>
+                  프로필 편집
+                </button>
+              </div>
+            )}
             <ProfileEdit open={open} setOpen={setOpen} />
           </div>
           <div>

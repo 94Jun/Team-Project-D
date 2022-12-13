@@ -23,10 +23,15 @@ const ProfileEdit = (props) => {
     setIntroduce(e.target.value);
   };
 
-  const getSingleData = () => {
-    setName(currentUserInfo.name);
-    setIntroduce(currentUserInfo.introduction);
+  const getSingleData = async () => {
+    const docRef = doc(db, "userList", user);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      setName(docSnap.data().name);
+      setIntroduce(docSnap.data().introduction);
+    }
   };
+
   useEffect(() => {
     //getSingleData("userList", user, setName);
     getSingleData();
@@ -49,7 +54,7 @@ const ProfileEdit = (props) => {
       return currentUserInfo.profile;
     }
   };
-
+  console.log("name", name);
   //프로필 업데이트 함수
   const modify = async (e) => {
     e.preventDefault();
