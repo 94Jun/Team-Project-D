@@ -25,15 +25,22 @@ const MainPost = () => {
       });
     }
   };
-  console.log(lastVisible)
   useEffect(() => {
     getPostingList();
   }, []);
 
+  //화면에 보여지는 postingList 삭제
+  const removePostingListHandler = (pid) => {
+    const filteredPostingList = postingList.filter((posting) => { 
+      return posting.pid !== pid
+    })
+    setPostingList(filteredPostingList);
+  }
+
   return (
     <div className={styles.main}>
       {postingList?.map((posting) => {
-        return <PostItem key={posting.pid} posting={posting} />;
+        return <PostItem key={posting.pid} posting={posting} onRemovePosting={removePostingListHandler} />;
       })}
       <button onClick={getPostingList} className={styles.more_btn}>더 보기</button>
     </div>
