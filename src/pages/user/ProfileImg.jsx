@@ -1,34 +1,75 @@
-import { useState,useRef } from 'react';
+import { useRef, useEffect } from "react";
 import styles from "./UserPage.module.css";
+import { ref, getDownloadURL } from "firebase/storage";
+import { useSelector } from "react-redux";
+import { storage } from "../../config/firebase";
+import { useDispatch } from "react-redux";
+import {
+  GET_CURRENT_USER_PROFILE,
+  ADD_CURRENT_USER_PROFILE,
+} from "../../modules/user";
+import AddAPhotoOutlined from "@mui/icons-material/AddAPhotoOutlined";
 
-function Profile() {
-  const [imageSrc, setImageSrc] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
-  const fileInput = useRef(null)
+export default function ProfileImg() {
+  const fileInput = useRef(null);
+  const dispatch = useDispatch();
+  const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
+  const profile = useSelector((state) => state.user.profile);
 
-  const profileimg = (props) => {
+  //프로필 이미지 넣어주는 함수
+  const setProfile = (props) => {
     const reader = new FileReader();
     reader.readAsDataURL(props);
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setImageSrc(reader.result);
-        resolve();
-      };
-    });
+    reader.onload = () => {
+      dispatch(GET_CURRENT_USER_PROFILE(reader.result));
+      dispatch(ADD_CURRENT_USER_PROFILE(reader.result));
+      console.log(reader.result);
+    };
   };
+  console.log(currentUserInfo?.profile);
+  // 유저 프로필 불러오기
+  const getProfile = async () => {
+    const profileRef = ref(storage, `images/${currentUserInfo.profile}`);
+    const url = await getDownloadURL(profileRef);
+    dispatch(GET_CURRENT_USER_PROFILE(url));
+  };
+  useEffect(() => {
+    //currentUserInfo.profile값이 변하면 함수 실행
+    getProfile();
+  }, [currentUserInfo.profile]);
 
   return (
     <div>
-    <main className={styles.container}>
-      <div className={styles.preview} >
-        {imageSrc && <img src={imageSrc} alt="preview-img" width="100%" height="100%"
-        onClick={()=>{fileInput.current.click()}}/>}
-      </div>
-      <input type="file" accept='image/*' onChange={(e) => {
-        profileimg(e.target.files[0]);
-      }} style={{display:'none'}} ref={fileInput}/>
-    </main>
+      <main className={styles.container}>
+        <UserProfile profile={profile} />
+        <div className={styles.file_box}>
+          <label htmlFor="file" className={styles.label}>
+            <AddAPhotoOutlined
+              className={styles.icon}
+              onClick={() => {
+                fileInput.current.click();
+              }}
+            />
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              setProfile(e.target.files[0]);
+            }}
+            style={{ display: "none" }}
+            ref={fileInput}
+          />
+        </div>
+      </main>
     </div>
   );
 }
 
-export default Profile;
+export function UserProfile({ profile }) {
+  return (
+    <div className={styles.preview}>
+      <img src={profile} alt="preview-img" width="100%" height="100%" />
+    </div>
+  );
+}
