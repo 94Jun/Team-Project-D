@@ -14,6 +14,8 @@ const PostItemComments = (props) => {
           <CommentItem
             key={comment.cid}
             comment={comment}
+            currentUserInfo={props.currentUserInfo}
+            removeCommentList={props.removeCommentList}
           />
         );
       })}
