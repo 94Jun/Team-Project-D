@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import PostItemImg from "./PostItemImg";
 const PostItemContent = (props) => {
-  const { images, hashtags, text } = props.contents;
+  const { images, hashtags, text } = props;
   const [imgRefList, setImgRefList] = useState([]);
 
   useEffect(() => {

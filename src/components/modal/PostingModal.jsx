@@ -37,7 +37,7 @@ const PostingModal = (props) => {
   const HashTagList = useSelector((state) => state.hash.HashList);
   //user redcer 에서 useSelector로 임이로 정의된   currentUser: "u1"를 받아옴
 
-    const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
+  const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
 
   // redux imgList= Image: [hdsgh],
   const imgList = useSelector((state) => state.upload.ImgList);
@@ -67,11 +67,9 @@ const PostingModal = (props) => {
       like: [],
       writer: currentUserInfo.uid,
       comments: [],
-      contents: {
-        images: [],
-        hashtags: HashTagList,
-        text: contentsReplaceNewline(),
-      },
+      images: [],
+      hashtags: HashTagList,
+      text: contentsReplaceNewline(),
       isPublic: show,
     };
 
@@ -82,14 +80,11 @@ const PostingModal = (props) => {
           const randomNum = getId(); //파일이름은 겹치지 않게 random으로
           const imageRef = ref(storage, `images/${randomNum}`);
           uploadString(imageRef, image[i], "data_url");
-          addedPublicPosting.contents.images.push(randomNum);
+          addedPublicPosting.images.push(randomNum);
           console.log("???", addedPublicPosting);
         } //uploadString:data_url,base64데이터 업로드용
         //imageRef=ref(storage,폴더이름/파일이름)
-        await setDoc(
-          doc(db, "postingList", addedPublicPosting.pid),
-          addedPublicPosting
-        );
+        await setDoc(doc(db, "postingList", addedPublicPosting.pid), addedPublicPosting);
         setText("");
         setImgs("");
         dispatch(INITIAL_STATE_HASH());
@@ -104,12 +99,7 @@ const PostingModal = (props) => {
   };
   return (
     <div>
-      <Modal
-        onClose={handleClose}
-        open={props.open}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal onClose={handleClose} open={props.open} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <div className={styles.posting}>
           <div className={styles.nav}>
             <Upload />
@@ -119,24 +109,12 @@ const PostingModal = (props) => {
             <p className={styles.delete}>
               <ClearIcon onClick={handleClose} className={styles.icon} />
             </p>
-
           </div>
           {imgs !== undefined ? (
             imgs.slice(5, 10) === "video" ? (
-              <video
-                src={imgs}
-                alt={imgs}
-                width={"100%"}
-                autoPlay
-                className={styles.image}
-              />
+              <video src={imgs} alt={imgs} width={"100%"} autoPlay className={styles.image} />
             ) : (
-              <img
-                src={imgs}
-                alt={imgs}
-                width={"100%"}
-                className={styles.image}
-              />
+              <img src={imgs} alt={imgs} width={"100%"} className={styles.image} />
             )
           ) : (
             ""

@@ -55,7 +55,7 @@ const PostItemActivity = (props) => {
     try {
       //현재 로그인한 user의 markedPosting 변경(데이터베이스에 업데이트)
       updatePushData("userList", props.currentUserInfo.uid, "markedPosting", props.posting.pid, !isMarked);
-      //아이콘 변경
+      //아이콘 변경 
       toggleMarked();
     } catch (e) {
       console.log(e.message);

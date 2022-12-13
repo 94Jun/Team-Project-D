@@ -7,19 +7,15 @@ import PostItemActivity from "../../components/PostItem/PostItemActivity";
 import PostItemComments from "../../components/PostItem/comments/PostItemComments";
 import { useState, useEffect } from "react";
 import { getSingleData } from "../../common";
-import { query, collection, where, orderBy, getDocs } from "firebase/firestore";
+import { query, collection, where, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import useToggle from "../../hooks/useToggle";
-
-
 
 const MyPagePostImg = (props) => {
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const [writerInfo, setWriterInfo] = useState("");
   const [commentList, setCommentList] = useState("");
   const [commentsLength, setCommentLength] = useState(props.posting?.comments.length);
-
-
 
   // 댓글창 on/off
   const [isCommentsShown, toggleCommentsHandler] = useToggle(false);
@@ -49,8 +45,6 @@ const MyPagePostImg = (props) => {
     setCommentList(loadedData);
   };
 
-
-
   useEffect(() => {
     try {
       //해당 포스팅의 작성자 정보 불러오기
@@ -68,7 +62,7 @@ const MyPagePostImg = (props) => {
       <PostItemProfile profile={writerInfo.profile} />
       <div className={styles.post}>
         <PostItemInfo name={writerInfo.name} writeDate={props.posting.writeDate} />
-        <PostItemContent contents={props.posting.contents} />
+        <PostItemContent images={props.posting.images} hashtags={props.posting.hashtags} text={props.posting.text} />
         <PostItemActivity posting={props.posting} currentUserInfo={currentUserInfo} commentsLength={commentsLength} onToggleComments={toggleCommentsHandler} onRemovePosting={props.onRemovePosting} />
         {isCommentsShown && (
           <PostItemComments

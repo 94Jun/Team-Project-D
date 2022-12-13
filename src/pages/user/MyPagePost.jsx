@@ -1,22 +1,27 @@
-import MyPagePostImg from "./MyPagePostImg"
+import MyPagePostDB from "./MyPagePostDB"
 import styles from "./UserPage.module.css";
 import { query, collection, where, orderBy, limit, getDocs, startAfter } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const MyPagePost = () => {
   const [postingList, setPostingList] = useState();
   const [lastVisible, setLastVisible] = useState()
 
+  //리덕스 user정보 가져오기
+  const user = useSelector((state)=>(state.user.currentUserInfo))
+  //console.log(user);
+
   const getPostingList = async () => {
     if (!lastVisible) {
-      const first = query(collection(db, "postingList"), where("isPublic", "==", true), orderBy("timestamp", "desc"), limit(5));
+      const first = query(collection(db, "postingList"), where("writer", "==", user.uid ), orderBy("timestamp", "desc"), limit(5));
       const querySnapshot = await getDocs(first);
       setLastVisible(querySnapshot.docs[querySnapshot?.docs?.length - 1]);
       const loadedData = querySnapshot.docs.map((doc) => doc.data());
       setPostingList(loadedData);
     } else { 
-      const next = query(collection(db, "postingList"), where("isPublic", "==", true), orderBy("timestamp", "desc"), startAfter(lastVisible), limit(5));
+      const next = query(collection(db, "postingList"), where("writer", "==", user.uid ), orderBy("timestamp", "desc"), startAfter(lastVisible), limit(5));
       const querySnapshot = await getDocs(next);
       setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
       const loadedData = querySnapshot.docs.map((doc) => doc.data());
@@ -40,7 +45,7 @@ const MyPagePost = () => {
   return (
     <div className={styles.main}>
       {postingList?.map((posting) => {
-        return <MyPagePostImg key={posting.pid} posting={posting} onRemovePosting={removePostingListHandler} />;
+        return <MyPagePostDB key={posting.pid} posting={posting} onRemovePosting={removePostingListHandler} />;
       })}
       <button onClick={getPostingList} className={styles.more_btn}>더 보기</button>
     </div>
