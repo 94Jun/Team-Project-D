@@ -64,7 +64,7 @@ const PostItem = (props) => {
       <PostItemProfile profile={writerInfo.profile} />
       <div className={styles.post}>
         <PostItemInfo name={writerInfo.name} writeDate={props.posting.writeDate} />
-        <PostItemContent contents={props.posting.contents} />
+        <PostItemContent images={props.posting.images} hashtags={props.posting.hashtags} text={props.posting.text} />
         <PostItemActivity posting={props.posting} currentUserInfo={currentUserInfo} commentsLength={commentsLength} onToggleComments={toggleCommentsHandler} onRemovePosting={props.onRemovePosting} />
         {isCommentsShown && (
           <PostItemComments

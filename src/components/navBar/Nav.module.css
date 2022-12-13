@@ -24,9 +24,11 @@
 .profile_wrap{
   width : 25px;
   height : 25px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .profile_wrap img{
-  width : 100%
+  width : 100%;
 }
 .userName{
   font-weight: 700;
