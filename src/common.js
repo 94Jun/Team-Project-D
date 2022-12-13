@@ -1,22 +1,11 @@
-import {
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-  setDoc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, getDoc, doc, setDoc, updateDoc, arrayUnion, arrayRemove, query, where, orderBy, limit } from "firebase/firestore";
 import { db } from "./config/firebase";
 
 // 현재 시간 기준 Date 객체
 export const getNow = () => new Date();
 
 // 현재 날짜(2022. 12. 7.) 형식
-export const getNowDate = () => new Date().toLocaleDateString();
+export const getNowDate = () => new Date().toLocaleString().slice(0, 22)
 
 // 현재 시간 기준 밸류값
 export const getNowValue = () => new Date().valueOf();

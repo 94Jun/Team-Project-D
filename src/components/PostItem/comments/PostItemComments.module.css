@@ -70,4 +70,16 @@
 }
 .comment_text {
   margin-top: 10px;
+  white-space: pre-line;
+}
+.delete_btn{
+  background: none;
+  border : none;
+  margin-left : 10px;
+  cursor: pointer;
+  color : var(--color-main-red);
+}
+.comment_writer_info{
+  display: flex;
+  align-items: center;
 }

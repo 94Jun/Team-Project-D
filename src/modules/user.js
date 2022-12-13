@@ -10,24 +10,6 @@ export const user = createSlice({
   name: "user",
   initialState,
   reducers: {
-    ADD_RECENT_SEARCH: (state, action) => {
-      const existingUser = state.userList.find((user) => {
-        return user.uid === state.currentUser;
-      });
-      existingUser.recentSearchs.push(action.payload);
-    },
-    REMOVE_RECENT_SEARCH: (state, action) => {
-      const { removedContent } = action.payload;
-      const existingUser = state.userList.find((user) => {
-        return user.uid === state.currentUser;
-      });
-      const updatedRecentSearchs = existingUser.recentSearchs.filter(
-        (content) => {
-          return content !== removedContent;
-        }
-      );
-      existingUser.recentSearchs = updatedRecentSearchs;
-    },
     GET_CURRENT_USER_INFO: (state, action) => {
       state.currentUserInfo = action.payload;
     },
@@ -36,6 +18,12 @@ export const user = createSlice({
     },
     ADD_CURRENT_USER_PROFILE: (state, action) => {
       state.profileImg[0] = action.payload;
+    },
+    REMOVE_NOTICE: (state, action) => {
+      const filteredNotice = state.currentUserInfo.notice.filter((notice) => {
+        return notice.nid !== action.payload;
+      });
+      state.currentUserInfo.notice = filteredNotice;
     },
   },
 });
@@ -46,5 +34,6 @@ export const {
   GET_CURRENT_USER_INFO,
   GET_CURRENT_USER_PROFILE,
   ADD_CURRENT_USER_PROFILE,
+  REMOVE_NOTICE,
 } = user.actions;
 export default user.reducer;

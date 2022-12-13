@@ -6,6 +6,7 @@ const PostItemComments = (props) => {
       <CommentForm
         currentUserInfo={props.currentUserInfo}
         pid={props.pid}
+        writer={props.writer}
         addCommentList={props.addCommentList}
       />
       {props.commentList.map((comment) => {
@@ -13,6 +14,8 @@ const PostItemComments = (props) => {
           <CommentItem
             key={comment.cid}
             comment={comment}
+            currentUserInfo={props.currentUserInfo}
+            removeCommentList={props.removeCommentList}
           />
         );
       })}

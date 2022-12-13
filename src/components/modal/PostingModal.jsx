@@ -38,7 +38,7 @@ const PostingModal = (props) => {
   //user redcer 에서 useSelector로 임이로 정의된   currentUser: "u1"를 받아옴
 
   //여기 수정해야 함
-  const currentUser = useSelector((state) => state.login.currentUser);
+  const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
 
   // redux imgList= Image: [hdsgh],
   const imgList = useSelector((state) => state.upload.ImgList);
@@ -66,7 +66,7 @@ const PostingModal = (props) => {
       writeDate: getNowDate(),
       timestamp: getNowValue(),
       like: [],
-      writer: currentUser,
+      writer: currentUserInfo.uid,
       comments: [],
       contents: {
         images: [],
@@ -80,7 +80,7 @@ const PostingModal = (props) => {
     if (text !== undefined) {
       try {
         for (let i = 0; i < imgList.length; i++) {
-          const randomNum = Math.random().toString(); //파일이름은 겹치지 않게 random으로
+          const randomNum = getId(); //파일이름은 겹치지 않게 random으로
           const imageRef = ref(storage, `images/${randomNum}`);
           uploadString(imageRef, image[i], "data_url");
           addedPublicPosting.contents.images.push(randomNum);
@@ -120,6 +120,7 @@ const PostingModal = (props) => {
             <p className={styles.delete}>
               <ClearIcon onClick={handleClose} className={styles.icon} />
             </p>
+
           </div>
           {imgs !== undefined ? (
             imgs.slice(5, 10) === "video" ? (
@@ -141,6 +142,7 @@ const PostingModal = (props) => {
           ) : (
             ""
           )}
+
           <div>
             <textarea
               name=""
