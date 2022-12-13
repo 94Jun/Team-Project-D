@@ -48,8 +48,10 @@ const App = () => {
       getCurrentUserInfo();
     }
   }, [currentUser, dispatch]);
+
   console.log(isLogincheck);
   console.log("currentUser", currentUser);
+
   return (
     <div className="App">
       {!isLogincheck ? (

@@ -54,7 +54,7 @@ const ProfileEdit = (props) => {
       return currentUserInfo.profile;
     }
   };
-  console.log("name", name);
+
   //프로필 업데이트 함수
   const modify = async (e) => {
     e.preventDefault();

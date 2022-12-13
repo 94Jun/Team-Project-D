@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import styles from "./UserPage.module.css";
 import { ref, getDownloadURL } from "firebase/storage";
 import { useSelector } from "react-redux";
@@ -9,12 +9,21 @@ import {
   ADD_CURRENT_USER_PROFILE,
 } from "../../modules/user";
 import AddAPhotoOutlined from "@mui/icons-material/AddAPhotoOutlined";
+import { useParams } from "react-router-dom";
+import { getSingleData } from "../../common";
 
 export default function ProfileImg() {
+  const [user, setUser] = useState({});
   const fileInput = useRef(null);
   const dispatch = useDispatch();
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const profile = useSelector((state) => state.user.profile);
+
+  const params = useParams();
+
+  useEffect(() => {
+    getSingleData("userList", params.uid, setUser);
+  }, []);
 
   //프로필 이미지 넣어주는 함수
   const setProfile = (props) => {
@@ -65,7 +74,7 @@ export default function ProfileImg() {
   );
 }
 
-export function UserProfile({ profile }) {
+export function UserProfile({ profile, user }) {
   return (
     <div className={styles.preview}>
       <img src={profile} alt="preview-img" width="100%" height="100%" />

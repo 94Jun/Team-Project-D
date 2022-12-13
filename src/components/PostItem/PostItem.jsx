@@ -82,7 +82,12 @@ const PostItem = (props) => {
             writeDate={props.posting.writeDate}
           />
         </Link>
-        <PostItemContent contents={props.posting.contents} />
+
+        <PostItemContent
+          images={props.posting.images}
+          hashtags={props.posting.hashtags}
+          text={props.posting.text}
+        />
         <PostItemActivity
           posting={props.posting}
           currentUserInfo={currentUserInfo}
