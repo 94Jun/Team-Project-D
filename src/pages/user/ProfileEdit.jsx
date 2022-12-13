@@ -31,6 +31,7 @@ const ProfileEdit = (props) => {
       setIntroduce(docSnap.data().introduction);
     }
   };
+
   useEffect(() => {
     //getSingleData("userList", user, setName);
     getSingleData();

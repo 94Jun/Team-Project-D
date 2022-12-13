@@ -17,9 +17,8 @@ const SearchModal = () => {
   const searchHandler = (e) => {
     e.preventDefault();
     if (userInput.trim().length > 0) {
-      dispatch(TOGGLE_SEARCH_MODAL());
       dispatch(SET_CURRENT_SEARCH(userInput));
-      dispatch(ADD_RECENT_SEARCH(userInput));
+      dispatch(TOGGLE_SEARCH_MODAL());
       navigate("/search");
     }
   };
@@ -38,7 +37,7 @@ const SearchModal = () => {
           </button>
         </div>
       </form>
-      <SearchLog />
+      {/* <SearchLog /> */}
     </div>
   );
 };
