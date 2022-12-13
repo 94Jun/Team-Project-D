@@ -1,3 +1,4 @@
+import { CommitSharp } from "@mui/icons-material";
 import { useState } from "react";
 
 
@@ -5,7 +6,22 @@ const MakePlan = () => {
     const [startDate, setStartDate]=useState();
     const [endsDate, setEndsDate]=useState();
 
+    const dateCount =  () => {
+   const dateControl = document.querySelector('input[type=date]');
+    dateControl.value = startDate;
+    const startDateVal = dateControl.valueAsNumber;
+    console.log(startDateVal);
 
+    const dateContro2 = document.querySelector('input[type=date]');
+    dateContro2.value = endsDate;
+    const dateControVal2 = dateContro2.valueAsNumber;
+    console.log(dateControVal2);
+
+    console.log(dateControVal2-startDateVal);
+    const diffVal = dateControVal2-startDateVal; 
+      console.log(diffVal)
+
+    }; 
 
 
     return ( 
@@ -14,15 +30,15 @@ const MakePlan = () => {
 
          여행을 언제 시작하나요? {startDate} <br />
          <input type="date" id="start" name="trip-start"
-       value={startDate}
+       value={startDate|| ''}
        min="2023-01-01" max="2080-12-31" onChange={(e)=>setStartDate(e.target.value)}/><br />
          
          여행을 언제 끝내나요? {endsDate} <br />
          <input type="date" id="ends" name="trip-start"
-       value={endsDate}
+       value={endsDate|| ''}
        min={startDate} max="2080-12-31" onChange={(e)=>setEndsDate(e.target.value)}  /><br />
-        <button > 날짜? </button>
-         0박 0일 <br />
+        <button onClick={dateCount}> 날짜? </button>
+          0박 0일 <br />
          <br /> 
          여행을 어디로 떠나나요? <br /> <br /> 
          
