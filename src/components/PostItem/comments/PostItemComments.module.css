@@ -52,6 +52,8 @@
   gap: 20px;
 }
 .comment_profile_wrap {
+  width : 30px;
+  height : 30px;
   max-width: 30px;
   max-height: 30px;
   border-radius: 50%;

@@ -14,3 +14,10 @@
   margin : 20px auto;
   color : var(--color-dark-gray);
 }
+
+
+@media (max-width: 768px) {
+  .more_btn {
+    margin-bottom : 70px;
+  }
+}
