@@ -10,6 +10,9 @@ import { GET_CURRENT_USER_PROFILE } from "../../modules/user";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../config/firebase";
 import { useDispatch } from "react-redux";
+import MyPagePost from "./MyPagePost";
+
+
 const UserPage = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -17,14 +20,14 @@ const UserPage = () => {
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const profile = useSelector((state) => state.user.profile);
 
-  // 유저 프로필 불러오기
+
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${currentUserInfo.profile}`);
     const url = await getDownloadURL(profileRef);
     dispatch(GET_CURRENT_USER_PROFILE(url));
   };
   useEffect(() => {
-    //currentUserInfo.profile값이 변하면 함수 실행
+
     getProfile();
   }, [currentUserInfo.profile]);
 
@@ -69,6 +72,7 @@ const UserPage = () => {
             태그
           </li>
         </ul>
+        <MyPagePost/>
       </div>
     </div>
   );

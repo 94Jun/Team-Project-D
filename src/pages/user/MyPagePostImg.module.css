@@ -1,0 +1,80 @@
+.post_container {
+    min-height: 100px;
+    background-color: var(--color-white);
+    display: flex;
+    box-shadow: 1px 1px 10px var(--color-gray);
+    margin: 10px;
+  }
+  .post {
+    flex: 1;
+    padding: 0 20px;
+  }
+  .post_top {
+    height: 40px;
+    border-bottom: 1px solid var(--color-light-gray);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .profile_img {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .profile_img img {
+    width: 100%;
+    height: 100%;
+  }
+  .timestamp {
+    font-size: var(--font-xsmall);
+    color: var(--color-main-gray);
+  }
+  .user_name {
+    font-weight: 700;
+  }
+  .post_contents {
+    padding: 10px 0;
+  }
+  .post_bottom {
+    display: flex;
+    gap: 30px;
+    height: 40px;
+    font-size: var(--font-small);
+    color: var(--color-main-gray);
+  }
+  .post_bottom > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .post_bottom button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .post_contents_text{
+    white-space: pre-line;
+  }
+  .post_contents_hashtags {
+    padding-top: 15px;
+    color: var(--color-main-blue);
+  }
+  .post_contents_hashtags::before {
+    content: " #";
+    color: var(--color-main-blue);
+  }
+  .post_contents_images img {
+    width: 100%;
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 1em;
+  }
+  .hashtags_wrap {
+    margin-top: 20px;
+  }
+  .delete_btn{
+    color : var(--color-main-red);
+  }
