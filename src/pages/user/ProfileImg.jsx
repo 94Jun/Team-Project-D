@@ -9,6 +9,7 @@ function Profile() {
   const [imageSrc, setImageSrc] = useState("");
   const fileInput = useRef(null)
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
+  
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${currentUserInfo.profile}`);
     const url = await getDownloadURL(profileRef)

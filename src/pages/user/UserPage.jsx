@@ -6,6 +6,7 @@ import { useEffect,useState } from "react";
 import {useSelector } from "react-redux";
 import ProfileEdit from "./ProfileEdit";
 import MyPagePost from "./MyPagePost";
+import MyPagePostImg from "./MyPagePostImg";
 
 const UserPage = () => {
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
@@ -48,7 +49,7 @@ const UserPage = () => {
         </ul>
         <div>
         </div>
-
+          <MyPagePost/>
       </div>
     </div>
   );
