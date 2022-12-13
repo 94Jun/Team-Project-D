@@ -15,10 +15,11 @@ export const user = createSlice({
     },
     REMOVE_NOTICE: (state, action) => {
       const filteredNotice = state.currentUserInfo.notice.filter((notice) => {
-        return notice.nid !== action.payload
-      })
-      state.currentUserInfo.notice = filteredNotice
+        return notice.nid !== action.payload;
+      });
+      state.currentUserInfo.notice = filteredNotice;
     },
+
     GET_CURRENT_USER_PROFILE: (state, action) => {
       state.profile[0] = action.payload;
     },

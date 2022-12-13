@@ -20,7 +20,6 @@ import { LOGIN } from "./modules/login";
 import FindPassword from "./components/modal/FindPassword";
 import Plans from "./pages/plan/Plans";
 
-
 import { db } from "./config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { GET_CURRENT_USER_INFO } from "./modules/user";
@@ -49,13 +48,17 @@ const App = () => {
       getCurrentUserInfo();
     }
   }, [currentUser, dispatch]);
+
+  console.log(isLogincheck);
+  console.log("currentUser", currentUser);
+
   return (
     <div className="App">
       {!isLogincheck ? (
         <Routes>
-         <Route path="/" element={<LoginPage />}></Route>
-         <Route path="/register" element={<Register />}></Route>
-         <Route path="/findPassword" element={<FindPassword />} />
+          <Route path="/" element={<LoginPage />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/findPassword" element={<FindPassword />} />
         </Routes>
       ) : (
         <>
@@ -72,7 +75,7 @@ const App = () => {
             {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
-              <Route path="/user" element={<UserPage />}></Route>
+              <Route path={"/user/:uid"} element={<UserPage />}></Route>
               <Route path="/search" element={<SearchPage />}></Route>
             </Routes>
 

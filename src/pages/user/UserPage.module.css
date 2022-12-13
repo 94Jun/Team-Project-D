@@ -36,6 +36,7 @@
 
 .user_title {
   width: 300px;
+  display: flex;
 }
 
 .postmenu {
@@ -46,10 +47,13 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin: 15px;
+  justify-content: center;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 .postmenu ul {
   justify-content: center;
+  display: flex;
 }
 .button {
   background-color: var(--color-white);
