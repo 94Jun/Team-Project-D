@@ -97,7 +97,7 @@ const Nav = () => {
           </div>
         </li>
         <li className={styles.item}>
-          <Link to="/makepaln">
+          <Link to="/myplan">
             <LoyaltyIcon fontSize="string"/>
             <span>여행 계획 수립</span>
           </Link>
