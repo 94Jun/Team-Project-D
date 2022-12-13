@@ -50,7 +50,7 @@ const Nav = () => {
         console.log("로그아웃실패");
       });
   };
-
+  console.log(open);
   return (
     <nav className={styles.container}>
       <ul className={styles.nav}>
