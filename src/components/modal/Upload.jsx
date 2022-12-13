@@ -12,6 +12,7 @@ const Upload = () => {
       if (e.target.files[i]) {
         let reader = new FileReader();
         reader.readAsDataURL(e.target.files[i]);
+        console.log(e.target.files[i]);
         reader.onloadend = () => {
           const resultImage = reader.result;
           dispatch(ADD_IMG(resultImage));
