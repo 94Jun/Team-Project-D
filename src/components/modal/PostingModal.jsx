@@ -37,8 +37,7 @@ const PostingModal = (props) => {
   const HashTagList = useSelector((state) => state.hash.HashList);
   //user redcer 에서 useSelector로 임이로 정의된   currentUser: "u1"를 받아옴
 
-  //여기 수정해야 함
-  const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
+    const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
 
   // redux imgList= Image: [hdsgh],
   const imgList = useSelector((state) => state.upload.ImgList);
