@@ -26,7 +26,6 @@ export default function ProfileImg() {
       console.log(reader.result);
     };
   };
-  console.log(currentUserInfo?.profile);
   // 유저 프로필 불러오기
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${currentUserInfo.profile}`);

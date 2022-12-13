@@ -1,5 +1,4 @@
 import styles from "./UserPage.module.css";
-
 import { UserProfile } from "./ProfileImg";
 import AppsIcon from "@mui/icons-material/Apps";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -35,7 +34,7 @@ const UserPage = () => {
         <div className={styles.main_title}>
           <div className={styles.name_title}>
             <div className={styles.name}>
-              <p>닉네임</p>
+              <p>{currentUserInfo.name}</p>
             </div>
             <div className={styles.button1}>
               <button className={styles.button} onClick={handleOpen}>

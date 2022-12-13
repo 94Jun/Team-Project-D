@@ -23,13 +23,9 @@ const ProfileEdit = (props) => {
     setIntroduce(e.target.value);
   };
 
-  const getSingleData = async () => {
-    const docRef = doc(db, "userList", user);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      setName(docSnap.data().name);
-      setIntroduce(docSnap.data().introduction);
-    }
+  const getSingleData = () => {
+    setName(currentUserInfo.name);
+    setIntroduce(currentUserInfo.introduction);
   };
   useEffect(() => {
     //getSingleData("userList", user, setName);
