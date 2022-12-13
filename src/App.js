@@ -44,28 +44,19 @@ const App = () => {
 
   //렌더링 시 마다 로컬스토리지에 있는 currentUser를 통해 로그인 여부 판단
   useEffect(() => {
-    if (currentUser !== "비회원") {
+    if (currentUser) {
       dispatch(LOGIN(currentUser));
       getCurrentUserInfo();
     }
   }, [currentUser, dispatch]);
-  console.log("");
+  console.log(isLogincheck);
   return (
     <div className="App">
       {!isLogincheck ? (
         <Routes>
-
-         <Route path="/login" element={<LoginPage />} render={() => (!isLogincheck ? <HomePage /> : <LoginPage />)} > </Route>
+         <Route path="/" element={<LoginPage />}></Route>
          <Route path="/register" element={<Register />}></Route>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="/user" element={<UserPage />}></Route>
-          <Route path="/search" element={<SearchPage />}></Route>
-          <Route path="/Myplan" element={<MyPlan />}> </Route>
-               <Route path="/plans" element={<Plans />}></Route> 
-          <Route path="/makeplan" element={<MakePlan />}></Route>
-
-          <Route path="/findPassword" element={<FindPassword />} />
-
+         <Route path="/findPassword" element={<FindPassword />} />
         </Routes>
       ) : (
         <>

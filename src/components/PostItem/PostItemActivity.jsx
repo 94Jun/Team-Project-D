@@ -5,7 +5,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getId, updatePushData } from "../../common";
 import useToggle from "../../hooks/useToggle";
 import { doc, deleteDoc, collection, query, where, getDocs } from "firebase/firestore";
@@ -14,10 +14,17 @@ import { db } from "../../config/firebase";
 const PostItemActivity = (props) => {
   //아이콘 변경을 위한 state
   //현재 로그인한 유저의 정보를 통해 '좋아요' 및 '마크' 여부 확인 후 초기값 설정
-  const [isMarked, toggleMarked] = useToggle(props.currentUserInfo?.markedPosting.indexOf(props.posting.pid) !== -1);
-  const [isLiked, toggleLiked] = useToggle(props.currentUserInfo?.likedPosting.indexOf(props.posting.pid) !== -1);
+  const [isMarked, toggleMarked] = useToggle(false);
+  const [isLiked, toggleLiked] = useToggle(false);
   const [likeLength, setLikeLength] = useState(props.posting.like.length);
-
+  useEffect(() => {
+    if (props.currentUserInfo.markedPosting.indexOf(props.posting.pid) !== -1 && isMarked === false) {
+      toggleMarked();
+    }
+    if (props.currentUserInfo.likedPosting.indexOf(props.posting.pid) !== -1 && isLiked === false) {
+      toggleLiked();
+    }
+  }, [props.currentUserInfo]);
   const toggleLikeHandler = async () => {
     const likeNotice = { nid: getId(), text: `${props.currentUserInfo.name}님이 회원님의 글을 좋아합니다.` };
     try {
@@ -82,7 +89,7 @@ const PostItemActivity = (props) => {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         removeComment(doc.id);
-        removePostingUserRef("myComments", doc.id)
+        removePostingUserRef("myComments", doc.id);
       });
 
       //데이터베이스 내 userList의 markedPosting 배열 요소 삭제

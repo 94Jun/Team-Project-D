@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoggedIn: false,
   currentUser: localStorage.getItem("currentUser")
-    ? localStorage.getItem("currentUser")
-    : "비회원",
 };
 const login = createSlice({
   name: "login",

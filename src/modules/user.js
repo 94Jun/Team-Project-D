@@ -16,7 +16,7 @@ export const user = createSlice({
         return notice.nid !== action.payload
       })
       state.currentUserInfo.notice = filteredNotice
-    }
+    },
   },
 });
 
