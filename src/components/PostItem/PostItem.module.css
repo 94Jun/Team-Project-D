@@ -75,3 +75,6 @@
 .hashtags_wrap {
   margin-top: 20px;
 }
+.delete_btn{
+  color : var(--color-main-red);
+}

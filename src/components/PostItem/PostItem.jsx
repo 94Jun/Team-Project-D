@@ -27,19 +27,32 @@ const PostItem = (props) => {
     });
     setCommentLength((prev) => prev + 1);
   };
+
+  //화면에 보여지는 댓글 및 댓글 수 감소
+  const removeCommentList = (cid) => { 
+    const filteredCommentList = commentList.filter((comment) => { 
+      return comment.cid !== cid
+    })
+    setCommentList(filteredCommentList);
+    setCommentLength((prev) => prev - 1);
+  }
+
+  //해당 포스팅에 해당하는 코멘트 리스트 불러오기
   const getCommentList = async () => {
     const q = query(collection(db, "commentList"), where("posting", "==", props.posting.pid), orderBy("timestamp", "desc"));
     const querySnapshot = await getDocs(q);
     const loadedData = querySnapshot.docs.map((doc) => doc.data());
     setCommentList(loadedData);
   };
+
+
+
   useEffect(() => {
     try {
       //해당 포스팅의 작성자 정보 불러오기
       getSingleData("userList", props.posting.writer, setWriterInfo);
 
       //해당 포스팅에 해당하는 코멘트 리스트 불러오기
-      // getqueryData("commentList", "posting", "==", props.posting.pid, setCommentList);
       getCommentList();
     } catch (e) {
       console.log(e.message);
@@ -52,7 +65,7 @@ const PostItem = (props) => {
       <div className={styles.post}>
         <PostItemInfo name={writerInfo.name} writeDate={props.posting.writeDate} />
         <PostItemContent contents={props.posting.contents} />
-        <PostItemActivity posting={props.posting} currentUserInfo={currentUserInfo} commentsLength={commentsLength} onToggleComments={toggleCommentsHandler} />
+        <PostItemActivity posting={props.posting} currentUserInfo={currentUserInfo} commentsLength={commentsLength} onToggleComments={toggleCommentsHandler} onRemovePosting={props.onRemovePosting} />
         {isCommentsShown && (
           <PostItemComments
             commentList={commentList}
@@ -60,6 +73,7 @@ const PostItem = (props) => {
             pid={props.posting.pid}
             writer={props.posting.writer}
             addCommentList={addCommentList}
+            removeCommentList={removeCommentList}
           />
         )}
       </div>

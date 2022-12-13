@@ -5,7 +5,7 @@ import { db } from "./config/firebase";
 export const getNow = () => new Date();
 
 // 현재 날짜(2022. 12. 7.) 형식
-export const getNowDate = () => new Date().toLocaleString().slice(0, 21)
+export const getNowDate = () => new Date().toLocaleString().slice(0, 22)
 
 // 현재 시간 기준 밸류값
 export const getNowValue = () => new Date().valueOf();
