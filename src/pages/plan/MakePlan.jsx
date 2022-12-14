@@ -1,5 +1,8 @@
-import { CommitSharp } from "@mui/icons-material";
+
 import { useState } from "react";
+import Map from "../../components/Plan/Map";
+import SearchBox from "../../components/Plan/SearchBox";
+
 
 
 const MakePlan = () => {
@@ -41,8 +44,10 @@ const MakePlan = () => {
           0박 0일 <br />
          <br /> 
          여행을 어디로 떠나나요? <br /> <br /> 
+         <Map />
+         <SearchBox />
          
-         <input type="text" /> <button>검색</button><br />        <br /> 
+          <button>검색</button><br />        <br /> 
 
          <h4>Day 1  </h4> {startDate}
          <input type="text" /> <button> 입력 </button>

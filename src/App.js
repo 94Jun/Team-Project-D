@@ -25,7 +25,10 @@ import { doc, getDoc } from "firebase/firestore";
 import { GET_CURRENT_USER_INFO } from "./modules/user";
 import PlanItem from "./components/Plan/PlanItem";
 
+
 const App = () => {
+ 
+
   const dispatch = useDispatch();
   const isSearchModalShown = useSelector(
     (state) => state.modal.isSearchModalShown
