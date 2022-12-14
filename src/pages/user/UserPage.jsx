@@ -2,7 +2,8 @@ import styles from "./UserPage.module.css";
 
 import { UserProfile } from "./ProfileImg";
 import AppsIcon from "@mui/icons-material/Apps";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ProfileEdit from "./ProfileEdit";
@@ -11,6 +12,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../config/firebase";
 import { useDispatch } from "react-redux";
 import MyPagePost from "./MyPagePost";
+import MyPagePostTag from "./MyPagePostTag";
 
 
 const UserPage = () => {
@@ -30,6 +32,10 @@ const UserPage = () => {
 
     getProfile();
   }, [currentUserInfo.profile]);
+
+  //게시물,태그 클릭 시 서로 다른 포스트 보여주기
+  const [viewPost,setviewPost] = useState(true)
+  const [isMarked,setisMarked] = useState(true)
 
   return (
     <div className={styles.user}>
@@ -63,16 +69,18 @@ const UserPage = () => {
       </div>
       <div className={styles.postmenu}>
         <ul>
-          <li>
+          <li onClick={()=> {setviewPost(true); setisMarked(true)}}>
             <AppsIcon fontSize="small" />
             게시글
           </li>
-          <li>
-            <FavoriteBorderIcon fontSize="small" />
-            태그
+          <li onClick={()=> {setviewPost(false); setisMarked(false)}}>
+            {isMarked ? <BookmarkBorderIcon fontSize="small" /> : <BookmarkIcon fontSize="small" />}
+            마크
           </li>
         </ul>
-        <MyPagePost/>
+      </div>
+      <div>
+      { viewPost ? <MyPagePost/> : <MyPagePostTag/> }
       </div>
     </div>
   );
