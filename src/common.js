@@ -5,7 +5,7 @@ import { db } from "./config/firebase";
 export const getNow = () => new Date();
 
 // 현재 날짜(2022. 12. 7.) 형식
-export const getNowDate = () => new Date().toLocaleString()
+export const getNowDate = () => new Date().toLocaleString();
 
 // 현재 시간 기준 밸류값
 export const getNowValue = () => new Date().valueOf();
@@ -30,17 +30,8 @@ export const getSingleData = async (collectionId, docId, setState) => {
 };
 
 //파이어베이스 콜렉션 내 조건에 따른 데이터 불러오기
-export const getqueryData = async (
-  collectionId,
-  docId,
-  operator,
-  conditionData,
-  setState
-) => {
-  const q = query(
-    collection(db, collectionId),
-    where(docId, operator, conditionData)
-  );
+export const getqueryData = async (collectionId, docId, operator, conditionData, setState) => {
+  const q = query(collection(db, collectionId), where(docId, operator, conditionData));
   const querySnapshot = await getDocs(q);
   const loadedData = querySnapshot.docs.map((doc) => doc.data());
   setState(loadedData);
@@ -52,13 +43,7 @@ export const addData = async (collectionId, docId, data) => {
 };
 
 //파이어베이스 콜랙션 내 데이터 배열 요소 추가, 삭제
-export const updatePushData = async (
-  collectionId,
-  docId,
-  element,
-  pushData,
-  isAdded
-) => {
+export const updatePushData = async (collectionId, docId, element, pushData, isAdded) => {
   const docRef = doc(db, collectionId, docId);
   if (isAdded) {
     await updateDoc(docRef, {

@@ -13,7 +13,6 @@
 }
 .search_form {
   padding-bottom: 40px;
-  border-bottom: 1px solid var(--color-gray);
 }
 .search_input_wrap {
   margin: auto;
@@ -43,6 +42,9 @@
   background: none;
   border: none;
   cursor: pointer;
+}
+.search_btn svg{
+  background-color: var(--color-light-gray);
 }
 @media (max-width: 1300px) {
   .search_modal {

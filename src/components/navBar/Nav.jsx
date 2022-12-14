@@ -56,9 +56,7 @@ const Nav = () => {
   return (
     <nav className={styles.container}>
       <ul className={styles.nav}>
-        {/* 클릭 시 유저 페이지로 이동
-        아이콘 => 유저 프로필로 변경 필요
-        User_Name => 사용자가 입력한 닉네임으로 변경 필요 */}
+        {/* 클릭 시 유저 페이지로 이동*/}
         <li className={styles.item}>
           <Link to="/user">
             <div className={styles.profile_wrap}>
