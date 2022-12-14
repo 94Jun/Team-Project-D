@@ -23,6 +23,7 @@ import Plans from "./pages/plan/Plans";
 import { db } from "./config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { GET_CURRENT_USER_INFO } from "./modules/user";
+import PlanItem from "./components/Plan/PlanItem";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -77,6 +78,9 @@ const App = () => {
               <Route path="/" element={<HomePage />}></Route>
               <Route path={"/user/:uid"} element={<UserPage />}></Route>
               <Route path="/search" element={<SearchPage />}></Route>
+              <Route path="/myplan" element={<MyPlan />}>
+                  <Route path="plans" element={<PlanItem />}></Route></Route>
+              <Route path="/makeplan" element={<MakePlan />}></Route>
             </Routes>
 
             {/* 마이페이지에서 프로필편집 페이지로 이동*/}
