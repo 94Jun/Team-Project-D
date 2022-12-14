@@ -1,17 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PostItem from "../PostItem/PostItem";
 import { collection, query, where, getDocs, orderBy, limit, startAfter } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useState, useEffect } from "react";
 import styles from "./Search.module.css";
+import { SET_SEARCH_LAST_VISIBLE } from "../../modules/search";
 
 const SearchResult = () => {
+  const dispatch = useDispatch();
   const currentSearch = useSelector((state) => state.search.currentSearch);
-  const [filteredPosting, setFilteredPosting] = useState(null);
-  const [lastVisible, setLastVisible] = useState(null);
+  const searchLastVisible = useSelector((state) => state.search.searchLastVisible);
+  const [filteredPosting, setFilteredPosting] = useState([]);
 
   const getPostingList = async () => {
-    if (!lastVisible) {
+    if (!searchLastVisible) {
       const first = query(
         collection(db, "postingList"),
         where("hashtags", "array-contains", currentSearch),
@@ -20,7 +22,7 @@ const SearchResult = () => {
         limit(10)
       );
       const querySnapshot = await getDocs(first);
-      setLastVisible(querySnapshot.docs[querySnapshot?.docs?.length - 1]);
+      dispatch(SET_SEARCH_LAST_VISIBLE(querySnapshot.docs[querySnapshot?.docs?.length - 1]));
       const loadedData = querySnapshot.docs.map((doc) => doc.data());
       setFilteredPosting(loadedData);
     } else {
@@ -29,11 +31,11 @@ const SearchResult = () => {
         where("hashtags", "array-contains", currentSearch),
         where("isPublic", "==", true),
         orderBy("timestamp", "desc"),
-        startAfter(lastVisible),
+        startAfter(searchLastVisible),
         limit(5)
       );
       const querySnapshot = await getDocs(next);
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+      dispatch(SET_SEARCH_LAST_VISIBLE(querySnapshot.docs[querySnapshot?.docs?.length - 1]));
       const loadedData = querySnapshot.docs.map((doc) => doc.data());
       setFilteredPosting((prev) => {
         return [...prev, ...loadedData];
@@ -50,7 +52,7 @@ const SearchResult = () => {
     }
   }, [currentSearch]);
 
-  return (
+  let content = (
     <div>
       {filteredPosting &&
         filteredPosting.map((posting) => {
@@ -61,6 +63,10 @@ const SearchResult = () => {
       </button>
     </div>
   );
+  if (filteredPosting?.length === 0) {
+    content = <div>검색 결과가 없습니다.</div>;
+  }
+  return content;
 };
 
 export default SearchResult;

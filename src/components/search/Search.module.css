@@ -8,6 +8,7 @@
 .search_content {
   color: var(--color-main-blue);
   margin: 20px 0;
+  cursor: pointer;
 }
 .search_content_wrap {
   display: flex;
@@ -23,7 +24,7 @@
   font-size: var(--font-xlarge);
 }
 .search_content::before {
-  content: "#";
+  content: "# ";
 }
 .more_btn{
   display: block;

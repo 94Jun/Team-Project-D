@@ -52,8 +52,6 @@ const Nav = () => {
       });
   };
 
-  console.log(currentUserInfo.uid);
-
   return (
     <nav className={styles.container}>
       <ul className={styles.nav}>
