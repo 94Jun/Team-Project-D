@@ -1,5 +1,5 @@
 .container {
-  width: calc(15% + 150px);
+  min-width: calc(15% + 150px);
   margin-top: 10px;
   margin-left: 10px;
 }

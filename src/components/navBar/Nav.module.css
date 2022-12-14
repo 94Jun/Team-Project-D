@@ -22,13 +22,13 @@
   align-items: center;
 }
 .profile_wrap{
-  width : 25px;
-  height : 25px;
-  border-radius: 50%;
-  overflow: hidden;
+  width : 28px;
+  height : 28px;
 }
 .profile_wrap img{
-  width : 100%;
+  width : 28px;
+  height: 28px;
+  border-radius: 50%;
 }
 .userName{
   font-weight: 700;

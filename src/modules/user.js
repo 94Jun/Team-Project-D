@@ -26,6 +26,15 @@ export const user = createSlice({
     ADD_CURRENT_USER_PROFILE: (state, action) => {
       state.profileImg[0] = action.payload;
     },
+    REMOVE_RECENT_SEARCH: (state, action) => { 
+      const filteredRecentSearchs = state.currentUserInfo.recentSearchs.filter((item) => { 
+        return item !== action.payload;
+      })
+      state.currentUserInfo.recentSearchs = filteredRecentSearchs;
+    },
+    ADD_RECENT_SEARCH: (state, action) => { 
+      state.currentUserInfo.recentSearchs.push(action.payload)
+    }
   },
 });
 
