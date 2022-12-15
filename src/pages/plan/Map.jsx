@@ -1,38 +1,42 @@
-import { GoogleMap, LoadScript, Autocomplete } from "@react-google-maps/api";
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { Autocomplete } from "@react-google-maps/api";
 import { useState } from "react";
 
 const containerStyle = {
-  width: "400px",
+  width: "800px",
   height: "400px",
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523,
+  lat: 37.5115557,
+  lng: 127.0595261,
 };
+const autocomplete = null;
 
 const Map = () => {
-  const [enteredSearch, setEnteredSearch] = useState('')
-  const changeSearchHandler = (e) => { 
-    setEnteredSearch(e.target.value)
-  }
-  const onLoad = () => { 
-    return enteredSearch
-  }
-  const onPlaceChanged = () => { 
-    
-  }
-  console.log(enteredSearch)
+  const onLoad = (autocomplete) => {
+    console.log("autocomplete: ", autocomplete);
+    autocomplete = autocomplete;
+  };
+
+  const onPlaceChanged = () => {
+    if (autocomplete !== null) {
+      console.log(autocomplete.getPlace());
+    } else {
+      console.log("Autocomplete is not loaded yet!");
+    }
+  };
+
+  const [places, setPlaces] = useState([]);
+
   return (
-    <LoadScript googleMapsApiKey="AIzaSyA6OrenYAlZUEIfy_7PIFEwL4sRxu2cV64" libraries={["places"]}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
-      <Autocomplete
-            onLoad={onLoad}
-            onPlaceChanged={onPlaceChanged}
-          >
+    <div>
+      <LoadScript googleMapsApiKey="AIzaSyA6OrenYAlZUEIfy_7PIFEwL4sRxu2cV64" libraries={["places"]}>
+        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={15}>
+          <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
             <input
               type="text"
-              placeholder="Customized your placeholder"
+              placeholder="원하는 지역을 선택해주세요"
               style={{
                 boxSizing: `border-box`,
                 border: `1px solid transparent`,
@@ -46,13 +50,14 @@ const Map = () => {
                 textOverflow: `ellipses`,
                 position: "absolute",
                 left: "50%",
-                marginLeft: "-120px"
-            }}
-            onChange={changeSearchHandler}
-          / >
+                marginLeft: "-120px",
+              }}
+            />
           </Autocomplete>
-      </GoogleMap>
-    </LoadScript>
+        </GoogleMap>
+      </LoadScript>
+      <button> </button>
+    </div>
   );
 };
 
