@@ -4,3 +4,14 @@
     background:#00d3d3;
     border-radius:20px;
 }
+
+.datelist {
+    display: flex;
+    float: left;
+    text-align: left;
+    }
+
+.friendslist {
+display: flex;
+text-align: left;
+}
