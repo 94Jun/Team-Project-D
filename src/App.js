@@ -24,11 +24,8 @@ import { db } from "./config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { GET_CURRENT_USER_INFO } from "./modules/user";
 
-import { Loader } from '@googlemaps/js-api-loader';
-
 
 const App = () => {
- 
 
   const dispatch = useDispatch();
   const isSearchModalShown = useSelector(
@@ -57,15 +54,6 @@ const App = () => {
   console.log(isLogincheck);
   console.log("currentUser", currentUser);
 
-  const apiOptions = {
-    apiKey: "AIzaSyA6OrenYAlZUEIfy_7PIFEwL4sRxu2cV64"
-  }
-
-  const loader = new Loader(apiOptions);
-
-  loader.then(() => {
-    console.log('Maps JS API Loaded');
-  });
   return (
     <div className="App">
       {!isLogincheck ? (

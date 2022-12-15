@@ -1,71 +1,47 @@
-
 import { useState } from "react";
-import Map from "../../components/Plan/Map";
-import SearchBox from "../../components/Plan/SearchBox";
-
-
+import PlanningOfDay from "../../components/Plan/PlanningOfDay";
+import Map from "../../components/Plan/Map"
 
 const MakePlan = () => {
-    const [startDate, setStartDate]=useState();
-    const [endsDate, setEndsDate]=useState();
+  const [startDate, setStartDate] = useState({date : new Date().toISOString().slice(0,10), value : Date.now()});
+  const [endsDate, setEndsDate] = useState({ date: new Date().toISOString().slice(0, 10), value: Date.now() });
 
-    const dateCount =  () => {
-   const dateControl = document.querySelector('input[type=date]');
-    dateControl.value = startDate;
-    const startDateVal = dateControl.valueAsNumber;
-    console.log(startDateVal);
+  const changeStartDate = (e) => {
+    setStartDate((prev) => { 
+      return {date : e.target.value, value : e.target.valueAsNumber}
+    })
+  }
+  const changeEndsDate = (e) => { 
+    setEndsDate((prev) => { 
+      return {date : e.target.value, value : e.target.valueAsNumber}
+    })
+  }
+  const dateValue = Math.ceil((endsDate.value - startDate.value) / 86400000);
+  
+  let period = "종료은 시작일 보다 같거나 커야합니다.";
+  if (dateValue === 0) period = "당일";
+  if (dateValue > 0) period = `${dateValue}박 ${dateValue + 1}일`;
+  
+  
+  return (
+    <div>
+      <p>즐거운 여행 계획을 시작하세요</p>
+      <div>
+        <p>여행을 언제 시작하나요?</p>
+        <input type="date" onChange={changeStartDate} value={startDate.date} min={new Date().toISOString().slice(0,10)}/>
+      </div>
+      <div>
+        <p>여행을 언제 끝내나요?</p>
+        <input type="date" onChange={changeEndsDate} value={endsDate.date} min={startDate.date} />
+      </div>
+      <div>{period}</div>
+      <div> <Map /></div>
+      {dateValue > 0 && Array(dateValue + 1).fill().map((date, idx) => { 
+        return <PlanningOfDay key={idx} date={idx+1} />
+      })}
+    </div>
 
-    const dateContro2 = document.querySelector('input[type=date]');
-    dateContro2.value = endsDate;
-    const dateControVal2 = dateContro2.valueAsNumber;
-    console.log(dateControVal2);
+  );
+};
 
-    console.log(dateControVal2-startDateVal);
-    const diffVal = dateControVal2-startDateVal; 
-      console.log(diffVal)
-
-    }; 
-
-
-    return ( 
-        <div>
-         <p> 즐거운 여행 계획을 시작하세요 </p><br /> 
-
-         여행을 언제 시작하나요? {startDate} <br />
-         <input type="date" id="start" name="trip-start"
-       value={startDate|| ''}
-       min="2023-01-01" max="2080-12-31" onChange={(e)=>setStartDate(e.target.value)}/><br />
-         
-         여행을 언제 끝내나요? {endsDate} <br />
-         <input type="date" id="ends" name="trip-start"
-       value={endsDate|| ''}
-       min={startDate} max="2080-12-31" onChange={(e)=>setEndsDate(e.target.value)}  /><br />
-        <button onClick={dateCount}> 날짜? </button>
-          0박 0일 <br />
-         <br /> 
-         여행을 어디로 떠나나요? <br /> <br /> 
-         <Map />
-         <SearchBox />
-         
-          <button>검색</button><br />        <br /> 
-
-         <h4>Day 1  </h4> {startDate}
-         <input type="text" /> <button> 입력 </button>
-         <li>부산역 </li>
-         <li>도착시간 : 12:00 pm </li>
-
-         <h4>Day 2  </h4>  
-         <input type="text" /> <button> 입력 </button>
-         <li>부산역 </li>
-         <li>도착시간 : 12:00 pm </li>
-
-         <h4>Day 3  </h4> {endsDate}
-         <input type="text" /> <button> 입력 </button>
-         <li>부산역 </li>
-         <li>도착시간 : 12:00 pm </li>
-
-        </div>
-     );
-}
- 
 export default MakePlan;

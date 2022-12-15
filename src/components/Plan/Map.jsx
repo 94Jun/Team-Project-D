@@ -1,24 +1,33 @@
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
+const containerStyle = {
+  width: '400px',
+  height: '400px'
+};
+
+const center = {
+  lat: 37.5115557,
+  lng: 127.0595261
+};
 
 const Map = () => {
 
-function displayMap() {
-  const mapOptions = {
-    center: { lat: -33.860664, lng: 151.208138 },
-    zoom: 14
-  };
-  const mapDiv = document.getElementById('map');
-  const map = new google.maps.Map(mapDiv, mapOptions);
-  return map;
-}
-
   return ( 
     <div>
-
-      <div> 구글 지도 </div>
-      <div  id="map"> </div>
-<button onClick={displayMap()}> </button>    </div>
-   );
+ <LoadScript
+        googleMapsApiKey="AIzaSyA6OrenYAlZUEIfy_7PIFEwL4sRxu2cV64">
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={10}
+        >
+          { /* Child components, such as markers, info windows, etc. */ }
+          <></>
+        </GoogleMap>
+      </LoadScript>
+        
+<button> </button> 
+    </div>  );
 }
  
 export default Map;
