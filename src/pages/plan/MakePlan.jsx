@@ -37,7 +37,7 @@ const MakePlan = () => {
       </div>
       <div>{period}</div>
       <div> <Map /></div>
-      {dateValue > 0 && Array(dateValue + 1).fill().map((date, idx) => { 
+      {dateValue >= 0 && Array(dateValue + 1).fill().map((date, idx) => { 
         return <PlanningOfDay key={idx} date={idx+1} />
       })}
 
