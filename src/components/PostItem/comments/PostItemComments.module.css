@@ -8,14 +8,11 @@
   margin-right: 10px;
   border-bottom: 1px solid var(--color-light-gray);
 }
-.profile_wrap {
+
+.profile_wrap img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  overflow: hidden;
-}
-.profile_wrap img {
-  width: 100%;
 }
 .comment_form {
   flex-grow: 1;
@@ -51,16 +48,13 @@
   display: flex;
   gap: 20px;
 }
-.comment_profile_wrap {
+
+.comment_profile_wrap img {
   width : 30px;
   height : 30px;
   max-width: 30px;
   max-height: 30px;
   border-radius: 50%;
-  overflow: hidden;
-}
-.comment_profile_wrap img {
-  width: 100%;
 }
 .comment_writer_name {
   font-weight: 700;
