@@ -1,4 +1,4 @@
-const Plans = () => {
+const Plan = () => {
     return ( 
         <div>
             <h1> 2023.01.03-01.05</h1>
@@ -29,4 +29,4 @@ const Plans = () => {
      );
 }
  
-export default Plans;
+export default Plan;

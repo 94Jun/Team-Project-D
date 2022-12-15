@@ -8,12 +8,12 @@ import LoginPage from "./pages/login/LoginPage";
 import UserPage from "./pages/user/UserPage";
 import SearchPage from "./pages/search/SearchPage";
 import Register from "./pages/login/Register";
-import MyPlan from "./pages/plan/MyPlan";
-import MakePlan from "./pages/plan/MakePlan";
-import Plans from "./pages/plan/Plans";
 import ProfileEdit from "./pages/user/ProfileEdit";
 import SearchModal from "./components/modal/SearchModal";
 import FindPassword from "./components/modal/FindPassword";
+import MyPlans from "./pages/plan/MyPlans";
+import Plan from "./pages/plan/Plan";
+import MakePlan from "./pages/plan/MakePlan";
 
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -23,9 +23,9 @@ import { LOGIN } from "./modules/login";
 import { db } from "./config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { GET_CURRENT_USER_INFO } from "./modules/user";
-import PlanItem from "./components/Plan/PlanItem";
 
 import { Loader } from '@googlemaps/js-api-loader';
+
 
 const App = () => {
  
@@ -91,8 +91,8 @@ const App = () => {
               <Route path="/" element={<HomePage />}></Route>
               <Route path={"/user/:uid"} element={<UserPage />}></Route>
               <Route path="/search" element={<SearchPage />}></Route>
-              <Route path="/myplan" element={<MyPlan />}>
-                  <Route path="plans" element={<PlanItem />}></Route></Route>
+              <Route path="/myplans" element={<MyPlans />}>
+                  <Route path="plan" element={<Plan />}></Route></Route>
               <Route path="/makeplan" element={<MakePlan />}></Route>
             </Routes>
 

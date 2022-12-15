@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import PlanItem from "../../components/Plan/PlanItem";
 
 
-const MyPlan = () => {
+const MyPlans = () => {
     return ( <div>
         <div>
             <h1>나의 여행 계획</h1>
@@ -16,4 +16,4 @@ const MyPlan = () => {
     </div> );
 }
  
-export default MyPlan;
+export default MyPlans;
