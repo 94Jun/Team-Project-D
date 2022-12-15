@@ -9,9 +9,12 @@ const MyPlans = () => {
         <div>
             <h1>나의 여행 계획</h1>
 
-            <button>  <NavLink to ='/makeplan' > 계획만들기 </NavLink> </button>
+         <button>  <NavLink to ='/makeplan' > 계획만들기 </NavLink> </button>
+
          </div> <br />
+         
         <PlanItem /> 
+        {/** 누르면 Plan으로 보이기 */}
      
     </div> );
 }
