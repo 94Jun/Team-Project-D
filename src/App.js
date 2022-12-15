@@ -8,24 +8,25 @@ import LoginPage from "./pages/login/LoginPage";
 import UserPage from "./pages/user/UserPage";
 import SearchPage from "./pages/search/SearchPage";
 import Register from "./pages/login/Register";
-import MyPlan from "./pages/plan/MyPlan";
+import ProfileEdit from "./pages/user/ProfileEdit";
+import SearchModal from "./components/modal/SearchModal";
+import FindPassword from "./components/modal/FindPassword";
+import MyPlans from "./pages/plan/MyPlans";
+import Plan from "./pages/plan/Plan";
 import MakePlan from "./pages/plan/MakePlan";
 
-import ProfileEdit from "./pages/user/ProfileEdit";
 import { useSelector } from "react-redux";
-import SearchModal from "./components/modal/SearchModal";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "./modules/login";
-import FindPassword from "./components/modal/FindPassword";
-import Plans from "./pages/plan/Plans";
 
 import { db } from "./config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { GET_CURRENT_USER_INFO } from "./modules/user";
-import PlanItem from "./components/Plan/PlanItem";
+
 
 const App = () => {
+
   const dispatch = useDispatch();
   const isSearchModalShown = useSelector(
     (state) => state.modal.isSearchModalShown
@@ -74,8 +75,8 @@ const App = () => {
               <Route path="/" element={<HomePage />}></Route>
               <Route path={"/user/:uid"} element={<UserPage />}></Route>
               <Route path="/search" element={<SearchPage />}></Route>
-              <Route path="/myplan" element={<MyPlan />}>
-                  <Route path="plans" element={<PlanItem />}></Route></Route>
+              <Route path="/myplans" element={<MyPlans />}></Route>
+               <Route path="/plan/:planid" element={<Plan />}></Route>
               <Route path="/makeplan" element={<MakePlan />}></Route>
             </Routes>
 
