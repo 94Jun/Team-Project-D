@@ -1,5 +1,5 @@
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import { Autocomplete } from "@react-google-maps/api";
+import { Autocomplete, StandaloneSearchBox } from "@react-google-maps/api";
 import { useState } from "react";
 
 const containerStyle = {
@@ -11,29 +11,26 @@ const center = {
   lat: 37.5115557,
   lng: 127.0595261,
 };
-const autocomplete = null;
 
 const Map = () => {
-  const onLoad = (autocomplete) => {
-    console.log("autocomplete: ", autocomplete);
-    autocomplete = autocomplete;
+  const [searchBox, setSearchBox] = useState(null);
+  const [place, setPlace] = useState();
+  const onLoad = (searchBox) => {
+    setSearchBox(searchBox);
+  };
+  console.log(searchBox);
+  const onPlacesChanged = () => {
+    console.log("places Changed");
   };
 
-  const onPlaceChanged = () => {
-    if (autocomplete !== null) {
-      console.log(autocomplete.getPlace());
-    } else {
-      console.log("Autocomplete is not loaded yet!");
-    }
+  const changeInputHandler = (e) => {
+    setPlace(e.target.value);
   };
-
-  const [places, setPlaces] = useState([]);
-
   return (
     <div>
       <LoadScript googleMapsApiKey="AIzaSyA6OrenYAlZUEIfy_7PIFEwL4sRxu2cV64" libraries={["places"]}>
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={15}>
-          <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+          <StandaloneSearchBox onLoad={() => onLoad(place)} onPlacesChanged={onPlacesChanged}>
             <input
               type="text"
               placeholder="원하는 지역을 선택해주세요"
@@ -52,8 +49,9 @@ const Map = () => {
                 left: "50%",
                 marginLeft: "-120px",
               }}
+              onChange={changeInputHandler}
             />
-          </Autocomplete>
+          </StandaloneSearchBox>
         </GoogleMap>
       </LoadScript>
       <button> </button>
