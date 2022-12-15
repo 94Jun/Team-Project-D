@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PlanningOfDay from "../../components/Plan/PlanningOfDay";
 import Map from "../../components/Plan/Map"
+import PageDesign from "../../components/Plan/pageDesign";
 
 const MakePlan = () => {
   const [startDate, setStartDate] = useState({date : new Date().toISOString().slice(0,10), value : Date.now()});
@@ -39,6 +40,9 @@ const MakePlan = () => {
       {dateValue > 0 && Array(dateValue + 1).fill().map((date, idx) => { 
         return <PlanningOfDay key={idx} date={idx+1} />
       })}
+
+
+      <PageDesign />
     </div>
 
   );
