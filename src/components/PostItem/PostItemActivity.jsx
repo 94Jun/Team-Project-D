@@ -26,13 +26,13 @@ const PostItemActivity = (props) => {
   const [likeLength, setLikeLength] = useState(props.posting.like.length);
   useEffect(() => {
     if (
-      props.currentUserInfo.markedPosting.indexOf(props.posting.pid) !== -1 &&
+      props?.currentUserInfo?.markedPosting?.indexOf(props.posting.pid) !== -1 &&
       isMarked === false
     ) {
       toggleMarked();
     }
     if (
-      props.currentUserInfo.likedPosting.indexOf(props.posting.pid) !== -1 &&
+      props?.currentUserInfo?.likedPosting?.indexOf(props.posting.pid) !== -1 &&
       isLiked === false
     ) {
       toggleLiked();
