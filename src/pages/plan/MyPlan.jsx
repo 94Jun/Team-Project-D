@@ -2,7 +2,6 @@
 import { NavLink } from "react-router-dom";
 
 import PlanItem from "../../components/Plan/PlanItem";
-import MakePlan from "./MakePlan";
 
 
 const MyPlan = () => {
@@ -12,7 +11,6 @@ const MyPlan = () => {
 
             <button>  <NavLink to ='/makeplan' > 계획만들기 </NavLink> </button>
          </div> <br />
-         <MakePlan />
         <PlanItem /> 
      
     </div> );
