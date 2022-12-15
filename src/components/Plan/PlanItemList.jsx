@@ -2,19 +2,18 @@ import PlanItem from "./PlanItem";
 import { useSelector } from "react-redux";
 
 const PlanItemList = () => {
-    const planItemList = useSelector((state) => {
-        return state.planItem.planItemList;
-      });
-    return ( 
-        <div>
+  const planItemList = useSelector((state) => {
+    return state.planItem.planItemList;
+  });
+  return (
     <div>
-      {planItemList.map((planItem) => {
-        return <PlanItem  />;
-      })}
+      <div>
+        {planItemList.map((planItem) => {
+          return <PlanItem />;
+        })}
+      </div>
     </div>
+  );
+};
 
-        </div>
-     );
-}
- 
 export default PlanItemList;

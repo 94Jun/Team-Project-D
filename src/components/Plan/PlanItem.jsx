@@ -1,6 +1,10 @@
 import styles from "./PlanItem.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const PlanItem = () => {
+    const navigate = useNavigate();
+
     const min =0;
     const max= 100;
     const postingid = Math.floor(Math.random() * (max-min)) + min;
@@ -22,9 +26,12 @@ const PlanItem = () => {
         postingid : postingid+1
 },
 ]
+    const gotoplan = ()=> {
+        navigate('/plan');
+    }
 
 const result = planpsts.map((planpsts,index) => 
-<button> <div className={styles.myplanboxs} key={index}>
+<button onClick={gotoplan}> <div className={styles.myplanboxs} key={index}>
 
 <p>{planpsts.title}</p>
 <p>여행시작 : {planpsts.datestart}</p>
