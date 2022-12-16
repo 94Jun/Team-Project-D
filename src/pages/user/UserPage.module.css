@@ -3,13 +3,14 @@
 }
 
 .title {
+  /*수정*/
   display: flex;
   margin: 20px;
   justify-content: center;
   border-bottom: 1px solid var(--color-gray);
 }
 .main_title {
-  margin-top: 35px;
+  margin-top: 40px;
 }
 .name_title {
   display: flex;
@@ -21,22 +22,24 @@
   height: 130px;
   width: 130px;
   overflow: hidden;
-  cursor: pointer;
 }
 .name {
-  display: flex;
-  font-size: x-large;
+  font-size: x-large; /*수정*/
 }
 .comment {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  margin-right: 51px;
+  width: 100%;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
 .user_title {
   width: 300px;
+  height: 80px;
   display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .postmenu {
@@ -105,6 +108,42 @@
   position: absolute;
   bottom: -10px;
   right: 45px;
+}
+.icon {
+  cursor: pointer;
+}
+
+.follow_btn {
+  height: 30px;
+  background-color: var(--color-main-blue);
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 5px;
+  border: 0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  color: var(--color-white);
+}
+
+.unfollow_btn {
+  height: 30px;
+  background-color: var(--color-white);
+  cursor: pointer;
+  border: 1px solid var(--color-main-blue);
+  border-radius: 8px;
+  margin: 5px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  color: var(--color-black);
+}
+.unfollow_btn:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+.unfollow_btn:hover::after {
+  content: "취소";
 }
 @media (max-width: 1300px) {
   .post_main {

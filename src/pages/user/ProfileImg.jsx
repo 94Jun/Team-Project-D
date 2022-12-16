@@ -32,7 +32,6 @@ export default function ProfileImg() {
     reader.onload = () => {
       dispatch(GET_CURRENT_USER_PROFILE(reader.result));
       dispatch(ADD_CURRENT_USER_PROFILE(reader.result));
-      console.log(reader.result);
     };
   };
   // 유저 프로필 불러오기
@@ -74,7 +73,7 @@ export default function ProfileImg() {
   );
 }
 
-export function UserProfile({ profile, user }) {
+export function UserProfile({ profile }) {
   return (
     <div className={styles.preview}>
       <img src={profile} alt="preview-img" width="100%" height="100%" />
