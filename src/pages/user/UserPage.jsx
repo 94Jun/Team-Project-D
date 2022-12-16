@@ -1,6 +1,8 @@
 import styles from "./UserPage.module.css";
 import { UserProfile } from "./ProfileImg";
 import AppsIcon from "@mui/icons-material/Apps";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useState, useEffect } from "react";
@@ -9,6 +11,8 @@ import ProfileEdit from "./ProfileEdit";
 import { GET_CURRENT_USER_PROFILE } from "../../modules/user";
 import { ref, getDownloadURL } from "firebase/storage";
 import { useDispatch } from "react-redux";
+import MyPagePost from "./MyPagePost";
+import MyPagePostTag from "./MyPagePostTag";
 import { useParams } from "react-router-dom";
 import { getSingleData, updatePushData } from "../../common";
 import { storage } from "../../config/firebase";
@@ -33,12 +37,16 @@ const UserPage = () => {
   const profile = useSelector((state) => state.user.profile);
   const params = useParams();
 
+
+
+
   useEffect(() => {
     //다른사람 페이지 들어갔을때 그사람 userList 데이터 받아오는 함수
     getSingleData("userList", params.uid, setUser);
   }, [params]);
 
   //프로필 사진 가져오는 함수
+
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${user.profile}`);
     const url = await getDownloadURL(profileRef);
@@ -83,6 +91,10 @@ const UserPage = () => {
     userPostingCount();
     getProfile();
   }, [user.profile]);
+
+  //게시물,태그 클릭 시 서로 다른 포스트 보여주기
+  const [viewPost,setviewPost] = useState(true)
+  const [isMarked,setisMarked] = useState(true)
 
   return (
     <div className={styles.user}>
@@ -145,14 +157,17 @@ const UserPage = () => {
       </div>
       <div className={styles.postmenu}>
         <ul>
-          <li>
+          <li onClick={() => { setviewPost(true); setisMarked(true); } }>
             <AppsIcon fontSize="small" />
             게시글
           </li>
-          <li>
-            <FavoriteBorderIcon fontSize="small" />
-            태그
-          </li>
+          <li 
+          onClick={()=>{ setviewPost(false); setisMarked(false);}}>
+          {isMarked ? <BookmarkBorderIcon fontSize="small" /> : <BookmarkIcon fontSize="small" />}
+          마크
+        </li>
+        {viewPost ? <MyPagePost /> : <MyPagePostTag />}
+        
           <li onClick={() => setFollowDisplay(!followDisplay)}>
             <PersonOutlineOutlinedIcon fontSize="small" />
             팔로우 목록
