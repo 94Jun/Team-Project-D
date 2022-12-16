@@ -95,7 +95,7 @@ const UserPage = () => {
     MyPagePost: <MyPagePost />,
     MyPagePostTag: <MyPagePostTag />,
     Following: <Follow />,
-    Follower: <Follower />,
+    Follower: <Follower user={user} />,
   };
   const test = [
     {
@@ -173,25 +173,31 @@ const UserPage = () => {
       <div className={styles.postmenu}>
         <ul>
           <li onClick={handleClickButton}>
-            <AppsIcon fontSize="small" />
+            <AppsIcon fontSize="small" onClick={handleClickButton} />
             <button name={test[0].name} className={styles.nav_btn}>
               게시글
             </button>
           </li>
           <li onClick={handleClickButton}>
-            <BookmarkBorderIcon fontSize="small" />
+            <BookmarkBorderIcon fontSize="small" onClick={handleClickButton} />
             <button name={test[1].name} className={styles.nav_btn}>
               마크
             </button>
           </li>
           <li onClick={handleClickButton}>
-            <PersonOutlineOutlinedIcon fontSize="small" />
+            <PersonOutlineOutlinedIcon
+              fontSize="small"
+              onClick={handleClickButton}
+            />
             <button name={test[2].name} className={styles.nav_btn}>
               팔로우 목록
             </button>
           </li>
           <li onClick={handleClickButton}>
-            <PersonOutlineOutlinedIcon fontSize="small" />
+            <PersonOutlineOutlinedIcon
+              fontSize="small"
+              onClick={handleClickButton}
+            />
             <button name={test[3].name} className={styles.nav_btn}>
               팔로워 목록
             </button>
