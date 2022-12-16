@@ -166,7 +166,6 @@ const UserPage = () => {
           {isMarked ? <BookmarkBorderIcon fontSize="small" /> : <BookmarkIcon fontSize="small" />}
           마크
         </li>
-        {viewPost ? <MyPagePost /> : <MyPagePostTag />}
         
           <li onClick={() => setFollowDisplay(!followDisplay)}>
             <PersonOutlineOutlinedIcon fontSize="small" />
@@ -178,6 +177,7 @@ const UserPage = () => {
           </li>
         </ul>
       </div>
+        {viewPost ? <MyPagePost /> : <MyPagePostTag />}
       {followDisplay ? <Follow followDisplay={followDisplay} /> : ""}
       {followerDisplay ? <Follower followDisplay={followerDisplay} /> : ""}
     </div>
