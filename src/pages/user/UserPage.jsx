@@ -2,6 +2,7 @@ import styles from "./UserPage.module.css";
 import { UserProfile } from "./ProfileImg";
 import AppsIcon from "@mui/icons-material/Apps";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ProfileEdit from "./ProfileEdit";
@@ -11,23 +12,20 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getSingleData, updatePushData } from "../../common";
 import { storage } from "../../config/firebase";
-import Follow from "./Follow";
+import Follow from "../../components/follow/Follow";
+import Follower from "../../components/follower/Follower";
 import { db } from "../../config/firebase";
 import {
   collection,
   query,
   where,
   getCountFromServer,
-  getDoc,
-  doc,
 } from "firebase/firestore";
-import { border } from "@mui/system";
-
 const UserPage = () => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({});
   const [followDisplay, setFollowDisplay] = useState(false);
-  const [followBtn, setfollowBtn] = useState(false);
+  const [followerDisplay, setFollowerDisplay] = useState(false);
   const [postingCount, setPostingCount] = useState("");
   const handleOpen = () => setOpen(true);
   const dispatch = useDispatch();
@@ -39,6 +37,13 @@ const UserPage = () => {
     //다른사람 페이지 들어갔을때 그사람 userList 데이터 받아오는 함수
     getSingleData("userList", params.uid, setUser);
   }, [params]);
+
+  //프로필 사진 가져오는 함수
+  const getProfile = async () => {
+    const profileRef = ref(storage, `images/${user.profile}`);
+    const url = await getDownloadURL(profileRef);
+    dispatch(GET_CURRENT_USER_PROFILE(url));
+  };
 
   const follow = async () => {
     await updatePushData(
@@ -63,13 +68,6 @@ const UserPage = () => {
       alert("팔로우 실패하였습니다");
     }
   };
-  //프로필 사진 가져오는 함수
-  const getProfile = async () => {
-    const profileRef = ref(storage, `images/${user.profile}`);
-    const url = await getDownloadURL(profileRef);
-    dispatch(GET_CURRENT_USER_PROFILE(url));
-  };
-
   //개시물 갯수
   const userPostingCount = async () => {
     const coll = collection(db, "postingList");
@@ -114,9 +112,7 @@ const UserPage = () => {
                     <span>{"팔로워:" + currentUserInfo.follower.length}</span>
                   </li>
                   <li className={styles.comment}>
-                    <span onClick={() => setFollowDisplay(!followDisplay)}>
-                      {"팔로우:" + currentUserInfo.following.length}
-                    </span>
+                    <span>{"팔로우:" + currentUserInfo.following.length}</span>
                   </li>
                 </ul>
               )}
@@ -135,7 +131,7 @@ const UserPage = () => {
                     )}
                     {currentUserInfo.following?.includes(user.uid) && (
                       <button className={styles.unfollow_btn} onClick={follow}>
-                        언팔로우
+                        팔로우
                       </button>
                     )}
                     <span> {":" + user.following?.length}</span>
@@ -157,9 +153,18 @@ const UserPage = () => {
             <FavoriteBorderIcon fontSize="small" />
             태그
           </li>
+          <li onClick={() => setFollowDisplay(!followDisplay)}>
+            <PersonOutlineOutlinedIcon fontSize="small" />
+            팔로우 목록
+          </li>
+          <li onClick={() => setFollowerDisplay(!followerDisplay)}>
+            <PersonOutlineOutlinedIcon fontSize="small" />
+            팔로워 목록
+          </li>
         </ul>
       </div>
       {followDisplay ? <Follow followDisplay={followDisplay} /> : ""}
+      {followerDisplay ? <Follower followDisplay={followerDisplay} /> : ""}
     </div>
   );
 };
