@@ -15,7 +15,7 @@ const ProfileEdit = (props) => {
   const handleClose = () => props.setOpen(false);
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const profileImg = useSelector((state) => state.user.profileImg);
-
+  //개시물 갯수 where절로 ref 설정 count 파이어베이스 문장 포스팅 리스트에서 바로 아이디 비교후
   const onChangeName = (e) => {
     setName(e.target.value);
   };

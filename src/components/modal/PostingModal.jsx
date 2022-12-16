@@ -81,10 +81,12 @@ const PostingModal = (props) => {
           const imageRef = ref(storage, `images/${randomNum}`);
           uploadString(imageRef, image[i], "data_url");
           addedPublicPosting.images.push(randomNum);
-          console.log("???", addedPublicPosting);
         } //uploadString:data_url,base64데이터 업로드용
         //imageRef=ref(storage,폴더이름/파일이름)
-        await setDoc(doc(db, "postingList", addedPublicPosting.pid), addedPublicPosting);
+        await setDoc(
+          doc(db, "postingList", addedPublicPosting.pid),
+          addedPublicPosting
+        );
         setText("");
         setImgs("");
         dispatch(INITIAL_STATE_HASH());
@@ -99,7 +101,12 @@ const PostingModal = (props) => {
   };
   return (
     <div>
-      <Modal onClose={handleClose} open={props.open} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+      <Modal
+        onClose={handleClose}
+        open={props.open}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
         <div className={styles.posting}>
           <div className={styles.nav}>
             <Upload />
@@ -112,9 +119,20 @@ const PostingModal = (props) => {
           </div>
           {imgs !== undefined ? (
             imgs.slice(5, 10) === "video" ? (
-              <video src={imgs} alt={imgs} width={"100%"} autoPlay className={styles.image} />
+              <video
+                src={imgs}
+                alt={imgs}
+                width={"100%"}
+                autoPlay
+                className={styles.image}
+              />
             ) : (
-              <img src={imgs} alt={imgs} width={"100%"} className={styles.image} />
+              <img
+                src={imgs}
+                alt={imgs}
+                width={"100%"}
+                className={styles.image}
+              />
             )
           ) : (
             ""
