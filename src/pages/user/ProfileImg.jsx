@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import styles from "./UserPage.module.css";
 import { ref, getDownloadURL } from "firebase/storage";
 import { useSelector } from "react-redux";
@@ -9,12 +9,21 @@ import {
   ADD_CURRENT_USER_PROFILE,
 } from "../../modules/user";
 import AddAPhotoOutlined from "@mui/icons-material/AddAPhotoOutlined";
+import { useParams } from "react-router-dom";
+import { getSingleData } from "../../common";
 
 export default function ProfileImg() {
+  const [user, setUser] = useState({});
   const fileInput = useRef(null);
   const dispatch = useDispatch();
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const profile = useSelector((state) => state.user.profile);
+
+  const params = useParams();
+
+  useEffect(() => {
+    getSingleData("userList", params.uid, setUser);
+  }, []);
 
   //프로필 이미지 넣어주는 함수
   const setProfile = (props) => {
@@ -23,10 +32,8 @@ export default function ProfileImg() {
     reader.onload = () => {
       dispatch(GET_CURRENT_USER_PROFILE(reader.result));
       dispatch(ADD_CURRENT_USER_PROFILE(reader.result));
-      console.log(reader.result);
     };
   };
-  console.log(currentUserInfo?.profile);
   // 유저 프로필 불러오기
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${currentUserInfo.profile}`);

@@ -1,11 +1,9 @@
-import { useLocation } from "react-router-dom";
 import SearchResult from "../../components/search/SearchResult";
-import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { ADD_RECENT_SEARCH } from "../../modules/user";
+import styles from './SearchPage.module.css'
+
 const SearchPage = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <SearchResult />
     </div>
   );

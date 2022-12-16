@@ -8,7 +8,14 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import { useEffect, useState } from "react";
 import { getId, updatePushData } from "../../common";
 import useToggle from "../../hooks/useToggle";
-import { doc, deleteDoc, collection, query, where, getDocs } from "firebase/firestore";
+import {
+  doc,
+  deleteDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../../config/firebase";
 
 const PostItemActivity = (props) => {
@@ -18,23 +25,50 @@ const PostItemActivity = (props) => {
   const [isLiked, toggleLiked] = useToggle(false);
   const [likeLength, setLikeLength] = useState(props.posting.like.length);
   useEffect(() => {
-    if (props.currentUserInfo.markedPosting.indexOf(props.posting.pid) !== -1 && isMarked === false) {
+    if (
+      props?.currentUserInfo?.markedPosting?.indexOf(props.posting.pid) !== -1 &&
+      isMarked === false
+    ) {
       toggleMarked();
     }
-    if (props.currentUserInfo.likedPosting.indexOf(props.posting.pid) !== -1 && isLiked === false) {
+    if (
+      props?.currentUserInfo?.likedPosting?.indexOf(props.posting.pid) !== -1 &&
+      isLiked === false
+    ) {
       toggleLiked();
     }
   }, [props.currentUserInfo]);
   const toggleLikeHandler = async () => {
-    const likeNotice = { nid: getId(), text: `${props.currentUserInfo.name}님이 회원님의 글을 좋아합니다.` };
+    const likeNotice = {
+      nid: getId(),
+      text: `${props.currentUserInfo.name}님이 회원님의 글을 좋아합니다.`,
+    };
     try {
       //현재 로그인한 user의 likedPosting 변경 (데이터베이스에 업데이트)
       //현재 포스팅을 좋아하는 유저리스트 변경(데이터베이스에 업데이트)
       //게시글 작성자에게 좋아요 알림
-      updatePushData("userList", props.currentUserInfo.uid, "likedPosting", props.posting.pid, !isLiked);
-      updatePushData("postingList", props.posting.pid, "like", props.currentUserInfo.uid, !isLiked);
+      updatePushData(
+        "userList",
+        props.currentUserInfo.uid,
+        "likedPosting",
+        props.posting.pid,
+        !isLiked
+      );
+      updatePushData(
+        "postingList",
+        props.posting.pid,
+        "like",
+        props.currentUserInfo.uid,
+        !isLiked
+      );
       if (props.currentUserInfo.uid !== props.posting.writer && !isLiked) {
-        updatePushData("userList", props.posting.writer, "notice", likeNotice, true);
+        updatePushData(
+          "userList",
+          props.posting.writer,
+          "notice",
+          likeNotice,
+          true
+        );
       }
 
       //보여지는 좋아요 갯수 변경
@@ -54,8 +88,14 @@ const PostItemActivity = (props) => {
   const toggleMarkHandler = () => {
     try {
       //현재 로그인한 user의 markedPosting 변경(데이터베이스에 업데이트)
-      updatePushData("userList", props.currentUserInfo.uid, "markedPosting", props.posting.pid, !isMarked);
-      //아이콘 변경 
+      updatePushData(
+        "userList",
+        props.currentUserInfo.uid,
+        "markedPosting",
+        props.posting.pid,
+        !isMarked
+      );
+      //아이콘 변경
       toggleMarked();
     } catch (e) {
       console.log(e.message);
@@ -68,7 +108,10 @@ const PostItemActivity = (props) => {
 
   // 데이터베이스 내 posting 관련 요소 삭제
   const removePostingUserRef = async (element, elId) => {
-    const q = query(collection(db, "userList"), where(element, "array-contains", elId));
+    const q = query(
+      collection(db, "userList"),
+      where(element, "array-contains", elId)
+    );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       updatePushData("userList", doc.id, element, elId, false);
@@ -81,11 +124,20 @@ const PostItemActivity = (props) => {
       await deleteDoc(doc(db, "postingList", props.posting.pid));
 
       //데이터베이스 내 userList의 myPosting 배열 요소 삭제
-      updatePushData("userList", props.currentUserInfo.uid, "myPosting", props.posting.pid, false);
+      updatePushData(
+        "userList",
+        props.currentUserInfo.uid,
+        "myPosting",
+        props.posting.pid,
+        false
+      );
 
       //데이터베이스 내 commentList의 posting 삭제
       //데이터베이스 내 userList의 myComment 배열 요소 삭제
-      const q = query(collection(db, "commentList"), where("posting", "==", props.posting.pid));
+      const q = query(
+        collection(db, "commentList"),
+        where("posting", "==", props.posting.pid)
+      );
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         removeComment(doc.id);
@@ -106,7 +158,13 @@ const PostItemActivity = (props) => {
   return (
     <div className={styles.post_bottom}>
       <div>
-        <button onClick={toggleLikeHandler}>{isLiked ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}</button>
+        <button onClick={toggleLikeHandler}>
+          {isLiked ? (
+            <FavoriteIcon fontSize="small" />
+          ) : (
+            <FavoriteBorderIcon fontSize="small" />
+          )}
+        </button>
         <span>{likeLength}</span>
       </div>
       <div>
@@ -116,7 +174,13 @@ const PostItemActivity = (props) => {
         <span>{props.commentsLength}</span>
       </div>
       <div>
-        <button onClick={toggleMarkHandler}>{isMarked ? <BookmarkIcon fontSize="small" /> : <BookmarkBorderIcon fontSize="small" />}</button>
+        <button onClick={toggleMarkHandler}>
+          {isMarked ? (
+            <BookmarkIcon fontSize="small" />
+          ) : (
+            <BookmarkBorderIcon fontSize="small" />
+          )}
+        </button>
       </div>
       <div>
         {props.currentUserInfo.uid === props.posting.writer && (
