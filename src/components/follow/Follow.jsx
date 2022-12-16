@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import FollowUser from "./FollowUser";
 import ParamsUser from "./ParamsUser";
 import { useParams } from "react-router-dom";
-const Follow = ({ followDisplay }) => {
+const Follow = () => {
   const [follwUser, setFollwUserUser] = useState();
   const [user, setUser] = useState();
   const [follwUserData, setFollwUserData] = useState();
@@ -19,11 +19,8 @@ const Follow = ({ followDisplay }) => {
       currentUserInfo?.following,
       setFollwUserUser
     );
-  }, [followDisplay]);
-
-  useEffect(() => {
     getSingleData("userList", params.uid, setFollwUserData);
-  }, [followDisplay]);
+  }, []);
 
   useEffect(() => {
     getqueryData("userList", "uid", "in", follwUserData?.following, setUser);
