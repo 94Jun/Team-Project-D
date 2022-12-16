@@ -7,7 +7,7 @@ import PostItem from "../../components/PostItem/PostItem";
 
 const MyPagePost = () => {
   const [postingList, setPostingList] = useState();
-  const [lastVisible, setLastVisible] = useState()
+  const [lastVisible, setLastVisible] = useState();
 
   //리덕스 user정보 가져오기
   const user = useSelector((state)=>(state.user.currentUserInfo))

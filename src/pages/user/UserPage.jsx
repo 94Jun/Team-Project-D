@@ -69,18 +69,18 @@ const UserPage = () => {
       </div>
       <div className={styles.postmenu}>
         <ul>
-          <li onClick={()=> {setviewPost(true); setisMarked(true)}}>
+          <li onClick={() => { setviewPost(true); setisMarked(true); } }>
             <AppsIcon fontSize="small" />
             게시글
           </li>
-          <li onClick={()=> {setviewPost(false); setisMarked(false)}}>
-            {isMarked ? <BookmarkBorderIcon fontSize="small" /> : <BookmarkIcon fontSize="small" />}
-            마크
-          </li>
-        </ul>
-      </div>
-      <div>
-      { viewPost ? <MyPagePost/> : <MyPagePostTag/> }
+          <li 
+          onClick={()=>{ setviewPost(false); setisMarked(false);}}>
+          {isMarked ? <BookmarkBorderIcon fontSize="small" /> : <BookmarkIcon fontSize="small" />}
+          마크
+        </li>
+      </ul>
+    </div><div>
+        {viewPost ? <MyPagePost /> : <MyPagePostTag />}
       </div>
     </div>
   );
