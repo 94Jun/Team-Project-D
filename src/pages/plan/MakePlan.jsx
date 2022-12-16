@@ -37,7 +37,7 @@ const MakePlan = () => {
       </div>
        <br />
 
-      <div >
+      <div className={styles.friendslist}>
             <div className={styles.round}></div>
             <div className={styles.round}></div>
             <div className={styles.round}></div>
