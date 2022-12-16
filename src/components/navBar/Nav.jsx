@@ -28,7 +28,6 @@ const Nav = () => {
   };
 
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
-
   // 현재 유저 프로필 불러오기
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${currentUserInfo.profile}`);
@@ -38,7 +37,7 @@ const Nav = () => {
   useEffect(() => {
     if (currentUserInfo.profile) getProfile();
   }, [currentUserInfo.profile]);
-
+  console.log(currentUserInfo.uid)
   // 로그아웃
   const onLogOutClick = () => {
     const auth = getAuth();

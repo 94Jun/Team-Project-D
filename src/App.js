@@ -42,7 +42,6 @@ const App = () => {
       dispatch(GET_CURRENT_USER_INFO(docSnap.data()));
     }
   };
-
   //렌더링 시 마다 로컬스토리지에 있는 currentUser를 통해 로그인 여부 판단
   useEffect(() => {
     if (currentUser) {
@@ -73,7 +72,7 @@ const App = () => {
             {/* 네브 바를 통해 해당 페이지로 이동 가능 */}
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
-              <Route path={"/user/:uid"} element={<UserPage />}></Route>
+              <Route path="/user/:uid" element={<UserPage />}></Route>
               <Route path="/search" element={<SearchPage />}></Route>
               <Route path="/myplans" element={<MyPlans />}></Route>
                <Route path="/plan/:planid" element={<Plan />}></Route>
