@@ -1,9 +1,7 @@
 import styles from "./UserPage.module.css";
 import { UserProfile } from "./ProfileImg";
 import AppsIcon from "@mui/icons-material/Apps";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -28,17 +26,13 @@ import {
 const UserPage = () => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({});
-  const [followDisplay, setFollowDisplay] = useState(false);
-  const [followerDisplay, setFollowerDisplay] = useState(false);
   const [postingCount, setPostingCount] = useState("");
+  const [content, setContent] = useState();
   const handleOpen = () => setOpen(true);
   const dispatch = useDispatch();
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const profile = useSelector((state) => state.user.profile);
   const params = useParams();
-
-
-
 
   useEffect(() => {
     //다른사람 페이지 들어갔을때 그사람 userList 데이터 받아오는 함수
@@ -92,10 +86,31 @@ const UserPage = () => {
     getProfile();
   }, [user.profile]);
 
-  //게시물,태그 클릭 시 서로 다른 포스트 보여주기
-  const [viewPost,setviewPost] = useState(true)
-  const [isMarked,setisMarked] = useState(true)
-
+  //다른 컴포넌트 불러오는 함수 test
+  const handleClickButton = (e) => {
+    const { name } = e.target;
+    setContent(name);
+  };
+  const selectComponent = {
+    MyPagePost: <MyPagePost />,
+    MyPagePostTag: <MyPagePostTag />,
+    Following: <Follow />,
+    Follower: <Follower />,
+  };
+  const test = [
+    {
+      name: "MyPagePost",
+    },
+    {
+      name: "MyPagePostTag",
+    },
+    {
+      name: "Following",
+    },
+    {
+      name: "Follower",
+    },
+  ];
   return (
     <div className={styles.user}>
       <div className={styles.title}>
@@ -155,31 +170,35 @@ const UserPage = () => {
           <p className={styles.comment}>{user.introduction}</p>
         </div>
       </div>
-      <div className={styles.postmenu}>
+      <div className={styles.postmenu} >
         <ul>
-          <li onClick={() => { setviewPost(true); setisMarked(true); } }>
+          <li onClick={handleClickButton}>
+            <button name={test[0].name} className={styles.nav_btn}>
             <AppsIcon fontSize="small" />
-            게시글
+              게시글
+            </button>
           </li>
-          <li 
-          onClick={()=>{ setviewPost(false); setisMarked(false);}}>
-          {isMarked ? <BookmarkBorderIcon fontSize="small" /> : <BookmarkIcon fontSize="small" />}
-          마크
-        </li>
-        
-          <li onClick={() => setFollowDisplay(!followDisplay)}>
-            <PersonOutlineOutlinedIcon fontSize="small" />
-            팔로우 목록
+          <li onClick={handleClickButton} >
+            <button name={test[1].name} className={styles.nav_btn}>
+            <BookmarkBorderIcon fontSize="small"/>
+              마크
+            </button>
           </li>
-          <li onClick={() => setFollowerDisplay(!followerDisplay)}>
+          <li onClick={handleClickButton}>
+            <button name={test[2].name} className={styles.nav_btn}>
             <PersonOutlineOutlinedIcon fontSize="small" />
-            팔로워 목록
+              팔로우 목록
+            </button>
+          </li>
+          <li onClick={handleClickButton}>
+            <button name={test[3].name} className={styles.nav_btn} >
+            <PersonOutlineOutlinedIcon fontSize="small" onClick={handleClickButton}/>
+              팔로워 목록
+            </button>
           </li>
         </ul>
       </div>
-        {viewPost ? <MyPagePost /> : <MyPagePostTag />}
-      {followDisplay ? <Follow followDisplay={followDisplay} /> : ""}
-      {followerDisplay ? <Follower followDisplay={followerDisplay} /> : ""}
+      {content ? <div>{selectComponent[content]}</div> : <div>{<MyPagePost/>}</div>}
     </div>
   );
 };

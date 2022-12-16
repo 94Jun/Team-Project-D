@@ -20,7 +20,7 @@ const MyPagePost = () => {
   useEffect(() => {
   //다른사람 페이지 들어갔을때 그사람 userList 데이터 받아오는 함수
   getSingleData("userList", params.uid,setTestUser);
-  }, [params]);
+  }, []);
   //console.log("??",testUser?.markedPosting)
 
   // 유저가 마크한 페이지 
@@ -44,7 +44,7 @@ const MyPagePost = () => {
   };
   useEffect(() => {
     getPostingList();
-  }, []);
+  }, [testUser]);
 
   //화면에 보여지는 postingList 삭제
   const removePostingListHandler = (pid) => {
