@@ -20,21 +20,22 @@ const ParamsUserFollower = ({ user }) => {
   }, [followUserImg]);
   //다른 유저 follower 목록쪽 Follow 함수
   const follow = async () => {
-    await updatePushData(
-      "userList",
-      currentUserInfo.uid,
-      "following",
-      user.uid,
-      !currentUserInfo.following.includes(user.uid)
-    );
-    await updatePushData(
-      "userList",
-      user.uid,
-      "follower",
-      currentUserInfo.uid,
-      !user.follower.includes(currentUserInfo.uid)
-    );
     try {
+      await updatePushData(
+        "userList",
+        currentUserInfo.uid,
+        "following",
+        user.uid,
+        !currentUserInfo.following.includes(user.uid)
+      );
+      await updatePushData(
+        "userList",
+        user.uid,
+        "follower",
+        currentUserInfo.uid,
+        !user.follower.includes(currentUserInfo.uid)
+      );
+
       window.location.reload("/user");
     } catch (e) {}
   };

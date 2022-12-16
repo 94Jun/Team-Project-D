@@ -5,9 +5,8 @@ import { useState, useEffect } from "react";
 import FollowerUser from "./FollowerUser";
 import ParamsUserFollower from "./ParamsUserFollower";
 import { useParams } from "react-router-dom";
-const Follower = () => {
+const Follower = ({ user }) => {
   const [followerUser, setFollowerUserUser] = useState();
-  const [user, setUser] = useState();
   const [followerUserData, setFollowerUserData] = useState();
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const params = useParams();
@@ -19,27 +18,33 @@ const Follower = () => {
       "in",
       currentUserInfo?.follower,
       setFollowerUserUser
-    );
-    getSingleData("userList", params.uid, setFollowerUserData);
-  }, []);
+    ); //로그인한 유저 follower에 들어있는 아이디와 같은 uid를 가진 유저의 정보를 들고온다
+  }, []); //현재 페이지 유저 정보를 들고온다
 
   useEffect(() => {
-    getqueryData("userList", "uid", "in", followerUserData?.follower, setUser);
-  }, [followerUserData]);
+    getqueryData("userList", "uid", "in", user?.follower, setFollowerUserData);
+  }, [user]);
+  console.log("123", followerUserData);
+  /*현재 페이지 유저 정보 follower에 들어있는 아이디와 유저
+   리스트에 유아이디와 같은 데이터를 들고온다*/
 
   return (
     <div className={styles.follw_wraps}>
       <div className={styles.follw_wrap}>
         <ul className={styles.follw_list}>
           {followerUser &&
-            user &&
+            followerUserData &&
             params.uid === currentUserInfo.uid &&
             followerUser.map((follower) => (
-              <FollowerUser follow={follower} key={follower.uid} user={user} />
+              <FollowerUser
+                follow={follower}
+                key={follower.uid}
+                followerUserData={followerUserData}
+              />
             ))}
-          {user &&
+          {followerUserData &&
             params.uid !== currentUserInfo.uid &&
-            user.map((user) => (
+            followerUserData.map((user) => (
               <ParamsUserFollower user={user} key={user.uid} />
             ))}
         </ul>
