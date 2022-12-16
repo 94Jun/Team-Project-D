@@ -21,6 +21,7 @@ const FollowUser = ({ follow }) => {
 
   //내 follow 목록쪽 Follow 함수
   const unfollow = async () => {
+  try {
     await updatePushData(
       "userList",
       currentUserInfo.uid,
@@ -35,7 +36,6 @@ const FollowUser = ({ follow }) => {
       currentUserInfo.uid,
       false
     );
-    try {
       window.location.reload("/user");
     } catch (e) {}
   };
