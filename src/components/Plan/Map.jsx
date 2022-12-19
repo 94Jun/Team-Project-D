@@ -12,15 +12,15 @@ const center = {
   lat: 37.5115557,
   lng: 127.0595261
 };
-const autocomplete = null;
+
 
 const Map = () => {
+  const [autocomplete, setAutocomplete] = useState(null)
 
   const onLoad = (autocomplete) =>{
-    console.log('autocomplete: ', autocomplete)
-    autocomplete = autocomplete
+    setAutocomplete(autocomplete)
   }
-
+  console.log(autocomplete)
   const onPlaceChanged =()=> {
     if (autocomplete !== null) {
       console.log(autocomplete.getPlace())
@@ -28,8 +28,6 @@ const Map = () => {
       console.log('Autocomplete is not loaded yet!')
     }
   }
-
-  const [places, setPlaces] = useState([]);
 
 
   return ( 
