@@ -145,6 +145,13 @@
 .unfollow_btn:hover::after {
   content: "취소";
 }
+.nav_btn {
+  margin-left: 5px;
+  display: flex;
+  background-color: var(--color-white);
+  border: 0;
+  align-items: center;
+}
 @media (max-width: 1300px) {
   .post_main {
     margin-left: 150px;

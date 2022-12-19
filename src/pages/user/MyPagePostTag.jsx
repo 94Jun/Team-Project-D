@@ -12,11 +12,11 @@ import { db } from "../../config/firebase";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PostItem from "../../components/PostItem/PostItem";
-import { useParams } from "react-router-dom";
+
 const MyPagePost = () => {
   const [postingList, setPostingList] = useState();
   const [lastVisible, setLastVisible] = useState();
-  const params = useParams();
+
   //리덕스 user정보 가져오기
   const user = useSelector((state) => state.user.currentUserInfo);
   //console.log(user);
@@ -25,7 +25,7 @@ const MyPagePost = () => {
     if (!lastVisible) {
       const first = query(
         collection(db, "postingList"),
-        where("writer", "==", params.uid),
+        where("pid", "in", user.markedPosting),
         orderBy("timestamp", "desc"),
         limit(5)
       );
@@ -36,7 +36,7 @@ const MyPagePost = () => {
     } else {
       const next = query(
         collection(db, "postingList"),
-        where("writer", "==", params.uid),
+        where("pid", "in", user.markedPosting),
         orderBy("timestamp", "desc"),
         startAfter(lastVisible),
         limit(5)

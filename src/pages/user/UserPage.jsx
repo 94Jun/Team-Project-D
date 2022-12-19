@@ -1,7 +1,7 @@
 import styles from "./UserPage.module.css";
 import { UserProfile } from "./ProfileImg";
 import AppsIcon from "@mui/icons-material/Apps";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -9,6 +9,8 @@ import ProfileEdit from "./ProfileEdit";
 import { GET_CURRENT_USER_PROFILE } from "../../modules/user";
 import { ref, getDownloadURL } from "firebase/storage";
 import { useDispatch } from "react-redux";
+import MyPagePost from "./MyPagePost";
+import MyPagePostTag from "./MyPagePostTag";
 import { useParams } from "react-router-dom";
 import { getSingleData, updatePushData } from "../../common";
 import { storage } from "../../config/firebase";
@@ -24,9 +26,8 @@ import {
 const UserPage = () => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({});
-  const [followDisplay, setFollowDisplay] = useState(false);
-  const [followerDisplay, setFollowerDisplay] = useState(false);
   const [postingCount, setPostingCount] = useState("");
+  const [content, setContent] = useState();
   const handleOpen = () => setOpen(true);
   const dispatch = useDispatch();
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
@@ -39,6 +40,7 @@ const UserPage = () => {
   }, [params]);
 
   //프로필 사진 가져오는 함수
+
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${user.profile}`);
     const url = await getDownloadURL(profileRef);
@@ -84,6 +86,31 @@ const UserPage = () => {
     getProfile();
   }, [user.profile]);
 
+  //다른 컴포넌트 불러오는 함수 test
+  const handleClickButton = (e) => {
+    const { name } = e.target;
+    setContent(name);
+  };
+  const selectComponent = {
+    MyPagePost: <MyPagePost />,
+    MyPagePostTag: <MyPagePostTag />,
+    Following: <Follow />,
+    Follower: <Follower user={user} />,
+  };
+  const test = [
+    {
+      name: "MyPagePost",
+    },
+    {
+      name: "MyPagePostTag",
+    },
+    {
+      name: "Following",
+    },
+    {
+      name: "Follower",
+    },
+  ];
   return (
     <div className={styles.user}>
       <div className={styles.title}>
@@ -145,26 +172,39 @@ const UserPage = () => {
       </div>
       <div className={styles.postmenu}>
         <ul>
-          <li>
-            <AppsIcon fontSize="small" />
-            게시글
+          <li onClick={handleClickButton}>
+            <AppsIcon fontSize="small" onClick={handleClickButton} />
+            <button name={test[0].name} className={styles.nav_btn}>
+              게시글
+            </button>
           </li>
-          <li>
-            <FavoriteBorderIcon fontSize="small" />
-            태그
+          <li onClick={handleClickButton}>
+            <BookmarkBorderIcon fontSize="small" onClick={handleClickButton} />
+            <button name={test[1].name} className={styles.nav_btn}>
+              마크
+            </button>
           </li>
-          <li onClick={() => setFollowDisplay(!followDisplay)}>
-            <PersonOutlineOutlinedIcon fontSize="small" />
-            팔로우 목록
+          <li onClick={handleClickButton}>
+            <PersonOutlineOutlinedIcon
+              fontSize="small"
+              onClick={handleClickButton}
+            />
+            <button name={test[2].name} className={styles.nav_btn}>
+              팔로우 목록
+            </button>
           </li>
-          <li onClick={() => setFollowerDisplay(!followerDisplay)}>
-            <PersonOutlineOutlinedIcon fontSize="small" />
-            팔로워 목록
+          <li onClick={handleClickButton}>
+            <PersonOutlineOutlinedIcon
+              fontSize="small"
+              onClick={handleClickButton}
+            />
+            <button name={test[3].name} className={styles.nav_btn}>
+              팔로워 목록
+            </button>
           </li>
         </ul>
       </div>
-      {followDisplay ? <Follow followDisplay={followDisplay} /> : ""}
-      {followerDisplay ? <Follower followDisplay={followerDisplay} /> : ""}
+      {content && <div>{selectComponent[content]}</div>}
     </div>
   );
 };
