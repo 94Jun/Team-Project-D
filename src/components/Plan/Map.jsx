@@ -1,4 +1,4 @@
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker  } from '@react-google-maps/api';
 import { Autocomplete } from '@react-google-maps/api';
 import { useState } from 'react';
 
@@ -12,13 +12,16 @@ const center = {
   lat: 37.5115557,
   lng: 127.0595261
 };
-const autocomplete = null;
+// const autocomplete = null;
 
 const Map = () => {
 
+  const [places, setPlaces] = useState([]);
+  const [autocomplete, setAutocomplete] = useState(null);
+
   const onLoad = (autocomplete) =>{
     console.log('autocomplete: ', autocomplete)
-    autocomplete = autocomplete
+    setAutocomplete(autocomplete) ;
   }
 
   const onPlaceChanged =()=> {
@@ -29,7 +32,6 @@ const Map = () => {
     }
   }
 
-  const [places, setPlaces] = useState([]);
 
 
   return ( 
@@ -40,9 +42,9 @@ const Map = () => {
           mapContainerStyle={containerStyle}
           center={center}
           zoom={15}>
-                    <Autocomplete
-                    onLoad={onLoad}
-              onPlaceChanged={onPlaceChanged}
+        <Autocomplete
+            onLoad={onLoad}
+            onPlaceChanged={onPlaceChanged}
           >
             <input
               type="text"
