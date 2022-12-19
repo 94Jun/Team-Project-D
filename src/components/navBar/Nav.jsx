@@ -37,7 +37,7 @@ const Nav = () => {
   useEffect(() => {
     if (currentUserInfo.profile) getProfile();
   }, [currentUserInfo.profile]);
-  console.log(currentUserInfo.uid)
+
   // 로그아웃
   const onLogOutClick = () => {
     const auth = getAuth();
@@ -52,7 +52,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className={styles.container}>
+    <div className={styles.container}>
       <ul className={styles.nav}>
         {/* 클릭 시 유저 페이지로 이동*/}
         <li className={styles.item}>
@@ -84,14 +84,16 @@ const Nav = () => {
         </li>
 
         {/* 클릭 시 게시글 작성 모달 오픈 */}
-        <li className={styles.item}>
-          <div>
-            <PostingModal open={open} setOpen={setOpen} />
+
+        <li className={styles.item} onClick={handleOpen}>
+          <div >
             {/*props전달*/}
-            <AddBoxOutlinedIcon fontSize="string" onClick={handleOpen} />
-            <span onClick={handleOpen}>글 작성</span>
+            <AddBoxOutlinedIcon fontSize="string" />
+            <span>글 작성</span>
           </div>
         </li>
+        <PostingModal open={open} setOpen={setOpen} />
+
         <li className={styles.item}>
           <Link to="/myplans">
             <LoyaltyIcon fontSize="string" />
@@ -111,14 +113,14 @@ const Nav = () => {
         </li>
 
         {/* 클릭 시 로그아웃*/}
-        <li className={styles.item}>
-          <Link to="/">
-            <LogoutOutlinedIcon fontSize="string" onClick={onLogOutClick} />
-            <span onClick={onLogOutClick}>로그 아웃</span>
+        <li className={styles.item} >
+          <Link to="/" onClick={onLogOutClick}>
+            <LogoutOutlinedIcon fontSize="string"/>
+            <span>로그 아웃</span>
           </Link>
         </li>
       </ul>
-    </nav>
+    </div>
   );
 };
 

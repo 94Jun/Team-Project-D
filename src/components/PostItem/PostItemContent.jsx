@@ -9,32 +9,59 @@ import { updatePushData } from "../../common";
 import { useNavigate } from "react-router-dom";
 import { REMOVE_RECENT_SEARCH, ADD_RECENT_SEARCH } from "../../modules/user";
 import { SET_CURRENT_SEARCH, SET_SEARCH_LAST_VISIBLE } from "../../modules/search";
-import { TOGGLE_SEARCH_MODAL } from "../../modules/modal";
-
-
-  
 const PostItemContent = (props) => {
   const { images, hashtags, text } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const [imgRefList, setImgRefList] = useState([]);
+  const [imgList, setImgList] = useState([]);
+  const [imgIdx, setImgIdx] = useState(0);
+  const [imgStyle, setImgStyle] = useState({});
+  const changeImgHandler = (idx) => {
+    setImgIdx(idx);
+    if (idx !== imgIdx) setImgStyle({ transition: "none" });
+  };
+  const getImgUrl = async (idx) => {
+    return await getDownloadURL(imgRefList[idx]);
+  };
+  const getImgList = () => {
+    imgRefList.map((imgRef, idx) => {
+      getImgUrl(idx).then((url) => {
+        setImgList((prev) => {
+          return [...prev, url];
+        });
+      });
+    });
+  };
 
   useEffect(() => {
-    switch (images.length) {
-      case 4:
-        setImgRefList((prev) => [...prev, ref(storage, `images/${images[3]}`)]);
-      case 3:
-        setImgRefList((prev) => [...prev, ref(storage, `images/${images[2]}`)]);
-      case 2:
-        setImgRefList((prev) => [...prev, ref(storage, `images/${images[1]}`)]);
-      case 1:
-        setImgRefList((prev) => [...prev, ref(storage, `images/${images[0]}`)]);
-        break;
-      default:
-        break;
+    if (images && images.length > 0) {
+      images.map((img) => {
+        setImgRefList((prev) => {
+          return [...prev, ref(storage, `images/${img}`)];
+        });
+      });
     }
   }, []);
+
+  useEffect(() => {
+    if (imgRefList && imgRefList.length > 0) {
+      getImgList();
+    }
+  }, [imgRefList]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setImgStyle({
+        opacity: "1",
+      });
+    });
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [imgIdx]);
+
   const searchHandler = (content) => {
     try {
       if (currentUserInfo.recentSearchs.includes(content)) {
@@ -44,20 +71,21 @@ const PostItemContent = (props) => {
       updatePushData("userList", currentUserInfo.uid, "recentSearchs", content, true);
       dispatch(SET_CURRENT_SEARCH(content));
       dispatch(ADD_RECENT_SEARCH(content));
-      dispatch(SET_SEARCH_LAST_VISIBLE(null))
+      dispatch(SET_SEARCH_LAST_VISIBLE(null));
       navigate("/search");
     } catch (e) {
       console.log(e.message);
     }
   };
+
   return (
     <div className={styles.post_contents}>
-      <div className={styles.post_contents_images}>
-        {imgRefList.map((ref, idx) => {
-          return <PostItemImg imgRef={ref} key={idx} />;
-        })}
+      <div>
+        <div className={styles.post_contents_images_wrap}>
+          {imgList && imgList.length > 0 && <img className={styles.post_contents_images} src={imgList[imgIdx]} style={imgStyle} />}
+        </div>
+        {imgList && imgList.length > 1 && <PostItemImg imgList={imgList} imgIdx={imgIdx} onChangeImg={changeImgHandler} />}
       </div>
-
       <div className={styles.post_contents_text}>{text}</div>
       <div className={styles.hashtags_wrap}>
         {hashtags &&

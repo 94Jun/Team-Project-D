@@ -39,13 +39,11 @@ const Follower = ({ followerDisplay }) => {
             user &&
             params.uid === currentUserInfo.uid &&
             followerUser.map((follower) =>
-              user.map((user) => (
                 <FollowerUser
                   follow={follower}
                   key={follower.uid}
                   user={user}
                 />
-              ))
             )}
           {user &&
             params.uid !== currentUserInfo.uid &&

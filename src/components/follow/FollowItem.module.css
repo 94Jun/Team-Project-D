@@ -3,13 +3,10 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  padding-bottom : 10px;
 }
-.img_wrap {
+.img_wrap img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  overflow: hidden;
-}
-.img_wrap img {
-  width: 100%;
 }
