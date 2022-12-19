@@ -32,6 +32,10 @@
   display: flex;
   align-items: center;
 }
+.content_list {
+  display: flex;
+  align-items: center;
+}
 
 .user_title {
   width: 300px;
@@ -41,7 +45,14 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.user_data {
+  margin-left: 8px;
+  font-weight: bold;
+}
+.introduction {
+  font-weight: bold;
+  font-family: "font-h";
+}
 .postmenu {
   font-size: small;
   margin-bottom: 30px;
