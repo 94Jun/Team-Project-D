@@ -6,10 +6,10 @@
   font-size: medium;
   border: 1px solid var(--color-gray);
   border-radius: 8px;
-  width: 40%;
+  width: 30%;
   min-width: 350px;
-  height: 600px;
-  margin: 100px auto;
+  height: 400px;
+  margin: 200px auto;
   text-align: center;
 }
 .eidt_input {
@@ -20,6 +20,7 @@
 }
 .edit_memo {
   width: 60%;
+  min-width: 280px;
   font-weight: bold;
   margin: 30px auto;
 }
@@ -53,45 +54,4 @@
   border-radius: 5px;
   color: var(--color-white);
   cursor: pointer;
-}
-
-@media (max-width: 1300px) {
-}
-@media (max-width: 768px) {
-  .menu {
-    display: none;
-  }
-  .edit_profile {
-    margin: 5px;
-    width: 100%;
-  }
-  .edit_memo {
-    flex-direction: column;
-    text-align: left;
-    margin-left: 30px;
-  }
-  .edit_input {
-    display: block;
-    text-align: left;
-    margin-left: 0px;
-    margin-top: 8px;
-  }
-  .edit_ex {
-    text-align: left;
-    margin-left: 0px;
-  }
-  .edit_text {
-    display: block;
-    text-align: left;
-    margin-left: 0px;
-  }
-  .edit_textarea {
-    margin-top: 5px;
-    margin-left: 0px;
-    display: block;
-  }
-  .edit_button {
-    margin-top: 50px;
-    margin-left: 210px;
-  }
 }
