@@ -1,16 +1,10 @@
-import { getDownloadURL } from "firebase/storage";
-import { useEffect } from "react";
-import { useState } from "react";
+import styles from './PostItem.module.css'
 const PostItemImg = (props) => {
-  const [img, setImg] = useState();
-  const getImgUrl = async () => {
-    const url = await getDownloadURL(props.imgRef);
-    setImg(url);
-  };
-  useEffect(() => {
-    getImgUrl();
-  }, []);
-  return <img src={img}/>;
+  return <div className={styles.thumbnail_wrap}>
+    {props.imgList.map((img, idx) => {
+      return <img src={img} key={idx} onClick={() => props.onChangeImg(idx)} className={props.imgIdx === idx ? styles.active : ""} />
+    })}
+  </div>;
 };
 
 export default PostItemImg;

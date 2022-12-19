@@ -5,6 +5,7 @@ import HashReducer from "./modules/hash";
 import UpLoadReducer from "./modules/upload";
 import SearchReducer from "./modules/search";
 import LoginReducer from "./modules/login";
+import PendingReducer from './modules/pending'
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     upload: UpLoadReducer,
     search: SearchReducer,
     login: LoginReducer,
+    pending : PendingReducer,
   },
 });
