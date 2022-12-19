@@ -1,43 +1,25 @@
 import styles from "./Follow.module.css";
-import { getqueryData, getSingleData } from "../../common";
-import { useSelector } from "react-redux";
+import { getqueryData } from "../../common";
 import { useState, useEffect } from "react";
 import FollowUser from "./FollowUser";
-import ParamsUser from "./ParamsUser";
-import { useParams } from "react-router-dom";
-const Follow = () => {
+const Follow = ({ user }) => {
   const [follwUser, setFollwUserUser] = useState();
-  const [user, setUser] = useState();
-  const [follwUserData, setFollwUserData] = useState();
-  const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
-  const params = useParams();
-  useEffect(() => {
-    getqueryData(
-      "userList",
-      "uid",
-      "in",
-      currentUserInfo?.following,
-      setFollwUserUser
-    );
-    getSingleData("userList", params.uid, setFollwUserData);
-  }, []);
 
   useEffect(() => {
-    getqueryData("userList", "uid", "in", follwUserData?.following, setUser);
-  }, [follwUserData]);
-
+    getqueryData("userList", "uid", "in", user?.following, setFollwUserUser);
+  }, [user]);
   return (
     <div className={styles.follw_wraps}>
       <div className={styles.follw_wrap}>
         <ul className={styles.follw_list}>
           {follwUser &&
-            params.uid === currentUserInfo.uid &&
-            follwUser.map((follow) => (
-              <FollowUser follow={follow} key={follow.uid} />
+            follwUser.map((follwUser) => (
+              <FollowUser
+                follwUser={follwUser}
+                key={follwUser.uid}
+                user={user}
+              />
             ))}
-          {user &&
-            params.uid !== currentUserInfo.uid &&
-            user.map((user) => <ParamsUser user={user} key={user.uid} />)}
         </ul>
       </div>
     </div>
