@@ -125,7 +125,7 @@ const Register = () => {
       email: user.email,
       name: userName,
       phone: phone,
-      profile: "none",
+      profile: "default_profile.jpg",
       following: [],
       follower: [],
       myPosting: [],

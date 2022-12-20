@@ -137,7 +137,6 @@ const PostingModal = (props) => {
           ) : (
             ""
           )}
-
           <div>
             <textarea
               name=""
