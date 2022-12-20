@@ -7,15 +7,14 @@ const containerStyle = {
   width: '800px',
   height: '400px'
 };
-
-
-// const autocomplete = null;
+const autocomplete = null;
 
 const Map = () => {
-const [coordinates, setCoordinates] = useState({lat: -28.024, lng:140.887});
+const [coordinates, setCoordinates] = useState({lat: 35.1621938  , lng:128.9846505});
 const [autocomplete, setAutocomplete] = useState(null);
 
-
+const [locationData,setLocationData]=useState();
+const [markerPosition,setMarkerPosition]=useState({lat: 0  , lng: 0});
 
   const onLoad = (autocomplete) =>{
     setAutocomplete(autocomplete) ;
@@ -25,11 +24,29 @@ const [autocomplete, setAutocomplete] = useState(null);
       const place = autocomplete.getPlace();
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
+      console.log(place)
       setCoordinates(()=>({lat: lat , lng: lng} )); 
     } else {
       console.log('Autocomplete is not loaded yet!')
     }
   } 
+     
+  const renderMarkers = (map, maps) => {
+    let marker = new maps.Marker({
+      position: markerPosition,
+      map,
+    });
+    return marker;
+  }; 
+
+  const markerClicked = (key) => {
+    setLocationData(key);
+    setMarkerPosition({
+      lat : key.latLng.lat(),
+      lng : key.latLng.lng()
+    })
+  }
+console.log(markerPosition)
 
 
   return ( 
@@ -42,8 +59,11 @@ const [autocomplete, setAutocomplete] = useState(null);
           center={coordinates}
           zoom={15}
           onChange={onPlaceChanged}
+          onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
+          onClick={markerClicked}
         >
-           
+         
+         <Marker  position={markerPosition} />
         <Autocomplete
             onLoad={onLoad}
             onPlaceChanged={onPlaceChanged}
@@ -69,6 +89,7 @@ const [autocomplete, setAutocomplete] = useState(null);
               }}
             />
           </Autocomplete>
+
         </GoogleMap>
       </LoadScript>
 
