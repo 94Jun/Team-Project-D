@@ -1,6 +1,6 @@
 import { GoogleMap, LoadScript, Marker  } from '@react-google-maps/api';
 import { Autocomplete } from '@react-google-maps/api';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const containerStyle = {
@@ -8,29 +8,28 @@ const containerStyle = {
   height: '400px'
 };
 
-const center = {
-  lat: 37.5115557,
-  lng: 127.0595261
-};
+
 // const autocomplete = null;
 
 const Map = () => {
+const [coordinates, setCoordinates] = useState({lat: -28.024, lng:140.887});
+const [autocomplete, setAutocomplete] = useState(null);
 
-  const [places, setPlaces] = useState([]);
-  const [autocomplete, setAutocomplete] = useState(null);
+
 
   const onLoad = (autocomplete) =>{
-    console.log('autocomplete: ', autocomplete)
     setAutocomplete(autocomplete) ;
   }
-
   const onPlaceChanged =()=> {
     if (autocomplete !== null) {
-      console.log(autocomplete.getPlace())
+      const place = autocomplete.getPlace();
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+      setCoordinates(()=>({lat: lat , lng: lng} )); 
     } else {
       console.log('Autocomplete is not loaded yet!')
     }
-  }
+  } 
 
 
 
@@ -40,8 +39,12 @@ const Map = () => {
         googleMapsApiKey="AIzaSyA6OrenYAlZUEIfy_7PIFEwL4sRxu2cV64" libraries={["places"]}>
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={center}
-          zoom={15}>
+          defaultCenter={coordinates}
+          center={coordinates}
+          zoom={15}
+          onChange={onPlaceChanged}
+        >
+           
         <Autocomplete
             onLoad={onLoad}
             onPlaceChanged={onPlaceChanged}
@@ -63,13 +66,15 @@ const Map = () => {
                 position: "absolute",
                 left: "50%",
                 marginLeft: "-120px"
+                
               }}
             />
           </Autocomplete>
         </GoogleMap>
       </LoadScript>
-        
-<button> </button> 
+
+
+
     </div>  );
 }
  
