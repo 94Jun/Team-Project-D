@@ -32,6 +32,7 @@
   height: 20px;
   border: none;
   background-color: inherit;
+  font-size: var(--font-medium);
 }
 .comment_form input:focus {
   outline: none;
@@ -47,6 +48,10 @@
   margin: 20px 0;
   display: flex;
   gap: 20px;
+}
+.comment_item .comment_form{
+  margin-top: 10px;
+  height: 30px;
 }
 
 .comment_profile_wrap img {
@@ -64,16 +69,23 @@
   color: var(--color-main-gray);
   margin-left: 20px;
 }
+.comment_content_wrap{
+  flex-grow: 1;
+}
 .comment_text {
+  height: 30px;
   margin-top: 10px;
   white-space: pre-line;
 }
-.delete_btn{
+.delete_btn, .edit_btn{
   background: none;
   border : none;
   margin-left : 10px;
   cursor: pointer;
   color : var(--color-main-red);
+}
+.edit_btn{
+  color : var(--color-main-blue);
 }
 .comment_writer_info{
   display: flex;

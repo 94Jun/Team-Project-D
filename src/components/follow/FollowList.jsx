@@ -16,7 +16,7 @@ const FollowList = () => {
   },[currentUserInfo])
   const content = followUsers && followUsers.length !== 0 ? followUsers.map((user) => { 
     return <FollowItem followUser={user} key={user.uid} />
-  }) : null
+  }) : <div>팔로우한 유저가 없습니다.</div>
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>팔로우 목록</h2>
