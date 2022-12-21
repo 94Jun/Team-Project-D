@@ -36,12 +36,6 @@ const MakePlan = () => {
         <input type="date" onChange={changeEndsDate} value={endsDate.date} min={startDate.date} />
       </div>
        <br />
-
-      <div className={styles.friendslist}>
-            <div className={styles.round}></div>
-            <div className={styles.round}></div>
-            <div className={styles.round}></div>
-      <button>일행 추가</button>  </div> <br /><br />
  
       <div> <Map /></div>
       {dateValue >= 0 && Array(dateValue + 1).fill().map((date, idx) => { 

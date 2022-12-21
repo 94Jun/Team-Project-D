@@ -1,7 +1,7 @@
+import { KeyTwoTone } from '@mui/icons-material';
 import { GoogleMap, LoadScript, Marker  } from '@react-google-maps/api';
 import { Autocomplete } from '@react-google-maps/api';
-import { useEffect, useState } from 'react';
-
+import {  useEffect, useState } from 'react';
 
 const containerStyle = {
   width: '800px',
@@ -36,19 +36,25 @@ const [markerPosition,setMarkerPosition]=useState([{lat: 0  , lng: 0}]);
       position: markerPosition,
       map,
      
-    }); console.log(marker)
+    }); 
     return marker;
   }; 
-
   const markerClicked = (key) => {
     setLocationData(key);
-    console.log(locationname);
+    if (key.placeId == undefined) {
+    } else {
     setMarkerPosition([...markerPosition, {
       lat : key.latLng.lat(),
       lng : key.latLng.lng(),
-      
-    }])
-  }
+    } ])  
+  }}
+  useEffect(()=>{
+    const infowindowContent = document.querySelector(
+      '.title', '.address:last-child'
+    )
+    console.log(infowindowContent);
+
+  },[locationData])
 
 
 
@@ -68,7 +74,7 @@ const [markerPosition,setMarkerPosition]=useState([{lat: 0  , lng: 0}]);
         >
          
          {
-          markerPosition.map((marker)=>(<Marker  position={marker} />)) 
+          markerPosition.map((marker)=>(<Marker name={"Current location"} position={marker} />)) 
            }
         
         <Autocomplete
