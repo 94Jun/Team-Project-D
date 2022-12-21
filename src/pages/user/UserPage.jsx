@@ -26,7 +26,7 @@ import {
 const UserPage = () => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({});
-  const [postingCount, setPostingCount] = useState("");
+  const [postingCount, setPostingCount] = useState("0");
   const [content, setContent] = useState();
   const handleOpen = () => setOpen(true);
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ const UserPage = () => {
 
   const follow = async () => {
     const followNotice = {
-      nid: currentUserInfo.uid,
+      nid: getId(),
       text: `${currentUserInfo.name}님이 회원님을 팔로우 하였습니다.`,
     };
     try {
@@ -68,7 +68,7 @@ const UserPage = () => {
         currentUserInfo.uid,
         !user.follower.includes(currentUserInfo.uid)
       ); //내가 팔로우하면 상대쪽 팔로워에들어가는거
-      if (currentUserInfo.following.includes(user?.uid)) {
+      if (!currentUserInfo.following.includes(user?.uid)) {
         await updatePushData(
           "userList",
           user.uid,
@@ -82,9 +82,7 @@ const UserPage = () => {
       alert("팔로우 실패하였습니다");
     }
   };
-  /*const ag = user?.notice.find((e) => e);
-  console.log(user?.notice[0]?.nid);
-  console.log("asds", ag.nid);*/
+
   //개시물 갯수
   const userPostingCount = async () => {
     const coll = collection(db, "postingList");
@@ -105,6 +103,7 @@ const UserPage = () => {
   const handleClickButton = (e) => {
     const { name } = e.target;
     setContent(name);
+    console.log("click");
   };
   const selectComponent = {
     MyPagePost: <MyPagePost />,
@@ -116,12 +115,12 @@ const UserPage = () => {
     {
       text: "게시글",
       name: "MyPagePost",
-      icon: <AppsIcon fontSize="small" onClick={handleClickButton} />,
+      icon: <AppsIcon fontSize="small" />,
     },
     {
       text: "마크",
       name: "MyPagePostTag",
-      icon: <BookmarkBorderIcon fontSize="small" onClick={handleClickButton} />,
+      icon: <BookmarkBorderIcon fontSize="small" />,
     },
     {
       text: "팔로우 목록",
@@ -131,12 +130,7 @@ const UserPage = () => {
     {
       text: "팔로워 목록",
       name: "Follower",
-      icon: (
-        <PersonOutlineOutlinedIcon
-          fontSize="small"
-          onClick={handleClickButton}
-        />
-      ),
+      icon: <PersonOutlineOutlinedIcon fontSize="small" />,
     },
   ];
   return (
@@ -158,72 +152,70 @@ const UserPage = () => {
             )}
             <ProfileEdit open={open} setOpen={setOpen} />
           </div>
-          <div>
-            <div>
-              {params.uid === currentUserInfo.uid && (
-                <ul className={styles.user_title}>
-                  <li className={styles.comment}>
-                    <span>게시물</span>
-                    <span className={styles.user_data}> {postingCount}</span>
-                  </li>
-                  <li className={styles.comment}>
-                    <span>팔로워</span>
-                    <span className={styles.user_data}>
-                      {currentUserInfo.follower.length}
-                    </span>
-                  </li>
-                  <li className={styles.comment}>
-                    <span>팔로우 </span>
-                    <span className={styles.user_data}>
-                      {currentUserInfo.following.length}
-                    </span>
-                  </li>
-                </ul>
-              )}
-              {params.uid !== currentUserInfo.uid && (
-                <ul className={styles.user_title}>
-                  <li className={styles.comment}>
-                    <span>게시물</span>
-                    <span className={styles.user_data}> {postingCount}</span>
-                    <span>팔로워 </span>
-                    <span className={styles.user_data}>
-                      {user.follower?.length}
-                    </span>
-                  </li>
-                  <li className={styles.comment}>
-                    {!currentUserInfo.following?.includes(user.uid) && (
-                      <button className={styles.follow_btn} onClick={follow}>
-                        팔로우
-                      </button>
-                    )}
-                    {currentUserInfo.following?.includes(user.uid) && (
-                      <button className={styles.unfollow_btn} onClick={follow}>
-                        팔로우
-                      </button>
-                    )}
-                    <span className={styles.user_data}>
-                      {" " + user.following?.length}
-                    </span>
-                  </li>
-                </ul>
-              )}
-            </div>
-          </div>
+
+          <>
+            {params.uid === currentUserInfo.uid && (
+              <ul className={styles.user_title}>
+                <li className={styles.comment}>
+                  <span>게시물</span>
+                  <span className={styles.user_data}> {postingCount}</span>
+                </li>
+                <li className={styles.comment}>
+                  <span>팔로워</span>
+                  <span className={styles.user_data}>
+                    {currentUserInfo.follower.length}
+                  </span>
+                </li>
+                <li className={styles.comment}>
+                  <span>팔로우 </span>
+                  <span className={styles.user_data}>
+                    {currentUserInfo.following.length}
+                  </span>
+                </li>
+              </ul>
+            )}
+            {params.uid !== currentUserInfo.uid && (
+              <ul className={styles.user_title}>
+                <li className={styles.comment}>
+                  <span>게시물</span>
+                  <span className={styles.user_data}> {postingCount}</span>
+                  <span>팔로워 </span>
+                  <span className={styles.user_data}>
+                    {user.follower?.length}
+                  </span>
+                </li>
+                <li className={styles.comment}>
+                  {!currentUserInfo.following?.includes(user.uid) && (
+                    <button className={styles.follow_btn} onClick={follow}>
+                      팔로우
+                    </button>
+                  )}
+                  {currentUserInfo.following?.includes(user.uid) && (
+                    <button className={styles.unfollow_btn} onClick={follow}>
+                      팔로우
+                    </button>
+                  )}
+                  <span className={styles.user_data}>
+                    {" " + user.following?.length}
+                  </span>
+                </li>
+              </ul>
+            )}
+          </>
           <p className={styles.introduction}>{user.introduction}</p>
         </div>
       </div>
-      <div className={styles.postmenu}>
-        <ul>
-          {contentList.map((list) => (
-            <li onClick={handleClickButton} className={styles.content_list}>
-              <span onClick={handleClickButton}>{list.icon}</span>
-              <button name={list.name} className={styles.nav_btn}>
-                {list.text}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+
+      <ul className={styles.postmenu}>
+        {contentList.map((list) => (
+          <li className={styles.content_list} onClick={handleClickButton}>
+            {list.icon}
+            <button name={list.name} className={styles.nav_btn}>
+              {list.text}
+            </button>
+          </li>
+        ))}
+      </ul>
       {content && <div>{selectComponent[content]}</div>}
     </div>
   );

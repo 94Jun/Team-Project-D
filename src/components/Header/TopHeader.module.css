@@ -11,8 +11,8 @@
   font-size: var(--font-xxlarge);
   margin: 0 10px;
 }
-.search_wrap{
-  width : 300px;
+.search_wrap {
+  width: 300px;
 }
 
 @media (max-width: 768px) {

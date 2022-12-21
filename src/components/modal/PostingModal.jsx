@@ -38,12 +38,9 @@ const PostingModal = (props) => {
   //user redcer 에서 useSelector로 임이로 정의된   currentUser: "u1"를 받아옴
 
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
-
   // redux imgList= Image: [hdsgh],
   const imgList = useSelector((state) => state.upload.ImgList);
 
-  const image = imgList.filter((data) => data.includes("image"));
-  const video = imgList.filter((data) => data.includes("video"));
   //피드 작성 textOnChange
   const textOnChange = (e) => {
     setText(e.target.value);
@@ -79,7 +76,7 @@ const PostingModal = (props) => {
         for (let i = 0; i < imgList.length; i++) {
           const randomNum = getId(); //파일이름은 겹치지 않게 random으로
           const imageRef = ref(storage, `images/${randomNum}`);
-          uploadString(imageRef, image[i], "data_url");
+          uploadString(imageRef, imgList[i], "data_url");
           addedPublicPosting.images.push(randomNum);
         } //uploadString:data_url,base64데이터 업로드용
         //imageRef=ref(storage,폴더이름/파일이름)
@@ -117,30 +114,9 @@ const PostingModal = (props) => {
               <ClearIcon onClick={handleClose} className={styles.icon} />
             </p>
           </div>
-          {imgs !== undefined ? (
-            imgs.slice(5, 10) === "video" ? (
-              <video
-                src={imgs}
-                alt={imgs}
-                width={"100%"}
-                autoPlay
-                className={styles.image}
-              />
-            ) : (
-              <img
-                src={imgs}
-                alt={imgs}
-                width={"100%"}
-                className={styles.image}
-              />
-            )
-          ) : (
-            ""
-          )}
+          <img src={imgs} alt={imgs} width={"100%"} className={styles.image} />
           <div>
             <textarea
-              name=""
-              id=""
               cols="30"
               rows="10"
               value={text}

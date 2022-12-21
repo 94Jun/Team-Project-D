@@ -41,25 +41,21 @@ const FollowerUser = ({ follower, user }) => {
         currentUserInfo.uid,
         !follower.follower?.includes(currentUserInfo.uid)
       );
-      /*if (!currentUserInfo.following.includes(follower?.uid)) {
+      if (!currentUserInfo.following.includes(follower?.uid)) {
         updatePushData(
           "userList",
-          currentUserInfo.uid, //내아이디에 넣게됨 XX
+          follower.uid, //내아이디에 넣게됨 XX
           "notice",
           followNotice,
           true
         );
-      }*/
+      }
       window.location.reload("/user");
     } catch (e) {}
   };
-  console.log(
-    "필터",
-    follower.follower.filter((e) => e !== currentUserInfo.uid)
-  );
-  console.log("노필터", follower.follower);
+
   return (
-    <li className={styles.follow_user_lest}>
+    <li className={styles.follow_user_list}>
       <div className={styles.follow_user}>
         <div className={styles.follow_user_profile}>
           <img
@@ -89,7 +85,8 @@ const FollowerUser = ({ follower, user }) => {
           )}
 
         {user.uid !== currentUserInfo.uid &&
-          !currentUserInfo.following?.includes(follower.uid) && (
+          !currentUserInfo.following?.includes(follower.uid) &&
+          follower.uid !== currentUserInfo.uid && (
             <button className={styles.follow_btn} onClick={Follow}>
               팔로우
             </button>

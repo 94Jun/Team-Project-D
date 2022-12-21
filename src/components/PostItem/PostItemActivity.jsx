@@ -5,6 +5,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import EditIcon from "@mui/icons-material/Edit";
 import { useEffect, useState } from "react";
 import { getId, updatePushData } from "../../common";
 import useToggle from "../../hooks/useToggle";
@@ -26,7 +27,8 @@ const PostItemActivity = (props) => {
   const [likeLength, setLikeLength] = useState(props.posting.like.length);
   useEffect(() => {
     if (
-      props?.currentUserInfo?.markedPosting?.indexOf(props.posting.pid) !== -1 &&
+      props?.currentUserInfo?.markedPosting?.indexOf(props.posting.pid) !==
+        -1 &&
       isMarked === false
     ) {
       toggleMarked();
@@ -182,13 +184,23 @@ const PostItemActivity = (props) => {
           )}
         </button>
       </div>
-      <div>
-        {props.currentUserInfo.uid === props.posting.writer && (
-          <button className={styles.delete_btn} onClick={removePostingHandler}>
-            <DeleteOutlineOutlinedIcon fontSize="small" />
-          </button>
-        )}
-      </div>
+      {props.currentUserInfo.uid === props.posting.writer && (
+        <>
+          <div>
+            <button className={styles.edit_btn}>
+              <EditIcon fontSize="small" />
+            </button>
+          </div>
+          <div>
+            <button
+              className={styles.delete_btn}
+              onClick={removePostingHandler}
+            >
+              <DeleteOutlineOutlinedIcon fontSize="small" />
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
