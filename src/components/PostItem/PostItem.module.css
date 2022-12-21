@@ -99,6 +99,9 @@
   0 0 5px 3px var(--color-main-green2),
   0 0 5px 4px var(--color-main-green3);
 }
+.edit_btn{
+  color : var(--color-main-blue)
+}
 
 @media (max-width : 1300px){
   .post_contents_images{

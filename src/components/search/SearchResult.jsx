@@ -53,7 +53,7 @@ const SearchResult = () => {
   }, [currentSearch]);
 
   let content = (
-    <div>
+    <div className={styles.container}>
       {filteredPosting &&
         filteredPosting.map((posting) => {
           return <PostItem key={posting.pid} posting={posting} />;
@@ -64,7 +64,7 @@ const SearchResult = () => {
     </div>
   );
   if (filteredPosting?.length === 0) {
-    content = <div>검색 결과가 없습니다.</div>;
+    content = <div className={styles.container}>검색 결과가 없습니다.</div>;
   }
   return content;
 };
