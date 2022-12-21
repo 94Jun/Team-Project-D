@@ -18,17 +18,34 @@ const MyPagePost = () => {
   useEffect(() => {
   //다른사람 페이지 들어갔을때 그사람 userList 데이터 받아오는 함수
   getSingleData("userList", params.uid, user);
-  }, [params]);
+  }, [params]); 
 
   const getPostingList = async () => {
+    if(params.uid == user.uid){
+      if (!lastVisible) {
+        const first = query(collection(db, "postingList"), where("writer", "==", user.uid ), orderBy("timestamp", "desc"), limit(5));
+        const querySnapshot = await getDocs(first);
+        setLastVisible(querySnapshot.docs[querySnapshot?.docs?.length - 1]);
+        const loadedData = querySnapshot.docs.map((doc) => doc.data());
+        setPostingList(loadedData);
+      } else { 
+        const next = query(collection(db, "postingList"), where("writer", "==", user.uid ), orderBy("timestamp", "desc"), startAfter(lastVisible), limit(5));
+        const querySnapshot = await getDocs(next);
+        setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+        const loadedData = querySnapshot.docs.map((doc) => doc.data());
+        setPostingList((prev) => { 
+          return [...prev, ...loadedData];
+        });
+      }
+    } else {
     if (!lastVisible) {
-      const first = query(collection(db, "postingList"), where("writer", "==", params.uid ), orderBy("timestamp", "desc"), limit(5));
+      const first = query(collection(db, "postingList"), where("isPublic", "==", true ), where("writer", "==", params.uid ), orderBy("timestamp", "desc"), limit(5));
       const querySnapshot = await getDocs(first);
       setLastVisible(querySnapshot.docs[querySnapshot?.docs?.length - 1]);
       const loadedData = querySnapshot.docs.map((doc) => doc.data());
       setPostingList(loadedData);
     } else { 
-      const next = query(collection(db, "postingList"), where("writer", "==", params.uid ), orderBy("timestamp", "desc"), startAfter(lastVisible), limit(5));
+      const next = query(collection(db, "postingList"), where("isPublic", "==", true ), where("writer", "==", params.uid ), orderBy("timestamp", "desc"), startAfter(lastVisible), limit(5));
       const querySnapshot = await getDocs(next);
       setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
       const loadedData = querySnapshot.docs.map((doc) => doc.data());
@@ -36,10 +53,11 @@ const MyPagePost = () => {
         return [...prev, ...loadedData];
       });
     }
-  };
+  }
+};
   useEffect(() => {
     getPostingList();
-  }, []);
+  },[params.uid]);
 
   //화면에 보여지는 postingList 삭제
   const removePostingListHandler = (pid) => {

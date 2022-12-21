@@ -180,8 +180,8 @@ const UserPage = () => {
           </li>
           <li onClick={handleClickButton} >
             <button name={test[1].name} className={styles.nav_btn}>
-            <BookmarkBorderIcon fontSize="small"/>
-              마크
+            
+            <BookmarkBorderIcon fontSize="small" />마크
             </button>
           </li>
           <li onClick={handleClickButton}>
@@ -192,7 +192,7 @@ const UserPage = () => {
           </li>
           <li onClick={handleClickButton}>
             <button name={test[3].name} className={styles.nav_btn} >
-            <PersonOutlineOutlinedIcon fontSize="small" onClick={handleClickButton}/>
+            <PersonOutlineOutlinedIcon fontSize="small"/>
               팔로워 목록
             </button>
           </li>
