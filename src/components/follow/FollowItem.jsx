@@ -9,11 +9,9 @@ const FollowItem = (props) => {
   //프로필 이미지 불러오기
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${props.followUser.profile}`);
-    console.log(profileRef);
     const url = await getDownloadURL(profileRef);
     setProfile(url);
   };
-  console.log(profile);
 
   useEffect(() => {
     getProfile();
