@@ -14,7 +14,7 @@ const [coordinates, setCoordinates] = useState({lat: 35.1621938  , lng:128.98465
 const [autocomplete, setAutocomplete] = useState(null);
 
 const [locationData,setLocationData]=useState();
-const [markerPosition,setMarkerPosition]=useState({lat: 0  , lng: 0});
+const [markerPosition,setMarkerPosition]=useState([{lat: 0  , lng: 0}]);
 
   const onLoad = (autocomplete) =>{
     setAutocomplete(autocomplete) ;
@@ -35,18 +35,22 @@ const [markerPosition,setMarkerPosition]=useState({lat: 0  , lng: 0});
     let marker = new maps.Marker({
       position: markerPosition,
       map,
-    });
+     
+    }); console.log(marker)
     return marker;
   }; 
 
   const markerClicked = (key) => {
     setLocationData(key);
-    setMarkerPosition({
+    console.log(locationname);
+    setMarkerPosition([...markerPosition, {
       lat : key.latLng.lat(),
-      lng : key.latLng.lng()
-    })
+      lng : key.latLng.lng(),
+      
+    }])
   }
-console.log(markerPosition)
+
+
 
 
   return ( 
@@ -63,7 +67,10 @@ console.log(markerPosition)
           onClick={markerClicked}
         >
          
-         <Marker  position={markerPosition} />
+         {
+          markerPosition.map((marker)=>(<Marker  position={marker} />)) 
+           }
+        
         <Autocomplete
             onLoad={onLoad}
             onPlaceChanged={onPlaceChanged}
