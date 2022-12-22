@@ -82,14 +82,15 @@ const [nextId, setNextId] = useState(1);
 
 
   const input_list = lists.map((list) => (
+    <button>
     <li
       key={list.id} 
       onDoubleClick={() => removeList(list.id)} 
-    >
+    > 
       {list.id} : 
       {list.name} :
       {list.address}
-    </li>
+    </li></button> 
   ));
   
   //삭제 이벤트 함수
