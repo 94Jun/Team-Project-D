@@ -16,6 +16,10 @@ const [autocomplete, setAutocomplete] = useState(null);
 const [locationData,setLocationData]=useState();
 const [markerPosition,setMarkerPosition]=useState([{lat: 0  , lng: 0}]);
 
+const [lists, setLists] = useState([]);
+const [nextId, setNextId] = useState(1);
+
+
   const onLoad = (autocomplete) =>{
     setAutocomplete(autocomplete) ;
   }
@@ -48,15 +52,51 @@ const [markerPosition,setMarkerPosition]=useState([{lat: 0  , lng: 0}]);
       lng : key.latLng.lng(),
     } ])  
   }}
+
   useEffect(()=>{
-    const infowindowContent = document.querySelector(
-      '.title', '.address:last-child'
-    )
-    console.log(infowindowContent);
-
-  },[locationData])
+    const pickPlaceName = document.querySelector(
+      '.title' )
+    const pickPlaceAddress = document.querySelector(
+      '.address:last-child div')
 
 
+      if (pickPlaceName == null || pickPlaceAddress == null || pickPlaceAddress.nextElementSibling == null) {
+        return;
+      }
+
+    const about_lists = lists.concat({ //원래 있는 리스트에 붙여주기
+      id: nextId,
+      name: pickPlaceName.innerHTML,
+      address : pickPlaceAddress.innerHTML + pickPlaceAddress.nextElementSibling.innerHTML,
+    });
+
+    setNextId(nextId + 1); 
+    setLists(about_lists); 
+
+    console.log(nextId);
+    console.log(pickPlaceName.innerHTML);
+    console.log(pickPlaceAddress.innerHTML + pickPlaceAddress.nextElementSibling.innerHTML);
+
+  }, [locationData])
+
+
+
+  const input_list = lists.map((list) => (
+    <li
+      key={list.id} 
+      onDoubleClick={() => removeList(list.id)} 
+    >
+      {list.id} : 
+      {list.name} :
+      {list.address}
+    </li>
+  ));
+  
+  //삭제 이벤트 함수
+  const removeList = (id) => {
+    const about_lists = lists.filter((list) => list.id !== id);
+    setLists(about_lists);
+  };
 
 
   return ( 
@@ -102,12 +142,14 @@ const [markerPosition,setMarkerPosition]=useState([{lat: 0  , lng: 0}]);
               }}
             />
           </Autocomplete>
-
         </GoogleMap>
       </LoadScript>
-
-
-
+            
+      <div>
+      <h4> 내가 선택한 장소  </h4>
+      <ul>{input_list}</ul>
+      </div>
+              <br />
     </div>  );
 }
  
