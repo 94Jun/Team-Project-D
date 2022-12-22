@@ -59,27 +59,28 @@ const [nextId, setNextId] = useState(1);
       const pickPlaceAddress = document.querySelector(
         '.address > div')
 
-
-
-      if (pickPlaceName == null || pickPlaceAddress == null) {
+      if (pickPlaceName == null || pickPlaceAddress == null ) {
         return;
       }
 
-    const about_lists = lists.concat({ //원래 있는 리스트에 붙여주기
-      id: nextId,
-      name: pickPlaceName.innerHTML,
-      address : pickPlaceAddress.innerHTML
-    });
+    const unique = lists.find((list) => list.name === pickPlaceName.innerHTML);  
+    if (unique==undefined) {
+      const about_lists = lists.concat({ //원래 있는 리스트에 붙여주기
+        id: nextId,
+        name: pickPlaceName.innerHTML,
+        address : pickPlaceAddress.innerHTML
+      }) 
+  
+      setNextId(nextId + 1); 
+      setLists(about_lists); 
+      
+      console.log(nextId);
+      console.log(pickPlaceName.innerHTML);
+      console.log(pickPlaceAddress.innerHTML);
+    } 
 
-    setNextId(nextId + 1); 
-    setLists(about_lists); 
-
-    console.log(nextId);
-    console.log(pickPlaceName.innerHTML);
-    console.log(pickPlaceAddress.innerHTML);
 
   }, [locationData])
-
 
 
   const input_list = lists.map((list) => (
@@ -88,9 +89,12 @@ const [nextId, setNextId] = useState(1);
       key={list.id} 
       onDoubleClick={() => removeList(list.id)} 
     > 
+    <div>
       {list.id} : 
       {list.name} :
       {list.address}
+      <br />
+      </div>
     </li></button> 
   ));
   
