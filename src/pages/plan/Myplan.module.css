@@ -1,0 +1,76 @@
+.myplan {
+    display: flexbox;
+    justify-content: center; 
+    width: 100%;
+    padding: 5%;
+    align-items: center;
+    text-align: center;
+}
+
+
+.title { 
+    align-items: center;
+    padding-bottom: 20px;
+    }
+
+    .profile {
+        background-color: var(--color-main-blue);
+        border-radius: 100%;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .titletext {
+        display: flex; 
+    }       
+    
+    .userbox {
+        padding-left: 10px;
+        display: contents; 
+    }
+
+       
+    .userbox h3 {
+        padding-right: 10px;
+        display: flex; 
+    }
+
+
+
+    .round {
+        background-color: var(--color-main-blue);
+        border-radius: 100%;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+    }
+
+    .round:hover{
+        background-color:  white;
+        border-radius: 100%;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+    }
+
+    .navlink {
+        font-weight: bolder;
+        color: white;
+        display: inline-block;
+        padding-top: 0.5px;
+    }
+
+    .navlink:hover {
+        font-weight: bolder;
+        color: var(--color-main-blue);
+        display: inline-block;
+        padding-top: 0.5px;
+    }
+
+    .text {
+        text-decoration: underline;
+        color: var(--color-main-blue);
+        padding-left: 1px;
+    }

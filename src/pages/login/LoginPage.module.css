@@ -30,7 +30,7 @@ height: 100vh;
 }
 
 .textbtnW{
-    color: #195280;
+    color: ver(  --color-main-blue);
     font-size: var(  --font-xsmall);
 
 }

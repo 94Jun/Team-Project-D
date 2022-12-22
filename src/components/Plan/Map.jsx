@@ -153,7 +153,7 @@ const [nextId, setNextId] = useState(1);
             
       <div>
       <h4> 내가 선택한 장소  </h4>
-      <ul>{input_list}</ul>
+      <ul> {input_list} </ul>
       </div>
               <br />
     </div>  );
