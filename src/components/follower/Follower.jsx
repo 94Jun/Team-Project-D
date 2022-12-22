@@ -1,46 +1,26 @@
 import styles from "./Follower.module.css";
-import { getqueryData, getSingleData } from "../../common";
-import { useSelector } from "react-redux";
+import { getqueryData } from "../../common";
 import { useState, useEffect } from "react";
 import FollowerUser from "./FollowerUser";
-import ParamsUserFollower from "./ParamsUserFollower";
-import { useParams } from "react-router-dom";
-const Follower = () => {
-  const [followerUser, setFollowerUserUser] = useState();
-  const [user, setUser] = useState();
+
+const Follower = ({ user }) => {
   const [followerUserData, setFollowerUserData] = useState();
-  const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
-  const params = useParams();
 
   useEffect(() => {
-    getqueryData(
-      "userList",
-      "uid",
-      "in",
-      currentUserInfo?.follower,
-      setFollowerUserUser
-    );
-    getSingleData("userList", params.uid, setFollowerUserData);
-  }, []);
-
-  useEffect(() => {
-    getqueryData("userList", "uid", "in", followerUserData?.follower, setUser);
-  }, [followerUserData]);
-
+    getqueryData("userList", "uid", "in", user?.follower, setFollowerUserData);
+  }, [user]); //유저리스트에 uid중에 현제 페이지에 해당하는 사람의 follower목록에 있는사람 데이터를 담는다
+  //user = 현제 페이지에 해당하는 그사람 정보가 담겨있음
   return (
     <div className={styles.follw_wraps}>
       <div className={styles.follw_wrap}>
         <ul className={styles.follw_list}>
-          {followerUser &&
-            user &&
-            params.uid === currentUserInfo.uid &&
-            followerUser.map((follower) => (
-              <FollowerUser follow={follower} key={follower.uid} user={user} />
-            ))}
-          {user &&
-            params.uid !== currentUserInfo.uid &&
-            user.map((user) => (
-              <ParamsUserFollower user={user} key={user.uid} />
+          {followerUserData &&
+            followerUserData.map((follower) => (
+              <FollowerUser
+                follower={follower}
+                key={follower.uid}
+                user={user}
+              />
             ))}
         </ul>
       </div>

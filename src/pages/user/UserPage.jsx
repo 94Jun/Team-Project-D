@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import MyPagePost from "./MyPagePost";
 import MyPagePostTag from "./MyPagePostTag";
 import { useParams } from "react-router-dom";
-import { getSingleData, updatePushData } from "../../common";
+import { getSingleData, updatePushData, getId } from "../../common";
 import { storage } from "../../config/firebase";
 import Follow from "../../components/follow/Follow";
 import Follower from "../../components/follower/Follower";
@@ -48,28 +48,43 @@ const UserPage = () => {
   };
 
   const follow = async () => {
-    await updatePushData(
-      "userList",
-      currentUserInfo.uid,
-      "following",
-      user.uid,
-      !currentUserInfo.following.includes(user.uid)
-      //currentUserInfo.following배열 안에 user.uid비교
-    ); //내가 팔로우 하면 내쪽에 들어가는 함수
-    await updatePushData(
-      "userList",
-      user.uid,
-      "follower",
-      currentUserInfo.uid,
-      !user.follower.includes(currentUserInfo.uid)
-    ); //내가 팔로우하면 상대쪽 팔로워에들어가는거
+    const followNotice = {
+      nid: currentUserInfo.uid,
+      text: `${currentUserInfo.name}님이 회원님을 팔로우 하였습니다.`,
+    };
     try {
-      //새로고침 빼기 알럿창 빼기
+      await updatePushData(
+        "userList",
+        currentUserInfo.uid,
+        "following",
+        user.uid,
+        !currentUserInfo.following.includes(user.uid)
+        //currentUserInfo.following배열 안에 user.uid비교
+      ); //내가 팔로우 하면 내쪽에 들어가는 함수
+      await updatePushData(
+        "userList",
+        user.uid,
+        "follower",
+        currentUserInfo.uid,
+        !user.follower.includes(currentUserInfo.uid)
+      ); //내가 팔로우하면 상대쪽 팔로워에들어가는거
+      if (currentUserInfo.following.includes(user?.uid)) {
+        await updatePushData(
+          "userList",
+          user.uid,
+          "notice",
+          followNotice,
+          true
+        );
+      }
       window.location.reload("/user");
     } catch (e) {
       alert("팔로우 실패하였습니다");
     }
   };
+  /*const ag = user?.notice.find((e) => e);
+  console.log(user?.notice[0]?.nid);
+  console.log("asds", ag.nid);*/
   //개시물 갯수
   const userPostingCount = async () => {
     const coll = collection(db, "postingList");
@@ -94,21 +109,34 @@ const UserPage = () => {
   const selectComponent = {
     MyPagePost: <MyPagePost />,
     MyPagePostTag: <MyPagePostTag />,
-    Following: <Follow />,
-    Follower: <Follower />,
+    Following: <Follow user={user} />,
+    Follower: <Follower user={user} />,
   };
-  const test = [
+  const contentList = [
     {
+      text: "게시글",
       name: "MyPagePost",
+      icon: <AppsIcon fontSize="small" onClick={handleClickButton} />,
     },
     {
+      text: "zzz",
       name: "MyPagePostTag",
+      icon: <BookmarkBorderIcon fontSize="small" onClick={handleClickButton} />,
     },
     {
+      text: "팔로우 목록",
       name: "Following",
+      icon: <PersonOutlineOutlinedIcon fontSize="small" />,
     },
     {
+      text: "팔로워 목록",
       name: "Follower",
+      icon: (
+        <PersonOutlineOutlinedIcon
+          fontSize="small"
+          onClick={handleClickButton}
+        />
+      ),
     },
   ];
   return (
@@ -134,21 +162,33 @@ const UserPage = () => {
             <div>
               {params.uid === currentUserInfo.uid && (
                 <ul className={styles.user_title}>
-                  <li className={styles.comment}>{"게시물:" + postingCount}</li>
                   <li className={styles.comment}>
-                    <span>{"팔로워:" + currentUserInfo.follower.length}</span>
+                    <span>게시물</span>
+                    <span className={styles.user_data}> {postingCount}</span>
                   </li>
                   <li className={styles.comment}>
-                    <span>{"팔로우:" + currentUserInfo.following.length}</span>
+                    <span>팔로워</span>
+                    <span className={styles.user_data}>
+                      {currentUserInfo.follower.length}
+                    </span>
+                  </li>
+                  <li className={styles.comment}>
+                    <span>팔로우 </span>
+                    <span className={styles.user_data}>
+                      {currentUserInfo.following.length}
+                    </span>
                   </li>
                 </ul>
               )}
               {params.uid !== currentUserInfo.uid && (
                 <ul className={styles.user_title}>
-                  <li className={styles.comment}>{"게시물:" + postingCount}</li>
-
                   <li className={styles.comment}>
-                    <span>{"팔로워:" + user.follower?.length}</span>
+                    <span>게시물</span>
+                    <span className={styles.user_data}> {postingCount}</span>
+                    <span>팔로워 </span>
+                    <span className={styles.user_data}>
+                      {user.follower?.length}
+                    </span>
                   </li>
                   <li className={styles.comment}>
                     {!currentUserInfo.following?.includes(user.uid) && (
@@ -161,41 +201,27 @@ const UserPage = () => {
                         팔로우
                       </button>
                     )}
-                    <span> {":" + user.following?.length}</span>
+                    <span className={styles.user_data}>
+                      {" " + user.following?.length}
+                    </span>
                   </li>
                 </ul>
               )}
             </div>
           </div>
-          <p className={styles.comment}>{user.introduction}</p>
+          <p className={styles.introduction}>{user.introduction}</p>
         </div>
       </div>
       <div className={styles.postmenu} >
         <ul>
-          <li onClick={handleClickButton}>
-            <button name={test[0].name} className={styles.nav_btn}>
-            <AppsIcon fontSize="small" />
-              게시글
-            </button>
-          </li>
-          <li onClick={handleClickButton} >
-            <button name={test[1].name} className={styles.nav_btn}>
-            
-            <BookmarkBorderIcon fontSize="small" />마크
-            </button>
-          </li>
-          <li onClick={handleClickButton}>
-            <button name={test[2].name} className={styles.nav_btn}>
-            <PersonOutlineOutlinedIcon fontSize="small" />
-              팔로우 목록
-            </button>
-          </li>
-          <li onClick={handleClickButton}>
-            <button name={test[3].name} className={styles.nav_btn} >
-            <PersonOutlineOutlinedIcon fontSize="small"/>
-              팔로워 목록
-            </button>
-          </li>
+          {contentList.map((list) => (
+            <li onClick={handleClickButton} className={styles.content_list}>
+              <span onClick={handleClickButton}>{list.icon}</span>
+              <button name={list.name} className={styles.nav_btn}>
+                {list.text}
+              </button>
+            </li>
+          ))}
         </ul>
       </div>
       {content ? <div>{selectComponent[content]}</div> : <div>{<MyPagePost/>}</div>}
