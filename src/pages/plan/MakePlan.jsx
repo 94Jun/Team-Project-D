@@ -1,7 +1,6 @@
 import { useState } from "react";
 import PlanningOfDay from "../../components/Plan/PlanningOfDay";
 import Map from "../../components/Plan/Map"
-import PageDesign from "../../components/Plan/pageDesign";
 import styles from "../../components/Plan/Page.module.css"
 
 const MakePlan = () => {
