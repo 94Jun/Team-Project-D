@@ -119,7 +119,7 @@ const UserPage = () => {
       icon: <AppsIcon fontSize="small" onClick={handleClickButton} />,
     },
     {
-      text: "zzz",
+      text: "마크",
       name: "MyPagePostTag",
       icon: <BookmarkBorderIcon fontSize="small" onClick={handleClickButton} />,
     },

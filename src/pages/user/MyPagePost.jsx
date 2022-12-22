@@ -14,7 +14,6 @@ import { useSelector } from "react-redux";
 import PostItem from "../../components/PostItem/PostItem";
 import { useParams } from "react-router-dom";
 import { getSingleData} from "../../common";
-import UserPage from "./UserPage";
 
 const MyPagePost = () => {
   const [postingList, setPostingList] = useState();
@@ -87,6 +86,9 @@ const MyPagePost = () => {
   useEffect(() => {
     getPostingList();
   },[postuser]);
+  useEffect(() => {
+    getPostingList();
+  },[params]);
 
   //화면에 보여지는 postingList 삭제
   const removePostingListHandler = (pid) => {
