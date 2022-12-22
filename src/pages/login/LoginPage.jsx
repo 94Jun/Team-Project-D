@@ -84,19 +84,13 @@ const LoginPage = (props) => {
     }); }
 
     const [userInfo,setUserInfo] = useState();
+    const provider = new GoogleAuthProvider();
 
-    const googleLogin = () => {
-      const provider = new GoogleAuthProvider();
-      provider.addScope("profile");
-      provider.addScope("email"); 
-
-
+    const googleLogin = (e) => {
+      e.preventDefault();
       const auth = getAuth();
-
       signInWithPopup(auth, provider)
         .then((result) => {
-
-
           // 로그인된 결과를 구글인증을 통해서 확인 > 토큰 발급
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;

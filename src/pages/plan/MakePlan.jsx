@@ -1,6 +1,8 @@
 import { useState } from "react";
 import PlanningOfDay from "../../components/Plan/PlanningOfDay";
 import Map from "../../components/Plan/Map"
+import PageDesign from "../../components/Plan/pageDesign";
+import styles from "../../components/Plan/Page.module.css"
 
 const MakePlan = () => {
   const [startDate, setStartDate] = useState({date : new Date().toISOString().slice(0,10), value : Date.now()});
@@ -25,20 +27,21 @@ const MakePlan = () => {
   
   return (
     <div>
-      <p>즐거운 여행 계획을 시작하세요</p>
-      <div>
-        <p>여행을 언제 시작하나요?</p>
+      <h2> 000 여행 여행 / 타이틀 </h2>
+      <h3>{period}</h3>
+      <div className={styles.datelist}> 
+        <p>여행 첫날</p>
         <input type="date" onChange={changeStartDate} value={startDate.date} min={new Date().toISOString().slice(0,10)}/>
-      </div>
-      <div>
-        <p>여행을 언제 끝내나요?</p>
+        <p>여행 마지막날</p>
         <input type="date" onChange={changeEndsDate} value={endsDate.date} min={startDate.date} />
       </div>
-      <div>{period}</div>
+       <br />
+ 
       <div> <Map /></div>
       {dateValue >= 0 && Array(dateValue + 1).fill().map((date, idx) => { 
-        return <PlanningOfDay key={idx} date={idx+1} />
+        return <div> <PlanningOfDay key={idx} date={idx+1} /> <hr /> </div>
       })}
+
     </div>
 
   );
