@@ -56,18 +56,19 @@ const [nextId, setNextId] = useState(1);
   useEffect(()=>{
     const pickPlaceName = document.querySelector(
       '.title' )
-    const pickPlaceAddress = document.querySelector(
-      '.address:last-child div')
+      const pickPlaceAddress = document.querySelector(
+        '.address > div')
 
 
-      if (pickPlaceName == null || pickPlaceAddress == null || pickPlaceAddress.nextElementSibling == null) {
+
+      if (pickPlaceName == null || pickPlaceAddress == null) {
         return;
       }
 
     const about_lists = lists.concat({ //원래 있는 리스트에 붙여주기
       id: nextId,
       name: pickPlaceName.innerHTML,
-      address : pickPlaceAddress.innerHTML + pickPlaceAddress.nextElementSibling.innerHTML,
+      address : pickPlaceAddress.innerHTML
     });
 
     setNextId(nextId + 1); 
@@ -75,7 +76,7 @@ const [nextId, setNextId] = useState(1);
 
     console.log(nextId);
     console.log(pickPlaceName.innerHTML);
-    console.log(pickPlaceAddress.innerHTML + pickPlaceAddress.nextElementSibling.innerHTML);
+    console.log(pickPlaceAddress.innerHTML);
 
   }, [locationData])
 
