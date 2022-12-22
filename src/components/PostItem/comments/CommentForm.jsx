@@ -54,7 +54,7 @@ const CommentForm = (props) => {
         props.addCommentList(addedComment);
 
         //인풋창 초기화
-        setCommentInput("");
+        setCommentInput("");  
       } catch (e) {
         console.log(e.message);
       }

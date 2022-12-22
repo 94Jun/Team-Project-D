@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import { getSingleData } from "../../../common";
 import { ref, getDownloadURL } from "firebase/storage";
-import { getDocs, where, deleteDoc, doc, collection, query } from "firebase/firestore";
+import { getDocs, where, deleteDoc, doc, collection, query, updateDoc } from "firebase/firestore";
 import { updatePushData } from "../../../common";
 import { storage, db } from "../../../config/firebase";
 import styles from "./PostItemComments.module.css";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import EditIcon from "@mui/icons-material/Edit";
+import useToggle from "../../../hooks/useToggle";
 const CommentItem = (props) => {
   const [commentWriterInfo, setCommentWriterInfo] = useState({});
   const [profile, setProfile] = useState(null);
+  const [editorIsVisible, toggleEditHandler] = useToggle(false);
+  const [enteredComment, setEnteredComment] = useState(props.comment.text);
 
   //프로필 스토리지에서 불러오기
   const getProfile = async () => {
@@ -54,22 +58,61 @@ const CommentItem = (props) => {
     }
   };
 
+  const changeCommentHandler = (e) => {
+    setEnteredComment(e.target.value);
+  };
+  const updateComment = async () => { 
+    const commentRef = doc(db, "commentList", props.comment.cid);
+    await updateDoc(commentRef, {
+      text : enteredComment
+    });
+    
+  }
+
+  const editCommentHandler = (e) => {
+    e.preventDefault();
+    if (enteredComment.trim() !== "") { 
+      //데이터베이스 내 commentList의 text 수정
+      updateComment();
+
+      //화면에 보여지는 댓글 수정
+      props.editCommentList(props.comment.cid, enteredComment)
+      toggleEditHandler();
+    }
+  };
+
+  let content = <p className={styles.comment_text}>{props.comment.text}</p>;
+  if (editorIsVisible)
+    content = (
+        <form className={styles.comment_form} onSubmit={editCommentHandler}>
+          <div>
+            <input type="text" value={enteredComment} onChange={changeCommentHandler} />
+            <button>수정</button>
+          </div>
+        </form>
+    );
+
   return (
     <div className={styles.comment_item}>
       <div className={styles.comment_profile_wrap}>
         <img src={profile} />
       </div>
-      <div>
+      <div className={styles.comment_content_wrap}>
         <div className={styles.comment_writer_info}>
           <span className={styles.comment_writer_name}>{commentWriterInfo.name}</span>
           <span className={styles.comment_date}>{props.comment.writeDate}</span>
           {props.comment.writer === props.currentUserInfo.uid && (
-            <button className={styles.delete_btn} onClick={removeCommentHandler}>
-              <DeleteOutlineOutlinedIcon fontSize="small" />
-            </button>
+            <div>
+              <button className={styles.edit_btn} onClick={toggleEditHandler}>
+                <EditIcon fontSize="small" />
+              </button>
+              <button className={styles.delete_btn} onClick={removeCommentHandler}>
+                <DeleteOutlineOutlinedIcon fontSize="small" />
+              </button>
+            </div>
           )}
         </div>
-        <p className={styles.comment_text}>{props.comment.text}</p>
+        {content}
       </div>
     </div>
   );

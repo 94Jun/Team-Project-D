@@ -6,6 +6,7 @@ import UpLoadReducer from "./modules/upload";
 import SearchReducer from "./modules/search";
 import LoginReducer from "./modules/login";
 import PendingReducer from './modules/pending'
+import PlanReducer from './modules/plan'
 
 export default configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export default configureStore({
     upload: UpLoadReducer,
     search: SearchReducer,
     login: LoginReducer,
-    pending : PendingReducer,
+    pending: PendingReducer,
+    plan : PlanReducer,
   },
   middleware: getDefaultMiddleware =>
   getDefaultMiddleware({
