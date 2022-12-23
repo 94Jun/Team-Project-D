@@ -9,7 +9,7 @@ import {
   startAfter,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PostItem from "../../components/PostItem/PostItem";
 import { useParams } from "react-router-dom";
@@ -26,9 +26,11 @@ const MyPagePost = () => {
   useEffect(() => {
   //다른사람 페이지 들어갔을때 그사람 userList 데이터 받아오는 함수
   getSingleData("userList", params.uid, setpostUser);
+  setPostingList(); setLastVisible(); 
   }, [params]); 
 
   const getPostingList = async () => {
+  // 페이지 유저정보, 로그인 유저정보 비교해서 공개/비공개 포스트 구분
     if(params.uid == user.uid){
       if (!lastVisible) {
         const first = query(
@@ -86,9 +88,6 @@ const MyPagePost = () => {
   useEffect(() => {
     getPostingList();
   },[postuser]);
-  useEffect(() => {
-    getPostingList();
-  },[params]);
 
   //화면에 보여지는 postingList 삭제
   const removePostingListHandler = (pid) => {

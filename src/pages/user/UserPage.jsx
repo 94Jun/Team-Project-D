@@ -112,16 +112,16 @@ const UserPage = () => {
     Following: <Follow user={user} />,
     Follower: <Follower user={user} />,
   };
-  const contentList = [
+  const MycontentList = [
     {
       text: "게시글",
       name: "MyPagePost",
-      icon: <AppsIcon fontSize="small" onClick={handleClickButton} />,
+      icon: <AppsIcon fontSize="small" />,
     },
     {
       text: "마크",
       name: "MyPagePostTag",
-      icon: <BookmarkBorderIcon fontSize="small" onClick={handleClickButton} />,
+      icon: <BookmarkBorderIcon fontSize="small" />,
     },
     {
       text: "팔로우 목록",
@@ -131,14 +131,27 @@ const UserPage = () => {
     {
       text: "팔로워 목록",
       name: "Follower",
-      icon: (
-        <PersonOutlineOutlinedIcon
-          fontSize="small"
-          onClick={handleClickButton}
-        />
-      ),
+      icon: <PersonOutlineOutlinedIcon fontSize="small" />,
     },
   ];
+  const UsercontentList = [
+    {
+      text: "게시글",
+      name: "MyPagePost",
+      icon: <AppsIcon fontSize="small"/>,
+    },
+    {
+      text: "팔로우 목록",
+      name: "Following",
+      icon: <PersonOutlineOutlinedIcon fontSize="small" />,
+    },
+    {
+      text: "팔로워 목록",
+      name: "Follower",
+      icon: <PersonOutlineOutlinedIcon fontSize="small"/>
+    },
+  ];
+
   return (
     <div className={styles.user}>
       <div className={styles.title}>
@@ -213,8 +226,10 @@ const UserPage = () => {
         </div>
       </div>
       <div className={styles.postmenu} >
+        {params.uid === currentUserInfo.uid && (
+      // '마크'된 포스트는 로그인 유저 마이페이지에서만 활성화
         <ul>
-          {contentList.map((list) => (
+          {MycontentList.map((list) => (
             <li onClick={handleClickButton} className={styles.content_list}>
               <span onClick={handleClickButton}>{list.icon}</span>
               <button name={list.name} className={styles.nav_btn}>
@@ -223,6 +238,19 @@ const UserPage = () => {
             </li>
           ))}
         </ul>
+        )}
+        {params.uid !== currentUserInfo.uid && (
+        <ul>
+          {UsercontentList.map((list) => (
+            <li onClick={handleClickButton} className={styles.content_list}>
+              <span>{list.icon}</span>
+              <button name={list.name} className={styles.nav_btn}>
+                {list.text}
+              </button>
+            </li>
+          ))}
+          </ul>
+        )}
       </div>
       {content ? <div>{selectComponent[content]}</div> : <div>{<MyPagePost/>}</div>}
     </div>
