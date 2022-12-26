@@ -15,8 +15,13 @@
 
 .title button {
     margin-left: 5px;
+    background-color: none;
 }
 
 .datelist {
     display: flex;   
+}
+
+.datelist h3 {
+    margin-left: 10px;
 }

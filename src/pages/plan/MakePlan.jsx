@@ -69,12 +69,14 @@ const MakePlan = () => {
 
     
       <div className={styles.datelist}>
-        <p>여행 첫날</p>
+        <p>Start</p>
         <input type="date" onChange={changeStartDate} value={startDate.date} min={new Date().toISOString().slice(0, 10)} />
-        <p>여행 마지막날</p>
+        <p>Ends</p>
         <input type="date" onChange={changeEndsDate} value={endsDate.date} min={startDate.date} />
+        <h3>{period}</h3>
       </div>
-      <h3>{period}</h3>
+
+      
       <br />
 
       <div>

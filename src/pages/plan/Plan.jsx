@@ -20,7 +20,7 @@ const Plan = () => {
       </h3>
       <p> {plan?.period}</p>
       <hr />
-      <div> 지도사진 or 장소사진 </div>
+
       {length &&
         Array(length)
           .fill()

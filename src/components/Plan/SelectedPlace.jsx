@@ -26,6 +26,7 @@ const SelectedPlace = () => {
   return (
     <div className={styles.pickplaceall}>
       <h4>내가 선택한 장소</h4>
+      <p> <i> 검색으로 지역을 선택 한 후, 지도에 있는 장소를 클릭하면 장소를 추가 할 수있습니다. </i></p>
       {content}
     </div>
   );
