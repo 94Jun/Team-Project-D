@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getId } from "../../common";
+import style from "../Plan/PlanningOfDay.module.css";
 
 const PlanningOfDay = (props) => {
   const [selectedPlace, setSelectedPlace] = useState();
@@ -39,38 +40,52 @@ const PlanningOfDay = (props) => {
     });
 
   return (
-    <div>
-      <h3>{props.date}일차</h3>
-      <div>
-        <div>
-          <div>
-            <span>시작시간</span>
-            <input type="time" onChange={changeSelectedTime} value={selectedTime} />
-          </div>
-          <div>
-            <span>장소</span>
-            <select onChange={changeSelectedPlace} value={selectedPlace}>
-              <option>장소를 선택해 주세요</option>
-              {markedPlaces.length > 0 &&
-                markedPlaces.map((place) => {
-                  return (
-                    <option value={place.name} key={place.id}>
-                      {place.name}
-                    </option>
-                  );
-                })}
+    <div className={style.days}>
+
+<div className={style.datetime}>
+
+      <div className={style.dates}>
+         <h3>{props.date}</h3>일차</div>
+             <div>
+
+
+                 <div className={style.oneline}>
+
+                     <div>
+                     <span>장소</span>
+                     <select onChange={changeSelectedPlace} value={selectedPlace}>
+                     <option>장소를 선택해 주세요</option>
+                     {markedPlaces.length > 0 &&
+                     markedPlaces.map((place) => {
+                      return (
+                        <option value={place.name} key={place.id}>
+                     {place.name}
+                     </option>
+                     );
+                     })}
             </select>
           </div>
-        </div>
+
+          <div>
+            <span>시간 </span>
+            <input type="time" onChange={changeSelectedTime} value={selectedTime} />
+          </div>
+        </div> 
+
+
         <div>
           <button onClick={addPlanHandler}>등록</button>
         </div>
+
+        </div>
       </div>
+
       {filteredPlan &&
         filteredPlan.length !== 0 &&
         filteredPlan.map((plan) => {
           return (
             <div>
+              <br />
               <div>
                 <div>시간 : {plan.time}</div>
                 <div>장소 : {plan.place}</div>

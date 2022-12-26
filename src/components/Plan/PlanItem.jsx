@@ -12,8 +12,8 @@ const PlanItem = (props) => {
       <button onClick={gotoplan}>
         <div className={styles.myplanboxs}>
           <p>{props.plan.title}</p>
-          <p>여행시작 : {props.plan.startDate}</p>
-          <p>여행끝 : {props.plan.endsDate}</p>
+          <p>Start : {props.plan.startDate}</p>
+          <p>Ends  : {props.plan.endsDate}</p>
           <p>{props.plan.period}</p>
         </div>
       </button>

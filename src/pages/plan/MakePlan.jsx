@@ -6,6 +6,7 @@ import SelectedPlace from "../../components/Plan/SelectedPlace";
 import { addData, getId } from "../../common";
 import { useSelector } from "react-redux";
 import useToggle from "../../hooks/useToggle";
+import { typeImplementation } from "@testing-library/user-event/dist/type/typeImplementation";
 
 
 const MakePlan = () => {
@@ -64,16 +65,16 @@ const MakePlan = () => {
       <div className={styles.title}>
         {editTitleIsShown ? <input type="text" onChange={changeTitleHandler} value={title} /> : <h3> {title}</h3>}
         <button onClick={toggleEditTitleHandler}>{editTitleIsShown ? "수정 완료" : "타이틀 수정"}</button>
-
+        &nbsp;&nbsp;&nbsp;<h3>{period}</h3>
       </div>
 
     
       <div className={styles.datelist}>
-        <p>Start</p>
+        <p>Start</p>&nbsp;
         <input type="date" onChange={changeStartDate} value={startDate.date} min={new Date().toISOString().slice(0, 10)} />
-        <p>Ends</p>
+        <p>Ends</p>&nbsp;
         <input type="date" onChange={changeEndsDate} value={endsDate.date} min={startDate.date} />
-        <h3>{period}</h3>
+
       </div>
 
       
@@ -88,13 +89,13 @@ const MakePlan = () => {
           .fill()
           .map((date, idx) => {
             return (
-              <div key={idx}>
+              <div key={idx} className={styles.days}>
                 <PlanningOfDay date={idx + 1} onAddPlan={addPlanHandler} onRemovePlan={removePlanHandler} plan={plan} /> <hr />
               </div>
             );
           })}
       <button onClick={addFullPlanHandler}>계획 완료</button>
-    </div>
+    </div> <br /><br /><br /><br /><br />
     </div> );
 };
 

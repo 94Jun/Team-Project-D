@@ -11,6 +11,8 @@
 
 .title{
   display: flex;  
+  margin-top : 1em;
+  margin-bottom: 1em;
 }
 
 .title button {
@@ -22,6 +24,19 @@
     display: flex;   
 }
 
+
+.datelist p{
+    margin-left: 5px;
+    margin-top : 5px;
+    margin-bottom: 5px;
+}
+
+
 .datelist h3 {
     margin-left: 10px;
+    margin-top: 4px;
+}
+
+.days  {
+    margin-top: 10px;
 }

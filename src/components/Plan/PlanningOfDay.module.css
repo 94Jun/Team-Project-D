@@ -1,0 +1,17 @@
+.days {
+    background-color: yellow;
+}
+
+.dates {
+    background-color: pink;
+    display: flex;
+    width: 50px;
+}
+
+.datetime{
+    display: flex;
+}
+.oneline {
+    background-color: blueviolet;
+    display: flex;
+}

@@ -1,30 +1,64 @@
+
 .pickplaceall{
 background-color: var(--color-gray);
+width:100%;
 padding-top: 20px;
 padding-bottom: 20px;
+overflow: hidden;
 }
 
 .place_container{
-  display: flex;
-  width: 100%;
+  width: 250px;
   border-radius: 5px;
-  background-color:rgba(255, 255, 255, 0.8);
+  background-color:rgba(255, 255, 255, 0.5);
   align-items: center;
-  margin-bottom: 20px;
+  margin:10px;
+  padding-bottom: 10px; 
+  display: inline-block;
 }
-.remove_btn_wrap {
-  margin-left : 20px;
 
+.selectcontent {
+  width: 100%;
+  height: 130px;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.selectedPlace{
+  display: inline-block;
+}
+
+.remove_btn_wrap {
+  margin: 10px;
+ display: flexbox;
 }
 .remove_btn_wrap button{
-  background: none;
+  width: 20%;
+  background: var( --color-main-blue);
   border : none;
   cursor: pointer;
+  border-radius: 5px;
   font-size: var(--font-medium);
+  color:white;
+}
+.place_titlecontainer {
+  width: 100%;
+
+}
+.place_dic {
+  font-size: small;
+  color: gray;
+  height: 15px;
+  overflow: hidden;
 }
 
+.place_title{
+  height: 20px;
+  overflow: hidden;
+}
 .pickplaceall p {
   font-size: small;
   margin-top: 2px;
-  color: white
+  color: white;
 }
+

@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 
 const MyPlans = () => {
-  const [isHovering, setIsHovering] = useState(0);
   const profile = useSelector((state) => state.user.profile);
 
 
