@@ -1,76 +1,108 @@
 .myplan {
-    display: flexbox;
-    justify-content: center; 
     width: 100%;
-    padding: 5%;
-    align-items: center;
+    padding: 10px;
     text-align: center;
+    justify-content : center;
 }
 
+.myplantitlewrap{
+    width: 100%; 
+    height: 200px;
+    position: relative; 
+}
+.myplantitle{
+    width: 50%; 
+    position: absolute; 
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    margin: 0 auto;
+    left:25%;
+    top:10%;
+}
 
-.title { 
-    align-items: center;
-    padding-bottom: 20px;
-    }
+.profileimg {
+    min-width: 140px;
+    height: 140px;
+    background-color: var( --color-main-blue);
+    border-radius: 100%;
+}
 
-    .profile {
-        background-color: var(--color-main-blue);
-        border-radius: 100%;
-        width: 100px;
-        height: 100px;
-        text-align: center;
-        align-items: center;
-    }
+.titletextplus {
+    width: 100%;
+    position: relative; 
+}
 
-    .titletext {
-        display: flex; 
-    }       
-    
-    .userbox {
-        padding-left: 10px;
-        display: contents; 
-    }
+.addround{
+font-weight: bold;
+margin-top: 10px;
+color: var( --color-main-blue);
+}
 
-       
-    .userbox h3 {
-        padding-right: 10px;
-        display: flex; 
-    }
-
-
-
-    .round {
-        background-color: var(--color-main-blue);
-        border-radius: 100%;
-        width: 20px;
-        height: 20px;
-        text-align: center;
-    }
-
-    .round:hover{
-        background-color:  white;
-        border-radius: 100%;
-        width: 20px;
-        height: 20px;
-        text-align: center;
-    }
-
-    .navlink {
-        font-weight: bolder;
-        color: white;
-        display: inline-block;
-        padding-top: 0.5px;
-    }
-
-    .navlink:hover {
-        font-weight: bolder;
-        color: var(--color-main-blue);
-        display: inline-block;
-        padding-top: 0.5px;
+.addround:hover{
+    font-weight: bolder;
+    margin-top: 10px;
+    color: var( --color-main-blue);
     }
 
     .text {
-        text-decoration: underline;
-        color: var(--color-main-blue);
-        padding-left: 1px;
+        width: 120px;
+        padding: 10px;
+        background-color: var( --color-main-blue);
+        position: absolute;
+        color: white;
+        border-radius: 10%;
+        left:42%;
     }
+
+@media (max-width: 768px) { 
+    .myplan {
+        width: 100%;
+    }
+    
+    .myplantitlewrap{
+        height: 180px;
+        display: grid;
+    }
+    .myplantitle{
+        top:5%;
+    }
+    
+    .profileimg {
+        min-width: 140px;
+        height: 140px;
+        background-color: var( --color-main-blue);
+        border-radius: 100%;
+        display: flexbox;
+        position: relative;
+        left: -70px;
+    }
+    
+    .titletextplus {
+
+    }
+    
+    .addround{
+    font-weight: bold;
+    margin-top: 10px;
+    color: var( --color-main-blue);
+    }
+
+    .titletext{
+        width: 100px;
+    }
+
+    .addround:hover{
+        font-weight: bolder;
+        margin-top: 10px;
+        color: var( --color-main-blue);
+        }
+        .text {
+            width: 110px;
+            padding: 10px;
+            background-color: var( --color-main-blue);
+            color: white;
+            left: 0px;
+        }
+
+}
