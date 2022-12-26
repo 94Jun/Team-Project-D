@@ -1,51 +1,24 @@
 import styles from "./PlanItem.module.css";
 import { useNavigate } from "react-router-dom";
 
+const PlanItem = (props) => {
+  const navigate = useNavigate();
+  const gotoplan = () => {
+    navigate(`/plan/${props.plan.planId}`);
+  };
 
-const PlanItem = () => {
-    const navigate = useNavigate();
-
-    const min =0;
-    const max= 100;
-    const postingid = Math.floor(Math.random() * (max-min)) + min;
-    const planpsts = [
-    {
-            id :  1,
-            title: "나의 첫번째 여행",
-            datestart : "2022.03.02",
-            dateends : "2022.03.04",
-            place : "서울",
-            postingid : postingid
-    },
-    {
-        id :  2,
-        title: "나의 두번째",
-        datestart : "2022.03.02",
-        dateends : "2022.03.04",
-        place : "서울",
-        postingid : postingid+1
-},
-]
-    const gotoplan = ()=> {
-        navigate('/plan');
-    }
-
-const result = planpsts.map((planpsts,index) => 
-<button onClick={gotoplan}> <div className={styles.myplanboxs} key={index}>
-
-<p>{planpsts.title}</p>
-<p>여행시작 : {planpsts.datestart}</p>
-<p>여행끝 : {planpsts.dateends}</p>
-
-</div>  </button> );
-
-
-
-    return ( 
-        <div className={styles.listbox}>
-         {result} 
+  return (
+    <div className={styles.listbox}>
+      <button onClick={gotoplan}>
+        <div className={styles.myplanboxs}>
+          <p>{props.plan.title}</p>
+          <p>여행시작 : {props.plan.startDate}</p>
+          <p>여행끝 : {props.plan.endsDate}</p>
+          <p>{props.plan.period}</p>
         </div>
-     );
-}
- 
+      </button>
+    </div>
+  );
+};
+
 export default PlanItem;
