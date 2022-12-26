@@ -1,0 +1,14 @@
+.place_container{
+  display: flex;
+  align-items: center;
+}
+.remove_btn_wrap {
+  margin-left : 20px;
+
+}
+.remove_btn_wrap button{
+  background: none;
+  border : none;
+  cursor: pointer;
+  font-size: var(--font-medium);
+}
