@@ -1,0 +1,22 @@
+.makeplanall {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+    margin:0 auto;
+    border: 1px solid var(--color-gray);
+    margin: 10px;
+
+}
+
+.title{
+  display: flex;  
+}
+
+.title button {
+    margin-left: 5px;
+}
+
+.datelist {
+    display: flex;   
+}

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ADD_MARKED_PLACE} from "../../modules/plan";
 
 const containerStyle = {
-  width: "800px",
+  width: "100%",
   height: "400px",
 };
 

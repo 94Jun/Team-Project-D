@@ -94,15 +94,16 @@ const LoginPage = (props) => {
           // 로그인된 결과를 구글인증을 통해서 확인 > 토큰 발급
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
-          // 로그인된 결과 중에서 user를 통해서 관련 정보를 가져올수 있다
           const user = result.user;
+
           const checkDoc = async () => {
             const docRef = doc(db, "userList", user.uid);
             const docSnap = await getDoc(docRef);
             if (!docSnap.exists()){
               createUser(user)
-            }  checkDoc();
-          }
+            }  
+          };
+          checkDoc();
           navigate("/");
           dispatch(LOGIN(user.uid));
           console.log("구글로그인성공!")

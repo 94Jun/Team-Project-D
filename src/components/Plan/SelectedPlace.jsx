@@ -24,7 +24,7 @@ const SelectedPlace = () => {
     );
   });
   return (
-    <div>
+    <div className={styles.pickplaceall}>
       <h4>내가 선택한 장소</h4>
       {content}
     </div>

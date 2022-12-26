@@ -6,26 +6,21 @@
 }
 
 .myplantitlewrap{
-    width: 100%; 
-    height: 200px;
-    position: relative; 
+    display: flex; 
+    justify-content: center;
+    margin:20px;
 }
+
 .myplantitle{
-    width: 50%; 
-    position: absolute; 
-    margin: auto;
-    padding: 10px;
-    display: flex;
-    margin: 0 auto;
-    left:25%;
-    top:10%;
+margin-top: 40px;
 }
 
 .profileimg {
-    min-width: 140px;
+    width: 140px;
     height: 140px;
     background-color: var( --color-main-blue);
     border-radius: 100%;
+    left: -20px;
 }
 
 .titletextplus {
@@ -34,15 +29,23 @@
 }
 
 .addround{
+display: flex;
 font-weight: bold;
 margin-top: 10px;
+padding-top: 5px;
+padding-left: 7px;
+width: 100px;
+height: 30px;
 color: var( --color-main-blue);
+border: 1px solid var( --color-main-blue);
+border-radius: 10px;
 }
 
 .addround:hover{
-    font-weight: bolder;
-    margin-top: 10px;
-    color: var( --color-main-blue);
+
+    border: 1px solid var( --color-main-blue);
+    background-color: var( --color-main-blue);
+    color: white;
     }
 
     .text {
@@ -55,54 +58,62 @@ color: var( --color-main-blue);
         left:42%;
     }
 
-@media (max-width: 768px) { 
-    .myplan {
-        width: 100%;
-    }
-    
-    .myplantitlewrap{
-        height: 180px;
-        display: grid;
-    }
-    .myplantitle{
-        top:5%;
-    }
-    
-    .profileimg {
-        min-width: 140px;
-        height: 140px;
-        background-color: var( --color-main-blue);
-        border-radius: 100%;
-        display: flexbox;
-        position: relative;
-        left: -70px;
-    }
-    
-    .titletextplus {
 
-    }
-    
-    .addround{
-    font-weight: bold;
-    margin-top: 10px;
-    color: var( --color-main-blue);
-    }
 
-    .titletext{
-        width: 100px;
-    }
 
-    .addround:hover{
-        font-weight: bolder;
+    @media (max-width: 768px) {
+        .myplan {
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            justify-content : center;
+        }
+        
+        .myplantitlewrap{
+            display: grid;
+            grid-column: 30% 70%;
+        }
+        .myplantitle{
+            margin-bottom: 10px;
+        }
+        
+        .profileimg {
+            margin: 0 auto;
+            width: 140px;
+            height: 140px;
+            background-color: var( --color-main-blue);
+            border-radius: 100%;
+        }
+        
+        .titletextplus {
+            margin-top: 10px;
+            width: 100%;
+            position: relative; 
+        }
+        
+        .addround{
+        font-weight: bold;
         margin-top: 10px;
+        padding: 10px;
         color: var( --color-main-blue);
         }
-        .text {
-            width: 110px;
-            padding: 10px;
-            background-color: var( --color-main-blue);
-            color: white;
-            left: 0px;
-        }
+        
+        .addround:hover{
+            font-weight: bolder;
+            margin-top: 10px;
+            color: var( --color-main-blue);
+            }
+        
+            .text {
+                width: 120px;
+                padding: 10px;
+                background-color: var( --color-main-blue);
+                position: absolute;
+                color: white;
+                border-radius: 10%;
+                left:42%;
+            }
+        
+        
 
-}
+    }

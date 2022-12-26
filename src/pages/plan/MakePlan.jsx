@@ -1,11 +1,12 @@
 import { useState } from "react";
 import PlanningOfDay from "../../components/Plan/PlanningOfDay";
 import Map from "../../components/Plan/Map";
-import styles from "../../components/Plan/Page.module.css";
+import styles from "../plan/MakePlan.module.css";
 import SelectedPlace from "../../components/Plan/SelectedPlace";
 import { addData, getId } from "../../common";
 import { useSelector } from "react-redux";
 import useToggle from "../../hooks/useToggle";
+
 
 const MakePlan = () => {
   const [startDate, setStartDate] = useState({ date: new Date().toISOString().slice(0, 10), value: Date.now() });
@@ -57,19 +58,23 @@ const MakePlan = () => {
     } catch (e) {}
   };
 
-  return (
+  return ( <div  className={styles.makeplanall}>
+    <div> <h2>내 여행 계획하기 </h2> </div> 
     <div>
-      <div>
-        {editTitleIsShown ? <input type="text" onChange={changeTitleHandler} value={title} /> : <h2> {title}</h2>}
+      <div className={styles.title}>
+        {editTitleIsShown ? <input type="text" onChange={changeTitleHandler} value={title} /> : <h3> {title}</h3>}
         <button onClick={toggleEditTitleHandler}>{editTitleIsShown ? "수정 완료" : "타이틀 수정"}</button>
+
       </div>
-      <h3>{period}</h3>
+
+    
       <div className={styles.datelist}>
         <p>여행 첫날</p>
         <input type="date" onChange={changeStartDate} value={startDate.date} min={new Date().toISOString().slice(0, 10)} />
         <p>여행 마지막날</p>
         <input type="date" onChange={changeEndsDate} value={endsDate.date} min={startDate.date} />
       </div>
+      <h3>{period}</h3>
       <br />
 
       <div>
@@ -88,7 +93,7 @@ const MakePlan = () => {
           })}
       <button onClick={addFullPlanHandler}>계획 완료</button>
     </div>
-  );
+    </div> );
 };
 
 export default MakePlan;

@@ -1,3 +1,9 @@
+.pickplaceall{
+background-color: var(--color-gray);
+padding-top: 20px;
+padding-bottom: 20px;
+}
+
 .place_container{
   display: flex;
   align-items: center;
