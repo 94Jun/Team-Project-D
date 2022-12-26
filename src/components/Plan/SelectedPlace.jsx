@@ -1,15 +1,15 @@
 import styles from "./SelectedPlace.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { REMOVE_SELECETED_PLACE } from "../../modules/plan";
+import { REMOVE_MARKED_PLACE } from "../../modules/plan";
 const SelectedPlace = () => {
   const dispatch = useDispatch();
-  const selectedPlaces = useSelector((state) => state.plan.selectedPlaces);
+  const markedPlaces = useSelector((state) => state.plan.markedPlaces);
   const removePlaceHandler = (id) => { 
-    dispatch(REMOVE_SELECETED_PLACE(id))
+    dispatch(REMOVE_MARKED_PLACE(id))
   }
-  const content = selectedPlaces.map((place) => {
+  const content = markedPlaces.map((place) => {
     return (
-      <div className={styles.place_container}>
+      <div className={styles.place_container} key={place.id}>
         <div>
           <div>
             <span>{place.id}. </span>
