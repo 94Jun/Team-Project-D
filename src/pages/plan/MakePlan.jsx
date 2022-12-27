@@ -54,6 +54,7 @@ const MakePlan = () => {
           title,
           plan,
           period,
+          companion : [currentUserInfo.uid],
         };
         addData("planList", newPlan.planId, newPlan);
         alert("계획작성이 완료되었습니다.");

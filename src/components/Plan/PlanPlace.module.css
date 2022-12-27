@@ -1,0 +1,18 @@
+.list{
+  padding: 10px;
+  border-bottom: 1px solid var(--color-light-gray);
+  cursor: pointer;
+}
+.place{
+  display: flex;
+  align-items: center;
+  gap : 10px;
+}
+.day_container{
+  margin : 20px;
+}
+.address{
+  font-size: var(--font-small);
+  color : var(--color-main-gray);
+  margin-top : 5px;
+}

@@ -8,8 +8,8 @@
   padding: 0 25px;
   gap: 15px;
 }
-.set {
-  margin-top: 15vh;
+.logout{
+  margin-top : 25vh;
 }
 .item {
   font-size: 28px;
@@ -80,9 +80,6 @@
     padding: 0;
     gap: 0;
   }
-  .set {
-    margin: 0;
-  }
   .item {
     height: inherit;
     flex-grow: 1;
@@ -97,6 +94,9 @@
     align-items: center;
     height: fit-content;
     width: 100%;
+  }
+  .logout{
+    margin : 0;
   }
   .search {
     display: none;

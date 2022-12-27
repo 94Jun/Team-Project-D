@@ -14,13 +14,14 @@ const PlanningOfDay = (props) => {
   };
   const addPlanHandler = () => {
     if (selectedPlace && selectedTime) {
-      const address = markedPlaces.find((place) => place.name === selectedPlace).address;
+      const markedPlace = markedPlaces.find((place) => place.name === selectedPlace);
       const addedPlan = {
         id: getId(),
         whatDate: props.date,
         time: selectedTime,
         place: selectedPlace,
-        address,
+        address: markedPlace.address,
+        position : markedPlace.position
       };
       props.onAddPlan(addedPlan);
     }
