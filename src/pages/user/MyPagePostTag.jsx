@@ -1,13 +1,5 @@
 import styles from "./MyPagePost.module.css";
-import {
-  query,
-  collection,
-  where,
-  orderBy,
-  limit,
-  getDocs,
-  startAfter,
-} from "firebase/firestore";
+import { query, collection, where, orderBy, limit, getDocs, startAfter,} from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -57,7 +49,7 @@ const MyPagePost = () => {
       });
     }}
     else {
-  // 마크된 게시물로 다른 유저 프로필 들어가면 해당 유저 게시글 페이지로 표시
+  // 마크된 게시물로 다른 유저 페이지 들어가면 해당 유저 게시글 페이지로 표시
       if (!lastVisible) {
         const first = query(
           collection(db, "postingList"), 
@@ -87,7 +79,7 @@ const MyPagePost = () => {
     }
   };
   useEffect(() => {
-    getPostingList(); 
+    getPostingList();
   },[testUser]);
 
   //화면에 보여지는 postingList 삭제

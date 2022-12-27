@@ -1,13 +1,5 @@
 import styles from "./MyPagePost.module.css";
-import {
-  query,
-  collection,
-  where,
-  orderBy,
-  limit,
-  getDocs,
-  startAfter,
-} from "firebase/firestore";
+import { query, collection, where, orderBy, limit, getDocs, startAfter,} from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -23,6 +15,7 @@ const MyPagePost = () => {
   //리덕스 user정보 가져오기
   const user = useSelector((state) => state.user.currentUserInfo);
   //console.log(user);
+  
   useEffect(() => {
   //다른사람 페이지 들어갔을때 그사람 userList 데이터 받아오는 함수
   getSingleData("userList", params.uid, setpostUser);
