@@ -4,6 +4,7 @@ import { storage } from "../../config/firebase";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { updatePushData } from "../../common";
+import { Link } from "react-router-dom";
 
 const FollowUser = ({ follwUser, user }) => {
   const [followUserImg, setFollowUserImg] = useState();
@@ -62,15 +63,18 @@ const FollowUser = ({ follwUser, user }) => {
     <li className={styles.follow_user_lest}>
       <div className={styles.follow_user}>
         <div className={styles.follow_user_profile}>
+        <Link to={`/user/${follwUser.uid}`}>
           <img
             src={followUserImg}
             alt="preview-img"
             width="100%"
             height="100%"
-          />
+          /></Link>
         </div>
         <div className={styles.follow_user_data_box}>
+          <Link to={`/user/${follwUser.uid}`}>
           <p className={styles.follow_user_data}>{follwUser.name}</p>
+          </Link>
           <p className={styles.follow_user_data}>{follwUser.introduction}</p>
         </div>
       </div>

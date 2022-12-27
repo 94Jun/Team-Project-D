@@ -162,6 +162,7 @@
   background-color: var(--color-white);
   border: 0;
   align-items: center;
+  cursor: pointer;
 }
 @media (max-width: 1300px) {
   .post_main {
