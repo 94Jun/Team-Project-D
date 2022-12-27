@@ -3,7 +3,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../config/firebase";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { updatePushData } from "../../common";
+import { updatePushData, getId } from "../../common";
 import { Link } from "react-router-dom";
 
 const FollowUser = ({ follwUser, user }) => {
@@ -27,12 +27,12 @@ const FollowUser = ({ follwUser, user }) => {
         "userList",
         currentUserInfo.uid,
         "following",
-        follow.uid,
+        follwUser.uid,
         false
       );
       await updatePushData(
         "userList",
-        follow.uid,
+        follwUser.uid,
         "follower",
         currentUserInfo.uid,
         false
@@ -40,7 +40,12 @@ const FollowUser = ({ follwUser, user }) => {
       window.location.reload("/user");
     } catch (e) {}
   };
+
   const follow = async () => {
+    const followNotice = {
+      nid: getId(),
+      text: `${currentUserInfo.name}님이 회원님을 팔로우 하였습니다.`,
+    };
     try {
       await updatePushData(
         "userList",
@@ -56,24 +61,28 @@ const FollowUser = ({ follwUser, user }) => {
         currentUserInfo.uid,
         !follwUser.follower.includes(currentUserInfo.uid)
       );
+      if (!currentUserInfo.following.includes(follwUser?.uid)) {
+        updatePushData("userList", follwUser.uid, "notice", followNotice, true);
+      }
       window.location.reload("/user");
     } catch (e) {}
   };
   return (
-    <li className={styles.follow_user_lest}>
+    <li className={styles.follow_user_list}>
       <div className={styles.follow_user}>
         <div className={styles.follow_user_profile}>
-        <Link to={`/user/${follwUser.uid}`}>
-          <img
-            src={followUserImg}
-            alt="preview-img"
-            width="100%"
-            height="100%"
-          /></Link>
+          <Link to={`/user/${follwUser.uid}`}>
+            <img
+              src={followUserImg}
+              alt="preview-img"
+              width="100%"
+              height="100%"
+            />
+          </Link>
         </div>
         <div className={styles.follow_user_data_box}>
           <Link to={`/user/${follwUser.uid}`}>
-          <p className={styles.follow_user_data}>{follwUser.name}</p>
+            <p className={styles.follow_user_data}>{follwUser.name}</p>
           </Link>
           <p className={styles.follow_user_data}>{follwUser.introduction}</p>
         </div>
@@ -86,7 +95,8 @@ const FollowUser = ({ follwUser, user }) => {
         )}
 
         {user.uid !== currentUserInfo.uid &&
-          !currentUserInfo.following?.includes(follwUser.uid) && (
+          !currentUserInfo.following?.includes(follwUser.uid) &&
+          follwUser.uid !== currentUserInfo.uid && (
             <button className={styles.follow_btn} onClick={follow}>
               팔로우
             </button>

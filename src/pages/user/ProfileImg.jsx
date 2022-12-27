@@ -20,7 +20,6 @@ export default function ProfileImg() {
   const profile = useSelector((state) => state.user.profile);
 
   const params = useParams();
-
   useEffect(() => {
     getSingleData("userList", params.uid, setUser);
   }, []);

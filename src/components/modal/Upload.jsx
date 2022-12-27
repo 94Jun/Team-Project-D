@@ -1,6 +1,6 @@
 import styles from "./PostingModal.module.css";
 import AddAPhotoOutlined from "@mui/icons-material/AddAPhotoOutlined";
-import { ADD_IMG, ADD_Video } from "../../modules/upload";
+import { ADD_IMG } from "../../modules/upload";
 import { useDispatch } from "react-redux";
 
 const Upload = () => {
@@ -12,7 +12,6 @@ const Upload = () => {
       if (e.target.files[i]) {
         let reader = new FileReader();
         reader.readAsDataURL(e.target.files[i]);
-        console.log(e.target.files[i]);
         reader.onloadend = () => {
           const resultImage = reader.result;
           dispatch(ADD_IMG(resultImage));

@@ -86,7 +86,7 @@ const Nav = () => {
         {/* 클릭 시 게시글 작성 모달 오픈 */}
 
         <li className={styles.item} onClick={handleOpen}>
-          <div >
+          <div>
             {/*props전달*/}
             <AddBoxOutlinedIcon fontSize="string" />
             <span>글 작성</span>
@@ -101,11 +101,11 @@ const Nav = () => {
           </Link>
         </li>
 
-
         {/* 클릭 시 로그아웃*/}
-        <li className={`${styles.item} ${styles.logout}`} >
+
+        <li className={`${styles.item} ${styles.logout}`}>
           <Link to="/" onClick={onLogOutClick}>
-            <LogoutOutlinedIcon fontSize="string"/>
+            <LogoutOutlinedIcon fontSize="string" />
             <span>로그 아웃</span>
           </Link>
         </li>
