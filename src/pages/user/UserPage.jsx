@@ -227,7 +227,7 @@ const UserPage = () => {
       </div>
       <div className={styles.postmenu} >
         {params.uid === currentUserInfo.uid && (
-      // '마크'된 포스트는 로그인 유저 마이페이지에서만 활성화
+      // '마크'된 포스트는 로그인 유저의 마이페이지에서만 활성화
         <ul>
           {MycontentList.map((list) => (
             <li onClick={handleClickButton} className={styles.content_list}>
