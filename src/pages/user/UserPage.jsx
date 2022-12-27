@@ -103,34 +103,35 @@ const UserPage = () => {
   const handleClickButton = (e) => {
     const { name } = e.target;
     setContent(name);
-    console.log("click");
   };
+  console.log(content);
   const selectComponent = {
     MyPagePost: <MyPagePost />,
     MyPagePostTag: <MyPagePostTag />,
     Following: <Follow user={user} />,
     Follower: <Follower user={user} />,
   };
+
   const contentList = [
     {
       text: "게시글",
+      icon: "/images/grid.png",
       name: "MyPagePost",
-      icon: <AppsIcon fontSize="small" />,
     },
     {
       text: "마크",
+      icon: "/images/bookmark.png",
       name: "MyPagePostTag",
-      icon: <BookmarkBorderIcon fontSize="small" />,
     },
     {
       text: "팔로우 목록",
+      icon: "/images/user.png",
       name: "Following",
-      icon: <PersonOutlineOutlinedIcon fontSize="small" />,
     },
     {
       text: "팔로워 목록",
+      icon: "/images/user.png",
       name: "Follower",
-      icon: <PersonOutlineOutlinedIcon fontSize="small" />,
     },
   ];
   return (
@@ -179,12 +180,14 @@ const UserPage = () => {
                 <li className={styles.comment}>
                   <span>게시물</span>
                   <span className={styles.user_data}> {postingCount}</span>
+                </li>
+                <li className={styles.comment}>
                   <span>팔로워 </span>
                   <span className={styles.user_data}>
                     {user.follower?.length}
                   </span>
                 </li>
-                <li className={styles.comment}>
+                <li className={styles.comment_follow}>
                   {!currentUserInfo.following?.includes(user.uid) && (
                     <button className={styles.follow_btn} onClick={follow}>
                       팔로우
@@ -208,8 +211,17 @@ const UserPage = () => {
 
       <ul className={styles.postmenu}>
         {contentList.map((list) => (
-          <li className={styles.content_list} onClick={handleClickButton}>
-            {list.icon}
+          <li
+            className={styles.content_list}
+            onClick={handleClickButton}
+            key={list.name}
+          >
+            <button
+              name={list.name}
+              className={styles.nav_icon}
+              style={{ backgroundImage: `url(${list.icon})` }}
+            ></button>
+
             <button name={list.name} className={styles.nav_btn}>
               {list.text}
             </button>

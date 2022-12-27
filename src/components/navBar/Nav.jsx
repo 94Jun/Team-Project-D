@@ -32,6 +32,7 @@ const Nav = () => {
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${currentUserInfo.profile}`);
     const url = await getDownloadURL(profileRef);
+    console.log(url);
     setProfile(url);
   };
   useEffect(() => {

@@ -26,12 +26,12 @@ const FollowUser = ({ follwUser, user }) => {
         "userList",
         currentUserInfo.uid,
         "following",
-        follow.uid,
+        follwUser.uid,
         false
       );
       await updatePushData(
         "userList",
-        follow.uid,
+        follwUser.uid,
         "follower",
         currentUserInfo.uid,
         false
@@ -39,6 +39,7 @@ const FollowUser = ({ follwUser, user }) => {
       window.location.reload("/user");
     } catch (e) {}
   };
+
   const follow = async () => {
     const followNotice = {
       nid: getId(),

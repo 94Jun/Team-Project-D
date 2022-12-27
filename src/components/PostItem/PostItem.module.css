@@ -101,6 +101,9 @@
 .eidt_btn {
   color: var(--color-main-blue);
 }
+.edit_btn{
+  color : var(--color-main-blue)
+}
 
 @media (max-width: 1300px) {
   .post_contents_images {

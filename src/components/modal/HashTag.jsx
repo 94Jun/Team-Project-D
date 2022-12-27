@@ -35,18 +35,21 @@ const HashTag = () => {
   };
 
   //해쉬태그 삭제 함수
-  const deleteTagItem = (e) => {
-    const deleteItem = e.target.parentElement.firstChild.innerText; //DOM에 접근
+  const deleteTagItem = (index) => {
+    const deleteItem = HashList.filter((idx) => idx !== index);
     dispatch(DELETE_TAG(deleteItem)); //해쉬태그 삭제 리듀서 함수 함수
   };
-
   //해쉬태그 출력 map
   const hashTag = HashList.map((tagItem, index) => {
     return (
-      <div key={index} className={styles.hash}>
+      <div
+        key={index}
+        className={styles.hash}
+        onClick={() => deleteTagItem(tagItem)}
+      >
         <span className={styles.tag}>{tagItem}</span>
         <AddCircleSharpIcon
-          onClick={deleteTagItem}
+          onClick={() => deleteTagItem(tagItem)}
           className={styles.delete_font}
           fontSize={"small"}
         />

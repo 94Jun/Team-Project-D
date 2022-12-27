@@ -14,9 +14,7 @@ export const hashtag = createSlice({
     },
     DELETE_TAG: (state, action) => {
       //해쉬태그 삭제 함수
-      state.HashList = state.HashList.filter((tagItem) => {
-        return tagItem !== action.payload;
-      });
+      state.HashList = action.payload;
     },
     INITIAL_STATE_HASH: () => {
       return initialState;

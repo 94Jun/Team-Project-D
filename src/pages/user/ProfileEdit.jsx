@@ -39,11 +39,11 @@ const ProfileEdit = (props) => {
 
   const updateProfile = () => {
     if (profileImg.length === 1) {
-      //변경할 프로필 이미지가 담겨있을경우
-      const randomNum = getId();
-      const imageRef = ref(storage, `images/${randomNum}`);
-      uploadString(imageRef, profileImg[0], "data_url");
       try {
+        //변경할 프로필 이미지가 담겨있을경우
+        const randomNum = getId();
+        const imageRef = ref(storage, `images/${randomNum}`);
+        uploadString(imageRef, profileImg[0], "data_url");
         //스토리지에 변경할 이미지가 들어간뒤
         return randomNum;
       } catch (e) {
@@ -57,14 +57,14 @@ const ProfileEdit = (props) => {
 
   //프로필 업데이트 함수
   const modify = async (e) => {
-    e.preventDefault();
-    const washingtonRef = doc(db, "userList", user);
-    await updateDoc(washingtonRef, {
-      name: name,
-      introduction: introduce,
-      profile: updateProfile(),
-    });
     try {
+      e.preventDefault();
+      const washingtonRef = doc(db, "userList", user);
+      await updateDoc(washingtonRef, {
+        name: name,
+        introduction: introduce,
+        profile: updateProfile(),
+      });
       setName("");
       setIntroduce("");
       alert("프로필이 수정되었습니다");

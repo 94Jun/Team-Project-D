@@ -32,7 +32,11 @@
   width: 100%;
   display: flex;
 }
-
+.comment_follow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
 .postmenu {
   width: 100%;
   display: flex;
@@ -58,8 +62,8 @@
   height: 80px;
   display: flex;
   margin-top: 10px;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-around;
 }
 .user_data {
   margin-left: 8px;
@@ -136,6 +140,7 @@
   display: flex;
   align-items: center;
   color: var(--color-white);
+  cursor: pointer;
 }
 
 .unfollow_btn {
@@ -151,11 +156,25 @@
   color: var(--color-black);
 }
 .unfollow_btn:hover {
+  width: 85px;
   background-color: var(--color-black);
   color: var(--color-white);
 }
 .unfollow_btn:hover::after {
   content: "취소";
+}
+.icon {
+  cursor: pointer;
+}
+.nav_icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 13px;
+  background-color: var(--color-white);
+  border: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 @media (max-width: 1300px) {
@@ -173,7 +192,7 @@
   .title {
     justify-content: flex-start;
     margin: 0;
-    min-width: 350px;
+    min-width: 330px;
   }
   .preview {
     margin: 40px 20px;
@@ -181,27 +200,57 @@
     width: 100px;
     align-items: center;
   }
-
   .container {
     margin: 30px;
   }
 
-  .button1 {
-  }
   .button {
     width: 100px;
   }
-
   .user_title {
     width: 100%;
     min-width: 180px;
     display: flex;
-    justify-content: space-around;
   }
   .comment {
     flex-flow: column;
     flex-direction: column-reverse;
-    justify-content: flex-start;
+  }
+  .comment_follow {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+  .follow_btn {
+    height: 30px;
+    background-color: var(--color-main-green3);
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 5px;
+    border: 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+  }
+
+  .unfollow_btn {
+    width: 60px;
+    height: 19px;
+    background-color: var(--color-white);
+    border: 0;
+    border-radius: 0px;
+    margin: 0;
+    padding: 0px;
+    color: var(--color-black);
+    font-size: 16px;
+  }
+  .unfollow_btn:hover {
+    width: 80px;
+    background-color: var(--color-white);
+    color: var(--color-main-red);
   }
   .user_data {
     margin: 0 0 5px 20px;
@@ -215,7 +264,7 @@
     margin-left: 90px;
   }
   .postmenu {
-    min-width: 340px;
+    min-width: 330px;
     max-width: 740px;
     margin: 15px 0;
   }

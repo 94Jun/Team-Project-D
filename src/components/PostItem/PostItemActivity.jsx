@@ -7,7 +7,7 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import { useEffect, useState } from "react";
-import { getId, updatePushData } from "../../common";
+import { getId, updatePushData, getqueryData } from "../../common";
 import useToggle from "../../hooks/useToggle";
 import {
   doc,
@@ -18,12 +18,17 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import ModifyPostingModal from "../modal/ModifyPostingModal";
 
 const PostItemActivity = (props) => {
   //아이콘 변경을 위한 state
   //현재 로그인한 유저의 정보를 통해 '좋아요' 및 '마크' 여부 확인 후 초기값 설정
   const [isMarked, toggleMarked] = useToggle(false);
   const [isLiked, toggleLiked] = useToggle(false);
+  const [open, setOpen] = useState(false);
+  const [postingUser, setPostingUser] = useState();
+
+  const handleOpen = () => setOpen(true);
   const [likeLength, setLikeLength] = useState(props.posting.like.length);
   useEffect(() => {
     if (
@@ -157,6 +162,19 @@ const PostItemActivity = (props) => {
       console.log(e.message);
     }
   };
+
+  const getqueryData = async () => {
+    const q = query(
+      collection(db, "postingList"),
+      where("pid", "==", props.posting.pid)
+    );
+    const querySnapshot = await getDocs(q);
+    const loadedData = querySnapshot.docs.map((doc) => doc.data());
+    setPostingUser(loadedData);
+  };
+  useEffect(() => {
+    getqueryData();
+  }, []);
   return (
     <div className={styles.post_bottom}>
       <div>
@@ -187,7 +205,7 @@ const PostItemActivity = (props) => {
       {props.currentUserInfo.uid === props.posting.writer && (
         <>
           <div>
-            <button className={styles.edit_btn}>
+            <button className={styles.edit_btn} onClick={handleOpen}>
               <EditIcon fontSize="small" />
             </button>
           </div>
@@ -201,6 +219,17 @@ const PostItemActivity = (props) => {
           </div>
         </>
       )}
+      {postingUser &&
+        postingUser.map((postingUser) => (
+          <ModifyPostingModal
+            key={postingUser.pid}
+            open={open}
+            setOpen={setOpen}
+            posting={props.posting}
+            postingUser={postingUser}
+            setPostingUser={setPostingUser}
+          />
+        ))}
     </div>
   );
 };

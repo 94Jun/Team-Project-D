@@ -17,4 +17,8 @@ export default configureStore({
     login: LoginReducer,
     pending : PendingReducer,
   },
+  middleware: getDefaultMiddleware =>
+  getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });

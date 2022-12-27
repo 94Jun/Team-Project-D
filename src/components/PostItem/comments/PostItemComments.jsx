@@ -9,7 +9,7 @@ const PostItemComments = (props) => {
         writer={props.writer}
         addCommentList={props.addCommentList}
       />
-      {props.commentList.map((comment) => {
+      {props.comment && props.commentList.map((comment) => {
         return (
           <CommentItem
             key={comment.cid}
