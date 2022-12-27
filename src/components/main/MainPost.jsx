@@ -88,9 +88,9 @@ const MainPost = () => {
   return (
     <div className={styles.main}>
       {content}
-      <MainButton onClick={getPostingList} className={styles.more_btn}>
+      <button className={styles.more_btn} onClick={getPostingList}>
         더 보기
-      </MainButton>
+      </button>
     </div>
   );
 };

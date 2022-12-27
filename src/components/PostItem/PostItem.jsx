@@ -47,6 +47,17 @@ const PostItem = (props) => {
     setCommentLength((prev) => prev - 1);
   };
 
+  //화면에 보여지는 댓글 수정
+  const editCommentList = (cid, text) => {
+    const editedCommentList = commentList.map((comment) => {
+      if (comment.cid === cid) {
+        return { ...comment, text: text };
+      }
+      return comment;
+    });
+    setCommentList(editedCommentList);
+  };
+
   //해당 포스팅에 해당하는 코멘트 리스트 불러오기
   const getCommentList = async () => {
     const q = query(
@@ -86,6 +97,8 @@ const PostItem = (props) => {
           images={props.posting.images}
           hashtags={props.posting.hashtags}
           text={props.posting.text}
+          isPlan={props.posting.isPlan}
+          planId={props.posting.planId}
         />
         <PostItemActivity
           posting={props.posting}
@@ -102,6 +115,7 @@ const PostItem = (props) => {
             writer={props.posting.writer}
             addCommentList={addCommentList}
             removeCommentList={removeCommentList}
+            editCommentList={editCommentList}
           />
         )}
       </div>

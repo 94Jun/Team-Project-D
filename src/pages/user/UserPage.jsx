@@ -210,23 +210,47 @@ const UserPage = () => {
       </div>
 
       <ul className={styles.postmenu}>
-        {contentList.map((list) => (
-          <li
-            className={styles.content_list}
-            onClick={handleClickButton}
-            key={list.name}
-          >
-            <button
-              name={list.name}
-              className={styles.nav_icon}
-              style={{ backgroundImage: `url(${list.icon})` }}
-            ></button>
+        {contentList.map((list) => {
+          if (list.text === "마크") {
+            if (currentUserInfo.uid === params.uid) {
+              return (
+                <li
+                  className={styles.content_list}
+                  onClick={handleClickButton}
+                  key={list.name}
+                >
+                  <button
+                    name={list.name}
+                    className={styles.nav_icon}
+                    style={{ backgroundImage: `url(${list.icon})` }}
+                  ></button>
 
-            <button name={list.name} className={styles.nav_btn}>
-              {list.text}
-            </button>
-          </li>
-        ))}
+                  <button name={list.name} className={styles.nav_btn}>
+                    {list.text}
+                  </button>
+                </li>
+              );
+            }
+          } else {
+            return (
+              <li
+                className={styles.content_list}
+                onClick={handleClickButton}
+                key={list.name}
+              >
+                <button
+                  name={list.name}
+                  className={styles.nav_icon}
+                  style={{ backgroundImage: `url(${list.icon})` }}
+                ></button>
+
+                <button name={list.name} className={styles.nav_btn}>
+                  {list.text}
+                </button>
+              </li>
+            );
+          }
+        })}
       </ul>
       {content && <div>{selectComponent[content]}</div>}
     </div>
