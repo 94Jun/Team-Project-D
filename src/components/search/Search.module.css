@@ -42,6 +42,16 @@
   margin : 20px auto;
   color : var(--color-dark-gray);
 }
+.more_btn:hover{
+  background-color: var(--color-gray);
+  transition: 0.5s;
+}
+.no_search{
+  text-align: center;
+  font-weight: 700;
+  margin-top : 80px;
+  font-size: var(--font-xxlarge);
+}
 
 
 @media (max-width: 768px) {

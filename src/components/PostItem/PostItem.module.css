@@ -100,9 +100,19 @@
   0 0 5px 4px var(--color-main-green3);
 }
 .edit_btn{
-  color : var(--color-main-blue)
+  color : var(--color-main-blue);
 }
-
+.plan_text{
+  margin-top : 10px;
+  color : var(--color-main-blue);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+.plan_text svg{
+  margin-top : 3px;
+}
 @media (max-width : 1300px){
   .post_contents_images{
     width : 600px;
