@@ -2,7 +2,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { Autocomplete } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ADD_SELECTED_PLACE, REMOVE_SELECETED_PLACE } from "../../modules/plan";
+import { ADD_MARKED_PLACE} from "../../modules/plan";
 
 const containerStyle = {
   width: "800px",
@@ -11,7 +11,7 @@ const containerStyle = {
 
 const Map = () => {
   const dispatch = useDispatch();
-  const selectedPlaces = useSelector((state) => state.plan.selectedPlaces);
+  const markedPlaces = useSelector((state) => state.plan.markedPlaces);
   const [coordinates, setCoordinates] = useState({ lat: 35.1621938, lng: 128.9846505 });
   const [autocomplete, setAutocomplete] = useState(null);
 
@@ -60,12 +60,12 @@ const Map = () => {
     if (pickPlaceName == null || pickPlaceAddress == null) {
       return;
     }
-    const isOverlap = selectedPlaces.find((item) => {
+    const isOverlap = markedPlaces.find((item) => {
       return item.name === pickPlaceName.innerHTML
     })
     if (isOverlap) return;
     const addedPlace = {
-      id: selectedPlaces.length + 1,
+      id: markedPlaces.length + 1,
       name: pickPlaceName.innerHTML,
       address: pickPlaceAddress.innerHTML,
       position: {
@@ -73,7 +73,7 @@ const Map = () => {
         lng : markerPosition.lng
       }
     };
-    dispatch(ADD_SELECTED_PLACE(addedPlace));
+    dispatch(ADD_MARKED_PLACE(addedPlace));
   }, [locationData]);
 
 
@@ -88,8 +88,8 @@ const Map = () => {
         onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
         onClick={markerClicked}
       >
-        {selectedPlaces.map((place) => (
-          <Marker name={"Current location"} position={place.position} />
+        {markedPlaces.map((place) => (
+          <Marker name={"Current location"} position={place.position} key={place.id} />
         ))}
 
         <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
