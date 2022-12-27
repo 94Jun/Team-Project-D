@@ -1,8 +1,5 @@
 import styles from "./UserPage.module.css";
 import { UserProfile } from "./ProfileImg";
-import AppsIcon from "@mui/icons-material/Apps";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ProfileEdit from "./ProfileEdit";
@@ -134,6 +131,7 @@ const UserPage = () => {
       name: "Follower",
     },
   ];
+
   return (
     <div className={styles.user}>
       <div className={styles.title}>
@@ -208,7 +206,6 @@ const UserPage = () => {
           <p className={styles.introduction}>{user.introduction}</p>
         </div>
       </div>
-
       <ul className={styles.postmenu}>
         {contentList.map((list) => {
           if (list.text === "마크") {
@@ -252,7 +249,11 @@ const UserPage = () => {
           }
         })}
       </ul>
-      {content && <div>{selectComponent[content]}</div>}
+      {content ? (
+        <div>{selectComponent[content]}</div>
+      ) : (
+        <div>{<MyPagePost />}</div>
+      )}
     </div>
   );
 };
