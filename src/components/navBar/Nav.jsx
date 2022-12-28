@@ -32,7 +32,6 @@ const Nav = () => {
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${currentUserInfo.profile}`);
     const url = await getDownloadURL(profileRef);
-    console.log(url)
     setProfile(url);
   };
   useEffect(() => {
@@ -87,7 +86,7 @@ const Nav = () => {
         {/* 클릭 시 게시글 작성 모달 오픈 */}
 
         <li className={styles.item} onClick={handleOpen}>
-          <div >
+          <div>
             {/*props전달*/}
             <AddBoxOutlinedIcon fontSize="string" />
             <span>글 작성</span>
@@ -102,21 +101,11 @@ const Nav = () => {
           </Link>
         </li>
 
-        {/* 클릭 시 환경 설정 페이지로 이동
-          환경 설정 페이지 추가 필요 */}
-        {/* 환경 설정을 기준으로 상단에 마진 적용 중 */}
-        {/* 추가할 네비 목록이 많아지면 토글을 사용해 목록 on/off 기능 추가 */}
-        <li className={`${styles.item} ${styles.set}`}>
-          <Link to="/">
-            <SettingsOutlinedIcon fontSize="string" />
-            <span>환경 설정</span>
-          </Link>
-        </li>
-
         {/* 클릭 시 로그아웃*/}
-        <li className={styles.item} >
+
+        <li className={`${styles.item} ${styles.logout}`}>
           <Link to="/" onClick={onLogOutClick}>
-            <LogoutOutlinedIcon fontSize="string"/>
+            <LogoutOutlinedIcon fontSize="string" />
             <span>로그 아웃</span>
           </Link>
         </li>

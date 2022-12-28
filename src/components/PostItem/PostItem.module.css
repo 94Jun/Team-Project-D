@@ -55,7 +55,7 @@
   border: none;
   cursor: pointer;
 }
-.post_contents_text{
+.post_contents_text {
   white-space: pre-line;
 }
 .post_contents_hashtags {
@@ -78,47 +78,60 @@
 .hashtags_wrap {
   margin-top: 20px;
 }
-.delete_btn{
-  color : var(--color-main-red);
+.delete_btn {
+  color: var(--color-main-red);
 }
-.thumbnail_wrap{
+.thumbnail_wrap {
   display: flex;
-  gap : 15px;
+  gap: 15px;
   margin-bottom: 20px;
 }
-.thumbnail_wrap img{
-  width : 100px;
+.thumbnail_wrap img {
+  width: 100px;
   height: 60px;
-  margin-top : 10px;
+  margin-top: 10px;
   object-fit: cover;
   cursor: pointer;
   border-radius: 10px;
 }
-.active{
-  box-shadow: 0 0 0 2px var(--color-white),
-  0 0 5px 3px var(--color-main-green2),
-  0 0 5px 4px var(--color-main-green3);
+.active {
+  box-shadow: 0 0 0 2px var(--color-white), 0 0 5px 3px var(--color-main-green2),
+    0 0 5px 4px var(--color-main-green3);
 }
-.edit_btn{
-  color : var(--color-main-blue)
+.eidt_btn {
+  color: var(--color-main-blue);
+}
+.edit_btn {
+  color: var(--color-main-blue);
+}
+.plan_text {
+  margin-top: 10px;
+  color: var(--color-main-blue);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+.plan_text svg {
+  margin-top: 3px;
 }
 
-@media (max-width : 1300px){
-  .post_contents_images{
-    width : 600px;
+@media (max-width: 1300px) {
+  .post_contents_images {
+    width: 600px;
     height: calc(600px * 0.5625);
   }
 }
-@media (max-width : 768px){
-  .post_contents_images{
-    width : 250px;
+@media (max-width: 768px) {
+  .post_contents_images {
+    width: 250px;
     height: calc(250px * 0.5625);
   }
-  .thumbnail_wrap img{
+  .thumbnail_wrap img {
     width: 60px;
     height: calc(60px * 0.5625);
   }
-  .post_container{
-    margin : 10px 0;
+  .post_container {
+    margin: 10px 0;
   }
 }

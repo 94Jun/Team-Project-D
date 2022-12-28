@@ -1,10 +1,21 @@
 import PostItem from "../PostItem/PostItem";
 import styles from "./MainPost.module.css";
-import { query, collection, where, orderBy, limit, getDocs, startAfter } from "firebase/firestore";
+import {
+  query,
+  collection,
+  where,
+  orderBy,
+  limit,
+  getDocs,
+  startAfter,
+} from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { START_MAIN_POST_PENDING, END_MAIN_POST_PENDING } from "../../modules/pending";
+import {
+  START_MAIN_POST_PENDING,
+  END_MAIN_POST_PENDING,
+} from "../../modules/pending";
 import PostingSkeleton from "../UI/PostingSkeleton";
 import MainButton from "../UI/MainButton";
 
@@ -15,18 +26,28 @@ const MainPost = () => {
   const mainPostPending = useSelector((state) => state.pending.mainPostPending);
 
   const getPostingList = async () => {
-
     try {
       if (!lastVisible) {
         dispatch(START_MAIN_POST_PENDING());
-        const first = query(collection(db, "postingList"), where("isPublic", "==", true), orderBy("timestamp", "desc"), limit(10));
+        const first = query(
+          collection(db, "postingList"),
+          where("isPublic", "==", true),
+          orderBy("timestamp", "desc"),
+          limit(10)
+        );
         const querySnapshot = await getDocs(first);
         setLastVisible(querySnapshot.docs[querySnapshot?.docs?.length - 1]);
         const loadedData = querySnapshot.docs.map((doc) => doc.data());
         setPostingList(loadedData);
         dispatch(END_MAIN_POST_PENDING());
       } else {
-        const next = query(collection(db, "postingList"), where("isPublic", "==", true), orderBy("timestamp", "desc"), startAfter(lastVisible), limit(5));
+        const next = query(
+          collection(db, "postingList"),
+          where("isPublic", "==", true),
+          orderBy("timestamp", "desc"),
+          startAfter(lastVisible),
+          limit(5)
+        );
         const querySnapshot = await getDocs(next);
         setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
         const loadedData = querySnapshot.docs.map((doc) => doc.data());
@@ -37,7 +58,6 @@ const MainPost = () => {
     } catch (e) {
       console.log(e.message);
     }
-
   };
   useEffect(() => {
     getPostingList();
@@ -50,17 +70,27 @@ const MainPost = () => {
     });
     setPostingList(filteredPostingList);
   };
-  let content = Array(5).fill().map((el, idx) => <PostingSkeleton key={idx} />)
+  let content = Array(5)
+    .fill()
+    .map((el, idx) => <PostingSkeleton key={idx} />);
   if (postingList && postingList.length !== 0 && !mainPostPending) {
     content = postingList?.map((posting) => {
-      return <PostItem key={posting.pid} posting={posting} onRemovePosting={removePostingListHandler} />;
+      return (
+        <PostItem
+          key={posting.pid}
+          posting={posting}
+          onRemovePosting={removePostingListHandler}
+        />
+      );
     });
   }
 
   return (
     <div className={styles.main}>
       {content}
-      <MainButton onClick={getPostingList} className={styles.more_btn}>더 보기</MainButton>
+      <button className={styles.more_btn} onClick={getPostingList}>
+        더 보기
+      </button>
     </div>
   );
 };

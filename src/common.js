@@ -43,6 +43,7 @@ export const getSingleData = async (collectionId, docId, setState) => {
 };
 
 //파이어베이스 콜렉션 내 조건에 따른 데이터 불러오기
+
 export const getqueryData = async (
   collectionId,
   docId,

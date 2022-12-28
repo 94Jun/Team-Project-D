@@ -64,7 +64,7 @@ const SearchResult = () => {
     </div>
   );
   if (filteredPosting?.length === 0) {
-    content = <div className={styles.container}>검색 결과가 없습니다.</div>;
+    content = <div className={`${styles.container} ${styles.no_search}`}>검색 결과가 없습니다.</div>;
   }
   return content;
 };

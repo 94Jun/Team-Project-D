@@ -6,10 +6,10 @@ import SelectedPlace from "../../components/Plan/SelectedPlace";
 import { addData, getId } from "../../common";
 import { useSelector } from "react-redux";
 import useToggle from "../../hooks/useToggle";
-import { typeImplementation } from "@testing-library/user-event/dist/type/typeImplementation";
-
+import { useNavigate } from "react-router-dom";
 
 const MakePlan = () => {
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState({ date: new Date().toISOString().slice(0, 10), value: Date.now() });
   const [endsDate, setEndsDate] = useState({ date: new Date().toISOString().slice(0, 10), value: Date.now() });
   const [plan, setPlan] = useState([]);
@@ -44,19 +44,23 @@ const MakePlan = () => {
 
   //여행계획 파이어베이스 업로드
   const addFullPlanHandler = () => {
-    try {
-      const newPlan = {
-        uid: currentUserInfo.uid,
-        planId: getId(),
-        startDate: startDate.date,
-        endsDate: endsDate.date,
-        title,
-        plan,
-        period,
-      };
-      addData("planList", newPlan.planId, newPlan);
-      alert("계획작성이 완료되었습니다.");
-    } catch (e) {}
+    if (plan.length > 0) {
+      try {
+        const newPlan = {
+          uid: currentUserInfo.uid,
+          planId: getId(),
+          startDate: startDate.date,
+          endsDate: endsDate.date,
+          title,
+          plan,
+          period,
+          companion : [currentUserInfo.uid],
+        };
+        addData("planList", newPlan.planId, newPlan);
+        alert("계획작성이 완료되었습니다.");
+        navigate('/myplans')
+      } catch (e) {}
+    }
   };
 
   return ( <div  className={styles.makeplanall}>

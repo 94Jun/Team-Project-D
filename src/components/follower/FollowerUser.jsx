@@ -4,6 +4,7 @@ import { storage } from "../../config/firebase";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { updatePushData, getId } from "../../common";
+import { Link } from "react-router-dom";
 
 const FollowerUser = ({ follower, user }) => {
   const [followUserImg, setFollowUserImg] = useState();
@@ -41,36 +42,34 @@ const FollowerUser = ({ follower, user }) => {
         currentUserInfo.uid,
         !follower.follower?.includes(currentUserInfo.uid)
       );
-      /*if (!currentUserInfo.following.includes(follower?.uid)) {
+      if (!currentUserInfo.following.includes(follower?.uid)) {
         updatePushData(
           "userList",
-          currentUserInfo.uid, //내아이디에 넣게됨 XX
+          follower.uid, //내아이디에 넣게됨 XX
           "notice",
           followNotice,
           true
         );
-      }*/
+      }
       window.location.reload("/user");
     } catch (e) {}
   };
-  console.log(
-    "필터",
-    follower.follower.filter((e) => e !== currentUserInfo.uid)
-  );
-  console.log("노필터", follower.follower);
+
   return (
-    <li className={styles.follow_user_lest}>
+    <li className={styles.follow_user_list}>
       <div className={styles.follow_user}>
         <div className={styles.follow_user_profile}>
+        <Link to={`/user/${follower.uid}`}>
           <img
             src={followUserImg}
             alt="preview-img"
             width="100%"
             height="100%"
-          />
+          /></Link>
         </div>
         <div className={styles.follow_user_data_box}>
-          <p className={styles.follow_user_data}>{follower.name}</p>
+        <Link to={`/user/${follower.uid}`}>
+          <p className={styles.follow_user_data}>{follower.name}</p></Link>
           <p className={styles.follow_user_data}>{follower.introduction}</p>
         </div>
       </div>
@@ -89,7 +88,8 @@ const FollowerUser = ({ follower, user }) => {
           )}
 
         {user.uid !== currentUserInfo.uid &&
-          !currentUserInfo.following?.includes(follower.uid) && (
+          !currentUserInfo.following?.includes(follower.uid) &&
+          follower.uid !== currentUserInfo.uid && (
             <button className={styles.follow_btn} onClick={Follow}>
               팔로우
             </button>

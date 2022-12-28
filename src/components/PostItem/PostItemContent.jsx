@@ -6,9 +6,10 @@ import { useEffect } from "react";
 import PostItemImg from "./PostItemImg";
 import { useSelector, useDispatch } from "react-redux";
 import { updatePushData } from "../../common";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { REMOVE_RECENT_SEARCH, ADD_RECENT_SEARCH } from "../../modules/user";
 import { SET_CURRENT_SEARCH, SET_SEARCH_LAST_VISIBLE } from "../../modules/search";
+import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowRightOutlined";
 const PostItemContent = (props) => {
   const { images, hashtags, text } = props;
   const dispatch = useDispatch();
@@ -87,6 +88,16 @@ const PostItemContent = (props) => {
         {imgList && imgList.length > 1 && <PostItemImg imgList={imgList} imgIdx={imgIdx} onChangeImg={changeImgHandler} />}
       </div>
       <div className={styles.post_contents_text}>{text}</div>
+      {props.isPlan && (
+        <div>
+          <Link to={`/plan/${props.planId}`} className={styles.plan_text}>
+            <span>같이 여행하기</span>
+            <span>
+              <ArrowRightOutlinedIcon />
+            </span>
+          </Link>
+        </div>
+      )}
       <div className={styles.hashtags_wrap}>
         {hashtags &&
           hashtags.map((tag, idx) => {

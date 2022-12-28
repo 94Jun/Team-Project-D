@@ -15,13 +15,14 @@ const PlanningOfDay = (props) => {
   };
   const addPlanHandler = () => {
     if (selectedPlace && selectedTime) {
-      const address = markedPlaces.find((place) => place.name === selectedPlace).address;
+      const markedPlace = markedPlaces.find((place) => place.name === selectedPlace);
       const addedPlan = {
         id: getId(),
         whatDate: props.date,
         time: selectedTime,
         place: selectedPlace,
-        address,
+        address: markedPlace.address,
+        position : markedPlace.position
       };
       props.onAddPlan(addedPlan);
     }
@@ -84,8 +85,7 @@ const PlanningOfDay = (props) => {
         filteredPlan.length !== 0 &&
         filteredPlan.map((plan) => {
           return (
-            <div>
-              <br />
+            <div key={plan.id}>
               <div>
                 <div>시간 : {plan.time}</div>
                 <div>장소 : {plan.place}</div>

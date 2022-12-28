@@ -3,22 +3,24 @@
 }
 
 .title {
-  /*수정*/
   display: flex;
   margin: 20px;
   justify-content: center;
   border-bottom: 1px solid var(--color-gray);
 }
 .main_title {
+  min-width: 300px;
   margin-top: 40px;
 }
 .name_title {
   display: flex;
+  align-items: center;
 }
 .preview {
   border-radius: 100%;
   margin: 30px;
-  border: 2px solid var(--color-gray);
+  border: 2px solid var(--color-main-green2);
+  /*border: 2px solid #d09cfa;*/
   height: 130px;
   width: 130px;
   overflow: hidden;
@@ -28,22 +30,40 @@
 }
 .comment {
   width: 100%;
-  white-space: nowrap;
+  display: flex;
+}
+.comment_follow {
+  width: 100%;
   display: flex;
   align-items: center;
+}
+.postmenu {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-bottom: 30px;
 }
 .content_list {
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+.nav_btn {
+  margin-left: 5px;
+  background-color: var(--color-white);
+  font-weight: 600;
+  cursor: pointer;
+  border: 0;
 }
 
 .user_title {
-  width: 300px;
+  width: 100%;
   height: 80px;
   display: flex;
   margin-top: 10px;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-around;
 }
 .user_data {
   margin-left: 8px;
@@ -53,22 +73,7 @@
   font-weight: bold;
   font-family: "font-h";
 }
-.postmenu {
-  font-size: small;
-  margin-bottom: 30px;
-}
-.postmenu li {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  justify-content: center;
-  margin-left: 40px;
-  margin-right: 40px;
-}
-.postmenu ul {
-  justify-content: center;
-  display: flex;
-}
+
 .button {
   background-color: var(--color-white);
   border: 1px solid var(--color-gray);
@@ -126,7 +131,7 @@
 
 .follow_btn {
   height: 30px;
-  background-color: var(--color-main-blue);
+  background-color: var(--color-main-green3);
   cursor: pointer;
   border-radius: 8px;
   margin: 5px;
@@ -135,6 +140,7 @@
   display: flex;
   align-items: center;
   color: var(--color-white);
+  cursor: pointer;
 }
 
 .unfollow_btn {
@@ -150,19 +156,28 @@
   color: var(--color-black);
 }
 .unfollow_btn:hover {
+  width: 85px;
   background-color: var(--color-black);
   color: var(--color-white);
 }
 .unfollow_btn:hover::after {
   content: "취소";
 }
-.nav_btn {
-  margin-left: 5px;
-  display: flex;
+.icon {
+  cursor: pointer;
+}
+.nav_icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 13px;
   background-color: var(--color-white);
   border: 0;
+  width: 20px;
+  height: 20px;
   align-items: center;
+  cursor: pointer;
 }
+
 @media (max-width: 1300px) {
   .post_main {
     margin-left: 150px;
@@ -170,29 +185,94 @@
 }
 
 @media (max-width: 768px) {
+  .main_title {
+    width: 50%;
+    min-width: 180px;
+    margin-top: 40px;
+  }
+  .title {
+    justify-content: flex-start;
+    margin: 0;
+    min-width: 330px;
+  }
   .preview {
+    margin: 40px 20px;
     height: 100px;
     width: 100px;
+    align-items: center;
   }
   .container {
     margin: 30px;
   }
-  .title {
-    margin-left: -100px;
-  }
+
   .button {
-    width: 250px;
-    margin-top: 40px;
-    margin-left: -87px;
+    width: 100px;
   }
   .user_title {
-    display: none;
+    width: 100%;
+    min-width: 180px;
+    display: flex;
   }
   .comment {
-    display: none;
+    flex-flow: column;
+    flex-direction: column-reverse;
+  }
+  .comment_follow {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+  .follow_btn {
+    height: 30px;
+    background-color: var(--color-main-green3);
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 5px;
+    border: 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+  }
+
+  .unfollow_btn {
+    width: 60px;
+    height: 19px;
+    background-color: var(--color-white);
+    border: 0;
+    border-radius: 0px;
+    margin: 0;
+    padding: 0px;
+    color: var(--color-black);
+    font-size: 16px;
+  }
+  .unfollow_btn:hover {
+    width: 80px;
+    background-color: var(--color-white);
+    color: var(--color-main-red);
+  }
+  .user_data {
+    margin: 0 0 5px 20px;
+  }
+  .name {
+    display: block;
+    font-size: var(--font-medium);
   }
   .post_main {
     margin: 15px;
     margin-left: 90px;
+  }
+  .postmenu {
+    min-width: 330px;
+    max-width: 740px;
+    margin: 15px 0;
+  }
+  .content_list {
+    margin: 0;
+  }
+  .nav_btn {
+    display: none;
   }
 }
