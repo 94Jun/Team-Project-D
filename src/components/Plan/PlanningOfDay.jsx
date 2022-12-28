@@ -49,7 +49,7 @@ const PlanningOfDay = (props) => {
 <div className={style.datetime}>
 
       <div className={style.dates}>
-         <h3>{props.date}</h3>일차</div>
+      Day <h3>{props.date}</h3>  </div>
              <div>
 
 
@@ -75,7 +75,7 @@ const PlanningOfDay = (props) => {
             <input type="time" onChange={changeSelectedTime} value={selectedTime} />
           </div>
           
-        <div   className={style.toplinebtn}>&nbsp;&nbsp;
+        <div   className={style.toplinebtn} >&nbsp;&nbsp;
           <button onClick={addPlanHandler}>등록</button>
         </div>
 

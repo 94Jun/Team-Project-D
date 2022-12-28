@@ -13,7 +13,7 @@ const MakePlan = () => {
   const [startDate, setStartDate] = useState({ date: new Date().toISOString().slice(0, 10), value: Date.now() });
   const [endsDate, setEndsDate] = useState({ date: new Date().toISOString().slice(0, 10), value: Date.now() });
   const [plan, setPlan] = useState([]);
-  const [title, setTitle] = useState("여행 타이틀");
+  const [title, setTitle] = useState("");
   const [editTitleIsShown, toggleEditTitleHandler] = useToggle(false);
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const addPlanHandler = (addedplan) => {
@@ -57,28 +57,31 @@ const MakePlan = () => {
           companion : [currentUserInfo.uid],
         };
         addData("planList", newPlan.planId, newPlan);
-        alert("계획작성이 완료되었습니다.");
+        alert(" 일정작성이 완료되었습니다.");
         navigate('/myplans')
       } catch (e) {}
     }
   };
 
   return ( <div  className={styles.makeplanall}>
-    <div> <h2>내 여행 계획하기 </h2> </div> 
+    <div> <h2>내 여행 일정 계획하기 </h2> </div> 
     <div>
       <div className={styles.title}>
-        {editTitleIsShown ? <input type="text" onChange={changeTitleHandler} value={title} /> : <h3> {title}</h3>}
-        <button onClick={toggleEditTitleHandler}>{editTitleIsShown ? "수정 완료" : "타이틀 수정"}</button>
-        &nbsp;&nbsp;&nbsp;<h3>{period}</h3>
+        {!editTitleIsShown ? <input className={styles.inputedit}  
+        type="text" onChange={changeTitleHandler} value={title} placeholder="여행 제목을 입력해주세요" /> : 
+        <h3  className={styles.titletext} > {title}</h3>}
+        <button onClick={toggleEditTitleHandler}>{editTitleIsShown ? "수정 완료" : "타이틀 수정"}</button> 
+        &nbsp;&nbsp;&nbsp;
+
       </div>
 
     
       <div className={styles.datelist}>
-        <p>Start</p>&nbsp;
+      <div  className={styles.titletext2}><h2>{period}</h2></div>
+        <p>시작</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="date" onChange={changeStartDate} value={startDate.date} min={new Date().toISOString().slice(0, 10)} />
-        <p>Ends</p>&nbsp;
+        &nbsp;&nbsp;<p>마지막</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="date" onChange={changeEndsDate} value={endsDate.date} min={startDate.date} />
-
       </div>
 
       
