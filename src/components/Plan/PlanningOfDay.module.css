@@ -1,17 +1,88 @@
 .days {
-    background-color: yellow;
+    padding: 20px;
+}
+
+.days select , input {
+    height: 3em;
+    border: none;
 }
 
 .dates {
-    background-color: pink;
     display: flex;
-    width: 50px;
+    width: 70px;
+    font-size: 25px;
+    position: relative;
+    top: 5px;
+    font-weight: bolder;
 }
 
 .datetime{
     display: flex;
 }
 .oneline {
-    background-color: blueviolet;
     display: flex;
+}
+
+.toplinebtn button{
+    height: 3em;
+    width: 4em;
+    border: 1px solid rgb(172, 172, 172);
+    border-radius: 10px;
+    background-color: white;
+}
+
+
+
+.toplinebtn button:hover{
+       background-color:  var( --color-main-blue);
+       border: none;
+       color: white;
+}
+
+.place_a{
+margin: 5px;
+}
+
+.timeplace{
+display: flexbox;
+position: relative;
+left: 3em;
+}
+
+.placewrap{
+    display: flexbox;
+    position: relative;
+    text-align: left;
+    border-bottom: 1px solid rgb(172, 172, 172);
+    width: 60%;
+    padding: 10px;
+    height: 70px;
+}
+
+.timeicon{
+    position: relative;
+    left:8px;
+}
+.placetime {
+    display: flexbox;
+    border-right: 1px solid black;
+    width: 53px;
+}
+
+.placeadd{
+    display: flexbox;
+    position: relative;
+    left:60px;
+    top : -45px;
+}
+
+.placetit {
+    font-size: 18px;
+}
+
+.placeaddress{
+    position: relative;
+    font-size: 12px;
+    top : 5px;
+    color: gray;
 }
