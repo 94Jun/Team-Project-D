@@ -38,7 +38,11 @@ width: 100px;
 height: 30px;
 color: var( --color-main-blue);
 border: 1px solid var( --color-main-blue);
-border-radius: 10px;
+border-radius: 5px;
+display: flexbox;
+position: relative;
+top: -35px;
+left: 110px;
 }
 
 .addround:hover{
@@ -58,6 +62,10 @@ border-radius: 10px;
         left:42%;
     }
 
+    .myplanList{
+        display: inline-block;
+        width: 100%;
+    }
 
 
 
@@ -89,13 +97,20 @@ border-radius: 10px;
             margin-top: 10px;
             width: 100%;
             position: relative; 
+            top: -60px;
         }
         
         .addround{
         font-weight: bold;
         margin-top: 10px;
-        padding: 10px;
+        padding: ;
+        padding-left: 20px;
         color: var( --color-main-blue);
+        position: relative;
+        width: 120px;
+         top: -60px;
+        left: 10px;
+
         }
         
         .addround:hover{

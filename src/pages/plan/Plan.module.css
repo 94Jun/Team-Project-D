@@ -1,0 +1,71 @@
+.PlanALL{
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.firstwrap {
+    display: inline-block;
+    position: relative;
+    margin-bottom:  20px ;
+}
+.firstline{
+display: flex;
+position: relative;
+}
+
+.btns {
+    display: inline-block;
+    position: relative;
+}
+
+.firsth2{
+    display: flex;
+position: relative;
+right: 10px;
+}
+
+.btnitem {
+    margin-left: 5px;
+    background-color: white;
+    height: 2em;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    color:  gray;
+    width: 50px;
+    margin: 2px;
+    left: 10px;
+}
+
+.btnitem:hover {
+    background-color: white;
+    border: 1px solid var( --color-main-blue);
+}
+
+
+.secconts{
+    display: inline-block;
+    position: relative;
+
+}
+
+.secdates {
+display: inline-block;
+position: relative;
+right: 10px;
+}
+
+.nextfirst {
+    text-align: left;
+    padding: 5px;
+}
+
+.nexttexts{
+    color: var( --color-main-blue);
+}
+
+.friends {
+border: 1px solid  var( --color-main-blue);
+padding: 10px;
+border-radius: 5px;
+}

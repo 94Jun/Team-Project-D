@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Myplan.module.css";
-import PlanItem from "../../components/Plan/PlanItem";
 import PlanItemList from "../../components/Plan/PlanItemList";
-import { useState } from "react";
 import { UserProfile } from "../user/ProfileImg";
 import { useSelector } from "react-redux";
 
@@ -24,9 +22,11 @@ const MyPlans = () => {
 
 
 <hr /> 
+    <div className={styles.myplanList}>
         <br />
         <PlanItemList /> 
         {/** 누르면 Plan으로 보이기 */}
+        </div>
     </div> 
     
     

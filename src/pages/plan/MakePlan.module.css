@@ -8,21 +8,20 @@
 
 }
 
-.title{
-    display: flex;
-  margin-top : 1em;
-  margin-bottom: 1em;
+.titleall{
+    display: flexbox;
     position: relative;
-    left: 20px;
-    right: 10px;
+    margin-top: 10px;
+    margin-bottom: 50px;
 }
+
 
 .inputedit{
     display: flexbox;
     position: relative;
-    width: 280px;
+    width: 90%;
     background-color: rgb(226, 226, 226);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .titletext{
@@ -41,7 +40,7 @@
     color:  var( --color-main-blue);
     left: 10px;
     right: 10px;
-    padding-right: 10px;
+    padding-right: 50px;
     padding: 1px;
 }
 
@@ -52,23 +51,26 @@
     left: 12px;
 }
 
-.title button {
+.titlebtn {
     margin-left: 5px;
     background-color: white;
     height: 3em;
     border: 1px solid lightgray;
-    border-radius: 10px;
+    border-radius: 5px;
     color:  gray;
     width: 80px;
 }
 
-.title button:hover {
+.titlebtn:hover {
     background-color:   var( --color-main-blue);
     color: white;
 }
 
 .datelist {
     display: flex;   
+    position: relative;
+    top:20px;
+    margin-bottom: 20px;
 }
 
 
@@ -86,4 +88,17 @@
 
 .days  {
     margin-top: 10px;
+}
+
+
+@media (max-width: 768px) { 
+    
+    .inputedit{
+        display: flexbox;
+        position: relative;
+        width: 70%;
+        background-color: rgb(226, 226, 226);
+        border-radius: 5px;
+    }
+    
 }

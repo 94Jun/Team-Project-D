@@ -65,12 +65,12 @@ const MakePlan = () => {
 
   return ( <div  className={styles.makeplanall}>
     <div> <h2>내 여행 일정 계획하기 </h2> </div> 
-    <div>
-      <div className={styles.title}>
+    <div  className={styles.titleall}>
+      <div className={styles.titletext}>
         {!editTitleIsShown ? <input className={styles.inputedit}  
         type="text" onChange={changeTitleHandler} value={title} placeholder="여행 제목을 입력해주세요" /> : 
         <h3  className={styles.titletext} > {title}</h3>}
-        <button onClick={toggleEditTitleHandler}>{editTitleIsShown ? "수정 완료" : "타이틀 수정"}</button> 
+        <button  className={styles.titlebtn}onClick={toggleEditTitleHandler}>{editTitleIsShown ? "수정 완료" : "타이틀 수정"}</button> 
         &nbsp;&nbsp;&nbsp;
 
       </div>
@@ -100,9 +100,9 @@ const MakePlan = () => {
                 <PlanningOfDay date={idx + 1} onAddPlan={addPlanHandler} onRemovePlan={removePlanHandler} plan={plan} /> <hr />
               </div>
             );
-          })}
-      <button onClick={addFullPlanHandler}>계획 완료</button>
-    </div> <br /><br /><br /><br /><br />
+          })}<br /><br /><br />
+      <button  className={styles.titlebtn} onClick={addFullPlanHandler}>계획 완료</button>
+    </div> 
     </div> );
 };
 
