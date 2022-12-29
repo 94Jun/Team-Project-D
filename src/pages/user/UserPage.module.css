@@ -56,6 +56,9 @@
   cursor: pointer;
   border: 0;
 }
+.nav_btn :hover {
+  background-color: var(--color-main-green3);
+}
 
 .user_title {
   width: 100%;
