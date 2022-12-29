@@ -111,7 +111,7 @@ const Plan = () => {
         {plan?.request && plan.request.length !== 0 && (
           <div style={{ position: "relative" }}>
             <Badge badgeContent={plan.request.length} color="primary">
-              <button onClick={toggleRequestIsShown}>동행요청 확인</button>
+              <button onClick={toggleRequestIsShown}>동행 요청 확인</button>
             </Badge>
             {requestIsShonw && (
               <RequestAccompany
