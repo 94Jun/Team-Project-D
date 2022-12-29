@@ -46,14 +46,14 @@ export const getSingleData = async (collectionId, docId, setState) => {
 
 export const getqueryData = async (
   collectionId,
-  docId,
+  element,
   operator,
   conditionData,
   setState
 ) => {
   const q = query(
     collection(db, collectionId),
-    where(docId, operator, conditionData)
+    where(element, operator, conditionData)
   );
   const querySnapshot = await getDocs(q);
   const loadedData = querySnapshot.docs.map((doc) => doc.data());
