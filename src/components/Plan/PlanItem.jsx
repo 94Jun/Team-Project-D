@@ -11,9 +11,12 @@ const PlanItem = (props) => {
     <div className={styles.listbox}>
       <button onClick={gotoplan}>
         <div className={styles.myplanboxs}>
-          <p>{props.plan.title}</p>
-          <p>Start : {props.plan.startDate}</p>
-          <p>Ends  : {props.plan.endsDate}</p>
+          <p><b>{props.plan.title}</b></p>
+          <br />
+          <p>{props.plan.startDate} </p>
+          <p> - </p>
+          <p>{props.plan.endsDate}</p>
+          <br />
           <p>{props.plan.period}</p>
         </div>
       </button>

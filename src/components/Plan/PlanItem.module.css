@@ -2,12 +2,16 @@
     width: 100%;
 }
 .listbox button {
+    display: flexbox;
+    position: relative;
+    float: left;
     width: 150px;
-    height: 200px;
+    height: 150px;
     margin: 10px;
     border: 1px solid var( --color-main-blue);
     border-radius: 10px;
     color: var( --color-main-blue);
+    background-color: white;
 }
 
 .listbox button:hover {

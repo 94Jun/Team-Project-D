@@ -17,7 +17,7 @@ const MyPlans = () => {
 <div className={styles.myplantitlewrap}> 
 <div><UserProfile profile={profile} className={styles.profileimg}/></div> 
 <div className={styles.myplantitle}> 
-<div className={styles.titletextplus}> <h3> 내 계획 </h3> </div> 
+<div className={styles.titletextplus}> <h3> 내 여행 계획 </h3> </div> 
 <NavLink to = '/makeplan'> <div className={styles.addround}> + 여행 추가 </div> </NavLink>
 </div> </div> 
 
