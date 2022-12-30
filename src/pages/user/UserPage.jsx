@@ -20,7 +20,7 @@ import {
   where,
   getCountFromServer,
 } from "firebase/firestore";
-import { SET_SEARCH_LAST_VISIBLE } from "../../modules/search";
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 const UserPage = () => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({});
@@ -114,6 +114,7 @@ const UserPage = () => {
     {
       text: "게시글",
       icon: "/images/grid.png",
+      icon2:"/images/grid2.png",
       name: "MyPagePost",
     },
     {
@@ -230,7 +231,7 @@ const UserPage = () => {
                     className={styles.nav_icon+(test == active ? ` ${styles.active}` : "")}
                     onClick={Clickbutton} 
                     value={test}
-                    style={{ backgroundImage: `url(${list.icon})` }} 
+                    style={{ backgroundImage :`url(${list.icon})`}} 
                     ></button>
 
                   <button 
@@ -256,7 +257,7 @@ const UserPage = () => {
                   className={styles.nav_icon+(test == active ? ` ${styles.active}` : "")}
                   onClick={Clickbutton}
                   value={test}
-                  style={{ backgroundImage: `url(${list.icon})` }} 
+                  style={{ backgroundImage :`url(${list.icon})` }}
                 ></button>
 
                 <button name={list.name} 
