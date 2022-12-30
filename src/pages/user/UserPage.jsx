@@ -20,6 +20,7 @@ import {
   where,
   getCountFromServer,
 } from "firebase/firestore";
+import { SET_SEARCH_LAST_VISIBLE } from "../../modules/search";
 const UserPage = () => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({});
@@ -132,6 +133,14 @@ const UserPage = () => {
     },
   ];
 
+  // 버튼 클릭 시 active값 주는 함수
+  let [active,setActive] = useState("");
+  const Clickbutton = (e)=> {
+    setActive((prev)=>{
+      return e.target.value;
+    });
+    };
+
   return (
     <div className={styles.user}>
       <div className={styles.title}>
@@ -207,7 +216,7 @@ const UserPage = () => {
         </div>
       </div>
       <ul className={styles.postmenu}>
-        {contentList.map((list) => {
+        {contentList.map((list , test) => {
           if (list.text === "마크") {
             if (currentUserInfo.uid === params.uid) {
               return (
@@ -218,11 +227,18 @@ const UserPage = () => {
                 >
                   <button
                     name={list.name}
-                    className={styles.nav_icon}
-                    style={{ backgroundImage: `url(${list.icon})` }}
-                  ></button>
+                    className={styles.nav_icon+(test == active ? ` ${styles.active}` : "")}
+                    onClick={Clickbutton} 
+                    value={test}
+                    style={{ backgroundImage: `url(${list.icon})` }} 
+                    ></button>
 
-                  <button name={list.name} className={styles.nav_btn}>
+                  <button 
+                  name={list.name} 
+                  className={styles.nav_btn+(test == active ? ` ${styles.active}` : "")}
+                  onClick={Clickbutton} 
+                  value={test}
+                  >
                     {list.text}
                   </button>
                 </li>
@@ -236,12 +252,18 @@ const UserPage = () => {
                 key={list.name}
               >
                 <button
-                  name={list.name}
-                  className={styles.nav_icon}
-                  style={{ backgroundImage: `url(${list.icon})` }}
+                  name={list.name} 
+                  className={styles.nav_icon+(test == active ? ` ${styles.active}` : "")}
+                  onClick={Clickbutton}
+                  value={test}
+                  style={{ backgroundImage: `url(${list.icon})` }} 
                 ></button>
 
-                <button name={list.name} className={styles.nav_btn}>
+                <button name={list.name} 
+                  className={styles.nav_btn+(test == active ? ` ${styles.active}` : "")}
+                  onClick={Clickbutton} 
+                  value={test}
+                  >
                   {list.text}
                 </button>
               </li>

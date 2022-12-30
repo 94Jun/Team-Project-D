@@ -56,8 +56,9 @@
   cursor: pointer;
   border: 0;
 }
-.nav_btn :hover {
-  background-color: var(--color-main-green3);
+.active {
+  border-bottom: solid 1px black;
+  height: 25px;
 }
 
 .user_title {
@@ -179,6 +180,7 @@
   height: 20px;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 2px;
 }
 
 @media (max-width: 1300px) {
