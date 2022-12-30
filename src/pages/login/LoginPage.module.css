@@ -1,6 +1,6 @@
 .login_full {
     text-align: center;
-    color: var(--color-main-blue);
+    color: var(--color-main-green3);
     display: grid;
     grid-template-columns: 1fr 1fr
 }
@@ -13,6 +13,7 @@ height: 100vh;
 }
 
 .login_text {
+    color: ver(   --color-main-green3);
     width: 50%;
     vertical-align: middle;
     margin-top: 10em;
@@ -30,7 +31,7 @@ height: 100vh;
 }
 
 .textbtnW{
-    color: ver(  --color-main-blue);
+    color: ver(   --color-main-green3);
     font-size: var(  --font-xsmall);
 
 }
@@ -39,7 +40,7 @@ height: 100vh;
 
 .simplebtn {
     font-size: var(   --font-medium);
-    background-color: var( --color-main-blue);
+    background-color:  var(  --color-main-green3);
     color: white;
     width: 25ch;
     padding: 1em;
@@ -53,8 +54,8 @@ height: 100vh;
     text-align: left;
     font-size: var(   --font-medium);
     background-color: white;
-    border: 1px solid var( --color-main-blue);
-    color: var( --color-main-blue);
+    border: 1px solid  var(  --color-main-green3);
+    color:  var(  --color-main-green3);
     width: 25ch;
     text-align: center;
 
@@ -66,8 +67,8 @@ height: 100vh;
 
 .simplebtn2 {
     font-size: var(   --font-medium);
-    color: var( --color-main-blue);
-    border: 1px solid var( --color-main-blue);
+    color:  var(  --color-main-green3);
+    border: 1px solid  var(  --color-main-green3);
     width: 25ch;
     padding: 0.5em;
     border-radius: 0.5em;
@@ -77,18 +78,19 @@ height: 100vh;
 
 .simplebtn2:hover {
     font-size: var(   --font-medium);
-    background-color: var( --color-main-blue);
+    background-color:  var(  --color-main-green3);
     color: white;
 }
 
 
 .textm {
+    color:   var(  --color-main-green3);
     margin-top: 7px;
     font-size: var(  --font-small);
 }
 
 .text0 {
-    background-color: #195280;
+    background-color:  var(  --color-main-green3);
     color: white;
     
 }
@@ -104,7 +106,7 @@ color: white;
 .findpwd {
     text-align: center;
     display: flex;
-    color: var(--color-main-blue);
+    color:  var(  --color-main-green3);
     position:relative;
     justify-content : center;
     width: 100%;

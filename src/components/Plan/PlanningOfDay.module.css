@@ -14,7 +14,7 @@
     position: relative;
     top: 5px;
     font-weight: bolder;
-    color: var( --color-main-blue);;
+    color: var(  --color-main-green3);
 }
 
 .datetime{
@@ -35,7 +35,7 @@
 
 
 .toplinebtn button:hover{
-       background-color:  var( --color-main-blue);
+       background-color:  var(  --color-main-green3);
        border: none;
        color: white;
 }

@@ -37,7 +37,7 @@ margin:0;
 }
 .remove_btn_wrap button{
   width: 20%;
-  background: var( --color-main-blue);
+  background: var(  --color-main-green3);
   border : none;
   cursor: pointer;
   border-radius: 5px;

@@ -14,7 +14,7 @@
 }
 .introduction{
   font-size: var(--font-small);
-  color : var(--color-main-gray)
+  color : var(--color-main-gray);
 }
 .profile{
   width : 40px;

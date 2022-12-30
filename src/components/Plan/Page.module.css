@@ -1,7 +1,7 @@
 .round {
     width:20px;
     height:20px;
-    background:#00d3d3;
+    background:var(  --color-main-green3);
     border-radius:20px;
 }
 
