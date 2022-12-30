@@ -106,8 +106,8 @@ const Plan = () => {
   const btn =
     currentUserInfo.uid === plan?.uid ? (
       <div style={{ display: "flex" }}>
-        <button className = {styles.btnitem} onClick={sharePlanHandler}><ShareIcon fill="red" /></button>
-        <button className = {styles.btnitem}  onClick={removePlanHandler}> <DeleteIcon /></button>
+        <button className = {styles.btnitem} onClick={sharePlanHandler}><ShareIcon  style={{color:"#35a5a6"}} /></button>
+        <button className = {styles.btnitem}  onClick={removePlanHandler}> <DeleteIcon style={{color:"#35a5a6"}}/></button>
         {plan?.request && plan.request.length !== 0 && (
           <div style={{ position: "relative" }}>
             <Badge badgeContent={plan.request.length} color="primary">
@@ -145,7 +145,7 @@ const Plan = () => {
       <div className={styles.secconts}> <u>{dateContent}  </u> </div> </div>
    <br /> 
    <div className={styles.friends}>
-      <span> 함께 여행 {plan?.companion?.length}명&nbsp;&nbsp;</span>
+      <span> <b>함께 여행 {plan?.companion?.length}명</b>&nbsp;&nbsp;</span>
       <button  className = {styles.btnitem}  onClick={toggleCompanionIsShown}>확인</button> 
       {companionIsShown && (
         <div style={{ display: "flex", gap: "20px" }}>

@@ -19,6 +19,9 @@ position: relative;
     position: relative;
 }
 
+.friends span {
+    color: var( --color-main-green3);
+}
 .firsth2{
     display: flex;
 position: relative;
@@ -31,7 +34,7 @@ right: 10px;
     height: 2em;
     border: 1px solid lightgray;
     border-radius: 5px;
-    color:  lightgray;
+    color: var( --color-main-green3);
     width: 50px;
     margin: 2px;
     left: 10px;
@@ -39,7 +42,7 @@ right: 10px;
 
 .btnitem:hover {
     background-color: white;
-    border: 2px solid var( --color-main-blue);
+    border: 2px solid var(  --color-main-green3);
 }
 
 
@@ -61,11 +64,11 @@ right: 10px;
 }
 
 .nexttexts{
-    color: var( --color-main-blue);
+    color: var(  --color-main-green3);
 }
 
 .friends {
-border: 1px solid  var( --color-main-blue);
+border: 1px solid  var( --color-main-green3);
 padding: 10px;
 border-radius: 5px;
 }
