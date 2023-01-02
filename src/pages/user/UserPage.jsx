@@ -114,7 +114,6 @@ const UserPage = () => {
     {
       text: "게시글",
       icon: "/images/grid.png",
-      icon2:"/images/grid2.png",
       name: "MyPagePost",
     },
     {
