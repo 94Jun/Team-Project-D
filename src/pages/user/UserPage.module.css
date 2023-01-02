@@ -20,7 +20,6 @@
   border-radius: 100%;
   margin: 30px;
   border: 2px solid var(--color-main-green2);
-  /*border: 2px solid #d09cfa;*/
   height: 130px;
   width: 130px;
   overflow: hidden;
@@ -55,6 +54,11 @@
   font-weight: 600;
   cursor: pointer;
   border: 0;
+  color: var(--color-gray);
+}
+.active {
+  height: 25px;
+  color: var(--color-black);
 }
 
 .user_title {
@@ -176,6 +180,7 @@
   height: 20px;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 2px;
 }
 
 @media (max-width: 1300px) {
@@ -274,5 +279,11 @@
   }
   .nav_btn {
     display: none;
+  }
+.active{
+    border: solid 2px var(--color-main-green3);
+    border-radius: 50%;
+    width: 23px;
+    height: 23px;
   }
 }

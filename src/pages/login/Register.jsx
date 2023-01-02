@@ -9,7 +9,11 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { getNowDate, getNowValue } from "../../common";
 import { db, auth } from "../../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "../../modules/login";
 
@@ -127,6 +131,7 @@ const Register = () => {
       phone: phone,
       profile: "default_profile.jpg",
       following: [],
+      introduction: "",
       follower: [],
       myPosting: [],
       likedPosting: [],
@@ -147,34 +152,34 @@ const Register = () => {
         email,
         password
       );
-      console.log("가입성공!")
+      console.log("가입성공!");
       navigate("/");
       createUser(userCredential.user);
       dispatch(LOGIN(userCredential.user.uid));
-      console.log(userCredential)
+      console.log(userCredential);
+      window.location.reload("/");
       const dblogin = (e) => {
         e.preventDefault();
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, values.password)
           .then((userCredential) => {
-            // Signed in 
+            // Signed in
             const user = userCredential.user;
-            console.log("로그인성공!")
+            console.log("로그인성공!");
             navigate("/");
             dispatch(LOGIN(user.uid));
+            window.location.reload("/");
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log("로그인실패!")
-            alert("아이디와 비밀번호를 확인해주세요")
-
+            console.log("로그인실패!");
+            alert("아이디와 비밀번호를 확인해주세요");
           });
       };
-
     } catch (e) {
       console.log(e.message);
-      console.log("가입실패!")
+      console.log("가입실패!");
       navigate("/register");
     }
   };
@@ -334,6 +339,4 @@ const Register = () => {
   );
 };
 
-
 export default Register;
-
