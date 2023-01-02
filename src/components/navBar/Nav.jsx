@@ -68,6 +68,7 @@ const Nav = () => {
         <li className={styles.item}>
           <Link to="/">
             <HomeIcon fontSize="string" color="blue" />
+
             <span>홈</span>
           </Link>
         </li>
