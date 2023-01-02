@@ -14,7 +14,12 @@
     margin : 20px auto;
     color : var(--color-dark-gray);
   }
-  
+
+  .not_post {
+    font-size:var(--font-large);
+    color : var(--color-light-gray);
+    text-align: center;
+  }
   
   @media (max-width: 768px) {
     .more_btn {

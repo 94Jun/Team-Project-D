@@ -116,6 +116,15 @@
   margin-top: 3px;
 }
 
+.post_comment_btn {
+  color: var(--color-main-green3);
+  font-weight: bold;
+  margin-bottom: 20px;
+  border: 0;
+  background-color: var(--color-white);
+  cursor: pointer;
+}
+
 @media (max-width: 1300px) {
   .post_contents_images {
     width: 600px;
@@ -133,5 +142,8 @@
   }
   .post_container {
     margin: 10px 0;
+  }
+  .post_comment_btn {
+    margin-bottom: 50px;
   }
 }

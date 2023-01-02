@@ -79,9 +79,9 @@ const MyPagePost = () => {
     }
   };
   useEffect(() => {
-    getPostingList();
+    getPostingList(); 
   },[testUser]);
-
+  
   //화면에 보여지는 postingList 삭제
   const removePostingListHandler = (pid) => {
     const filteredPostingList = postingList.filter((posting) => {
@@ -92,7 +92,10 @@ const MyPagePost = () => {
 
   return (
     <div className={styles.main}>
-      {postingList?.map((posting) => {
+      {testUser?.markedPosting.length === 0 ? 
+      <div className={styles.not_post}>마크된 게시물이 없습니다</div> 
+      :
+      postingList?.map((posting) => {
         return (
           <PostItem
             key={posting.pid}
@@ -101,9 +104,11 @@ const MyPagePost = () => {
           />
         );
       })}
+      {testUser?.markedPosting.length >= 5 && (
       <button onClick={getPostingList} className={styles.more_btn}>
         더 보기
       </button>
+      )}
     </div>
   );
 };

@@ -91,8 +91,11 @@ const MyPagePost = () => {
   };
 
   return (
-    <div className={styles.main}>
-      {postingList?.map((posting) => {
+    <div className={styles.main}> 
+      {postingList?.length === 0 ? 
+      <div className={styles.not_post}>작성된 게시물이 없습니다</div> 
+      :
+      postingList?.map((posting) => {
         return (
           <PostItem
             key={posting.pid}
@@ -101,9 +104,11 @@ const MyPagePost = () => {
           />
         );
       })}
+      {postingList?.length >= 5 && (
       <button onClick={getPostingList} className={styles.more_btn}>
         더 보기
       </button>
+      )}
     </div>
   );
 };
