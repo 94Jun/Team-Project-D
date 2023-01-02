@@ -23,6 +23,11 @@ const Follower = ({ user }) => {
               />
             ))}
         </ul>
+        {followerUserData === undefined && (
+          <div className={styles.follwer_undefined}>
+            <h1 className={styles.follwer_title}>팔로워 유저가 없습니다</h1>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -8,10 +8,11 @@
   padding: 0 25px;
   gap: 15px;
 }
-.logout{
-  margin-top : 25vh;
+.logout {
+  margin-top: 25vh;
 }
 .item {
+  z-index: 10;
   font-size: 28px;
   cursor: pointer;
   display: flex;
@@ -96,8 +97,8 @@
     height: fit-content;
     width: 100%;
   }
-  .logout{
-    margin : 0;
+  .logout {
+    margin: 0;
   }
   .search {
     display: none;

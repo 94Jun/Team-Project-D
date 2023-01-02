@@ -12,7 +12,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import snsimg from "../login/snsimg.jpg";
 import { db } from "../../config/firebase";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { getNowDate, getNowValue } from "../../common";
@@ -28,8 +34,10 @@ const LoginPage = (props) => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const onChangeEmail = (e) => {
-    const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-    if (!e.target.value || emailRegex.test(e.target.value)) setEmailError(false);
+    const emailRegex =
+      /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    if (!e.target.value || emailRegex.test(e.target.value))
+      setEmailError(false);
     else setEmailError(true);
     setEmail(e.target.value);
   };
@@ -100,6 +108,7 @@ const LoginPage = (props) => {
         navigate("/");
         dispatch(LOGIN(user.uid));
         console.log("구글로그인성공!");
+        window.location.reload("/");
       })
       .catch((error) => {
         const credential = GoogleAuthProvider.credentialFromError(error);
@@ -117,6 +126,8 @@ const LoginPage = (props) => {
         console.log("로그인성공!");
         navigate("/");
         dispatch(LOGIN(user.uid));
+        console.log("로그인", user.uid);
+        window.location.reload("/");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -126,10 +137,6 @@ const LoginPage = (props) => {
       });
   };
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   return (
     <div className={styles.login_full}>
       <div className={styles.login_img}>
@@ -138,15 +145,26 @@ const LoginPage = (props) => {
 
       <div className={styles.login_text}>
         <h1>로그인</h1>
-        <div className={styles.textsm}>서비스 시작을 위해 로그인을 해주세요</div>
+        <div className={styles.textsm}>
+          서비스 시작을 위해 로그인을 해주세요
+        </div>
         <br />
         <form>
           <div className={styles.textform}>
             <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
               <InputLabel htmlFor="standard-email">email</InputLabel>
-              <Input id="standard-email" type="email" placeholder="Email Address" value={email} onChange={onChangeEmail} />
+              <Input
+                id="standard-email"
+                type="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={onChangeEmail}
+              />
               {emailError && (
-                <div className="invalid-input" style={{ fontSize: "11px", color: "#D73E3E" }}>
+                <div
+                  className="invalid-input"
+                  style={{ fontSize: "11px", color: "#D73E3E" }}
+                >
                   이메일 주소를 확인해주세요.
                 </div>
               )}
@@ -161,7 +179,11 @@ const LoginPage = (props) => {
                 onChange={handleChange("password")}
                 endAdornment={
                   <InputAdornment position="end">
-                    <Iconbutton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                    <Iconbutton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
                       {values.showPassword ? <VisibilityOff /> : <Visibility />}
                     </Iconbutton>
                   </InputAdornment>
@@ -177,7 +199,7 @@ const LoginPage = (props) => {
           <br />
           <button className={styles.simplebtn} onClick={dblogin}>
             로그인
-          </button>{" "}
+          </button>
           <br />
           <span style={{ fontSize: "12px", margin: "7px" }}> or </span> <br />
           <button className={styles.simplebtn2} onClick={googleLogin}>
@@ -187,7 +209,11 @@ const LoginPage = (props) => {
           <div className={styles.textm}>
             계정이 없으시다면
             <span>
-              <Link to="/register" className="text0" style={{ fontWeight: "bold" }}>
+              <Link
+                to="/register"
+                className="text0"
+                style={{ fontWeight: "bold" }}
+              >
                 <u>회원가입</u>
               </Link>
             </span>
