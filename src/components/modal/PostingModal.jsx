@@ -1,6 +1,6 @@
 import styles from "./PostingModal.module.css";
 import ClearIcon from "@mui/icons-material/Clear";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { INITIAL_STATE_HASH } from "../../modules/hash";

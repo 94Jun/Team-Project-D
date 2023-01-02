@@ -19,8 +19,10 @@ const HashTag = () => {
   };
   //해쉬태그 함수
   const addTag = () => {
-    setTagItem(""); //함수 실행후 인풋 빈값으로
-    dispatch(ADD_TAG(tagItem)); //작성한 해쉬태그 HashList에 저장될 리듀서 함수
+    if (tagItem.trim() !== "") {
+      dispatch(ADD_TAG(tagItem.trim())); //작성한 해쉬태그 HashList에 저장될 리듀서 함수
+      setTagItem(""); //함수 실행후 인풋 빈값으로
+    }
   };
 
   //해쉬태그 조건 함수

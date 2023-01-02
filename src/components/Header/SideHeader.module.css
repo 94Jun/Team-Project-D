@@ -19,13 +19,12 @@
   display: flexbox;
   position: relative;
   top: 30px;
-
 }
 
 .headericon {
   display: flexbox;
   position: relative;
   height: 10px;
-  left:90px;
+  left: 90px;
   z-index: -1;
 }
