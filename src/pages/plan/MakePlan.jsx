@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PlanningOfDay from "../../components/Plan/PlanningOfDay";
 import Map from "../../components/Plan/Map";
-import styles from "../../components/Plan/Page.module.css";
+import styles from "../plan/MakePlan.module.css";
 import SelectedPlace from "../../components/Plan/SelectedPlace";
 import { addData, getId } from "../../common";
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const MakePlan = () => {
   const [startDate, setStartDate] = useState({ date: new Date().toISOString().slice(0, 10), value: Date.now() });
   const [endsDate, setEndsDate] = useState({ date: new Date().toISOString().slice(0, 10), value: Date.now() });
   const [plan, setPlan] = useState([]);
-  const [title, setTitle] = useState("여행 타이틀");
+  const [title, setTitle] = useState("");
   const [editTitleIsShown, toggleEditTitleHandler] = useToggle(false);
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
   const addPlanHandler = (addedplan) => {
@@ -57,25 +57,34 @@ const MakePlan = () => {
           companion : [currentUserInfo.uid],
         };
         addData("planList", newPlan.planId, newPlan);
-        alert("계획작성이 완료되었습니다.");
+        alert(" 일정작성이 완료되었습니다.");
         navigate('/myplans')
       } catch (e) {}
     }
   };
 
-  return (
-    <div>
-      <div>
-        {editTitleIsShown ? <input type="text" onChange={changeTitleHandler} value={title} /> : <h2> {title}</h2>}
-        <button onClick={toggleEditTitleHandler}>{editTitleIsShown ? "수정 완료" : "타이틀 수정"}</button>
+  return ( <div  className={styles.makeplanall}>
+    <div> <h2>내 여행 일정 계획하기 </h2> </div> 
+    <div  className={styles.titleall}>
+      <div className={styles.titletext}>
+        {!editTitleIsShown ? <input className={styles.inputedit}  
+        type="text" onChange={changeTitleHandler} value={title} placeholder="여행 제목을 입력해주세요" /> : 
+        <h3  className={styles.titletext} > {title}</h3>}
+        <button  className={styles.titlebtn}onClick={toggleEditTitleHandler}>{editTitleIsShown ? "수정 완료" : "타이틀 수정"}</button> 
+        &nbsp;&nbsp;&nbsp;
+
       </div>
-      <h3>{period}</h3>
+
+    
       <div className={styles.datelist}>
-        <p>여행 첫날</p>
+      <div  className={styles.titletext2}><h2>{period}</h2></div>
+        <p>시작</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="date" onChange={changeStartDate} value={startDate.date} min={new Date().toISOString().slice(0, 10)} />
-        <p>여행 마지막날</p>
+        &nbsp;&nbsp;<p>마지막</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="date" onChange={changeEndsDate} value={endsDate.date} min={startDate.date} />
       </div>
+
+      
       <br />
 
       <div>
@@ -87,14 +96,14 @@ const MakePlan = () => {
           .fill()
           .map((date, idx) => {
             return (
-              <div key={idx}>
+              <div key={idx} className={styles.days}>
                 <PlanningOfDay date={idx + 1} onAddPlan={addPlanHandler} onRemovePlan={removePlanHandler} plan={plan} /> <hr />
               </div>
             );
-          })}
-      <button onClick={addFullPlanHandler}>계획 완료</button>
-    </div>
-  );
+          })}<br /><br /><br />
+      <button  className={styles.titlebtn} onClick={addFullPlanHandler}>계획 완료</button>
+    </div> 
+    </div> );
 };
 
 export default MakePlan;

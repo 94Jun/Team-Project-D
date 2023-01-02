@@ -4,6 +4,8 @@ import { getNowValue, getqueryData } from "../../common";
 import { useSelector } from "react-redux";
 import { query, collection, where, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import styles from "./PlanItemList.module.css";
+
 
 const PlanItemList = () => {
   const [planList, setPlanList] = useState();
@@ -42,26 +44,31 @@ const PlanItemList = () => {
           return nowValue <= endsValue;
         })
       : null;
+
+
   return (
-    <div>
-      <div>
+    <div className={styles.planlist}>
+        
+      <div> <div className={styles.planlistpast}>
         <h3>지난 여행</h3>
         {prevPlanList && prevPlanList.length !== 0 ? (
           prevPlanList.map((plan) => {
             return <PlanItem key={plan.planId} plan={plan} />;
           })
         ) : (
-          <div>완료한 여행이 없습니다.</div>
+          <div> <h3>완료한 여행이 없습니다. </h3></div>
         )}
-        <h3>진행(계획)중인 여행</h3>
+      </div> <br />
+        <div className={styles.planlistcurrent}> 
+        <h3>진행중인 여행</h3>
         {nextPlanList && nextPlanList.length !== 0 ? (
           nextPlanList.map((plan) => {
             return <PlanItem key={plan.planId} plan={plan} />;
           })
         ) : (
-          <div>계획중인 여행이 없습니다.</div>
+          <div> <h3>계획중인 여행이 없습니다.</h3></div>
         )}
-      </div>
+      </div></div>
     </div>
   );
 };

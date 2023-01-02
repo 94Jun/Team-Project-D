@@ -13,9 +13,12 @@ const PlanItem = (props) => {
     <div className={styles.listbox}>
       <button onClick={gotoplan}>
         <div className={styles.myplanboxs}>
-          <p>{props.plan.title}</p>
-          <p>여행시작 : {props.plan.startDate}</p>
-          <p>여행끝 : {props.plan.endsDate}</p>
+          <p><b>{props.plan.title}</b></p>
+          <br />
+          <p>{props.plan.startDate} </p>
+          <p> - </p>
+          <p>{props.plan.endsDate}</p>
+          <br />
           <p>{props.plan.period}</p>
           {currentUserInfo.uid !== props.plan.uid && <p>참여하는 여행</p>}
         </div>

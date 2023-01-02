@@ -67,7 +67,7 @@ const Nav = () => {
         {/* 클릭 시 홈 페이지로 이동 */}
         <li className={styles.item}>
           <Link to="/">
-            <HomeIcon fontSize="string" />
+            <HomeIcon fontSize="string" color='blue'/>
             <span>홈</span>
           </Link>
         </li>

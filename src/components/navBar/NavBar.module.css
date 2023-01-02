@@ -27,7 +27,7 @@
     display: none;
   }
   .header_icon {
-    display: block;
+    display: none;
   }
   .side_container {
     min-width: 80px;
