@@ -84,15 +84,16 @@ const PostItem = (props) => {
 
   return (
     <div className={`${styles.post_container} ${props.className}`}>
-      <PostItemProfile profile={writerInfo.profile} />
+      <Link to={"/user/" + writerInfo.uid}>
+        <PostItemProfile profile={writerInfo.profile} />
+      </Link>
       <div className={styles.post}>
-        <Link to={"/user/" + writerInfo.uid}>
-          {/*클릭시 그사람 유아이디로*/}
-          <PostItemInfo
-            name={writerInfo.name}
-            writeDate={props.posting.writeDate}
-          />
-        </Link>
+        {/*클릭시 그사람 유아이디로*/}
+        <PostItemInfo
+          name={writerInfo.name}
+          uid={writerInfo.uid}
+          writeDate={props.posting.writeDate}
+        />
         <PostItemContent
           images={props.posting.images}
           hashtags={props.posting.hashtags}

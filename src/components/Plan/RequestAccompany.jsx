@@ -1,21 +1,30 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { getqueryData } from "../../common";
-import Companion from "./Companion";
-import styles from './RequestAccompany.module.css'
+import RequestUser from "./RequestUser";
+import styles from "./RequestAccompany.module.css";
 
 const RequestAccompany = (props) => {
-  const [companion, setCompanion] = useState()
+  const [requestUser, setRequestUser] = useState(null);
   useEffect(() => {
-    getqueryData("userList", "uid", "in", props.request, setCompanion)
-  }, [props.request])
-  
+    getqueryData("userList", "uid", "in", props.request, setRequestUser);
+  }, [props.request]);
+
   return (
     <div className={styles.container}>
       <ul className={styles.list}>
-        {companion &&
-          companion.map((user) => {
-            return <Companion key={user.uid} user={user} planId={props.planId} onToggleRequest={props.onToggleRequest} />;
+        {requestUser &&
+          requestUser.map((user) => {
+            return (
+              <RequestUser
+                key={user.uid}
+                user={user}
+                plan={props.plan}
+                onToggleRequest={props.onToggleRequest}
+                onRemoveRequest={props.onRemoveRequest}
+                planner={props.planner}
+              />
+            );
           })}
       </ul>
     </div>

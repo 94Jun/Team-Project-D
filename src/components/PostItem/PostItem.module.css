@@ -55,8 +55,9 @@
   border: none;
   cursor: pointer;
 }
+
 .post_contents_text {
-  white-space: pre-line;
+  white-space: pre-wrap;
 }
 .post_contents_hashtags {
   padding-top: 15px;
@@ -114,6 +115,14 @@
 }
 .plan_text svg {
   margin-top: 3px;
+}
+
+.toggle_btn {
+  margin-left: 8px;
+  color: var(--color-gray);
+  background-color: var(--color-white);
+  border: 0;
+  cursor: pointer;
 }
 
 @media (max-width: 1300px) {

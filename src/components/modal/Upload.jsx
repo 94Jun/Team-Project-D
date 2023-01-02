@@ -28,7 +28,7 @@ const Upload = () => {
       <input
         type="file"
         id="file"
-        accept="image/jpg, image/jpeg, image/png, image/gif, video/mp4"
+        accept="image/jpg, image/jpeg, image/png, image/gif"
         multiple
         onChange={handleChangeFile}
       />
