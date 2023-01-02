@@ -67,7 +67,11 @@ const Nav = () => {
         {/* 클릭 시 홈 페이지로 이동 */}
         <li className={styles.item}>
           <Link to="/">
+
+            <HomeIcon fontSize="string" color='blue' style={{color:"#35a5a6"}} />
+
             <HomeIcon fontSize="string" color="blue" />
+
             <span>홈</span>
           </Link>
         </li>
@@ -78,7 +82,7 @@ const Nav = () => {
           onClick={toggleSearchModalHandler}
         >
           <div>
-            <SearchIcon fontSize="string" />
+            <SearchIcon fontSize="string" style={{color:"#35a5a6"}} />
             <span>검색</span>
           </div>
         </li>
@@ -88,15 +92,15 @@ const Nav = () => {
         <li className={styles.item} onClick={handleOpen}>
           <div>
             {/*props전달*/}
-            <AddBoxOutlinedIcon fontSize="string" />
+            <AddBoxOutlinedIcon fontSize="string"  style={{color:"#35a5a6"}}/>
             <span>글 작성</span>
           </div>
         </li>
-        <PostingModal open={open} setOpen={setOpen} />
+        <PostingModal open={open} setOpen={setOpen}  style={{color:"#35a5a6"}}/>
 
         <li className={styles.item}>
           <Link to="/myplans">
-            <LoyaltyIcon fontSize="string" />
+            <LoyaltyIcon fontSize="string" style={{color:"#35a5a6"}}/>
             <span>여행 계획 수립</span>
           </Link>
         </li>
@@ -104,7 +108,7 @@ const Nav = () => {
         {/* 클릭 시 로그아웃*/}
 
         <li className={`${styles.item} ${styles.logout}`}>
-          <Link to="/" onClick={onLogOutClick}>
+          <Link to="/" onClick={onLogOutClick} style={{color:"#35a5a6"}}>
             <LogoutOutlinedIcon fontSize="string" />
             <span>로그 아웃</span>
           </Link>
