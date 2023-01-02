@@ -1,22 +1,36 @@
-
 import { NavLink } from "react-router-dom";
-
-import PlanItem from "../../components/Plan/PlanItem";
+import styles from "./Myplan.module.css";
 import PlanItemList from "../../components/Plan/PlanItemList";
+import { UserProfile } from "../user/ProfileImg";
+import { useSelector } from "react-redux";
 
 
 const MyPlans = () => {
-    return ( <div>
-        <div>
-            <h1>나의 여행 계획</h1>
+  const profile = useSelector((state) => state.user.profile);
 
-         <button>  <NavLink to ='/makeplan' > 계획만들기 </NavLink> </button>
 
-         </div> <br />
+  return (
+<div className={styles.myplan}>
+
+<div className={styles.myplantitlewrap}> 
+<div><UserProfile profile={profile} className={styles.profileimg}/></div> 
+<div className={styles.myplantitle}> 
+<div className={styles.titletextplus}> <h3> 내 여행 계획 </h3> </div> 
+<NavLink to = '/makeplan'> <div className={styles.addround}> + 여행 추가 </div> </NavLink>
+</div> </div> 
+
+
+
+<hr /> 
+    <div className={styles.myplanList}>
+        <br />
         <PlanItemList /> 
         {/** 누르면 Plan으로 보이기 */}
-     
-    </div> );
-}
- 
+        </div>
+    </div> 
+    
+    
+    );
+
+  }
 export default MyPlans;
