@@ -21,16 +21,22 @@ const UploadImg = ({
     const imgNameArr = imgList.filter((idx) => idx !== index);
     const imgName = images.filter((idx) => idx !== index);
 
+    dispatch(DELETE_IMG(imgNameArr, imgName));
+
+    // 이미지 삭제 대표이미지와 비교 후 같으면 같이 지워지게
+    if (imgs === index) {
+      setImgs("");
+    }
+  };
+  //포스팅 수정 이미지 삭제
+  const modifyDeleteImg = (index) => {
     const isImgNumber = (element) => element === index;
     const imgIndex = imgLists.findIndex(isImgNumber);
 
     const img = imgLists.filter((idx) => idx !== index);
     const imgTest = imgGetId.filter((idx, i) => i !== imgIndex);
-    dispatch(DELETE_IMG(imgNameArr, imgName));
     setImgLists(img);
     setImgGetId(imgTest);
-
-    // 이미지 삭제 대표이미지와 비교 후 같으면 같이 지워지게
     if (imgs === index) {
       setImgs("");
     }
@@ -80,7 +86,7 @@ const UploadImg = ({
         imgLists.map((src) => (
           <li key={src} className={styles.img_list}>
             <AddCircleSharpIcon
-              onClick={() => deleteImg(src)}
+              onClick={() => modifyDeleteImg(src)}
               className={`${styles.delete_font} ${styles.delete_img}`}
               fontSize={"small"}
             />
