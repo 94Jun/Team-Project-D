@@ -1,7 +1,7 @@
 .register_full{
     text-align: center;
     display: flex;
-    color: var(--color-main-blue);
+    color:  var(  --color-main-green3);
     position:relative;
     justify-content : center;
     width: 100%;
@@ -17,7 +17,7 @@
 }
 .simplebtn {
     font-size: var(   --font-medium);
-    background-color: var( --color-main-blue);
+    background-color: var(  --color-main-green3);
     color: white;
     width: 30ch;
     padding: 1em;
@@ -30,8 +30,8 @@
     text-align: left;
     font-size: var(   --font-medium);
     background-color: white;
-    border: 1px solid var( --color-main-blue);
-    color: var( --color-main-blue);
+    border: 1px solid  var(  --color-main-green3);
+    color:  var(  --color-main-green3);
     width: 30ch;
     text-align: center;
 }

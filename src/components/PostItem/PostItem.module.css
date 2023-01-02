@@ -122,6 +122,13 @@
   color: var(--color-gray);
   background-color: var(--color-white);
   border: 0;
+}
+.post_comment_btn {
+  color: var(--color-main-green3);
+  font-weight: bold;
+  margin-bottom: 20px;
+  border: 0;
+  background-color: var(--color-white);
   cursor: pointer;
 }
 
@@ -142,5 +149,8 @@
   }
   .post_container {
     margin: 10px 0;
+  }
+  .post_comment_btn {
+    margin-bottom: 50px;
   }
 }

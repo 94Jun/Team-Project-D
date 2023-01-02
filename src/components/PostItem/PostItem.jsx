@@ -14,10 +14,12 @@ import {
   orderBy,
   limit,
   getDocs,
+  startAfter,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import useToggle from "../../hooks/useToggle";
 import { Link } from "react-router-dom";
+import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
 
 const PostItem = (props) => {
   const currentUserInfo = useSelector((state) => state.user.currentUserInfo);
@@ -26,7 +28,7 @@ const PostItem = (props) => {
   const [commentsLength, setCommentLength] = useState(
     props.posting?.comments.length
   );
-
+  const [lastVisible, setLastVisible] = useState();
   // 댓글창 on/off
   const [isCommentsShown, toggleCommentsHandler] = useToggle(false);
 
@@ -60,15 +62,30 @@ const PostItem = (props) => {
 
   //해당 포스팅에 해당하는 코멘트 리스트 불러오기
   const getCommentList = async () => {
+    if (!lastVisible) {
     const q = query(
       collection(db, "commentList"),
       where("posting", "==", props.posting.pid),
-      orderBy("timestamp", "desc")
-    );
+      orderBy("timestamp", "desc"),
+      limit(5));
     const querySnapshot = await getDocs(q);
+    setLastVisible(querySnapshot.docs[querySnapshot?.docs?.length - 1]);
     const loadedData = querySnapshot.docs.map((doc) => doc.data());
     setCommentList(loadedData);
-  };
+  } else { 
+    const q = query(
+      collection(db, "commentList"),
+      where("posting", "==", props.posting.pid),
+      orderBy("timestamp", "desc"),
+      startAfter(lastVisible), 
+      limit(5));
+    const querySnapshot = await getDocs(q);
+    setLastVisible(querySnapshot.docs[querySnapshot?.docs?.length - 1]);
+    const loadedData = querySnapshot.docs.map((doc) => doc.data());
+    setCommentList((prev) => {
+      return [...prev, ...loadedData];
+    });
+  }};
 
   useEffect(() => {
     try {
@@ -116,9 +133,14 @@ const PostItem = (props) => {
             writer={props.posting.writer}
             addCommentList={addCommentList}
             removeCommentList={removeCommentList}
-            editCommentList={editCommentList}
-          />
-        )}
+            editCommentList={editCommentList} />
+            )}
+          {/** 댓글 수 5개 이상일 때 더보기 버튼 보이게 */}
+        {isCommentsShown && props.posting?.comments.length >=5 && (
+          <button onClick={getCommentList} className={styles.post_comment_btn}>
+            더 보기 +
+          </button>
+          )}
       </div>
     </div>
   );
