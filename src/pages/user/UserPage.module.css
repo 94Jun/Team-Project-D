@@ -55,7 +55,7 @@
   font-weight: 600;
   cursor: pointer;
   border: 0;
-  color: var(--color-gray);
+  color: var(--color-main-green2);
 }
 .active {
   height: 25px;
