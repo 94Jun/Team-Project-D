@@ -47,7 +47,6 @@
 .item span {
   margin-left: 10px;
   font-size: 18px;
-  color: var(--color-main-green3);
 }
 @media (max-width: 1300px) {
   .item span {
