@@ -12,8 +12,8 @@ import RequestAccompany from "../../components/Plan/RequestAccompany";
 import Companions from "../../components/Plan/Companions";
 import useToggle from "../../hooks/useToggle";
 import styles from "./Plan.module.css";
-import ShareIcon from '@mui/icons-material/Share';
-import DeleteIcon from '@mui/icons-material/Delete';
+import ShareIcon from "@mui/icons-material/Share";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Plan = () => {
   const [plan, setPlan] = useState();
@@ -94,7 +94,7 @@ const Plan = () => {
     try {
       updatePushData("planList", planId, "request", currentUserInfo.uid, true);
       setPlan((prev) => {
-        return { ...prev, request: [...prev.request, currentUserInfo.uid] };
+        return { ...prev, request: [...prev?.request, currentUserInfo.uid] };
       });
       updatePushData("userList", planner.uid, "notice", notice, true);
       alert("동행요청 완료");
@@ -106,12 +106,16 @@ const Plan = () => {
   const btn =
     currentUserInfo.uid === plan?.uid ? (
       <div style={{ display: "flex" }}>
-        <button className = {styles.btnitem} onClick={sharePlanHandler}><ShareIcon  style={{color:"#35a5a6"}} /></button>
-        <button className = {styles.btnitem}  onClick={removePlanHandler}> <DeleteIcon style={{color:"#35a5a6"}}/></button>
+        <button className={styles.btnitem} onClick={sharePlanHandler}>
+          <ShareIcon style={{ color: "#35a5a6" }} />
+        </button>
+        <button className={styles.btnitem} onClick={removePlanHandler}>
+          <DeleteIcon style={{ color: "#35a5a6" }} />
+        </button>
         {plan?.request && plan.request.length !== 0 && (
           <div style={{ position: "relative" }}>
             <Badge badgeContent={plan.request.length} color="primary">
-              <button onClick={toggleRequestIsShown}>동행 요청 확인</button>
+              <button onClick={toggleRequestIsShown} className={styles.btnitem} style={{padding : "11px 20px"}}>동행 요청 확인</button>
             </Badge>
             {requestIsShonw && (
               <RequestAccompany
@@ -126,50 +130,64 @@ const Plan = () => {
         )}
       </div>
     ) : plan?.request?.includes(currentUserInfo.uid) ? (
-      <div>동행 요청 중</div>
+      <div className={`${styles.btnitem} ${styles.ing}`}>동행 요청 중</div>
     ) : !plan?.companion?.includes(currentUserInfo.uid) ? (
       <div>
-        <button onClick={requestAccompanyHandler}>동행 요청</button>
+        <button onClick={requestAccompanyHandler} className={styles.btnitem}>동행 요청</button>
       </div>
     ) : null;
   return (
-
     <div className={styles.PlanALL}>
-      <div> 
-      <div className={styles.firstwrap}> <div className={styles.firstline}>
-      <div className={styles.firsth2}><h2>{plan?.title}</h2></div>
-      <div className={styles.btns}>{btn}</div> </div></div></div>
-
-      <div className={styles.seclines}>
-      <div className={styles.secdates}> <h3>{plan?.period} </h3></div> 
-      <div className={styles.secconts}> <u>{dateContent}  </u> </div> </div>
-   <br /> 
-   <div className={styles.friends}>
-      <span> <b>함께 여행 {plan?.companion?.length}명</b>&nbsp;&nbsp;</span>
-      <button  className = {styles.btnitem}  onClick={toggleCompanionIsShown}>확인</button> 
-      {companionIsShown && (
-        <div style={{ display: "flex", gap: "20px" }}>
-          {plan &&
-            plan.companion.map((uid) => {
-              return <Companions uid={uid} key={uid} />;
-            })}
-         <br />  </div> 
-      )}</div> 
- 
-    <div></div>
-      <div  className={styles.nextfirst}>
-    <div>
-      {coordinates && <PlaceMap plan={plan} coordinates={coordinates} />}
+      <div>
+        <div className={styles.firstwrap}>
+          <div className={styles.firstline}>
+            <div className={styles.firsth2}>
+              <h2>{plan?.title}</h2>
+            </div>
+            <div className={styles.btns}>{btn}</div>
+          </div>
+        </div>
       </div>
-      <div  className={styles.nexttexts}>
-      {length &&
-        Array(length)
-          .fill()
-          .map((el, idx) => {
-            const filteredPlan = plan.plan.filter((plan) => plan.whatDate === idx + 1);
-            return <PlanPlace key={idx} date={idx + 1} plan={filteredPlan} onChangeCenter={changeCenterHandler} />;
-          })}
-   </div> </div>  </div>
+      <div className={styles.seclines}>
+        <div className={styles.secdates}>
+          <h3>{plan?.period} </h3>
+        </div>
+        <div className={styles.secconts}>
+          <u>{dateContent} </u>
+        </div>
+      </div>
+      <br />
+      <div className={styles.friends}>
+        <span>
+          <b>함께 여행 {plan?.companion?.length}명</b>&nbsp;&nbsp;
+        </span>
+        <button className={styles.btnitem} onClick={toggleCompanionIsShown}>
+          확인
+        </button>
+        {companionIsShown && (
+          <div style={{ display: "flex", gap: "20px" }}>
+            {plan &&
+              plan.companion.map((uid) => {
+                return <Companions uid={uid} key={uid} />;
+              })}
+            <br />
+          </div>
+        )}
+      </div>
+      <div></div>
+      <div className={styles.nextfirst}>
+        <div>{coordinates && <PlaceMap plan={plan} coordinates={coordinates} />}</div>
+        <div className={styles.nexttexts}>
+          {length &&
+            Array(length)
+              .fill()
+              .map((el, idx) => {
+                const filteredPlan = plan.plan.filter((plan) => plan.whatDate === idx + 1);
+                return <PlanPlace key={idx} date={idx + 1} plan={filteredPlan} onChangeCenter={changeCenterHandler} />;
+              })}
+        </div>
+      </div>
+    </div>
   );
 };
 
