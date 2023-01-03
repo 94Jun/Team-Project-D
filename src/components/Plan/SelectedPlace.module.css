@@ -1,6 +1,6 @@
 .pickplaceall {
   background-color: var(--color-gray);
-  width: 100%;
+  width : 100%;
   padding-top: 20px;
   padding-bottom: 20px;
   margin: 0;
@@ -17,14 +17,13 @@
 }
 
 .selectcontent {
-  display: inline-block;
-  width: 90%;
-  height: 140px;
+  width: 100%;
+  display: flex;
   overflow: auto;
 }
 
 .selectedPlace {
-  display: inline-block;
+
 }
 
 .remove_btn_wrap {

@@ -1,5 +1,5 @@
 .makeplanall {
-  width: 100%;
+  width: calc(100% - 260px);
   justify-content: center;
   margin-top: 10px;
   text-align: center;
@@ -85,7 +85,11 @@
 .days {
   margin-top: 10px;
 }
-
+@media (max-width: 1300px) {
+  .makeplanall {
+    width: calc(100% - 90px);
+  }
+}
 @media (max-width: 768px) {
   .inputedit {
     display: flexbox;
@@ -93,5 +97,8 @@
     width: 70%;
     background-color: rgb(226, 226, 226);
     border-radius: 5px;
+  }
+  .makeplanall {
+    width: calc(100%);
   }
 }
