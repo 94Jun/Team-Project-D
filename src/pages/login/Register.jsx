@@ -319,7 +319,7 @@ const Register = () => {
                 정확한 폰 번호를 입력해주세요
               </div>
             )}
-          </FormControl>{" "}
+          </FormControl>
           <br></br>
           <br></br>
           {!emailError &&
@@ -328,7 +328,7 @@ const Register = () => {
           !confirmPasswordError &&
           !userNameError ? (
             <button className={styles.simplebtn} type="submit">
-              회원가입{" "}
+              회원가입
             </button>
           ) : (
             <div className={styles.textsm}> 모든 정보를 입력해주세요 </div>
