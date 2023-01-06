@@ -75,6 +75,7 @@ left: 110px;
             padding: 10px;
             text-align: center;
             justify-content : center;
+            margin-bottom : 120px;
         }
         
         .myplantitlewrap{
@@ -94,7 +95,7 @@ left: 110px;
         }
         
         .titletextplus {
-            margin-top: 10px;
+            margin-top: 30px;
             width: 100%;
             position: relative; 
             top: -60px;
@@ -103,7 +104,6 @@ left: 110px;
         .addround{
         font-weight: bold;
         margin-top: 10px;
-        padding: ;
         padding-left: 20px;
         color: var(  --color-main-green3);
         position: relative;

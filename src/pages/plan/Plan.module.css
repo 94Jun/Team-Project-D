@@ -78,3 +78,8 @@
   background-color: var(--color-light-gray);
   border: 1px solid lightgray;
 }
+@media (max-width: 768px) {
+  .PlanALL {
+    margin-bottom: 70px;
+  }
+}

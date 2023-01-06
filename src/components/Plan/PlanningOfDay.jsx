@@ -25,7 +25,7 @@ const PlanningOfDay = (props) => {
         time: selectedTime,
         place: selectedPlace,
         address: markedPlace.address,
-        position : markedPlace.position
+        position: markedPlace.position,
       };
       props.onAddPlan(addedPlan);
     }
@@ -47,7 +47,7 @@ const PlanningOfDay = (props) => {
     <div className={style.days}>
       <div className={style.datetime}>
         <div className={style.dates}>
-          Day <h3>{props.date}</h3>
+          <h3>Day{props.date}</h3>
         </div>
         <div>
           <div className={style.oneline}>

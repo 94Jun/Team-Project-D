@@ -92,6 +92,7 @@ const MyPagePost = () => {
     }
   };
   useEffect(() => {
+    if(testUser)
     getPostingList();
   }, [testUser]);
 
