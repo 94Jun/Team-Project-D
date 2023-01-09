@@ -25,6 +25,7 @@ https://travel-1g.firebaseapp.com/
 ## 주요 기능
 **1. 회원가입 및 로그인**
 
+**[로그인 페이지]**
 ![로그인](https://github.com/94Jun/img-storage/blob/main/login.png)
   - firebase-Auth를 이용한 회원가입, 로그인, 비밀번호 찾기
   - 구글 아이디를 통한 로그인 기능
@@ -35,9 +36,27 @@ https://travel-1g.firebaseapp.com/
 **2. 게시글 작성**
 
 **3. 여행계획**
+
+**[여행 페이지]**
 ![my_plans](https://github.com/94Jun/img-storage/blob/main/myplans.png)
-   - 여행 계획하기 페이지(makeplan)로 이동
-   - 내가 계획한 여행 & 참여하는 여행 세부페이지로 이동
+  - 여행 계획하기 페이지(makeplan)로 이동
+  - 내가 계획한 여행 & 참여하는 여행 세부페이지로 이동
    
-   
-![make_plan](https://github.com/94Jun/img-storage/blob/main/makeplan1.png)
+**[여행 계획 페이지]**
+![make_plan_1](https://github.com/94Jun/img-storage/blob/main/makeplan1.png)
+![make_plan_2](https://github.com/94Jun/img-storage/blob/main/maekplan2.png)
+  - 해당 여행 계획의 이름 작성 및 수정 가능
+  - 여행 일정 설정 및 세부 계획 추가 가능
+    - 구글 맵 api를 이용해 장소 검색 및 지도 이동
+    - 구글 맵 내 세부장소를 클릭해 장소 추가
+    - 추가된 장소와 시간을 입력해 세부 계획 추가
+
+**[여행 세부 페이지]**
+![my_plan](https://github.com/94Jun/img-storage/blob/main/myplan.png)
+  - 구글 맵에서 여행 장소에 대한 위치 정보 확인 가능
+  - 여행 세부 장소 클릭 시 구글 맵 이동
+  - 여행 참여자 확인 가능
+  - 여행 계획 작성자
+    - 여행 계획 공유 및 삭제 가능
+  - 여행 참여자
+    - 공유한 여행 계획에 대해 동행요청 가능
