@@ -25,7 +25,7 @@
   overflow: hidden;
 }
 .name {
-  font-size: x-large; /*수정*/
+  font-size: var(--font-xlarge)
 }
 .comment {
   width: 100%;
@@ -54,7 +54,7 @@
   font-weight: 600;
   cursor: pointer;
   border: 0;
-  color: var(--color-main-green2);
+  color: var(--color-gray);
 }
 .active {
   height: 25px;
@@ -263,7 +263,7 @@
   }
   .name {
     display: block;
-    font-size: var(--font-medium);
+    font-size: var(--font-large);
   }
   .post_main {
     margin: 15px;
