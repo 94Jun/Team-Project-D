@@ -9,7 +9,6 @@ const Follow = ({ user }) => {
   useEffect(() => {
     getqueryData("userList", "uid", "in", user?.following, setFollwUserUser);
   }, [user]);
-  console.log(follwUser);
   return (
     <div className={styles.follw_wrap}>
       <ul className={styles.follw_list}>
