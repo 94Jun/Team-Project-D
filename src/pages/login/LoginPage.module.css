@@ -2,7 +2,7 @@
     text-align: center;
     color: var(--color-main-green3);
     display: grid;
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: 1fr 1fr;
 }
 
 .login_img {
@@ -19,6 +19,10 @@ height: 100vh;
     margin-top: 10em;
     margin-left: 2em;
     width: 80%;
+}
+
+.mo_logo {
+    display: none;
 }
 
 .textsm {
@@ -116,4 +120,30 @@ color: white;
     display: inline-block;
     position:relative;
     margin-top:5vh;
+}
+
+@media (max-width: 768px) { 
+
+    .login_full {
+        text-align: center;
+        color: var(--color-main-green3);
+        display: contents;
+        position: relative;
+        margin: none;
+    }
+
+    .login_img {
+       display: none;
+        }
+
+    .mo_logo {
+        display: contents;
+        position: relative;
+    }
+     .login_text {
+        width: 90%;
+        display: flexbox;
+        position: relative;
+
+        }
 }
