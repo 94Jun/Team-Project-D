@@ -33,3 +33,11 @@ https://travel-1g.firebaseapp.com/
 
 
 **2. 게시글 작성**
+
+**3. 여행계획**
+![my_plans](https://github.com/94Jun/img-storage/blob/main/myplans.png)
+   - 여행 계획하기 페이지(makeplan)로 이동
+   - 내가 계획한 여행 & 참여하는 여행 세부페이지로 이동
+   
+   
+![make_plan](https://github.com/94Jun/img-storage/blob/main/makeplan1.png)
