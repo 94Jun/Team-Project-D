@@ -1,3 +1,6 @@
+<style type="text/css">
+  *{color : blue}
+</style>
 # travel(여행 전문 SNS)
 
 ## 참여인원
