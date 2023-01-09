@@ -1,9 +1,4 @@
 # travel(여행 전문 SNS)
-<<<<<<< HEAD
-### 팀프로젝트
-
-<img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=white"/>
-=======
 
 ## 참여인원
 1. 박병준(pbj11241@gmail.com)
