@@ -54,8 +54,8 @@ const RequestUser = (props) => {
         </div>
       </div>
       <div>
-        <button onClick={acceptRequestHandler}>수락</button>
-        <button onClick={rejectRequestHandler}>거절</button>
+        <button onClick={acceptRequestHandler} className={styles.btn}>수락</button>
+        <button onClick={rejectRequestHandler} className={styles.btn}>거절</button>
       </div>
     </li>
   );

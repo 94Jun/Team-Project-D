@@ -26,6 +26,8 @@ import { useDispatch } from "react-redux";
 import { LOGIN } from "../../modules/login";
 import { Box, Modal, Typography } from "@mui/material";
 import FindPassword from "../../components/modal/FindPassword";
+import LuggageIcon from '@mui/icons-material/Luggage';
+
 
 const LoginPage = (props) => {
   const dispatch = useDispatch();
@@ -144,6 +146,10 @@ const LoginPage = (props) => {
       </div>
 
       <div className={styles.login_text}>
+      <div className={styles.mo_logo}>
+      <div className={styles.headericon}> <LuggageIcon style={{color:"#35a5a6"}} sx={{ fontSize: 70 }}/>  </div>
+
+        </div>
         <h1>로그인</h1>
         <div className={styles.textsm}>
           서비스 시작을 위해 로그인을 해주세요

@@ -33,4 +33,11 @@
   .more_btn {
     margin-bottom: 70px;
   }
+  .not_post {
+    width: 100%;
+    min-width: 300px;
+  }
+  .not_post_title {
+    font-size: var(--font-xlarge);
+  }
 }

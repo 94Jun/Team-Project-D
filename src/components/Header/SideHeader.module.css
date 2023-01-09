@@ -34,7 +34,7 @@
     display: flexbox;
     position: relative;
     height: 10px;
-    left:2px;
+    left: 2px;
     z-index: -1;
   }
 }

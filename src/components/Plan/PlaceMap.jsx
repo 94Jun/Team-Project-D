@@ -2,7 +2,7 @@ import { GoogleMap, InfoWindow, LoadScript } from "@react-google-maps/api";
 
 import styles from "./PlaceMap.module.css";
 const containerStyle = {
-  width: "800px",
+  width: "100%",
   height: "400px",
 };
 const PlaceMap = (props) => {
@@ -14,7 +14,7 @@ const PlaceMap = (props) => {
             <InfoWindow position={plan.position} key={plan.id} options={{disableAutoPan:true}}>
               <div className={styles.window_container}>
                 <div className={styles.window_header_wrap}>
-                  <p>[Day {plan.whatDate}]</p>
+                  <p><b>[Day {plan.whatDate}]</b></p>
                   <p>{plan.time}</p>
                 </div>
                   <p>{plan.place}</p>
