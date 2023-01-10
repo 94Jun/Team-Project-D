@@ -51,7 +51,7 @@ https://travel-1g.firebaseapp.com/
     - 추가된 장소와 시간을 입력해 세부 계획 추가
 
 **[여행 세부 페이지]**
-![my_plan](https://github.com/94Jun/img-storage/blob/main/myplan.png)
+![my_plan](https://github.com/94Jun/img-storage/blob/main/new_myplan.png)
   - 구글 맵에서 여행 장소에 대한 위치 정보 확인 가능
   - 여행 시간 순에 따라 세부 장소 및 주소 표시
   - 여행 세부 장소 클릭 시 구글 맵 이동
