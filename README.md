@@ -44,7 +44,6 @@ https://travel-1g.firebaseapp.com/
    
 **[여행 계획 페이지]**
 ![make_plan_1](https://github.com/94Jun/img-storage/blob/main/makeplan1.png)
-![make_plan_2](https://github.com/94Jun/img-storage/blob/main/maekplan2.png)
   - 해당 여행 계획의 이름 작성 및 수정 가능
   - 여행 일정 설정 및 세부 계획 추가 가능
     - 구글 맵 api를 이용해 장소 검색 및 지도 이동
@@ -54,6 +53,7 @@ https://travel-1g.firebaseapp.com/
 **[여행 세부 페이지]**
 ![my_plan](https://github.com/94Jun/img-storage/blob/main/myplan.png)
   - 구글 맵에서 여행 장소에 대한 위치 정보 확인 가능
+  - 여행 시간 순에 따라 세부 장소 및 주소 표시
   - 여행 세부 장소 클릭 시 구글 맵 이동
   - 여행 참여자 확인 가능
   - 여행 계획 작성자
