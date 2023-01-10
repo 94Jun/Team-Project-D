@@ -35,6 +35,14 @@ https://travel-1g.firebaseapp.com/
 
 **2. 게시글 작성**
 
+**[게시글 작성]**
+![make_posting](https://github.com/94Jun/img-storage/blob/main/make_posting.png)
+  - 모든 페이지에서 모달을 통해 게시글 작성
+  - 이미지 업로드(최대 4장) 및 이미지 클릭 시 미리보기
+  - 해시태그 입력란에서 스페이스바를 통해 해시태그 추가
+  - 공개 여부를 선택해 비공개시 본인만 확인 가능
+  - emoji-picker 라이브러리를 사용해 이모티콘 추가
+
 **3. 여행계획**
 
 **[여행 페이지]**
