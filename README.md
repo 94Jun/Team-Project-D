@@ -23,7 +23,7 @@ https://travel-1g.firebaseapp.com/
 
 
 ## 주요 기능
-**1. 회원가입 및 로그인**
+### 1. 회원가입 및 로그인
 
 **[로그인 페이지]**
 ![로그인](https://github.com/94Jun/img-storage/blob/main/login.png)
@@ -33,7 +33,7 @@ https://travel-1g.firebaseapp.com/
   - 로그인 여부에 따라 사용할 수 있는 Router 구분
 
 
-**2. 게시글 작성**
+### 2. 게시글 작성
 
 **[게시글 작성]**
 ![make_posting](https://github.com/94Jun/img-storage/blob/main/make_posting.png)
@@ -43,7 +43,7 @@ https://travel-1g.firebaseapp.com/
   - 공개 여부를 선택해 비공개시 본인만 확인 가능
   - emoji-picker 라이브러리를 사용해 이모티콘 추가
 
-**3. 여행계획**
+### 3. 여행계획
 
 **[여행 페이지]**
 ![my_plans](https://github.com/94Jun/img-storage/blob/main/myplans.png)
@@ -75,7 +75,7 @@ https://travel-1g.firebaseapp.com/
   - 게시글 내 [같이 여행하기]를 클릭하여 해당 여행 계획 확인 및 동행요청 가능(여행 세부 페이지로 이동)
   - 여행 계획 작성자가 동행 수락 시 동행인에 포함
 
-**4. 게시물 확인**
+### 4. 게시물 확인
 
 **[메인 페이지]**
 ![main](https://github.com/94Jun/img-storage/blob/main/main_1.png)
@@ -88,3 +88,26 @@ https://travel-1g.firebaseapp.com/
     - 본인 게시글인 경우 수정 및 삭제 가능
     - 게시글 텍스트가 일정 길이 이상인 경우 [더보기]를 통해 전문 확인 가능
   - 최대 10개의 게시글 요청 후 [더보기] 클릭 시 추가 게시글 요청
+  
+### 5. 검색
+  
+**[검색 및 검색기록]**
+![search_log](https://github.com/94Jun/img-storage/blob/main/searchlog.png)
+  - 해시태그 기준 검색 가능
+  - 최근 검색 기록 확인 및 클릭 시 해당 내용 검색
+    
+**[검색 결과 페이지]**
+![search](https://github.com/94Jun/img-storage/blob/main/search.png)
+  - 데이터베이스 쿼리문을 통해 검색
+  - 메인 페이지에서 사용한 게시글 컴포넌트 재활용
+  
+### 6. 게시물/팔로워 확인 및 프로필 편집
+
+**[유저페이지(본인)]**
+![user_mine](https://github.com/94Jun/img-storage/blob/main/user_mine.png)
+  - 프로필 편집 버튼 클릭 시 모달을 통해 프로필 이미지, 이름, 소개글 수정
+  - 내 게시물(비공개 게시물 포함), 내가 마크한 게시물, 팔로잉한 유저, 팔로워 확인
+
+**[유저페이지]**
+![user_others](https://github.com/94Jun/img-storage/blob/main/user_other.png)
+  - 해당 유저의 게시물, 팔로잉한 유저, 팔로워 확인 가능
