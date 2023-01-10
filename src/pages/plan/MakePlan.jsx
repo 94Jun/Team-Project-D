@@ -55,7 +55,7 @@ const MakePlan = () => {
           plan,
           period,
           companion: [currentUserInfo.uid],
-          request : [],
+          request: [],
         };
         addData("planList", newPlan.planId, newPlan);
         alert(" 일정작성이 완료되었습니다.");
@@ -86,15 +86,17 @@ const MakePlan = () => {
           <div className={styles.titletext2}>
             <h2>{period}</h2>
           </div>
-          <p>시작</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="date" onChange={changeStartDate} value={startDate.date} min={new Date().toISOString().slice(0, 10)} />
-          &nbsp;&nbsp;<p>마지막</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="date" onChange={changeEndsDate} value={endsDate.date} min={startDate.date} />
+          <div className={styles.date_wrap}>
+            <p>시작</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="date" onChange={changeStartDate} value={startDate.date} min={new Date().toISOString().slice(0, 10)} />
+            &nbsp;&nbsp;<p>마지막</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="date" onChange={changeEndsDate} value={endsDate.date} min={startDate.date} />
+          </div>
         </div>
 
         <br />
 
-        <div>
+        <div className={styles.map_wrap}>
           <Map />
         </div>
         <SelectedPlace />

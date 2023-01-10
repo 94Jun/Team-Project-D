@@ -20,6 +20,7 @@
 
 .bottom_container {
   display: none;
+  z-index: 100;
 }
 
 @media (max-width: 1300px) {

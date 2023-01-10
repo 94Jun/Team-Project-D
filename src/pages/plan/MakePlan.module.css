@@ -85,6 +85,14 @@
 .days {
   margin-top: 10px;
 }
+.date_wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.date_wrap input{
+  margin-top : 20px;
+}
 @media (max-width: 1300px) {
   .makeplanall {
     width: calc(100% - 90px);
@@ -99,6 +107,13 @@
     border-radius: 5px;
   }
   .makeplanall {
-    width: calc(100%);
+    margin : 10px 0;
+    width: calc(100% - 10px);
+  }
+  .datelist{
+    display: block;
+  }
+  .datelist h2{
+    font-size: var(--font-xlarge);
   }
 }
