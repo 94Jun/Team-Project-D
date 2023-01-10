@@ -20,7 +20,7 @@ import {
   where,
   getCountFromServer,
 } from "firebase/firestore";
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 const UserPage = () => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({});
@@ -38,7 +38,6 @@ const UserPage = () => {
   }, [params]);
 
   //프로필 사진 가져오는 함수
-
   const getProfile = async () => {
     const profileRef = ref(storage, `images/${user.profile}`);
     const url = await getDownloadURL(profileRef);
@@ -93,8 +92,10 @@ const UserPage = () => {
 
   useEffect(() => {
     //currentUserInfo.profile값이 변하면 함수 실행
-    userPostingCount();
-    getProfile();
+    if (user.profile) {
+      userPostingCount();
+      getProfile();
+    }
   }, [user.profile]);
 
   //다른 컴포넌트 불러오는 함수 test
@@ -102,7 +103,7 @@ const UserPage = () => {
     const { name } = e.target;
     setContent(name);
   };
-  console.log(content);
+
   const selectComponent = {
     MyPagePost: <MyPagePost />,
     MyPagePostTag: <MyPagePostTag />,
@@ -134,12 +135,12 @@ const UserPage = () => {
   ];
 
   // 버튼 클릭 시 active값 주는 함수
-  let [active,setActive] = useState("");
-  const Clickbutton = (e)=> {
-    setActive((prev)=>{
+  let [active, setActive] = useState("");
+  const Clickbutton = (e) => {
+    setActive((prev) => {
       return e.target.value;
     });
-    };
+  };
 
   return (
     <div className={styles.user}>
@@ -216,7 +217,7 @@ const UserPage = () => {
         </div>
       </div>
       <ul className={styles.postmenu}>
-        {contentList.map((list , test) => {
+        {contentList.map((list, test) => {
           if (list.text === "마크") {
             if (currentUserInfo.uid === params.uid) {
               return (
@@ -227,17 +228,23 @@ const UserPage = () => {
                 >
                   <button
                     name={list.name}
-                    className={styles.nav_icon+(test == active ? ` ${styles.active}` : "")}
-                    onClick={Clickbutton} 
+                    className={
+                      styles.nav_icon +
+                      (test == active ? ` ${styles.active}` : "")
+                    }
+                    onClick={Clickbutton}
                     value={test}
-                    style={{ backgroundImage :`url(${list.icon})`}} 
-                    ></button>
+                    style={{ backgroundImage: `url(${list.icon})` }}
+                  ></button>
 
-                  <button 
-                  name={list.name} 
-                  className={styles.nav_btn+(test == active ? ` ${styles.active}` : "")}
-                  onClick={Clickbutton} 
-                  value={test}
+                  <button
+                    name={list.name}
+                    className={
+                      styles.nav_btn +
+                      (test == active ? ` ${styles.active}` : "")
+                    }
+                    onClick={Clickbutton}
+                    value={test}
                   >
                     {list.text}
                   </button>
@@ -252,18 +259,24 @@ const UserPage = () => {
                 key={list.name}
               >
                 <button
-                  name={list.name} 
-                  className={styles.nav_icon+(test == active ? ` ${styles.active}` : "")}
+                  name={list.name}
+                  className={
+                    styles.nav_icon +
+                    (test == active ? ` ${styles.active}` : "")
+                  }
                   onClick={Clickbutton}
                   value={test}
-                  style={{ backgroundImage :`url(${list.icon})` }}
+                  style={{ backgroundImage: `url(${list.icon})` }}
                 ></button>
 
-                <button name={list.name} 
-                  className={styles.nav_btn+(test == active ? ` ${styles.active}` : "")}
-                  onClick={Clickbutton} 
+                <button
+                  name={list.name}
+                  className={
+                    styles.nav_btn + (test == active ? ` ${styles.active}` : "")
+                  }
+                  onClick={Clickbutton}
                   value={test}
-                  >
+                >
                   {list.text}
                 </button>
               </li>
