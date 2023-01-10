@@ -111,3 +111,4 @@ https://travel-1g.firebaseapp.com/
 **[유저페이지]**
 ![user_others](https://github.com/94Jun/img-storage/blob/main/user_other.png)
   - 해당 유저의 게시물, 팔로잉한 유저, 팔로워 확인 가능
+  - 팔로우 버튼 클릭 시 해당 유저 팔로우
