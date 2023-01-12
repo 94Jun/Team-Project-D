@@ -153,8 +153,8 @@ const Register = () => {
         password
       );
       console.log("가입성공!");
-      navigate("/");
       createUser(userCredential.user);
+      navigate("/");
       dispatch(LOGIN(userCredential.user.uid));
       console.log(userCredential);
       window.location.reload("/");

@@ -115,7 +115,9 @@ const Plan = () => {
         {plan?.request && plan.request.length !== 0 && (
           <div style={{ position: "relative" }}>
             <Badge badgeContent={plan.request.length} color="primary">
-              <button onClick={toggleRequestIsShown} className={styles.btnitem} style={{padding : "11px 20px"}}>동행 요청 확인</button>
+              <button onClick={toggleRequestIsShown} className={styles.btnitem} style={{ padding: "11px 20px" }}>
+                동행 요청 확인
+              </button>
             </Badge>
             {requestIsShonw && (
               <RequestAccompany
@@ -133,7 +135,9 @@ const Plan = () => {
       <div className={`${styles.btnitem} ${styles.ing}`}>동행 요청 중</div>
     ) : !plan?.companion?.includes(currentUserInfo.uid) ? (
       <div>
-        <button onClick={requestAccompanyHandler} className={styles.btnitem}>동행 요청</button>
+        <button onClick={requestAccompanyHandler} className={styles.btnitem}>
+          동행 요청
+        </button>
       </div>
     ) : null;
   return (
@@ -182,7 +186,15 @@ const Plan = () => {
             Array(length)
               .fill()
               .map((el, idx) => {
-                const filteredPlan = plan.plan.filter((plan) => plan.whatDate === idx + 1);
+                const filteredPlan = plan.plan
+                  .filter((plan) => plan.whatDate === idx + 1)
+                  .sort((a, b) => {
+                    const timeA = a.time;
+                    const timeB = b.time;
+                    if (timeA < timeB) return -1;
+                    if (timeA > timeB) return 1;
+                    return 0;
+                  });
                 return <PlanPlace key={idx} date={idx + 1} plan={filteredPlan} onChangeCenter={changeCenterHandler} />;
               })}
         </div>
