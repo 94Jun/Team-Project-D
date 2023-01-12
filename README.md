@@ -112,3 +112,18 @@ https://travel-1g.firebaseapp.com/
 ![user_others](https://github.com/94Jun/img-storage/blob/main/user_other.png)
   - 해당 유저의 게시물, 팔로잉한 유저, 팔로워 확인 가능
   - 팔로우 버튼 클릭 시 해당 유저 팔로우
+
+## 모바일 디자인
+
+### [회원가입 및 로그인]
+
+![m_register](https://github.com/94Jun/img-storage/blob/main/m_register.png)![m_login](https://github.com/94Jun/img-storage/blob/main/m_login.png)
+
+### [메인 및 게시글 작성]
+![m_main](https://github.com/94Jun/img-storage/blob/main/m_main.png)![m_make_posting](https://github.com/94Jun/img-storage/blob/main/m_make_posting.png)
+
+### [유저 페이지]
+![m_user](https://github.com/94Jun/img-storage/blob/main/m_user.png)![m_edit_profile](https://github.com/94Jun/img-storage/blob/main/m_edit_profile.png)
+
+### [여행 계획]
+![m_myplans](https://github.com/94Jun/img-storage/blob/main/m_myplans.png)![m_myplan](https://github.com/94Jun/img-storage/blob/main/m_myplan.png)
